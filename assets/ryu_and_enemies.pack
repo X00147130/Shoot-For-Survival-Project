@@ -1,0 +1,699 @@
+
+ryu_and_enemies.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack/attacka7
+  rotate: false
+  xy: 1, 1579
+  size: 1634, 908
+  orig: 1634, 908
+  offset: 0, 0
+  index: -1
+attack/attacka6
+  rotate: false
+  xy: 1, 333
+  size: 1176, 1244
+  orig: 1176, 1244
+  offset: 0, 0
+  index: -1
+attack/attack2
+  rotate: false
+  xy: 1179, 763
+  size: 596, 814
+  orig: 596, 814
+  offset: 0, 0
+  index: -1
+attack/attack3
+  rotate: false
+  xy: 1179, 1
+  size: 559, 760
+  orig: 559, 760
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack/attack5
+  rotate: false
+  xy: 1, 911
+  size: 1143, 866
+  orig: 1143, 866
+  offset: 0, 0
+  index: -1
+attack/attack4
+  rotate: false
+  xy: 1, 1
+  size: 536, 908
+  orig: 536, 908
+  offset: 0, 0
+  index: -1
+attack/attack1
+  rotate: false
+  xy: 539, 1
+  size: 482, 908
+  orig: 482, 908
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attacka7
+  rotate: false
+  xy: 1, 1588
+  size: 1634, 908
+  orig: 1634, 908
+  offset: 0, 0
+  index: -1
+attacka6
+  rotate: false
+  xy: 1, 342
+  size: 1176, 1244
+  orig: 1176, 1244
+  offset: 0, 0
+  index: -1
+jumpup4
+  rotate: false
+  xy: 1179, 763
+  size: 810, 823
+  orig: 810, 823
+  offset: 0, 0
+  index: -1
+attack3
+  rotate: false
+  xy: 1179, 1
+  size: 559, 760
+  orig: 559, 760
+  offset: 0, 0
+  index: -1
+enemyDie1
+  rotate: false
+  xy: 1740, 633
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyDie2
+  rotate: false
+  xy: 1740, 503
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyDie3
+  rotate: false
+  xy: 1740, 373
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyDie4
+  rotate: false
+  xy: 1740, 243
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyDie5
+  rotate: false
+  xy: 1740, 113
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyDie6
+  rotate: false
+  xy: 1870, 633
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyDie7
+  rotate: false
+  xy: 1870, 503
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyRun1
+  rotate: false
+  xy: 1870, 373
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyRun2
+  rotate: false
+  xy: 1870, 243
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyRun3
+  rotate: false
+  xy: 1870, 113
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyRun4
+  rotate: false
+  xy: 1637, 2368
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyRun5
+  rotate: false
+  xy: 1637, 2238
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemyRun6
+  rotate: false
+  xy: 1637, 2108
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemySlash1
+  rotate: false
+  xy: 1637, 1978
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemySlash2
+  rotate: false
+  xy: 1637, 1848
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemySlash3
+  rotate: false
+  xy: 1637, 1718
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemySlash4
+  rotate: false
+  xy: 1637, 1588
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemySlash5
+  rotate: false
+  xy: 1767, 2368
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemySlash6
+  rotate: false
+  xy: 1767, 2238
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemySlash7
+  rotate: false
+  xy: 1767, 2108
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemySlash8
+  rotate: false
+  xy: 1767, 1978
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack5
+  rotate: false
+  xy: 1, 1586
+  size: 1143, 866
+  orig: 1143, 866
+  offset: 0, 0
+  index: -1
+die5
+  rotate: false
+  xy: 1146, 1719
+  size: 870, 733
+  orig: 870, 733
+  offset: 0, 0
+  index: -1
+die2
+  rotate: false
+  xy: 1146, 817
+  size: 804, 900
+  orig: 804, 900
+  offset: 0, 0
+  index: -1
+attack2
+  rotate: false
+  xy: 1, 1
+  size: 596, 814
+  orig: 596, 814
+  offset: 0, 0
+  index: -1
+attack4
+  rotate: false
+  xy: 599, 676
+  size: 536, 908
+  orig: 536, 908
+  offset: 0, 0
+  index: -1
+die4
+  rotate: false
+  xy: 1137, 3
+  size: 884, 812
+  orig: 884, 812
+  offset: 0, 0
+  index: -1
+jumpup7
+  rotate: false
+  xy: 1, 838
+  size: 566, 746
+  orig: 566, 746
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+die10
+  rotate: false
+  xy: 1, 2050
+  size: 1010, 435
+  orig: 1010, 435
+  offset: 0, 0
+  index: -1
+jumpup6
+  rotate: false
+  xy: 1013, 1386
+  size: 903, 1099
+  orig: 903, 1099
+  offset: 0, 0
+  index: -1
+die7
+  rotate: false
+  xy: 1, 1414
+  size: 897, 634
+  orig: 897, 634
+  offset: 0, 0
+  index: -1
+die8
+  rotate: false
+  xy: 1, 778
+  size: 897, 634
+  orig: 897, 634
+  offset: 0, 0
+  index: -1
+running5
+  rotate: false
+  xy: 1, 1
+  size: 613, 775
+  orig: 613, 775
+  offset: 0, 0
+  index: -1
+running4
+  rotate: false
+  xy: 616, 2
+  size: 767, 774
+  orig: 767, 774
+  offset: 0, 0
+  index: -1
+running1
+  rotate: false
+  xy: 1385, 452
+  size: 607, 932
+  orig: 607, 932
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies6.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+jumpup5
+  rotate: false
+  xy: 1, 1296
+  size: 713, 1099
+  orig: 713, 1099
+  offset: 0, 0
+  index: -1
+running2
+  rotate: false
+  xy: 1, 290
+  size: 669, 1004
+  orig: 669, 1004
+  offset: 0, 0
+  index: -1
+running3
+  rotate: false
+  xy: 716, 1586
+  size: 755, 809
+  orig: 755, 809
+  offset: 0, 0
+  index: -1
+attack1
+  rotate: false
+  xy: 1473, 1487
+  size: 482, 908
+  orig: 482, 908
+  offset: 0, 0
+  index: -1
+running6
+  rotate: false
+  xy: 716, 775
+  size: 755, 809
+  orig: 755, 809
+  offset: 0, 0
+  index: -1
+die3
+  rotate: false
+  xy: 672, 3
+  size: 717, 770
+  orig: 717, 770
+  offset: 0, 0
+  index: -1
+jumpup2
+  rotate: false
+  xy: 1391, 1
+  size: 565, 772
+  orig: 565, 772
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies7.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+die/die2
+  rotate: false
+  xy: 1, 1372
+  size: 804, 900
+  orig: 804, 900
+  offset: 0, 0
+  index: -1
+die/die4
+  rotate: false
+  xy: 807, 1460
+  size: 884, 812
+  orig: 884, 812
+  offset: 0, 0
+  index: -1
+die/die5
+  rotate: false
+  xy: 1, 637
+  size: 870, 733
+  orig: 870, 733
+  offset: 0, 0
+  index: -1
+die/die7
+  rotate: false
+  xy: 1, 1
+  size: 897, 634
+  orig: 897, 634
+  offset: 0, 0
+  index: -1
+die/die3
+  rotate: false
+  xy: 873, 688
+  size: 717, 770
+  orig: 717, 770
+  offset: 0, 0
+  index: -1
+die/die8
+  rotate: false
+  xy: 900, 52
+  size: 897, 634
+  orig: 897, 634
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies8.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+die/die10
+  rotate: false
+  xy: 1, 1
+  size: 1010, 435
+  orig: 1010, 435
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies9.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+enemie/enemyDie1
+  rotate: false
+  xy: 1, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyDie2
+  rotate: false
+  xy: 1, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyDie3
+  rotate: false
+  xy: 131, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyDie4
+  rotate: false
+  xy: 131, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyDie5
+  rotate: false
+  xy: 261, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyDie6
+  rotate: false
+  xy: 261, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyDie7
+  rotate: false
+  xy: 391, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyRun1
+  rotate: false
+  xy: 391, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyRun2
+  rotate: false
+  xy: 521, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyRun3
+  rotate: false
+  xy: 521, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyRun4
+  rotate: false
+  xy: 651, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyRun5
+  rotate: false
+  xy: 651, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemyRun6
+  rotate: false
+  xy: 781, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemySlash1
+  rotate: false
+  xy: 781, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemySlash2
+  rotate: false
+  xy: 911, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemySlash3
+  rotate: false
+  xy: 911, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemySlash4
+  rotate: false
+  xy: 1041, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemySlash5
+  rotate: false
+  xy: 1041, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemySlash6
+  rotate: false
+  xy: 1171, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemySlash7
+  rotate: false
+  xy: 1171, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+enemie/enemySlash8
+  rotate: false
+  xy: 1301, 131
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies10.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+jump/jumpup6
+  rotate: false
+  xy: 1, 826
+  size: 903, 1099
+  orig: 903, 1099
+  offset: 0, 0
+  index: -1
+jump/jumpup5
+  rotate: false
+  xy: 906, 826
+  size: 713, 1099
+  orig: 713, 1099
+  offset: 0, 0
+  index: -1
+jump/jumpup4
+  rotate: false
+  xy: 1, 1
+  size: 810, 823
+  orig: 810, 823
+  offset: 0, 0
+  index: -1
+jump/jumpup2
+  rotate: false
+  xy: 813, 52
+  size: 565, 772
+  orig: 565, 772
+  offset: 0, 0
+  index: -1
+jump/jumpup7
+  rotate: false
+  xy: 1380, 78
+  size: 566, 746
+  orig: 566, 746
+  offset: 0, 0
+  index: -1
+
+ryu_and_enemies11.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+run/running2
+  rotate: false
+  xy: 1, 1393
+  size: 669, 1004
+  orig: 669, 1004
+  offset: 0, 0
+  index: -1
+run/running3
+  rotate: false
+  xy: 672, 1588
+  size: 755, 809
+  orig: 755, 809
+  offset: 0, 0
+  index: -1
+run/running1
+  rotate: false
+  xy: 1, 459
+  size: 607, 932
+  orig: 607, 932
+  offset: 0, 0
+  index: -1
+run/running4
+  rotate: false
+  xy: 672, 812
+  size: 767, 774
+  orig: 767, 774
+  offset: 0, 0
+  index: -1
+run/running6
+  rotate: false
+  xy: 610, 1
+  size: 755, 809
+  orig: 755, 809
+  offset: 0, 0
+  index: -1
+run/running5
+  rotate: false
+  xy: 1367, 35
+  size: 613, 775
+  orig: 613, 775
+  offset: 0, 0
+  index: -1
