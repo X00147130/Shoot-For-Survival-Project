@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -27,6 +28,7 @@ public class LevelComplete implements Screen {
     private Viewport screen;
     private Stage stage;
     private int score = 0;
+    private SpriteBatch batch;
 
 
     //Next level button variables
@@ -51,8 +53,11 @@ public class LevelComplete implements Screen {
         screen = new FitViewport(shootForSurvival.V_WIDTH,shootForSurvival.V_HEIGHT,new OrthographicCamera());
         stage = new Stage(screen,run.batch);
         map = level + 1;
+        batch = game.batch;
 
         score = run.getCoins();
+
+        background = run.manager.get("-1-771063806-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
 
 
         //TextButton Style Admin
@@ -190,6 +195,11 @@ public class LevelComplete implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.begin();
+        batch.draw(background,0,0,400,400);
+        batch.end();
+
         stage.draw();
     }
 

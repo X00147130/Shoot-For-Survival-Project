@@ -24,7 +24,7 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Ryu extends Sprite {
     //State Variables for animation purposes
-    public enum State{ FALLING, JUMPING, STANDING, RUNNING, ATTACK, DEAD, COMPLETE}
+    public enum State{ FALLING, JUMPING, STANDING, RUNNING, ATTACK, DEAD,SHOOTING, COMPLETE}
     public State currentState;
     public State previousState;
 
@@ -212,6 +212,10 @@ public class Ryu extends Sprite {
                 region = ryuAttack.getKeyFrame(stateTimer,true);
                 break;
 
+            case SHOOTING:
+                region = ryuAttack.getKeyFrame(stateTimer,true);
+                break;
+
             case COMPLETE:
                 region = ryuComplete.getKeyFrame(stateTimer, true);
                 break;
@@ -390,6 +394,17 @@ public class Ryu extends Sprite {
         }
     }
 
+
+    //dash method
+    public void dash(){
+        if(!isFlipX()){
+            b2body.applyLinearImpulse(new Vector2(3f,0),new Vector2(-0.1f,0), true);
+        }
+        else {
+            b2body.applyLinearImpulse(new Vector2(-3f,0),new Vector2(0.1f,0), true);
+        }
+        b2body.setAwake(true);
+    }
 
 
     //getting hit method

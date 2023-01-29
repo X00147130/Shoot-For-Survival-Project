@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.sfs.Scenes.Hud;
 import com.mygdx.sfs.Screens.LogoScreen;
+import com.mygdx.sfs.Sprites.Ryu;
 
 public class shootForSurvival extends Game {
         //constants
@@ -30,6 +31,7 @@ public class shootForSurvival extends Game {
         public static final short ATTACK_BIT = 256;
         public static final short MONEY_BIT = 512;
         public static final short SKY_BIT = 1024;
+        public static final short BULLET_BIT = 2048;
 
 
         //variables
@@ -84,10 +86,12 @@ public class shootForSurvival extends Game {
             manager.load("audio/music/yoitrax - Jade Dragon.mp3", Music.class);
 
             /*Texture Loading*/
-            manager.load("red_moon_shinobi_by_cobaltplasma_davlugw.png", Texture.class);
-            manager.load("samurai.png", Texture.class);
-            manager.load("wave-scaled.jpg", Texture.class);
-            manager.load("ninja_wallpaper_by_specterblaze_d5gw3qh.jpg", Texture.class);
+            manager.load("-1-724808065-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("-3-1690698520-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("-3-295142130-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("-3-562454963-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("-3-158457324-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("-1-771063806-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
 
 
             manager.finishLoading();
@@ -141,6 +145,5 @@ public class shootForSurvival extends Game {
         public void setMutedS(boolean mute){
             mutedS = mute;
         }
-
     }
 

@@ -55,7 +55,7 @@ public class MenuScreen implements Screen  {
 
 
         //make sure to credit cobaltplasma_davlugw for red_moon_shinobi
-        background = manager.get("red_moon_shinobi_by_cobaltplasma_davlugw.png", Texture.class);
+        background = manager.get("-1-724808065-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
         mainBackground = new TextureRegion(background);
 
 
@@ -205,12 +205,12 @@ public class MenuScreen implements Screen  {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             batch.begin();
-            batch.draw(mainBackground, 525, -275);
+            batch.draw(mainBackground,650,200);
             batch.end();
         }
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             batch.begin();
-            batch.draw(mainBackground, 600, -250);
+            batch.draw(mainBackground, 800, 200);
             batch.end();
         }
         stage.draw();

@@ -59,7 +59,7 @@ public class PauseScreen implements Screen {
         stage = new Stage(viewport, game.batch);
         batch = new SpriteBatch();
 
-        background = game.manager.get("ninja_wallpaper_by_specterblaze_d5gw3qh.jpg",Texture.class);
+        background = game.manager.get("-3-158457324-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
 
 
         //Label set up
@@ -82,7 +82,6 @@ public class PauseScreen implements Screen {
 
 
         table.add(titleLabel).width(70).height(60).center().padRight(38);
-        table.row();
         table.row();
         table.add(resume).width(110).height(50).center();
         table.row();
@@ -148,9 +147,16 @@ public class PauseScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        batch.draw(background,300,0);
-        batch.end();
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+            game.batch.begin();
+            game.batch.draw(background, 0, -475, 2024, 2024);
+            game.batch.end();
+        }
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            game.batch.begin();
+            game.batch.draw(background, 0, -100, 400, 400);
+            game.batch.end();
+        }
         stage.draw();
     }
 

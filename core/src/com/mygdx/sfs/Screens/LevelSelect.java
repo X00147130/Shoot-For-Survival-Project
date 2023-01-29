@@ -60,9 +60,9 @@ public class LevelSelect implements Screen {
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         screen = new Stage(viewport, GAME.batch);
 
-        /*background = GAME.manager.get("ninja in action.jpg", Texture.class);*/
-
         //Texture
+        background = GAME.manager.get("-3-562454963-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+
 
         //Button initialisation
         textStyle = new TextButton.TextButtonStyle();
@@ -371,9 +371,17 @@ public class LevelSelect implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        /*GAME.batch.begin();
-        GAME.batch.draw(background,0,0);
-        GAME.batch.end();*/
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+            GAME.batch.begin();
+            GAME.batch.draw(background, 0, -200, 400, 400);
+            GAME.batch.end();
+        }
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            GAME.batch.begin();
+            GAME.batch.draw(background, 0, -0, 400, 300);
+            GAME.batch.end();
+        }
+
 
         screen.draw();
     }

@@ -2,6 +2,7 @@ package com.mygdx.sfs.Screens;
 
 import static com.badlogic.gdx.graphics.Color.GOLD;
 import static com.badlogic.gdx.graphics.Color.RED;
+import static com.badlogic.gdx.graphics.Color.WHITE;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -39,13 +40,6 @@ public class Settings implements Screen {
     private Label musicLabel;
     private Label soundLabel;
 
-    private ShapeRenderer border;
-    private ShapeRenderer border2;
-    private ShapeRenderer border3;
-    private ShapeRenderer border4;
-    private ShapeRenderer border5;
-    private ShapeRenderer border6;
-
     private SpriteBatch batch;
 
     Slider music;
@@ -64,23 +58,17 @@ public class Settings implements Screen {
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, game.batch);
         batch = new SpriteBatch();
-        background = GAME.manager.get("wave-scaled.jpg", Texture.class);
+        background = GAME.manager.get("-3-1690698520-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
 
-        border = new ShapeRenderer();
-        border2 = new ShapeRenderer();
-        border3 = new ShapeRenderer();
-        border4 = new ShapeRenderer();
-        border5 = new ShapeRenderer();
-        border6 = new ShapeRenderer();
 
         textStyle = new TextButton.TextButtonStyle();
         buttonFont = new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-export.fnt"));
         textStyle.font = buttonFont;
-        textStyle.fontColor = RED;
+        textStyle.fontColor = WHITE;
 
         Label.LabelStyle label = new Label.LabelStyle();
         label.font = buttonFont;
-        label.fontColor = RED;
+        label.fontColor = WHITE;
 
         Label.LabelStyle title = new Label.LabelStyle();
         title.font = buttonFont;
@@ -209,78 +197,9 @@ public class Settings implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        batch.begin();
-        batch.draw(background,0,0,2080,1080);
-        batch.end();
-
-       /*Desktop Edition*/
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-
-            border.begin(ShapeRenderer.ShapeType.Filled);
-            border.setColor(Color.RED);
-            border.rect(635, 480, 870, 140);
-            border.end();
-
-            border2.begin(ShapeRenderer.ShapeType.Filled);
-            border2.setColor(Color.RED);
-            border2.rect(635, 230, 870, 140);
-            border2.end();
-
-            border3.begin(ShapeRenderer.ShapeType.Filled);
-            border3.setColor(Color.WHITE);
-            border3.rect(45, 510, 450, 70);
-            border3.end();
-
-            border4.begin(ShapeRenderer.ShapeType.Filled);
-            border4.setColor(Color.WHITE);
-            border4.rect(45, 260, 450, 70);
-            border4.end();
-
-            border5.begin(ShapeRenderer.ShapeType.Filled);
-            border5.setColor(Color.WHITE);
-            border5.rect(55, 835, 375, 70);
-            border5.end();
-
-            border6.begin(ShapeRenderer.ShapeType.Filled);
-            border6.setColor(Color.WHITE);
-            border6.rect(150, 110, 200, 70);
-            border6.end();
-        }
-
-        /*Phone Edition*/
-        else if(Gdx.app.getType() == Application.ApplicationType.Android){
-            border.begin(ShapeRenderer.ShapeType.Filled);
-            border.setColor(Color.RED);
-            border.rect(725, 515,1000,140);
-            border.end();
-
-            border2.begin(ShapeRenderer.ShapeType.Filled);
-            border2.setColor(Color.RED);
-            border2.rect(725, 245,1000,140);
-            border2.end();
-
-            border3.begin(ShapeRenderer.ShapeType.Filled);
-            border3.setColor(Color.WHITE);
-            border3.rect(45, 550, 510, 70);
-            border3.end();
-
-            border4.begin(ShapeRenderer.ShapeType.Filled);
-            border4.setColor(Color.WHITE);
-            border4.rect(45, 285, 510, 70);
-            border4.end();
-
-            border5.begin(ShapeRenderer.ShapeType.Filled);
-            border5.setColor(Color.WHITE);
-            border5.rect(75, 885, 400, 70);
-            border5.end();
-
-            border6.begin(ShapeRenderer.ShapeType.Filled);
-            border6.setColor(Color.WHITE);
-            border6.rect(150, 110, 250, 70);
-            border6.end();
-        }
-
-
+        GAME.batch.begin();
+        GAME.batch.draw(background,0,-70,400,350);
+        GAME.batch.end();
 
         stage.draw();
 

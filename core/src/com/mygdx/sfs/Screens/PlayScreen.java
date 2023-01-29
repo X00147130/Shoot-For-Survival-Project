@@ -24,6 +24,7 @@ import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Items.ItemDef;
 import com.mygdx.sfs.Sprites.Items.health;
 import com.mygdx.sfs.Sprites.Ryu;
+import com.mygdx.sfs.Sprites.entities.Bullets;
 import com.mygdx.sfs.Tools.B2WorldCreator;
 import com.mygdx.sfs.Tools.Controller;
 import com.mygdx.sfs.Tools.WorldContactListener;
@@ -54,6 +55,7 @@ public class PlayScreen implements Screen {
     //Player variable
     private Ryu player;
     private float statetimer;
+   /* private Bullets bullet;*/
 
 
     //Sprite Variable
@@ -101,6 +103,8 @@ public class PlayScreen implements Screen {
 
         //Player creation
         player = new Ryu(this,game);
+
+        /*bullet = new Bullets(game,this,player,player.getX(),player.getY());*/
 
         world.setContactListener(new WorldContactListener());
 
@@ -187,6 +191,14 @@ public class PlayScreen implements Screen {
                 }
                 if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
                     player.attack();
+                }
+
+                /*if(Gdx.input.isKeyPressed(Input.Keys.S)){
+                    bullet.shoot();
+                }*/
+
+                if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
+                    player.dash();
                 }
 
                 if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
