@@ -28,16 +28,13 @@ public class PauseScreen implements Screen {
     //Display tools
     private Table table;
     private Stage stage;
-    private SpriteBatch batch;
 
     //Labels and Buttons
     private Label titleLabel;
     private Label.LabelStyle style;
     private TextButton.TextButtonStyle buttonStyle;
     private TextButton resume;
-    private Label resumeLabel;
     private TextButton quit;
-    private Label quitLabel;
 
 
     //Admin
@@ -57,9 +54,8 @@ public class PauseScreen implements Screen {
         hud = gameplay.getHud();
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT,  new OrthographicCamera());
         stage = new Stage(viewport, game.batch);
-        batch = new SpriteBatch();
 
-        background = game.manager.get("-3-158457324-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
+        background = game.manager.get("-2-1291793858-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
 
 
         //Label set up
@@ -147,16 +143,11 @@ public class PauseScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            game.batch.begin();
-            game.batch.draw(background, 0, -475, 2024, 2024);
-            game.batch.end();
-        }
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            game.batch.begin();
-            game.batch.draw(background, 0, -100, 400, 400);
-            game.batch.end();
-        }
+
+        game.batch.begin();
+        game.batch.draw(background, 0, -100, 400, 400);
+        game.batch.end();
+
         stage.draw();
     }
 

@@ -90,7 +90,7 @@ public class shootForSurvival extends Game {
             manager.load("-3-1690698520-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
             manager.load("-3-295142130-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
             manager.load("-3-562454963-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("-3-158457324-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("-2-1291793858-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
             manager.load("-1-771063806-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
 
 
