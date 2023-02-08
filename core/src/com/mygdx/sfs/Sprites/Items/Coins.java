@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.mygdx.sfs.Screens.PlayScreen;
-import com.mygdx.sfs.Sprites.Ryu;
+import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Coins extends Item {
@@ -19,7 +19,7 @@ public class Coins extends Item {
 
     public Coins(shootForSurvival sfs, PlayScreen screen, float  x, float y) {
         super(screen, x, y);
-        setRegion(new Texture("coin.png"));// clipart used
+        setRegion(new Texture("sprites/coin.png"));// clipart used
         this.ninjarun = sfs;
     }
 
@@ -34,7 +34,7 @@ public class Coins extends Item {
         CircleShape shape = new CircleShape();
         shape.setRadius(3 / shootForSurvival.PPM);
         fdef.filter.categoryBits = shootForSurvival.MONEY_BIT;
-        fdef.filter.maskBits = shootForSurvival.RYU_BIT |
+        fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
                 shootForSurvival.PLATFORM_BIT |
                 shootForSurvival.FINISH_BIT;
@@ -44,7 +44,7 @@ public class Coins extends Item {
     }
 
     @Override
-    public void useItem(Ryu ryu) {
+    public void useItem(Player player) {
         destroy();
         count += 100;
         screen.setCoins(count);
@@ -67,7 +67,7 @@ public class Coins extends Item {
     public void update(float dt) {
         super.update(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() /2);
-        if(screen.isComplete() || (screen.getPlayer().currentState == Ryu.State.DEAD && screen.getPlayer().getStateTimer() > 3)){
+        if(screen.isComplete() || (screen.getPlayer().currentState == Player.State.DEAD && screen.getPlayer().getStateTimer() > 3)){
             count = 0;
         }
 

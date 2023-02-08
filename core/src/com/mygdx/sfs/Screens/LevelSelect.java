@@ -61,7 +61,7 @@ public class LevelSelect implements Screen {
         screen = new Stage(viewport, GAME.batch);
 
         //Texture
-        background = GAME.manager.get("-3-562454963-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+        background = GAME.manager.get("backgrounds/-3-562454963-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
 
 
         //Button initialisation

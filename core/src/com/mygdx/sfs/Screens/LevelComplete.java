@@ -57,7 +57,7 @@ public class LevelComplete implements Screen {
 
         score = run.getCoins();
 
-        background = run.manager.get("-1-771063806-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
+        background = run.manager.get("backgrounds/-1-771063806-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
 
 
         //TextButton Style Admin

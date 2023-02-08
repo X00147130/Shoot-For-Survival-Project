@@ -55,7 +55,7 @@ public class MenuScreen implements Screen  {
 
 
         //make sure to credit cobaltplasma_davlugw for red_moon_shinobi
-        background = manager.get("-1-724808065-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+        background = manager.get("backgrounds/-1-724808065-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
         mainBackground = new TextureRegion(background);
 
 

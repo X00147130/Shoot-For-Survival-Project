@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.maps.MapObject;
 import com.mygdx.sfs.Screens.PlayScreen;
-import com.mygdx.sfs.Sprites.Ryu;
+import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Finish extends InteractiveTileObject {
@@ -18,7 +18,7 @@ public class Finish extends InteractiveTileObject {
     }
 
     @Override
-    public void onHit(Ryu ryu) {
+    public void onHit(Player player) {
         Gdx.app.log("Finish", "Collision");
         screen.setLevelComplete(true);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {

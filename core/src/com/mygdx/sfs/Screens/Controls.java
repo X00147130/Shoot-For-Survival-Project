@@ -18,8 +18,6 @@ public class Controls implements Screen {
 
     private final shootForSurvival GAME;
     private Viewport viewport;
-//    private Texture background;
-//    private Image backgroundIMG;
 
     /*Labels*/
     private Label title;

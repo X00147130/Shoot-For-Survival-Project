@@ -20,9 +20,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.sfs.Screens.PlayScreen;
+import com.mygdx.sfs.Sprites.entities.Bullets;
 import com.mygdx.sfs.shootForSurvival;
 
-public class Ryu extends Sprite {
+public class Player extends Sprite {
     //State Variables for animation purposes
     public enum State{ FALLING, JUMPING, STANDING, RUNNING, ATTACK, DEAD,SHOOTING, COMPLETE}
     public State currentState;
@@ -32,7 +33,7 @@ public class Ryu extends Sprite {
     //Basic variables
     public World world;
     private PlayScreen screen;
-    private shootForSurvival ninjarun;
+    private shootForSurvival sfs;
     public Body b2body;
     public TextureRegion ryuStand;
 
@@ -63,20 +64,23 @@ public class Ryu extends Sprite {
     public FixtureDef attackdef;
     private boolean attacking;
     private Fixture fix;
+    private Array<Bullets> ammo;
 
     //movement variables
     private Vector2 limit;
 
 
-    public Ryu(PlayScreen screen,shootForSurvival ninjarun){
+    public Player(PlayScreen screen, shootForSurvival sfs){
         this.world = screen.getWorld();
-        defineRyu();
-        this.ninjarun = ninjarun;
+        definePlayer();
+        this.sfs = sfs;
 
         limit = new Vector2(0,0);
 
         this.screen = screen;
         attacking = false;
+
+        ammo = new Array<Bullets>(5);
 
         //initialising health variables
         health = 100;
@@ -188,6 +192,13 @@ public class Ryu extends Sprite {
         }
     }
 
+    public void shoot(){
+        if(ammo.size < 5)
+        ammo.add(new Bullets(sfs,screen,getX(),getY()));
+        else{
+            ammo.pop();
+        }
+    }
 
     public TextureRegion getFrame(float dt){
         currentState = getState();
@@ -268,7 +279,7 @@ public class Ryu extends Sprite {
 
 
 
-    public void defineRyu(){
+    public void definePlayer(){
         BodyDef bdef = new BodyDef();
         bdef.position.set(282 / PPM,31 / PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
@@ -277,7 +288,7 @@ public class Ryu extends Sprite {
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / PPM);
-        fdef.filter.categoryBits = shootForSurvival.RYU_BIT;
+        fdef.filter.categoryBits = shootForSurvival.PLAYER_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.FINISH_BIT |
                 shootForSurvival.PLATFORM_BIT |
@@ -306,8 +317,8 @@ public class Ryu extends Sprite {
 
     /*Jump Counter System*/
     public void jumpReset(){
-            ninjarun.jumpCounter = 0;
-            ninjarun.doubleJumped = false;
+            sfs.jumpCounter = 0;
+            sfs.doubleJumped = false;
             Gdx.app.log("Jumps", "Reset");
         }
 
@@ -336,22 +347,22 @@ public class Ryu extends Sprite {
         attackdef = new FixtureDef();
         attackdef.shape = head;
         attackdef.isSensor = false;
-        attackdef.filter.categoryBits= shootForSurvival.ATTACK_BIT;
+        attackdef.filter.categoryBits= shootForSurvival.BULLET_BIT;
         attackdef.filter.maskBits = shootForSurvival.ENEMY_BIT| shootForSurvival.FINISH_BIT;
 
         Fixture fix1 = b2body.createFixture(attackdef);
         fix1.setUserData("attack");
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            ninjarun.loadSound("audio/sounds/mixkit-fast-sword-whoosh-2792.wav");
-            long id = ninjarun.sound.play();
-            if (ninjarun.getSoundVolume() != 0)
-                ninjarun.sound.setVolume(id, ninjarun.getSoundVolume());
+            sfs.loadSound("audio/sounds/mixkit-fast-sword-whoosh-2792.wav");
+            long id = sfs.sound.play();
+            if (sfs.getSoundVolume() != 0)
+                sfs.sound.setVolume(id, sfs.getSoundVolume());
             else {
-                ninjarun.sound.setVolume(id, 0);
+                sfs.sound.setVolume(id, 0);
             }
         }
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            ninjarun.manager.get("audio/sounds/mixkit-fast-sword-whoosh-2792.wav", Sound.class).play(ninjarun.getSoundVolume());
+            sfs.manager.get("audio/sounds/mixkit-fast-sword-whoosh-2792.wav", Sound.class).play(sfs.getSoundVolume());
         }
 
         head.dispose();
@@ -413,33 +424,33 @@ public class Ryu extends Sprite {
         if(hitCounter < 2){    //ryu is pushed back and says ow
             b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                ninjarun.loadSound("audio/sounds/getting-hit.wav");
-                long id = ninjarun.sound.play();
-                if (ninjarun.getSoundVolume() != 0) {
-                    ninjarun.sound.setVolume(id, ninjarun.getSoundVolume());
+                sfs.loadSound("audio/sounds/getting-hit.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0) {
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
                 } else {
-                    ninjarun.sound.setVolume(id, 0);
+                    sfs.sound.setVolume(id, 0);
                 }
             }
             if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                ninjarun.manager.get("audio/sounds/getting-hit.wav", Sound.class).play(ninjarun.getSoundVolume());
+                sfs.manager.get("audio/sounds/getting-hit.wav", Sound.class).play(sfs.getSoundVolume());
             }
 
             hitCounter++;
         }
         else{   //Ryus death
-            ninjarun.music.stop();
+            sfs.music.stop();
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                ninjarun.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
-                long id = ninjarun.sound.play();
-                if (ninjarun.getSoundVolume() != 0) {
-                    ninjarun.sound.setVolume(id, ninjarun.getSoundVolume());
+                sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0) {
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
                 } else {
-                    ninjarun.sound.setVolume(id, 0);
+                    sfs.sound.setVolume(id, 0);
                 }
             }
             if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                ninjarun.manager.get("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class).play(ninjarun.getSoundVolume());
+                sfs.manager.get("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class).play(sfs.getSoundVolume());
             }
 
             ryuIsDead = true;

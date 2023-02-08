@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.sfs.Scenes.Hud;
 import com.mygdx.sfs.Screens.LogoScreen;
-import com.mygdx.sfs.Sprites.Ryu;
 
 public class shootForSurvival extends Game {
         //constants
@@ -21,17 +20,16 @@ public class shootForSurvival extends Game {
 
         //Filter initializations
         public static final short GROUND_BIT = 1;
-        public static final short RYU_BIT = 2;
+        public static final short PLAYER_BIT = 2;
         public static final short PLATFORM_BIT = 4;
         public static final short FINISH_BIT = 8;
         public static final short BARRIER_BIT = 16;
         public static final short ENEMY_BIT = 32;
         public static final short ITEM_BIT = 64;
         public static final short RYU_HEAD_BIT = 128;
-        public static final short ATTACK_BIT = 256;
+        public static final short BULLET_BIT = 256;
         public static final short MONEY_BIT = 512;
         public static final short SKY_BIT = 1024;
-        public static final short BULLET_BIT = 2048;
 
 
         //variables
@@ -86,12 +84,12 @@ public class shootForSurvival extends Game {
             manager.load("audio/music/yoitrax - Jade Dragon.mp3", Music.class);
 
             /*Texture Loading*/
-            manager.load("-1-724808065-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("-3-1690698520-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("-3-295142130-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("-3-562454963-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("-2-1291793858-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("-1-771063806-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("backgrounds/-1-724808065-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("backgrounds/-3-1690698520-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("backgrounds/-3-295142130-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("backgrounds/-3-562454963-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("backgrounds/-2-1291793858-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+            manager.load("backgrounds/-1-771063806-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
 
 
             manager.finishLoading();

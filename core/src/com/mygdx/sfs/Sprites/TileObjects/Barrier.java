@@ -3,7 +3,7 @@ package com.mygdx.sfs.Sprites.TileObjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 import com.mygdx.sfs.Screens.PlayScreen;
-import com.mygdx.sfs.Sprites.Ryu;
+import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Barrier extends InteractiveTileObject {
@@ -15,7 +15,7 @@ public class Barrier extends InteractiveTileObject {
     }
 
     @Override
-    public void onHit(Ryu ryu) {
+    public void onHit(Player player) {
         Gdx.app.log("Finish", "Collision");
     }
 }

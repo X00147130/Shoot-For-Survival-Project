@@ -44,7 +44,7 @@ public class GameOverScreen implements Screen {
         stage = new Stage(viewport, GAME.batch);
         this.map = level;
 
-        background = GAME.manager.get("-3-295142130-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+        background = GAME.manager.get("backgrounds/-3-295142130-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/font-export.fnt")), RED);
 

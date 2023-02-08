@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.sfs.Screens.PlayScreen;
-import com.mygdx.sfs.Sprites.Ryu;
+import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Hud implements Disposable {
@@ -136,19 +136,19 @@ public class Hud implements Disposable {
             background.end();
 
             health.begin(ShapeRenderer.ShapeType.Filled);
-            if(Ryu.getHitCounter() == 0) {
+            if(Player.getHitCounter() == 0) {
                 health.rect(5, 185, 99, 6);
                 health.setColor(Color.GREEN);
             }
-            else if (Ryu.getHitCounter() == 1){
+            else if (Player.getHitCounter() == 1){
                 health.rect(5,185,66,6);
                 health.setColor(Color.YELLOW);
             }
-            else if (Ryu.getHitCounter() == 2){
+            else if (Player.getHitCounter() == 2){
                 health.rect(5,185,33,6);
                 health.setColor(Color.RED);
             }
-            else if (Ryu.getHitCounter() == 3){
+            else if (Player.getHitCounter() == 3){
                 health.rect(5,185,0,6);
             }
             health.end();

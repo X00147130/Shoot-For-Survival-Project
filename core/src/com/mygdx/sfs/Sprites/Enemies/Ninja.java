@@ -143,8 +143,8 @@ public class Ninja extends Enemy {
                 shootForSurvival.PLATFORM_BIT |
                 shootForSurvival.ENEMY_BIT |
                 shootForSurvival.BARRIER_BIT |
-                shootForSurvival.ATTACK_BIT|
-                shootForSurvival.RYU_BIT;
+                shootForSurvival.BULLET_BIT|
+                shootForSurvival.PLAYER_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);

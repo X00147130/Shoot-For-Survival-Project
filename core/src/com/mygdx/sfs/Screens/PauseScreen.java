@@ -55,7 +55,7 @@ public class PauseScreen implements Screen {
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT,  new OrthographicCamera());
         stage = new Stage(viewport, game.batch);
 
-        background = game.manager.get("-2-1291793858-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
+        background = game.manager.get("backgrounds/-2-1291793858-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
 
 
         //Label set up

@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.Sprites.Enemies.Ninja;
 import com.mygdx.sfs.Sprites.Items.Item;
-import com.mygdx.sfs.Sprites.Ryu;
+import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
 import com.mygdx.sfs.shootForSurvival;
 
@@ -22,29 +22,29 @@ public class WorldContactListener implements ContactListener {
         int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
 
         switch (cDef) {
-            case shootForSurvival.RYU_BIT | shootForSurvival.FINISH_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.RYU_BIT)
-                    ((InteractiveTileObject) fixB.getUserData()).onHit((Ryu) fixA.getUserData());
+            case shootForSurvival.PLAYER_BIT | shootForSurvival.FINISH_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT)
+                    ((InteractiveTileObject) fixB.getUserData()).onHit((Player) fixA.getUserData());
                 else
-                    ((InteractiveTileObject) fixA.getUserData()).onHit((Ryu) fixB.getUserData());
+                    ((InteractiveTileObject) fixA.getUserData()).onHit((Player) fixB.getUserData());
                 break;
 
-            case shootForSurvival.RYU_BIT | shootForSurvival.GROUND_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.RYU_BIT)
-                    ((Ryu) fixA.getUserData()).jumpReset();
+            case shootForSurvival.PLAYER_BIT | shootForSurvival.GROUND_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT)
+                    ((Player) fixA.getUserData()).jumpReset();
                 else
-                    ((Ryu) fixB.getUserData()).jumpReset();
+                    ((Player) fixB.getUserData()).jumpReset();
                 break;
 
-            case shootForSurvival.RYU_BIT | shootForSurvival.PLATFORM_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.RYU_BIT)
-                    ((Ryu) fixA.getUserData()).jumpReset();
+            case shootForSurvival.PLAYER_BIT | shootForSurvival.PLATFORM_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT)
+                    ((Player) fixA.getUserData()).jumpReset();
                 else
-                    ((Ryu) fixB.getUserData()).jumpReset();
+                    ((Player) fixB.getUserData()).jumpReset();
                 break;
 
-            case shootForSurvival.ENEMY_BIT | shootForSurvival.ATTACK_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.ATTACK_BIT)
+            case shootForSurvival.ENEMY_BIT | shootForSurvival.BULLET_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT)
                     ((Ninja) fixB.getUserData()).attacked();
                 else
                     ((Ninja) fixA.getUserData()).attacked();
@@ -57,11 +57,11 @@ public class WorldContactListener implements ContactListener {
                     ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
                 break;
 
-            case shootForSurvival.RYU_BIT | shootForSurvival.ENEMY_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.RYU_BIT)
-                    ((Ryu) fixA.getUserData()).hit();
+            case shootForSurvival.PLAYER_BIT | shootForSurvival.ENEMY_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT)
+                    ((Player) fixA.getUserData()).hit();
                 else
-                    ((Ryu) fixB.getUserData()).hit();
+                    ((Player) fixB.getUserData()).hit();
                 break;
 
             case shootForSurvival.ENEMY_BIT | shootForSurvival.ENEMY_BIT:
@@ -70,25 +70,25 @@ public class WorldContactListener implements ContactListener {
                 break;
 
 
-            case shootForSurvival.ITEM_BIT | shootForSurvival.RYU_BIT:
+            case shootForSurvival.ITEM_BIT | shootForSurvival.PLAYER_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.ITEM_BIT)
-                    ((Item) fixA.getUserData()).useItem((Ryu) fixB.getUserData());
+                    ((Item) fixA.getUserData()).useItem((Player) fixB.getUserData());
                 else
-                    ((Item) fixB.getUserData()).useItem((Ryu) fixA.getUserData());
+                    ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
                 break;
 
-            case shootForSurvival.MONEY_BIT | shootForSurvival.RYU_BIT:
+            case shootForSurvival.MONEY_BIT | shootForSurvival.PLAYER_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.MONEY_BIT)
-                    ((Item) fixA.getUserData()).useItem((Ryu) fixB.getUserData());
+                    ((Item) fixA.getUserData()).useItem((Player) fixB.getUserData());
                 else
-                    ((Item) fixB.getUserData()).useItem((Ryu) fixA.getUserData());
+                    ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
                 break;
 
-            case shootForSurvival.SKY_BIT | shootForSurvival.RYU_BIT:
+            case shootForSurvival.SKY_BIT | shootForSurvival.PLAYER_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.SKY_BIT)
-                    ((InteractiveTileObject) fixA.getUserData()).onHit((Ryu) fixB.getUserData());
+                    ((InteractiveTileObject) fixA.getUserData()).onHit((Player) fixB.getUserData());
                 else
-                    ((InteractiveTileObject) fixB.getUserData()).onHit((Ryu) fixA.getUserData());
+                    ((InteractiveTileObject) fixB.getUserData()).onHit((Player) fixA.getUserData());
                 break;
 
         }

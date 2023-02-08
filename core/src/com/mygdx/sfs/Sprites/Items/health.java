@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.mygdx.sfs.Screens.PlayScreen;
-import com.mygdx.sfs.Sprites.Ryu;
+import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
 public class health extends Item{
@@ -16,7 +16,7 @@ public class health extends Item{
 
     public health(shootForSurvival ninjarun, PlayScreen screen, float x, float y) {
         super(screen, x, y);
-        setRegion(new Texture("health_vial1.png"));// clipart used
+        setRegion(new Texture("sprites/health_vial1.png"));
         this.ninjarun = ninjarun;
     }
 
@@ -31,7 +31,7 @@ public class health extends Item{
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / shootForSurvival.PPM);
         fdef.filter.categoryBits = shootForSurvival.ITEM_BIT;
-        fdef.filter.maskBits = shootForSurvival.RYU_BIT |
+        fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
                 shootForSurvival.PLATFORM_BIT |
                 shootForSurvival.FINISH_BIT;
@@ -42,9 +42,9 @@ public class health extends Item{
     }
 
     @Override
-    public void useItem(Ryu ryu) {
+    public void useItem(Player player) {
         destroy();
-        Ryu.setHitCounter(0);
+        Player.setHitCounter(0);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             ninjarun.loadSound("audio/sounds/healthDrink.wav");
             long id = ninjarun.sound.play();

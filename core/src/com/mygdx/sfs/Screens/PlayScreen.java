@@ -23,8 +23,7 @@ import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Items.ItemDef;
 import com.mygdx.sfs.Sprites.Items.health;
-import com.mygdx.sfs.Sprites.Ryu;
-import com.mygdx.sfs.Sprites.entities.Bullets;
+import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Tools.B2WorldCreator;
 import com.mygdx.sfs.Tools.Controller;
 import com.mygdx.sfs.Tools.WorldContactListener;
@@ -53,7 +52,7 @@ public class PlayScreen implements Screen {
     private B2WorldCreator creator;
 
     //Player variable
-    private Ryu player;
+    private Player player;
     private float statetimer;
    /* private Bullets bullet;*/
 
@@ -76,7 +75,7 @@ public class PlayScreen implements Screen {
     public PlayScreen(shootForSurvival g, int level) {
 
         //admin
-        atlas = new TextureAtlas("ryu_and_enemies.pack");
+        atlas = new TextureAtlas("sprites/ryu_and_enemies.pack");
 
         this.game = g;
         this.level = level;
@@ -102,9 +101,7 @@ public class PlayScreen implements Screen {
         creator = new B2WorldCreator(game,this);
 
         //Player creation
-        player = new Ryu(this,game);
-
-        /*bullet = new Bullets(game,this,player,player.getX(),player.getY());*/
+        player = new Player(this,game);
 
         world.setContactListener(new WorldContactListener());
 
@@ -134,8 +131,12 @@ public class PlayScreen implements Screen {
         }
     }
 
-    public Ryu getPlayer() {
+    public Player getPlayer() {
         return player;
+    }
+
+    public Viewport getGamePort() {
+        return gamePort;
     }
 
     public TiledMap getMap() {
@@ -169,7 +170,7 @@ public class PlayScreen implements Screen {
     public void handleInput(float dt) {
 
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            if (player.currentState != Ryu.State.DEAD) {
+            if (player.currentState != Player.State.DEAD) {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2) {
                     player.b2body.applyLinearImpulse(new Vector2(0, 3f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
@@ -185,7 +186,7 @@ public class PlayScreen implements Screen {
                     if(game.jumpCounter == 2){
                         game.doubleJumped = true;
                     }
-                }else if ((Gdx.input.isKeyJustPressed(Input.Keys.UP) && (player.currentState == Ryu.State.JUMPING)) && game.doubleJumped == true) {
+                }else if ((Gdx.input.isKeyJustPressed(Input.Keys.UP) && (player.currentState == Player.State.JUMPING)) && game.doubleJumped == true) {
                     player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
                     Gdx.app.log("double"," jumped");
                 }
@@ -193,9 +194,9 @@ public class PlayScreen implements Screen {
                     player.attack();
                 }
 
-                /*if(Gdx.input.isKeyPressed(Input.Keys.S)){
-                    bullet.shoot();
-                }*/
+                if(Gdx.input.isKeyPressed(Input.Keys.S)){
+                    player.shoot();                                             /*does nothing??*/
+                }
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
                     player.dash();
@@ -217,7 +218,7 @@ public class PlayScreen implements Screen {
             }
         }
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
-            if (player.currentState != Ryu.State.DEAD) {
+            if (player.currentState != Player.State.DEAD) {
                 if (controller.isUpPressed() && game.jumpCounter < 1) {
                     player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
@@ -228,7 +229,7 @@ public class PlayScreen implements Screen {
                     if(game.jumpCounter == 2){
                         game.doubleJumped = true;
                     }
-                }else if ((controller.isUpPressed() == true && (player.currentState == Ryu.State.JUMPING)) && game.doubleJumped == true) {
+                }else if ((controller.isUpPressed() == true && (player.currentState == Player.State.JUMPING)) && game.doubleJumped == true) {
                     player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
                     Gdx.app.log("double"," jumped");
                 }
@@ -289,7 +290,7 @@ public class PlayScreen implements Screen {
         game.setHud(hud);
 
 
-        if (player.currentState != Ryu.State.DEAD) {
+        if (player.currentState != Player.State.DEAD) {
             gamecam.position.x = player.b2body.getPosition().x;
         }
 
@@ -354,7 +355,7 @@ public class PlayScreen implements Screen {
         }
 
         if (complete == true) {
-            if (player.currentState == Ryu.State.COMPLETE && player.getStateTimer() > 1.5) {
+            if (player.currentState == Player.State.COMPLETE && player.getStateTimer() > 1.5) {
                 if(level < 10){
                     game.setScreen(new LevelComplete(game, level));
                 }else{
@@ -378,7 +379,7 @@ public class PlayScreen implements Screen {
     }
 
     public boolean gameOver() {
-        if (player.currentState == Ryu.State.DEAD && player.getStateTimer() > 3) {
+        if (player.currentState == Player.State.DEAD && player.getStateTimer() > 3) {
             return true;
         }else {
                 return false;
