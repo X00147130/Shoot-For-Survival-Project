@@ -47,14 +47,13 @@ public class PlayScreen implements Screen {
     private OrthogonalTiledMapRenderer renderer;
 
     //Box2D Variables
-    private World world;
+    public World world;
     private Box2DDebugRenderer b2dr;
     private B2WorldCreator creator;
 
     //Player variable
     private Player player;
     private float statetimer;
-   /* private Bullets bullet;*/
 
 
     //Sprite Variable
@@ -194,8 +193,8 @@ public class PlayScreen implements Screen {
                     player.attack();
                 }
 
-                if(Gdx.input.isKeyPressed(Input.Keys.S)){
-                    player.shoot();                                             /*does nothing??*/
+                if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
+                    player.shoot();
                 }
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.D)){

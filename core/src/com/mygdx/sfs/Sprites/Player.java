@@ -193,11 +193,8 @@ public class Player extends Sprite {
     }
 
     public void shoot(){
-        if(ammo.size < 5)
         ammo.add(new Bullets(sfs,screen,getX(),getY()));
-        else{
-            ammo.pop();
-        }
+        ammo.pop();
     }
 
     public TextureRegion getFrame(float dt){

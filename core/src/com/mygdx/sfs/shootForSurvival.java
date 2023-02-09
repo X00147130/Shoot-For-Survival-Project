@@ -55,10 +55,6 @@ public class shootForSurvival extends Game {
             this.hud = hud;
         }
 
-	/* WARING Using AssetManager in a static way can cause issues, especially on Android.
-	Instead you may want to pass around AssetManager to those classes that need it.
-	 We will use it in the static context to save time for now */
-
         public static AssetManager manager;
 
 

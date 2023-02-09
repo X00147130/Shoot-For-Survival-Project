@@ -27,18 +27,20 @@ public class Bullets {
 
     public Bullets(shootForSurvival sfs, PlayScreen screen, float x, float y) {
 
+        world = screen.getWorld();
         this.sfs = sfs;
         this.screen = screen;
-        this.y = y + 5/sfs.PPM;
+        this.y = y + 4 / sfs.PPM;
         this.x = x;
+
         shooting = false;
-        world = screen.getWorld();
 
         defineBullet();
 
         if (bulletBody.getPosition().x > screen.getGamePort().getScreenWidth()){
             destroy = true;
         }
+        destroy();
     }
 
     public void defineBullet() {
@@ -67,7 +69,7 @@ public class Bullets {
 
     public void destroy(){
         if (destroy == true){
-            world.destroyBody(bulletBody);
+            ;
         }
     }
 
@@ -79,4 +81,7 @@ public class Bullets {
         shooting = shot;
     }
 
+    public void setDestroy(boolean destroy) {
+        this.destroy = destroy;
+    }
 }
