@@ -54,6 +54,7 @@ public class PlayScreen implements Screen {
     //Player variable
     private Player player;
     private float statetimer;
+    private boolean shot = false;
 
 
     //Sprite Variable
@@ -195,6 +196,7 @@ public class PlayScreen implements Screen {
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
                     player.shoot();
+                    shot = true;
                 }
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
@@ -273,6 +275,8 @@ public class PlayScreen implements Screen {
 
 
         player.update(dt);
+        if(shot == true)
+            player.getBullet().update(dt);
         for (Enemy enemy : creator.getNinjas()) {
             enemy.update(dt);
             if (enemy.getX() < player.getX() + 224 / shootForSurvival.PPM)

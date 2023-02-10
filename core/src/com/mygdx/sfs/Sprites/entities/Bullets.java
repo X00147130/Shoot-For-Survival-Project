@@ -23,7 +23,7 @@ public class Bullets {
     private PlayScreen screen;
 
     public float x,y;
-    public boolean destroy = false;
+    public boolean todestroy = false;
 
     public Bullets(shootForSurvival sfs, PlayScreen screen, float x, float y) {
 
@@ -38,9 +38,8 @@ public class Bullets {
         defineBullet();
 
         if (bulletBody.getPosition().x > screen.getGamePort().getScreenWidth()){
-            destroy = true;
+            todestroy = true;
         }
-        destroy();
     }
 
     public void defineBullet() {
@@ -67,9 +66,17 @@ public class Bullets {
         Gdx.app.log("bullet", "shoot");
     }
 
+    public void update(float dt){
+        if(screen.getPlayer().getX() + 40 == bulletBody.getPosition().x){
+            todestroy = true;
+            destroy();
+        }
+    }
+
     public void destroy(){
-        if (destroy == true){
-            ;
+        if (todestroy == true){
+            world.destroyBody(bulletBody);
+            Gdx.app.log("bullet","fucked");
         }
     }
 
@@ -82,6 +89,6 @@ public class Bullets {
     }
 
     public void setDestroy(boolean destroy) {
-        this.destroy = destroy;
+        this.todestroy = destroy;
     }
 }

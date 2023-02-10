@@ -65,6 +65,7 @@ public class Player extends Sprite {
     private boolean attacking;
     private Fixture fix;
     private Array<Bullets> ammo;
+    private Bullets bullet;
 
     //movement variables
     private Vector2 limit;
@@ -181,6 +182,16 @@ public class Player extends Sprite {
         frames.clear();
     }
 
+    public void shoot(){
+        bullet = new Bullets(sfs,screen,getX(),getY());
+        ammo.add(bullet);
+        ammo.pop();
+    }
+
+    public Bullets getBullet() {
+        return bullet;
+    }
+
     public void update(float dt){
         if(Gdx.app.getType() == Application.ApplicationType.Android)
             setPosition(b2body.getPosition().x - getWidth() /2, b2body.getPosition().y - getHeight() /2);
@@ -190,11 +201,6 @@ public class Player extends Sprite {
             ryuIsDead = true;
             b2body.applyLinearImpulse(new Vector2(0, 3f), b2body.getWorldCenter(), true);
         }
-    }
-
-    public void shoot(){
-        ammo.add(new Bullets(sfs,screen,getX(),getY()));
-        ammo.pop();
     }
 
     public TextureRegion getFrame(float dt){
