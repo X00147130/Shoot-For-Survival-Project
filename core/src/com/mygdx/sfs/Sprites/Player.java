@@ -192,6 +192,10 @@ public class Player extends Sprite {
         return bullet;
     }
 
+    public void setBullet(Bullets bullet) {
+        this.bullet = bullet;
+    }
+
     public void update(float dt){
         if(Gdx.app.getType() == Application.ApplicationType.Android)
             setPosition(b2body.getPosition().x - getWidth() /2, b2body.getPosition().y - getHeight() /2);
@@ -201,6 +205,7 @@ public class Player extends Sprite {
             ryuIsDead = true;
             b2body.applyLinearImpulse(new Vector2(0, 3f), b2body.getWorldCenter(), true);
         }
+        bullet.update(dt);
     }
 
     public TextureRegion getFrame(float dt){
@@ -351,7 +356,7 @@ public class Player extends Sprite {
         attackdef.shape = head;
         attackdef.isSensor = false;
         attackdef.filter.categoryBits= shootForSurvival.BULLET_BIT;
-        attackdef.filter.maskBits = shootForSurvival.ENEMY_BIT| shootForSurvival.FINISH_BIT;
+        attackdef.filter.maskBits = shootForSurvival.ENEMY_BIT;
 
         Fixture fix1 = b2body.createFixture(attackdef);
         fix1.setUserData("attack");

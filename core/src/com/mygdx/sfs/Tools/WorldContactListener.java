@@ -47,11 +47,11 @@ public class WorldContactListener implements ContactListener {
             case shootForSurvival.ENEMY_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Ninja) fixB.getUserData()).attacked();
-                    ((Bullets)fixA.getUserData()).setDestroy(true);
+                    ((Bullets)fixA.getUserData()).destroy();
                 }
                 else {
                     ((Ninja) fixA.getUserData()).attacked();
-                    ((Bullets) fixB.getUserData()).setDestroy(true);
+                    ((Bullets) fixB.getUserData()).destroy();
                 }
                 break;
 

@@ -24,6 +24,7 @@ import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Items.ItemDef;
 import com.mygdx.sfs.Sprites.Items.health;
 import com.mygdx.sfs.Sprites.Player;
+import com.mygdx.sfs.Sprites.entities.Bullets;
 import com.mygdx.sfs.Tools.B2WorldCreator;
 import com.mygdx.sfs.Tools.Controller;
 import com.mygdx.sfs.Tools.WorldContactListener;
@@ -103,6 +104,7 @@ public class PlayScreen implements Screen {
         //Player creation
         player = new Player(this,game);
 
+        player.setBullet(new Bullets(game,this,player.getX(),player.getY()));
         world.setContactListener(new WorldContactListener());
 
         game.loadMusic("audio/music/yoitrax - Fuji.mp3");
@@ -408,6 +410,8 @@ public class PlayScreen implements Screen {
     public void hide() {
 
     }
+
+
 
 
     public void coins (){

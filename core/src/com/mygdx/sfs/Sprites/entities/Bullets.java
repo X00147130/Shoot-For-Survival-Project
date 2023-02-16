@@ -5,8 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Timer;
 import com.mygdx.sfs.Screens.PlayScreen;
 import com.mygdx.sfs.shootForSurvival;
 
@@ -42,7 +44,7 @@ public class Bullets {
         }
     }
 
-    public void defineBullet() {
+    public Fixture defineBullet() {
         BodyDef bdef = new BodyDef();
         bdef.position.set(x,y);
         bdef.type = BodyDef.BodyType.DynamicBody;
@@ -61,22 +63,26 @@ public class Bullets {
                 shootForSurvival.GROUND_BIT;
 
         bulletDef.shape = shape;
-        bulletBody.createFixture(bulletDef).setUserData(this);
+        Fixture fix1 = bulletBody.createFixture(bulletDef);
         bulletBody.setGravityScale(0);
         Gdx.app.log("bullet", "shoot");
+
+        return fix1;
     }
 
     public void update(float dt){
-        if(screen.getPlayer().getX() + 40 == bulletBody.getPosition().x){
-            todestroy = true;
-            destroy();
+        if (dt < 5f){
+            if(screen.getPlayer().getX() + 40 == bulletBody.getPosition().x){
+                shooting = true;
+                destroy();
+                Gdx.app.log("Bullet", "Destroyed");
+            }
         }
     }
 
     public void destroy(){
-        if (todestroy == true){
-            world.destroyBody(bulletBody);
-            Gdx.app.log("bullet","fucked");
+        if(todestroy == true || bulletBody.getPosition().x > screen.getPlayer().getX() + 40){
+            screen.getWorld().destroyBody(bulletBody);
         }
     }
 
