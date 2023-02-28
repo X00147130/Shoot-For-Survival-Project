@@ -20,7 +20,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 import com.mygdx.sfs.Screens.PlayScreen;
-import com.mygdx.sfs.Sprites.entities.Bullets;
+import com.mygdx.sfs.Sprites.Items.Bullets;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Player extends Sprite {
@@ -65,7 +65,6 @@ public class Player extends Sprite {
     private boolean attacking;
     private Fixture fix;
     private Array<Bullets> ammo;
-    private Bullets bullet;
 
     //movement variables
     private Vector2 limit;
@@ -80,9 +79,7 @@ public class Player extends Sprite {
 
         this.screen = screen;
         attacking = false;
-
-        ammo = new Array<Bullets>(5);
-
+        
         //initialising health variables
         health = 100;
         damage = 50;
@@ -182,20 +179,6 @@ public class Player extends Sprite {
         frames.clear();
     }
 
-    public void shoot(){
-        bullet = new Bullets(sfs,screen,getX(),getY());
-        ammo.add(bullet);
-        ammo.pop();
-    }
-
-    public Bullets getBullet() {
-        return bullet;
-    }
-
-    public void setBullet(Bullets bullet) {
-        this.bullet = bullet;
-    }
-
     public void update(float dt){
         if(Gdx.app.getType() == Application.ApplicationType.Android)
             setPosition(b2body.getPosition().x - getWidth() /2, b2body.getPosition().y - getHeight() /2);
@@ -205,7 +188,6 @@ public class Player extends Sprite {
             ryuIsDead = true;
             b2body.applyLinearImpulse(new Vector2(0, 3f), b2body.getWorldCenter(), true);
         }
-        bullet.update(dt);
     }
 
     public TextureRegion getFrame(float dt){

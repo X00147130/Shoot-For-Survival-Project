@@ -11,7 +11,6 @@ import com.mygdx.sfs.Sprites.Enemies.Ninja;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
-import com.mygdx.sfs.Sprites.entities.Bullets;
 import com.mygdx.sfs.shootForSurvival;
 
 public class WorldContactListener implements ContactListener {
@@ -47,11 +46,10 @@ public class WorldContactListener implements ContactListener {
             case shootForSurvival.ENEMY_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Ninja) fixB.getUserData()).attacked();
-                    ((Bullets)fixA.getUserData()).destroy();
+
                 }
                 else {
                     ((Ninja) fixA.getUserData()).attacked();
-                    ((Bullets) fixB.getUserData()).destroy();
                 }
                 break;
 

@@ -24,12 +24,13 @@ import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Items.ItemDef;
 import com.mygdx.sfs.Sprites.Items.health;
 import com.mygdx.sfs.Sprites.Player;
-import com.mygdx.sfs.Sprites.entities.Bullets;
+import com.mygdx.sfs.Sprites.Items.Bullets;
 import com.mygdx.sfs.Tools.B2WorldCreator;
 import com.mygdx.sfs.Tools.Controller;
 import com.mygdx.sfs.Tools.WorldContactListener;
 import com.mygdx.sfs.shootForSurvival;
 
+import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class PlayScreen implements Screen {
@@ -57,6 +58,8 @@ public class PlayScreen implements Screen {
     private float statetimer;
     private boolean shot = false;
 
+    //Bullet Variable
+    private ArrayList<Bullets> bullets;
 
     //Sprite Variable
     private Array<Item> items;
@@ -78,17 +81,25 @@ public class PlayScreen implements Screen {
         //admin
         atlas = new TextureAtlas("sprites/ryu_and_enemies.pack");
 
+        //game management inits
         this.game = g;
         this.level = level;
         this.manager = game.getManager();
+
+        //view of the game
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(shootForSurvival.V_WIDTH / shootForSurvival.PPM, shootForSurvival.V_HEIGHT / shootForSurvival.PPM, gamecam);
         hud = new Hud(game.batch, game,game.getScreen(),this);
+
+        //controller
         if(Gdx.app.getType() == Application.ApplicationType.Android){
             controller = new Controller(game);
         }
 
+        //bullet init
+        bullets = new ArrayList<Bullets>();
 
+        //render/map setup
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("levels/Level"+level+".tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / shootForSurvival.PPM);
@@ -103,8 +114,6 @@ public class PlayScreen implements Screen {
 
         //Player creation
         player = new Player(this,game);
-
-        player.setBullet(new Bullets(game,this,player.getX(),player.getY()));
         world.setContactListener(new WorldContactListener());
 
         game.loadMusic("audio/music/yoitrax - Fuji.mp3");
@@ -197,8 +206,7 @@ public class PlayScreen implements Screen {
                 }
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
-                    player.shoot();
-                    shot = true;
+                    bullets.add(new Bullets(game,player.getX(), player.getY()));
                 }
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
@@ -277,8 +285,17 @@ public class PlayScreen implements Screen {
 
 
         player.update(dt);
-        if(shot == true)
-            player.getBullet().update(dt);
+
+        //Bullet updates
+        ArrayList<Bullets> removeBullets = new ArrayList<Bullets>();
+        for (Bullets bullet: bullets){
+            bullet.update(dt);
+            if(bullet.todestroy)
+                removeBullets.add(bullet);
+        }
+        removeBullets.removeAll(bullets);
+
+
         for (Enemy enemy : creator.getNinjas()) {
             enemy.update(dt);
             if (enemy.getX() < player.getX() + 224 / shootForSurvival.PPM)
@@ -323,6 +340,9 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+        for(Bullets bullet: bullets){
+            bullet.render(game.batch);
+        }
         for (Enemy enemy : creator.getNinjas())
             enemy.draw(game.batch);
 
