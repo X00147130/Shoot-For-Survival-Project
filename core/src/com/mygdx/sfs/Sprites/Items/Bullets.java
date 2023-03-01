@@ -26,7 +26,7 @@ public class Bullets {
 
     public void update(float dt){
        y = SPEED * dt;
-       if( y > Gdx.graphics.getHeight())
+       if( y > Gdx.graphics.getWidth())
            todestroy = true;
     }
 

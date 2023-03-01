@@ -58,7 +58,7 @@ public class Settings implements Screen {
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, game.batch);
         batch = new SpriteBatch();
-        background = GAME.manager.get("backgrounds/-3-1690698520-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
+        background = GAME.manager.get("backgrounds/lvlselectbg.png",Texture.class);
 
 
         textStyle = new TextButton.TextButtonStyle();

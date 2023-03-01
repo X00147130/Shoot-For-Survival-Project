@@ -1,7 +1,7 @@
 package com.mygdx.sfs.Screens;
 
-import static com.badlogic.gdx.graphics.Color.RED;
-import static com.badlogic.gdx.graphics.Color.WHITE;
+import static com.badlogic.gdx.graphics.Color.CYAN;
+import static com.badlogic.gdx.graphics.Color.GREEN;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -33,7 +32,6 @@ public class MenuScreen implements Screen  {
     private Stage stage;
     private final shootForSurvival GAME ;
     private Texture background;
-    private TextureRegion mainBackground;
     private SpriteBatch batch;
 
 
@@ -54,9 +52,8 @@ public class MenuScreen implements Screen  {
         stage = new Stage(viewport, GAME.batch);
 
 
-        //make sure to credit cobaltplasma_davlugw for red_moon_shinobi
-        background = manager.get("backgrounds/-1-724808065-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-        mainBackground = new TextureRegion(background);
+        //background
+        background = manager.get("backgrounds/menubg.png", Texture.class);
 
 
         Table table = new Table();
@@ -68,7 +65,7 @@ public class MenuScreen implements Screen  {
         buttonStyle = new TextButton.TextButtonStyle();
         buttonFont = new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-export.fnt"));
         buttonStyle.font = buttonFont;
-        buttonStyle.fontColor = WHITE;
+        buttonStyle.fontColor = CYAN;
         playButton  = new TextButton("Start",buttonStyle);
         playButton.setSize(120,105);
         levelButton  = new TextButton("Level Select",buttonStyle );
@@ -76,10 +73,8 @@ public class MenuScreen implements Screen  {
         quitButton = new TextButton("Quit",buttonStyle);
 
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/title-export.fnt")), RED);
-        Label titleLabel = new Label(" Ninja Run", font);
-        titleLabel.setSize(110,90);
-
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/star-soldier/raw/font-export.fnt")), GREEN);
+        Label titleLabel = new Label(" SHOOT FOR " + " SURVIVAL ", font);
 
         table.add(titleLabel).expandX().setActorHeight(110);
         table.row();
@@ -205,12 +200,12 @@ public class MenuScreen implements Screen  {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             batch.begin();
-            batch.draw(mainBackground,650,200);
+            batch.draw(background,0,0,1950,1050);
             batch.end();
         }
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             batch.begin();
-            batch.draw(mainBackground, 800, 200);
+            batch.draw(background, 800, 200);
             batch.end();
         }
         stage.draw();

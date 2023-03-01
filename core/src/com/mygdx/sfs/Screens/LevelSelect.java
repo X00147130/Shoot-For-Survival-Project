@@ -1,7 +1,7 @@
 package com.mygdx.sfs.Screens;
 
-import static com.badlogic.gdx.graphics.Color.RED;
-import static com.badlogic.gdx.graphics.Color.WHITE;
+import static com.badlogic.gdx.graphics.Color.CYAN;
+import static com.badlogic.gdx.graphics.Color.MAGENTA;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -61,14 +61,14 @@ public class LevelSelect implements Screen {
         screen = new Stage(viewport, GAME.batch);
 
         //Texture
-        background = GAME.manager.get("backgrounds/-3-562454963-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+        background = GAME.manager.get("backgrounds/lvlselectbg.png", Texture.class);
 
 
         //Button initialisation
         textStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt"));
+        buttonFont = new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-export.fnt"));
         textStyle.font = buttonFont;
-        textStyle.fontColor = WHITE;
+        textStyle.fontColor = CYAN;
 
         level1 = new TextButton("Level 1", textStyle);
         level2 = new TextButton("Level 2", textStyle);
@@ -83,7 +83,7 @@ public class LevelSelect implements Screen {
         backButton = new TextButton("Back", textStyle);
 
         //Label
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-export.fnt")), RED);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-export.fnt")), MAGENTA);
         Label pageLabel = new Label("Level Select", font);
         pageLabel.setFontScale(2);
 
@@ -373,7 +373,7 @@ public class LevelSelect implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             GAME.batch.begin();
-            GAME.batch.draw(background, 0, -200, 400, 400);
+            GAME.batch.draw(background, 0, 0, 400, 275);
             GAME.batch.end();
         }
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
