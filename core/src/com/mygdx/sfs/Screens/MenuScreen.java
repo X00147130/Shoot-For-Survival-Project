@@ -2,6 +2,7 @@ package com.mygdx.sfs.Screens;
 
 import static com.badlogic.gdx.graphics.Color.CYAN;
 import static com.badlogic.gdx.graphics.Color.GREEN;
+import static com.badlogic.gdx.graphics.Color.MAGENTA;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -63,33 +64,39 @@ public class MenuScreen implements Screen  {
 
         //Buttons
         buttonStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/neon/raw/font-export.fnt"));
+        buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
         buttonStyle.font = buttonFont;
         buttonStyle.fontColor = CYAN;
         playButton  = new TextButton("Start",buttonStyle);
-        playButton.setSize(120,105);
+        playButton.setSize(12,10);
         levelButton  = new TextButton("Level Select",buttonStyle );
+        levelButton.setSize(12,10);
         settingsButton  = new TextButton("Settings",buttonStyle );
+        settingsButton.setSize(12,10);
         quitButton = new TextButton("Quit",buttonStyle);
+        quitButton.setSize(12,10);
 
-
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/neon/raw/font-pressed-export.fnt")), GREEN);
-        Label titleLabel = new Label(" SHOOT FOR " + " SURVIVAL ", font);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
+        Label titleLabel = new Label(" SHOOT FOR ", font);
+        Label titleLabel2 = new Label("SURVIVAL", font);
 
         table.add(titleLabel).expandX().setActorHeight(110);
         table.row();
+        table.add(titleLabel2).expandX().setActorHeight(110);
+        table.row();
         table.add(playButton).expandX().padTop(10);
         table.row();
-        table.add(levelButton).expandX().padTop(10);
+        table.add(levelButton).expandX().padTop(5);
         table.row();
-        table.add(settingsButton).expandX().padTop(10);
+        table.add(settingsButton).expandX().padTop(5);
         table.row();
-        table.add(quitButton).expandX().padTop(10);
+        table.add(quitButton).expandX().padTop(5);
         table.row();
 
 
         stage.addActor(table);
         Gdx.input.setInputProcessor(stage);
+
 
         playButton.addListener(new ClickListener() {
             @Override
@@ -184,6 +191,7 @@ public class MenuScreen implements Screen  {
             }
         });
 
+
         GAME.loadMusic("audio/music/jantrax - ai.mp3");
         if(GAME.getVolume() != 0) {
             GAME.music.play();
@@ -200,7 +208,7 @@ public class MenuScreen implements Screen  {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             batch.begin();
-            batch.draw(background,0,0,1950,1050);
+            batch.draw(background,0,-20,1950,1250);
             batch.end();
         }
         else if(Gdx.app.getType() == Application.ApplicationType.Android){

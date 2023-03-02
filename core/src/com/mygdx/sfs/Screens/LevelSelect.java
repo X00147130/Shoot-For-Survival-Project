@@ -66,7 +66,7 @@ public class LevelSelect implements Screen {
 
         //Button initialisation
         textStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/neon/raw/font-export.fnt"));
+        buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
         textStyle.font = buttonFont;
         textStyle.fontColor = RED;
 
@@ -83,36 +83,41 @@ public class LevelSelect implements Screen {
         backButton = new TextButton("Back", textStyle);
 
         //Label
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/neon/raw/font-over-export.fnt")), MAGENTA);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), MAGENTA);
         Label pageLabel = new Label("Level Select", font);
         pageLabel.setFontScale(2);
 
         //Table
         Table grid = new Table();
-        grid.center();
+        grid.top();
         grid.setFillParent(true);
+
+        Table grid2 = new Table();
+        grid2.center();
+        grid2.setFillParent(true);
 
 
         //filling table
-        grid.add(pageLabel).padLeft(150).padBottom(10);
+        grid.add(pageLabel).center().padLeft(20).padBottom(10).padTop(20);
         grid.row();
-        grid.add(level1).expandX().padRight(110).padLeft(50);
-        grid.add(level6).expandX().padRight(100);
-        grid.row();
-        grid.add(level2).expandX().padRight(110).padLeft(50);
-        grid.add(level7).expandX().padRight(100);
-        grid.row();
-        grid.add(level3).expandX().padRight(110).padLeft(50);
-        grid.add(level8).expandX().padRight(100);
-        grid.row();
-        grid.add(level4).expandX().padRight(110).padLeft(50);
-        grid.add(level9).expandX().padRight(100);
-        grid.row();
-        grid.add(level5).expandX().padRight(110).padLeft(50);
-        grid.add(level10).expandX().padRight(100);
-        grid.row();
-        grid.add(backButton).expandX().padTop(10).padLeft(150);
+        grid2.add(level1).padLeft(120).padTop(50);
+        grid2.add(level6).padRight(200).padTop(50);
+        grid2.row();
+        grid2.add(level2).padLeft(120);
+        grid2.add(level7).padRight(200);
+        grid2.row();
+        grid2.add(level3).padLeft(120);
+        grid2.add(level8).padRight(200);
+        grid2.row();
+        grid2.add(level4).padLeft(120);
+        grid2.add(level9).padRight(200);
+        grid2.row();
+        grid2.add(level5).padLeft(120);
+        grid2.add(level10).padRight(200);
+        grid2.row();
+        grid2.add(backButton).padTop(10).padLeft(320);
         screen.addActor(grid);
+        screen.addActor(grid2);
         Gdx.input.setInputProcessor(screen);
 
         backButton.addListener(new ClickListener() {

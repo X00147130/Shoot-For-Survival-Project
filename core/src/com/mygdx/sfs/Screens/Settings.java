@@ -16,10 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Container;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -34,13 +33,11 @@ public class Settings implements Screen {
 
     private Button backButton;
     private Label page;
-    private Label musicLabel;
-    private Label soundLabel;
 
     private SpriteBatch batch;
 
-    Slider music;
-    Slider sound;
+    CheckBox music;
+    CheckBox sound;
     Skin skin;
 
     Stage stage;
@@ -48,7 +45,6 @@ public class Settings implements Screen {
     BitmapFont buttonFont;
 
     private Texture background;
-    float startX;
 
     public Settings(final shootForSurvival game){
         this.GAME = game;
@@ -59,42 +55,40 @@ public class Settings implements Screen {
 
 
         textStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/neon/raw/font-export.fnt"));
+        buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
         textStyle.font = buttonFont;
         textStyle.fontColor = MAGENTA;
-
-        Label.LabelStyle label = new Label.LabelStyle();
-        label.font = buttonFont;
-        label.fontColor = MAGENTA;
 
         Label.LabelStyle title = new Label.LabelStyle();
         title.font = buttonFont;
         title.fontColor = RED;
 
         page = new Label("SETTINGS",title);
-        musicLabel = new Label("Music Volume",label);
-        soundLabel = new Label("Sound Volume", label);
 
         //skin setup
-        skin = new Skin(Gdx.files.internal("skins/neon/skin/neon-ui.json"));
+        skin = new Skin(Gdx.files.internal("skins/star-soldier/skin/star-soldier-ui.json"));
+        music = new CheckBox(" : Mute Music", skin);
+        music.setColor(RED);
+        if (GAME.musicIsChecked == true)
+            music.setChecked(true);
 
-
-        music = new Slider(0f,1f,0.01f,false,skin);
-        music.setValue(GAME.getVolume());
-
-        sound = new Slider(0f,1f,0.01f,false,skin);
-        sound.setValue(GAME.getSoundVolume());
+        sound = new CheckBox(" : Mute Sound", skin);
+        sound.setColor(RED);
+        if (GAME.soundIsChecked == true)
+            sound.setChecked(true);
 
         music.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(!music.isDragging()) {
-                    GAME.setVolume(music.getValue());
-                    GAME.music.setVolume(GAME.getVolume());
-
-                    if(!GAME.music.isPlaying()){
-                        GAME.music.play();
-                    }
+                if(!music.isChecked()) {
+                    GAME.music.setVolume(50);
+                    GAME.setVolume(GAME.music.getVolume());
+                    GAME.setMusicIsChecked(false);
+                    GAME.music.play();
+                }else{
+                    GAME.music.setVolume(0);
+                    GAME.setVolume(GAME.music.getVolume());
+                    GAME.setMusicIsChecked(true);
                 }
             }
         });
@@ -102,36 +96,19 @@ public class Settings implements Screen {
         sound.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(!sound.isDragging()){
-                    GAME.setSoundVolume(sound.getValue());
-                    if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                        GAME.loadSound("audio/sounds/coin.mp3");
-                        long id = GAME.sound.play();
-                        if (GAME.getSoundVolume() != 0)
-                            GAME.sound.setVolume(id, GAME.getSoundVolume());
-                        else {
-                            GAME.sound.setVolume(id, 0);
-                        }
-                    }
-                    if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                        GAME.manager.get("audio/sounds/coin.mp3", Sound.class).play(GAME.getSoundVolume());
-                    }
+                GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                long id = GAME.sound.play();
+                if (!sound.isChecked()) {
+                    GAME.sound.setVolume(id, 50);
+                    GAME.setSoundVolume(50);
+                    GAME.setSoundIsChecked(false);
+                }else {
+                    GAME.sound.setVolume(id, 0);
+                    GAME.setSoundVolume(0);
+                    GAME.setSoundIsChecked(true);
                 }
             }
         });
-
-        Container<Slider> container = new Container<Slider>(music);
-        container.setTransform(true); // enables scaling and rotation
-        container.setSize(350,100);
-        container.setOrigin(container.getWidth() / 2 , container.getHeight() / 2);
-        container.setScale(1);
-
-        Container<Slider> container1 = new Container<Slider>(sound);
-        container1.setTransform(true); // enables scaling and rotation
-        container1.setSize(350,100);
-        container1.setOrigin(container.getWidth() / 2 , container.getHeight() / 2);
-        container1.setScale(1);
-
 
         backButton = new TextButton("BACK",textStyle);
         Table table = new Table();
@@ -139,19 +116,14 @@ public class Settings implements Screen {
         table.center();
 
         table.row();
-        table.add(page).expandX().padBottom(25).padRight(35);
+        table.add(page).expandX().padBottom(25).center();
         table.row();
-        table.add(musicLabel).expandX().padRight(35).padLeft(10);
-        table.add(music).left().padLeft(15);
-        table.add(container).center().expandX().padBottom(70).padLeft(105);
+        table.add(music).center().padLeft(15).padBottom(5);
         table.row();
-        table.row();
-        table.add(soundLabel).expandX().padRight(35).padLeft(10);
-        table.add(sound).left().padLeft(15);
-        table.add(container1).center().expandX().padLeft(105);
+        table.add(sound).center().padLeft(18);
         table.row();
         table.row();
-        table.add(backButton).expandX().padTop(10).padRight(35);
+        table.add(backButton).expandX().padTop(10).center();
         table.row();
 
 

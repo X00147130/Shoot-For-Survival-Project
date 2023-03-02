@@ -1,5 +1,6 @@
 package com.mygdx.sfs.Screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -26,6 +27,9 @@ public class LogoScreen implements Screen {
         this.GAME = game;
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,GAME.batch);
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop)
+        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+
 
         background = new Texture("logos/CONWAY STUDIOS.png");
         backgroundIMG = new Image(background);

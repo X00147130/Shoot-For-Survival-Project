@@ -46,6 +46,8 @@ public class shootForSurvival extends Game {
         public int justTouched = 0;
         public boolean doubleJumped = false;
         public float statetimer = 0;
+        public boolean musicIsChecked = false;
+        public boolean soundIsChecked = false;
 
         public Hud getHud() {
             return hud;
@@ -145,5 +147,21 @@ public class shootForSurvival extends Game {
         public void setMutedS(boolean mute){
             mutedS = mute;
         }
-    }
+
+        public void setMusicIsChecked(boolean musicIsChecked) {
+            this.musicIsChecked = musicIsChecked;
+        }
+
+        public void setSoundIsChecked(boolean soundIsChecked) {
+            this.soundIsChecked = soundIsChecked;
+        }
+
+        public boolean isMusicIsChecked() {
+            return musicIsChecked;
+        }
+
+        public boolean isSoundIsChecked() {
+            return soundIsChecked;
+        }
+}
 
