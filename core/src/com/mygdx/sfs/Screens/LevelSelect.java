@@ -1,7 +1,7 @@
 package com.mygdx.sfs.Screens;
 
-import static com.badlogic.gdx.graphics.Color.CYAN;
 import static com.badlogic.gdx.graphics.Color.MAGENTA;
+import static com.badlogic.gdx.graphics.Color.RED;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -66,9 +66,9 @@ public class LevelSelect implements Screen {
 
         //Button initialisation
         textStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-export.fnt"));
+        buttonFont = new BitmapFont(Gdx.files.internal("skins/neon/raw/font-export.fnt"));
         textStyle.font = buttonFont;
-        textStyle.fontColor = CYAN;
+        textStyle.fontColor = RED;
 
         level1 = new TextButton("Level 1", textStyle);
         level2 = new TextButton("Level 2", textStyle);
@@ -83,7 +83,7 @@ public class LevelSelect implements Screen {
         backButton = new TextButton("Back", textStyle);
 
         //Label
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-export.fnt")), MAGENTA);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/neon/raw/font-over-export.fnt")), MAGENTA);
         Label pageLabel = new Label("Level Select", font);
         pageLabel.setFontScale(2);
 

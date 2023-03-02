@@ -1,20 +1,17 @@
 package com.mygdx.sfs.Screens;
 
-import static com.badlogic.gdx.graphics.Color.GOLD;
+import static com.badlogic.gdx.graphics.Color.MAGENTA;
 import static com.badlogic.gdx.graphics.Color.RED;
-import static com.badlogic.gdx.graphics.Color.WHITE;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -58,28 +55,28 @@ public class Settings implements Screen {
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, game.batch);
         batch = new SpriteBatch();
-        background = GAME.manager.get("backgrounds/lvlselectbg.png",Texture.class);
+        background = GAME.manager.get("backgrounds/settingsbg.png",Texture.class);
 
 
         textStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-export.fnt"));
+        buttonFont = new BitmapFont(Gdx.files.internal("skins/neon/raw/font-export.fnt"));
         textStyle.font = buttonFont;
-        textStyle.fontColor = WHITE;
+        textStyle.fontColor = MAGENTA;
 
         Label.LabelStyle label = new Label.LabelStyle();
         label.font = buttonFont;
-        label.fontColor = WHITE;
+        label.fontColor = MAGENTA;
 
         Label.LabelStyle title = new Label.LabelStyle();
         title.font = buttonFont;
-        title.fontColor = GOLD;
+        title.fontColor = RED;
 
         page = new Label("SETTINGS",title);
         musicLabel = new Label("Music Volume",label);
         soundLabel = new Label("Sound Volume", label);
 
         //skin setup
-        skin = new Skin(Gdx.files.internal("skins/comic/comic-ui.json"));
+        skin = new Skin(Gdx.files.internal("skins/neon/skin/neon-ui.json"));
 
 
         music = new Slider(0f,1f,0.01f,false,skin);
@@ -198,7 +195,7 @@ public class Settings implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         GAME.batch.begin();
-        GAME.batch.draw(background,0,-70,400,350);
+        GAME.batch.draw(background,0,-10,400,350);
         GAME.batch.end();
 
         stage.draw();
@@ -230,5 +227,6 @@ public class Settings implements Screen {
     public void dispose() {
         stage.dispose();
         GAME.dispose();
+        GAME.batch.dispose();
     }
 }

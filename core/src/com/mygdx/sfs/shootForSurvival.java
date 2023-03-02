@@ -78,6 +78,8 @@ public class shootForSurvival extends Game {
             /*Music Loading*/
             manager.load("audio/music/yoitrax - Fuji.mp3", Music.class);
             manager.load("audio/music/yoitrax - Jade Dragon.mp3", Music.class);
+            manager.load("audio/music/yoitrax - Diamonds.mp3", Music.class);
+            manager.load("audio/music/jantrax - ai.mp3", Music.class);
 
             /*Texture Loading*/
             manager.load("backgrounds/-1-724808065-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
@@ -87,6 +89,8 @@ public class shootForSurvival extends Game {
             manager.load("backgrounds/-1-771063806-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
             manager.load("backgrounds/menubg.png", Texture.class); // main menu
             manager.load("backgrounds/lvlselectbg.png", Texture.class); // level select
+            manager.load("backgrounds/lvlcompletebg.png", Texture.class); // level complete
+            manager.load("backgrounds/settingsbg.png", Texture.class); // settings
             manager.load("sprites/bullet.png", Texture.class);
 
 

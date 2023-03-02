@@ -136,7 +136,7 @@ public class Ninja extends Enemy {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(3 / shootForSurvival.PPM);
+        shape.setRadius(4 / shootForSurvival.PPM);
         fdef.filter.categoryBits = shootForSurvival.ENEMY_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.FINISH_BIT |

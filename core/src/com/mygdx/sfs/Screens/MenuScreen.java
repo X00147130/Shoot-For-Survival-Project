@@ -63,7 +63,7 @@ public class MenuScreen implements Screen  {
 
         //Buttons
         buttonStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-export.fnt"));
+        buttonFont = new BitmapFont(Gdx.files.internal("skins/neon/raw/font-export.fnt"));
         buttonStyle.font = buttonFont;
         buttonStyle.fontColor = CYAN;
         playButton  = new TextButton("Start",buttonStyle);
@@ -73,7 +73,7 @@ public class MenuScreen implements Screen  {
         quitButton = new TextButton("Quit",buttonStyle);
 
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/star-soldier/raw/font-export.fnt")), GREEN);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/neon/raw/font-pressed-export.fnt")), GREEN);
         Label titleLabel = new Label(" SHOOT FOR " + " SURVIVAL ", font);
 
         table.add(titleLabel).expandX().setActorHeight(110);
@@ -184,7 +184,7 @@ public class MenuScreen implements Screen  {
             }
         });
 
-        GAME.loadMusic("audio/music/yoitrax - Ronin.mp3");
+        GAME.loadMusic("audio/music/jantrax - ai.mp3");
         if(GAME.getVolume() != 0) {
             GAME.music.play();
             GAME.music.setVolume(GAME.getVolume());
@@ -205,7 +205,7 @@ public class MenuScreen implements Screen  {
         }
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             batch.begin();
-            batch.draw(background, 800, 200);
+            batch.draw(background, 0, 0, 2250,1075);
             batch.end();
         }
         stage.draw();

@@ -59,7 +59,7 @@ public class PlayScreen implements Screen {
     private boolean shot = false;
 
     //Bullet Variable
-    private ArrayList<Bullets> bullets;
+    public ArrayList<Bullets> bullets;
 
     //Sprite Variable
     private Array<Item> items;
@@ -116,7 +116,7 @@ public class PlayScreen implements Screen {
         player = new Player(this,game);
         world.setContactListener(new WorldContactListener());
 
-        game.loadMusic("audio/music/yoitrax - Fuji.mp3");
+        game.loadMusic("audio/music/yoitrax - Diamonds.mp3");
         if(game.getVolume() != 0) {
             game.music.play();
             game.music.setVolume(game.getVolume());
@@ -179,7 +179,6 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
-
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             if (player.currentState != Player.State.DEAD) {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2) {
@@ -206,7 +205,12 @@ public class PlayScreen implements Screen {
                 }
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
-                    bullets.add(new Bullets(game,player.getX(), player.getY()));
+                    bullets.add(new Bullets(game,this,player.getX(),player.b2body.getPosition().y));
+                    //Bullet updates
+                    for (Bullets bullet: bullets){
+                        bullet.update(dt);
+                        bullet.bulletBody.setActive(true);
+                    }
                 }
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
@@ -245,7 +249,7 @@ public class PlayScreen implements Screen {
                     Gdx.app.log("double"," jumped");
                 }
                 if (controller.isDownPressed() == true) {
-                    player.attack();
+                    bullets.add(new Bullets(game,this,player.getX(), player.getY()));
                 }
 
                 if (controller.isRightPressed() == true && player.b2body.getLinearVelocity().x <= 1.3) {
@@ -285,15 +289,6 @@ public class PlayScreen implements Screen {
 
 
         player.update(dt);
-
-        //Bullet updates
-        ArrayList<Bullets> removeBullets = new ArrayList<Bullets>();
-        for (Bullets bullet: bullets){
-            bullet.update(dt);
-            if(bullet.todestroy)
-                removeBullets.add(bullet);
-        }
-        removeBullets.removeAll(bullets);
 
 
         for (Enemy enemy : creator.getNinjas()) {
