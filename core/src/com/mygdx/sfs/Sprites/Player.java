@@ -25,7 +25,7 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Player extends Sprite {
     //State Variables for animation purposes
-    public enum State{ FALLING, JUMPING, STANDING, RUNNING, ATTACK, DEAD,SHOOTING, COMPLETE}
+    public enum State{ FALLING, JUMPING, STANDING, RUNNING, DEAD, COMPLETE}
     public State currentState;
     public State previousState;
 
@@ -41,7 +41,6 @@ public class Player extends Sprite {
     //Animation Variables
     private Animation <TextureRegion> ryuRun;
     private Animation <TextureRegion> ryuJump;
-    private Animation <TextureRegion> ryuAttack;
     private Animation <TextureRegion> ryuDead;
     private Animation<TextureRegion> ryuComplete;
     private boolean runningRight;
@@ -61,10 +60,7 @@ public class Player extends Sprite {
     private int jumpCounter = 0;
 
     //Attack Variables
-    public FixtureDef attackdef;
-    private boolean attacking;
     private Fixture fix;
-    private Array<Bullets> ammo;
 
     //movement variables
     private Vector2 limit;
@@ -78,7 +74,6 @@ public class Player extends Sprite {
         limit = new Vector2(0,0);
 
         this.screen = screen;
-        attacking = false;
         
         //initialising health variables
         health = 100;
@@ -151,23 +146,6 @@ public class Player extends Sprite {
             setBounds(0, 0, 18 / PPM, 20 / PPM);}
         frames.clear();
 
-        //Attack Texture
-        frames.add(screen.getAtlas().findRegion("attack1"));
-        frames.add(screen.getAtlas().findRegion("attack2"));
-        frames.add(screen.getAtlas().findRegion("attack3"));
-        frames.add(screen.getAtlas().findRegion("attack4"));
-        frames.add(screen.getAtlas().findRegion("attack5"));
-        frames.add(screen.getAtlas().findRegion("attack4"));
-        frames.add(screen.getAtlas().findRegion("attack3"));
-        frames.add(screen.getAtlas().findRegion("attack2"));
-        frames.add(screen.getAtlas().findRegion("attack1"));
-
-
-        ryuAttack = new Animation <TextureRegion>(0.08f, frames);
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 18 / PPM, 20 / PPM);
-        }
-        frames.clear();
 
         //Level Complete
         frames.add(screen.getAtlas().findRegion("attack2"));
@@ -209,13 +187,6 @@ public class Player extends Sprite {
                 region = ryuRun.getKeyFrame(stateTimer, true);
                break;
 
-            case ATTACK:
-                region = ryuAttack.getKeyFrame(stateTimer,true);
-                break;
-
-            case SHOOTING:
-                region = ryuAttack.getKeyFrame(stateTimer,true);
-                break;
 
             case COMPLETE:
                 region = ryuComplete.getKeyFrame(stateTimer, true);
@@ -251,12 +222,9 @@ public class Player extends Sprite {
         else if(b2body.getLinearVelocity().y < 0)
             return State.FALLING;
 
-        else if (b2body.getLinearVelocity().x != 0 && currentState != State.ATTACK)
+        else if (b2body.getLinearVelocity().x != 0)
             return State.RUNNING;
 
-        else if (attacking == true) {
-            return State.ATTACK;
-        }
 
         else if(screen.complete == true) {
             return State.COMPLETE;
@@ -307,94 +275,10 @@ public class Player extends Sprite {
 
     /*Jump Counter System*/
     public void jumpReset(){
-            sfs.jumpCounter = 0;
-            sfs.doubleJumped = false;
-            Gdx.app.log("Jumps", "Reset");
-        }
-
-
-    /*An Attack System Attempt*/
-
-    public Fixture createAttack(){
-        if(!isFlipX()){
-            b2body.applyForce(new Vector2(1,0),b2body.getWorldCenter(),true);
-        }
-        else {
-            b2body.applyForce(new Vector2(-1,0),b2body.getWorldCenter(),true);
-        }
-        b2body.setAwake(true);
-
-
-        //Collision Detection Line
-
-        EdgeShape head = new EdgeShape();
-        if(!isFlipX()){
-            head.set(new Vector2(-3/ shootForSurvival.PPM,0/shootForSurvival.PPM),new Vector2(12/shootForSurvival.PPM,  -2 / shootForSurvival.PPM));
-        }
-        else{
-            head.set(new Vector2(-12/ shootForSurvival.PPM,0/shootForSurvival.PPM),new Vector2(-3/shootForSurvival.PPM, 0  / shootForSurvival.PPM));
-        }
-        attackdef = new FixtureDef();
-        attackdef.shape = head;
-        attackdef.isSensor = false;
-        attackdef.filter.categoryBits= shootForSurvival.BULLET_BIT;
-        attackdef.filter.maskBits = shootForSurvival.ENEMY_BIT;
-
-        Fixture fix1 = b2body.createFixture(attackdef);
-        fix1.setUserData("attack");
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            sfs.loadSound("audio/sounds/mixkit-fast-sword-whoosh-2792.wav");
-            long id = sfs.sound.play();
-            if (sfs.getSoundVolume() != 0)
-                sfs.sound.setVolume(id, sfs.getSoundVolume());
-            else {
-                sfs.sound.setVolume(id, 0);
-            }
-        }
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            sfs.manager.get("audio/sounds/mixkit-fast-sword-whoosh-2792.wav", Sound.class).play(sfs.getSoundVolume());
-        }
-
-        head.dispose();
-        return fix1;
+        sfs.jumpCounter = 0;
+        sfs.doubleJumped = false;
+        Gdx.app.log("Jumps", "Reset");
     }
-
-    public boolean isAttacking(){
-        return attacking;
-    }
-
-    public void setIsAttacking(boolean attack){
-        attacking = attack;
-    }
-
-    public void attack(){
-        if(!attacking&& currentState != State.DEAD){
-            attacking = true;
-            Timer time = new Timer();
-            currentState = State.ATTACK;
-            Timer.Task task = time.scheduleTask(new Timer.Task(){
-                @Override
-                public void run() {
-                    currentState = State.STANDING;
-                    }
-                },0.5f);
-
-            fix = createAttack();
-            if(isAttacking() == true){
-                Timer.Task task1 = time.scheduleTask(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        while(b2body.getFixtureList().size > 2){
-                            b2body.destroyFixture(b2body.getFixtureList().pop());
-                        }
-                        attacking = false;
-                    }
-                },0.2f);
-            }
-
-        }
-    }
-
 
     //dash method
     public void dash(){

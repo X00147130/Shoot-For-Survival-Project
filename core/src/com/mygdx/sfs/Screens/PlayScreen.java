@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -109,7 +110,6 @@ public class PlayScreen implements Screen {
 
         world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
-
         creator = new B2WorldCreator(game,this);
 
         //Player creation
@@ -144,10 +144,6 @@ public class PlayScreen implements Screen {
 
     public Player getPlayer() {
         return player;
-    }
-
-    public Viewport getGamePort() {
-        return gamePort;
     }
 
     public TiledMap getMap() {
@@ -200,16 +196,12 @@ public class PlayScreen implements Screen {
                     player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
                     Gdx.app.log("double"," jumped");
                 }
-                if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-                    player.attack();
-                }
-
-                if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
-                    bullets.add(new Bullets(game,this,player.getX(),player.b2body.getPosition().y));
+                if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+                    bullets.add(new Bullets(game,this,player.b2body.getPosition().x,player.b2body.getPosition().y));
                     //Bullet updates
                     for (Bullets bullet: bullets){
+                        bullet.bulletBody.setActive(false);
                         bullet.update(dt);
-                        bullet.bulletBody.setActive(true);
                     }
                 }
 
@@ -234,8 +226,8 @@ public class PlayScreen implements Screen {
         }
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             if (player.currentState != Player.State.DEAD) {
-                if (controller.isUpPressed() && game.jumpCounter < 1) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+                if (controller.isUpPressed() && game.jumpCounter < 2) {
+                    player.b2body.applyLinearImpulse(new Vector2(0, 2.5f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
 
                     game.manager.get("audio/sounds/soundnimja-jump.wav", Sound.class).play(game.getSoundVolume());
@@ -249,7 +241,7 @@ public class PlayScreen implements Screen {
                     Gdx.app.log("double"," jumped");
                 }
                 if (controller.isDownPressed() == true) {
-                    bullets.add(new Bullets(game,this,player.getX(),player.b2body.getPosition().y));
+                    bullets.add(new Bullets(game,this,player.b2body.getPosition().x,player.b2body.getPosition().y));
                 }
 
                 if (controller.isRightPressed() == true && player.b2body.getLinearVelocity().x <= 1.3) {
@@ -305,6 +297,7 @@ public class PlayScreen implements Screen {
 
         hud.update(dt);
         game.setHud(hud);
+
         for(Bullets bullet: bullets){
             bullet.update(dt);
             bullet.bulletBody.setActive(true);
@@ -337,13 +330,11 @@ public class PlayScreen implements Screen {
             b2dr.render(world, gamecam.combined);
 
         game.batch.setProjectionMatrix(gamecam.combined);
+
+
         game.batch.begin();
         player.draw(game.batch);
 
-
-        for(Bullets bullet: bullets){
-            bullet.render(game.batch);
-        }
 
         for (Enemy enemy : creator.getNinjas())
             enemy.draw(game.batch);
@@ -363,7 +354,10 @@ public class PlayScreen implements Screen {
             }
         }
 
+        for(Bullets bullet: bullets)
+            bullet.render(game.batch);
         game.batch.end();
+
 
         //Set to draw what hud sees
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -445,12 +439,9 @@ public class PlayScreen implements Screen {
     public void dispose() {
         map.dispose();
         renderer.dispose();
-        world.dispose();
         b2dr.dispose();
         hud.dispose();
-        for(Bullets bullet: bullets){
-            bullet.dispose();
-        }
+        world.dispose();
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
             controller.dispose();
         }

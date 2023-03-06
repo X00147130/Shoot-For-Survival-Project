@@ -14,13 +14,13 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Coins extends Item {
     private static int count = 0;
-    public shootForSurvival ninjarun;
+    public shootForSurvival sfs;
 
 
     public Coins(shootForSurvival sfs, PlayScreen screen, float  x, float y) {
         super(screen, x, y);
         setRegion(new Texture("sprites/coin.png"));// clipart used
-        this.ninjarun = sfs;
+        this.sfs = sfs;
     }
 
     @Override
@@ -50,16 +50,16 @@ public class Coins extends Item {
         screen.setCoins(count);
         Gdx.app.log("Coin", "destroyed");
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            ninjarun.loadSound("audio/sounds/coin.mp3");
-            long id = ninjarun.sound.play();
-            if (ninjarun.getSoundVolume() != 0)
-                ninjarun.sound.setVolume(id, ninjarun.getSoundVolume());
+            sfs.loadSound("audio/sounds/coin.mp3");
+            long id = sfs.sound.play();
+            if (sfs.getSoundVolume() != 0)
+                sfs.sound.setVolume(id, sfs.getSoundVolume());
             else {
-                ninjarun.sound.setVolume(id, 0);
+                sfs.sound.setVolume(id, 0);
             }
         }
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            ninjarun.manager.get("audio/sounds/coin.mp3", Sound.class).play(ninjarun.getSoundVolume());
+            sfs.manager.get("audio/sounds/coin.mp3", Sound.class).play(sfs.getSoundVolume());
         }
 
     }

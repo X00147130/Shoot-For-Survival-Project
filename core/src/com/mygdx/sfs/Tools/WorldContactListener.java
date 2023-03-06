@@ -47,10 +47,25 @@ public class WorldContactListener implements ContactListener {
 
             case shootForSurvival.ENEMY_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
+                    ((Bullets) fixA.getUserData()).destroy();
+                    ((Bullets) fixA.getUserData()).dispose();
                     ((Ninja) fixB.getUserData()).attacked();
                 }
                 else {
+                    ((Bullets) fixB.getUserData()).destroy();
                     ((Ninja) fixA.getUserData()).attacked();
+                    ((Bullets) fixB.getUserData()).dispose();
+                }
+                break;
+
+            case shootForSurvival.GROUND_BIT | shootForSurvival.BULLET_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
+                    ((Bullets) fixA.getUserData()).destroy();
+                    ((Bullets) fixA.getUserData()).dispose();
+                }
+                else {
+                    ((Bullets) fixB.getUserData()).destroy();
+                    ((Bullets) fixB.getUserData()).dispose();
                 }
                 break;
 
@@ -94,7 +109,6 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((InteractiveTileObject) fixB.getUserData()).onHit((Player) fixA.getUserData());
                 break;
-
         }
     }
 

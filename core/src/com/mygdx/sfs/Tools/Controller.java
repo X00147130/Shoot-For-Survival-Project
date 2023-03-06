@@ -203,7 +203,11 @@ public class Controller {
     }
 
     public void handleEvent(){
-        attackPressed = false;
+        if(attackPressed == true)
+            attackPressed = false;
+
+        if(upPressed == true)
+            upPressed = false;
     }
     public boolean isUpPressed() {
         return upPressed;

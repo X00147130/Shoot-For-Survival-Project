@@ -91,7 +91,7 @@ public class shootForSurvival extends Game {
             manager.load("backgrounds/controls.png", Texture.class); // controls Background
             manager.load("backgrounds/pausebg.png", Texture.class); // pause
             manager.load("backgrounds/deadbg.png", Texture.class); // game over
-            manager.load("sprites/bullet.png", Texture.class); //Bullet
+            manager.load("sprites/bullet.png", Texture.class); // bullet
 
 
             manager.finishLoading();

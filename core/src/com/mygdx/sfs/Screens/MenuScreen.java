@@ -118,19 +118,11 @@ public class MenuScreen implements Screen  {
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
                     GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
                 }
+                if(GAME.music.isPlaying())
+                    GAME.music.stop();
 
-               if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                   if(GAME.music.isPlaying()){
-                       GAME.music.stop();
-                   }
+                GAME.setScreen(new PlayScreen(GAME, 1));
 
-               }else if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                   if(GAME.music.isPlaying()){
-                       GAME.music.stop();
-                   }
-
-                   GAME.setScreen(new PlayScreen(GAME, 1));
-               }
             }
         });
 

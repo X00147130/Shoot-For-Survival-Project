@@ -12,12 +12,12 @@ import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
 public class health extends Item{
-    public shootForSurvival ninjarun;
+    public shootForSurvival sfs;
 
-    public health(shootForSurvival ninjarun, PlayScreen screen, float x, float y) {
+    public health(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
         setRegion(new Texture("sprites/health_vial1.png"));
-        this.ninjarun = ninjarun;
+        this.sfs = sfs;
     }
 
     @Override
@@ -46,16 +46,16 @@ public class health extends Item{
         destroy();
         Player.setHitCounter(0);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            ninjarun.loadSound("audio/sounds/healthDrink.wav");
-            long id = ninjarun.sound.play();
-            if (ninjarun.getSoundVolume() != 0)
-                ninjarun.sound.setVolume(id, ninjarun.getSoundVolume());
+            sfs.loadSound("audio/sounds/healthDrink.wav");
+            long id = sfs.sound.play();
+            if (sfs.getSoundVolume() != 0)
+                sfs.sound.setVolume(id, sfs.getSoundVolume());
             else {
-                ninjarun.sound.setVolume(id, 0);
+                sfs.sound.setVolume(id, 0);
             }
         }
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            ninjarun.manager.get("audio/sounds/healthDrink.wav", Sound.class).play(ninjarun.getSoundVolume());
+            sfs.manager.get("audio/sounds/healthDrink.wav", Sound.class).play(sfs.getSoundVolume());
         }
     }
 
