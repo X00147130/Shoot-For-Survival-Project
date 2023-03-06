@@ -43,6 +43,7 @@ public class LevelComplete implements Screen {
     private BitmapFont font;
 
     Label title;
+    Label title2;
     Label Coins;
     private Texture background;
 
@@ -62,9 +63,9 @@ public class LevelComplete implements Screen {
 
         //TextButton Style Admin
         buttonstyle = new TextButton.TextButtonStyle();
-        font = new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt"));
+        font = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
         buttonstyle.font = font;
-        buttonstyle.font.setColor(Color.WHITE);
+        buttonstyle.font.setColor(Color.CYAN);
 
         //Setting up the TextButtons
         menuButton = new TextButton("Main Menu", buttonstyle);
@@ -72,9 +73,11 @@ public class LevelComplete implements Screen {
         levelSelectButton = new TextButton("Level Select", buttonstyle);
 
         //Label Admin
-        Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/font-export.fnt")), Color.RED);
-        title = new Label("Level Complete",style);
-        Coins = new Label(String.format("Score: %4d" ,score),style);
+        Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), Color.MAGENTA);
+        Label.LabelStyle style2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.CYAN);
+        title = new Label("Level",style);
+        title2 = new Label("Complete",style);
+        Coins = new Label(String.format("Score: %4d" ,score),style2);
 
         //Table Setup
         Table table = new Table();
@@ -83,8 +86,10 @@ public class LevelComplete implements Screen {
 
 
         table.add(title).expandX().top();
-        table.row().padBottom(10);
-        table.add(Coins).center().padBottom(10);
+        table.row();
+        table.add(title2).expandX().padBottom(10);
+        table.row();
+        table.add(Coins).center().expandX();
         table.row();
 
         if(map != 11) {

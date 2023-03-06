@@ -27,8 +27,10 @@ public class LogoScreen implements Screen {
         this.GAME = game;
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,GAME.batch);
+
+        //Display mode for PC Debugging
         if(Gdx.app.getType() == Application.ApplicationType.Desktop)
-        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+            Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
 
 
         background = new Texture("logos/CONWAY STUDIOS.png");

@@ -25,6 +25,8 @@ public class Controller {
     public Stage stage;
     private OrthographicCamera cam;
     private shootForSurvival gameplay;
+    private float timeSeconds = 0f;
+    private float period = 0.01f;
 
     //Image Button Variable
     private ImageButton pause;
@@ -39,7 +41,7 @@ public class Controller {
         Gdx.input.setInputProcessor(stage);
         gameplay = game;
 
-        Texture pic = new Texture("jumpArrow.png");
+        Texture pic = new Texture("controller/jumpArrow.png");
         TextureRegionDrawable picDraw = new TextureRegionDrawable(pic);
         final ImageButton upImg = new ImageButton(picDraw);
         upImg.setSize(30,30);
@@ -58,7 +60,7 @@ public class Controller {
                 }
             });}
 
-        Image attackImg = new Image(new Texture("attack button.png"));
+        Image attackImg = new Image(new Texture("controller/attack button.png"));
         attackImg.setSize(50,30);
         attackImg.addListener(new InputListener(){
 
@@ -74,7 +76,7 @@ public class Controller {
             }
         });
 
-        Image rightImg = new Image(new Texture("rightArrow.png"));
+        Image rightImg = new Image(new Texture("controller/rightArrow.png"));
         rightImg.setSize(30,30);
         rightImg.addListener(new InputListener(){
 
@@ -90,7 +92,7 @@ public class Controller {
             }
         });
 
-        Image leftImg = new Image(new Texture("LTd5arLKc.png"));
+        Image leftImg = new Image(new Texture("controller/LTd5arLKc.png"));
         leftImg.setSize(30,30);
         leftImg.addListener(new InputListener(){
 
@@ -106,7 +108,7 @@ public class Controller {
             }
         });
         //Image button
-        image = new Texture("pause.png");
+        image = new Texture("controller/pause.png");
         draw = new TextureRegionDrawable(image);
         pause = new ImageButton(draw);
         pause.setSize(70,70);
@@ -191,10 +193,18 @@ public class Controller {
     public void draw(){
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
             Gdx.input.setInputProcessor(stage);
+            timeSeconds += Gdx.graphics.getRawDeltaTime();
+            if (timeSeconds > period) {
+                timeSeconds -= period;
+                handleEvent();
+            }
         }
         stage.draw();
     }
 
+    public void handleEvent(){
+        attackPressed = false;
+    }
     public boolean isUpPressed() {
         return upPressed;
     }

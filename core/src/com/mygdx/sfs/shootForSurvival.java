@@ -84,16 +84,14 @@ public class shootForSurvival extends Game {
             manager.load("audio/music/jantrax - ai.mp3", Music.class);
 
             /*Texture Loading*/
-            manager.load("backgrounds/-1-724808065-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("backgrounds/-3-1690698520-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("backgrounds/-3-295142130-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("backgrounds/-2-1291793858-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
-            manager.load("backgrounds/-1-771063806-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
             manager.load("backgrounds/menubg.png", Texture.class); // main menu
             manager.load("backgrounds/lvlselectbg.png", Texture.class); // level select
             manager.load("backgrounds/lvlcompletebg.png", Texture.class); // level complete
             manager.load("backgrounds/settingsbg.png", Texture.class); // settings
-            manager.load("sprites/bullet.png", Texture.class);
+            manager.load("backgrounds/controls.png", Texture.class); // controls Background
+            manager.load("backgrounds/pausebg.png", Texture.class); // pause
+            manager.load("backgrounds/deadbg.png", Texture.class); // game over
+            manager.load("sprites/bullet.png", Texture.class); //Bullet
 
 
             manager.finishLoading();

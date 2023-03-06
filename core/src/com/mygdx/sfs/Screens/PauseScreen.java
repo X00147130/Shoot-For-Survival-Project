@@ -1,6 +1,6 @@
 package com.mygdx.sfs.Screens;
 
-import static com.badlogic.gdx.graphics.Color.RED;
+import static com.badlogic.gdx.graphics.Color.CYAN;
 import static com.badlogic.gdx.graphics.Color.WHITE;
 
 import com.badlogic.gdx.Application;
@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -55,11 +54,11 @@ public class PauseScreen implements Screen {
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT,  new OrthographicCamera());
         stage = new Stage(viewport, game.batch);
 
-        background = game.manager.get("backgrounds/-2-1291793858-scale12.00-k_heun-dreamlike-diffusion-.png",Texture.class);
+        background = game.manager.get("backgrounds/pausebg.png",Texture.class);
 
 
         //Label set up
-        style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-button-export.fnt")), RED);
+        style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), CYAN);
         titleLabel = new Label("PAUSED",style);
 
 
@@ -68,7 +67,7 @@ public class PauseScreen implements Screen {
         table.setFillParent(true);
 
         buttonStyle = new TextButton.TextButtonStyle();
-        buttonStyle.font = new BitmapFont(Gdx.files.internal("skins/comic/comic-ui_data/font-button-export.fnt"));
+        buttonStyle.font = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
 
 
         resume = new TextButton("resume", buttonStyle);
@@ -77,7 +76,7 @@ public class PauseScreen implements Screen {
         quit.setColor(WHITE);
 
 
-        table.add(titleLabel).width(70).height(60).center().padRight(38);
+        table.add(titleLabel).width(70).height(60).center().padRight(140);
         table.row();
         table.add(resume).width(110).height(50).center();
         table.row();
@@ -145,7 +144,7 @@ public class PauseScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
-        game.batch.draw(background, 0, -100, 400, 400);
+        game.batch.draw(background, 0, 0, 400, 300);
         game.batch.end();
 
         stage.draw();

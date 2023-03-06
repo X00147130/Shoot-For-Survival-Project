@@ -34,7 +34,7 @@ public class Bullets {
         this.y = y;
         this.x = x;
 
-       // texture =new Texture("sprites/bullet.png");
+        texture =new Texture("sprites/bullet.png");
 
         destroyed = false;
 
@@ -88,7 +88,9 @@ public class Bullets {
     }
 
     public void render(SpriteBatch sb){
-        //sb.draw(texture, x, y);
+        sb.draw(texture, bulletBody.getPosition().x, bulletBody.getPosition().y,texture.getWidth() / sfs.PPM,texture.getHeight() / sfs.PPM);
     }
-
+    public void dispose(){
+        texture.dispose();
+    }
 }

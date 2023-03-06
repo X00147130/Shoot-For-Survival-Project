@@ -249,7 +249,7 @@ public class PlayScreen implements Screen {
                     Gdx.app.log("double"," jumped");
                 }
                 if (controller.isDownPressed() == true) {
-                    bullets.add(new Bullets(game,this,player.getX(), player.getY()));
+                    bullets.add(new Bullets(game,this,player.getX(),player.b2body.getPosition().y));
                 }
 
                 if (controller.isRightPressed() == true && player.b2body.getLinearVelocity().x <= 1.3) {
@@ -305,6 +305,10 @@ public class PlayScreen implements Screen {
 
         hud.update(dt);
         game.setHud(hud);
+        for(Bullets bullet: bullets){
+            bullet.update(dt);
+            bullet.bulletBody.setActive(true);
+        }
 
 
         if (player.currentState != Player.State.DEAD) {
@@ -335,9 +339,12 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+
+
         for(Bullets bullet: bullets){
             bullet.render(game.batch);
         }
+
         for (Enemy enemy : creator.getNinjas())
             enemy.draw(game.batch);
 
@@ -441,6 +448,9 @@ public class PlayScreen implements Screen {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
+        for(Bullets bullet: bullets){
+            bullet.dispose();
+        }
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
             controller.dispose();
         }

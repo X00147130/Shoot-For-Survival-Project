@@ -39,6 +39,7 @@ public class MenuScreen implements Screen  {
     //Buttons
     Button playButton;
     Button levelButton;
+    Button controls;
     Button settingsButton;
     Button quitButton;
     TextButton.TextButtonStyle buttonStyle;
@@ -71,6 +72,8 @@ public class MenuScreen implements Screen  {
         playButton.setSize(12,10);
         levelButton  = new TextButton("Level Select",buttonStyle );
         levelButton.setSize(12,10);
+        controls  = new TextButton("Controls",buttonStyle);
+        controls.setSize(12,10);
         settingsButton  = new TextButton("Settings",buttonStyle );
         settingsButton.setSize(12,10);
         quitButton = new TextButton("Quit",buttonStyle);
@@ -87,6 +90,8 @@ public class MenuScreen implements Screen  {
         table.add(playButton).expandX().padTop(10);
         table.row();
         table.add(levelButton).expandX().padTop(5);
+        table.row();
+        table.add(controls).expandX().padTop(5);
         table.row();
         table.add(settingsButton).expandX().padTop(5);
         table.row();
@@ -118,12 +123,11 @@ public class MenuScreen implements Screen  {
                    if(GAME.music.isPlaying()){
                        GAME.music.stop();
                    }
-                   GAME.setScreen(new Controls(GAME));
+
                }else if (Gdx.app.getType() == Application.ApplicationType.Android) {
                    if(GAME.music.isPlaying()){
                        GAME.music.stop();
                    }
-
 
                    GAME.setScreen(new PlayScreen(GAME, 1));
                }
@@ -147,6 +151,26 @@ public class MenuScreen implements Screen  {
                 }
 
                 GAME.setScreen(new LevelSelect(GAME));
+            }
+        });
+
+        controls.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    long id = GAME.sound.play();
+                    if (GAME.getSoundVolume() != 0)
+                        GAME.sound.setVolume(id, GAME.getSoundVolume());
+                    else {
+                        GAME.sound.setVolume(id, 0);
+                    }
+                }
+                if(Gdx.app.getType() == Application.ApplicationType.Android) {
+                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                }
+
+                GAME.setScreen(new Controls(GAME));
             }
         });
 

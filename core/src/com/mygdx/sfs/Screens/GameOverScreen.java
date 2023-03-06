@@ -44,9 +44,9 @@ public class GameOverScreen implements Screen {
         stage = new Stage(viewport, GAME.batch);
         this.map = level;
 
-        background = GAME.manager.get("backgrounds/-3-295142130-scale12.00-k_heun-dreamlike-diffusion-.png", Texture.class);
+        background = GAME.manager.get("backgrounds/deadbg.png", Texture.class);
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/font-export.fnt")), RED);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), RED);
 
         table = new Table();
         table.center();
@@ -55,16 +55,18 @@ public class GameOverScreen implements Screen {
         BitmapFont buttonFont;
         TextButton.TextButtonStyle buttonStyle;
         buttonStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt"));
+        buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
         buttonStyle.font= buttonFont;
         buttonStyle.fontColor = WHITE;
         playAgainButton = new TextButton(" Play Again? ", buttonStyle);
         mainMenuButton = new TextButton(" Main Menu ", buttonStyle);
 
 
-        Label gameOverLabel = new Label(" YOU DIED!!!!! ", font);
+        Label gameOverLabel = new Label("YOU GOT", font);
+        Label gameOverLabel2 = new Label("SCRAPPED!!!", font);
         table.add(gameOverLabel).expandX().center();
         table.row();
+        table.add(gameOverLabel2).expandX().center();
         table.row();
         table.add(playAgainButton).expandX().padTop(10).center();
         table.row();
@@ -139,7 +141,7 @@ public class GameOverScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         GAME.batch.begin();
-        GAME.batch.draw(background,0,-100,400,400);
+        GAME.batch.draw(background,0,0,400,300);
         GAME.batch.end();
         stage.draw();
     }
