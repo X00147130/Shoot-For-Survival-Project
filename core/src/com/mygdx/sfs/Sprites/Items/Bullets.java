@@ -18,7 +18,6 @@ import com.mygdx.sfs.shootForSurvival;
 public class Bullets {
 
     public static final float SPEED = 3f;
-    public static final float DESTROY_BULLET = 1f;
     private Texture clip;
     private shootForSurvival sfs;
     private FixtureDef bulletDef;
@@ -37,7 +36,7 @@ public class Bullets {
         this.y = y;
         this.x = x;
         this.screen = screen;
-        clip =new Texture("sprites/bullet.png");
+        clip = new Texture("sprites/bullet.png");
         destroyed = false;
         defineBullet();
     }
@@ -86,7 +85,10 @@ public class Bullets {
     }
 
     public void render(SpriteBatch batch){
+        batch.begin();
         batch.draw(clip, bulletBody.getPosition().x, bulletBody.getPosition().y,clip.getWidth() / sfs.PPM,clip.getHeight() / sfs.PPM);
+        batch.end();
+
     }
     public void dispose(){
         clip.dispose();

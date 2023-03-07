@@ -60,7 +60,7 @@ public class PlayScreen implements Screen {
     private boolean shot = false;
 
     //Bullet Variable
-    public ArrayList<Bullets> bullets;
+    private ArrayList<Bullets> bullets;
 
     //Sprite Variable
     private Array<Item> items;
@@ -198,11 +198,6 @@ public class PlayScreen implements Screen {
                 }
                 if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                     bullets.add(new Bullets(game,this,player.b2body.getPosition().x,player.b2body.getPosition().y));
-                    //Bullet updates
-                    for (Bullets bullet: bullets){
-                        bullet.bulletBody.setActive(false);
-                        bullet.update(dt);
-                    }
                 }
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
@@ -227,7 +222,7 @@ public class PlayScreen implements Screen {
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             if (player.currentState != Player.State.DEAD) {
                 if (controller.isUpPressed() && game.jumpCounter < 2) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, 2.5f), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(0, 3.2f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
 
                     game.manager.get("audio/sounds/soundnimja-jump.wav", Sound.class).play(game.getSoundVolume());
@@ -303,7 +298,6 @@ public class PlayScreen implements Screen {
             bullet.bulletBody.setActive(true);
         }
 
-
         if (player.currentState != Player.State.DEAD) {
             gamecam.position.x = player.b2body.getPosition().x;
         }
@@ -354,9 +348,10 @@ public class PlayScreen implements Screen {
             }
         }
 
+        game.batch.end();
+
         for(Bullets bullet: bullets)
             bullet.render(game.batch);
-        game.batch.end();
 
 
         //Set to draw what hud sees

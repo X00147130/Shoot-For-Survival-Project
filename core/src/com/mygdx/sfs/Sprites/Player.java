@@ -253,7 +253,8 @@ public class Player extends Sprite {
                 shootForSurvival.ENEMY_BIT|
                 shootForSurvival.MONEY_BIT|
                 shootForSurvival.SKY_BIT|
-                shootForSurvival.ITEM_BIT;
+                shootForSurvival.ITEM_BIT|
+                shootForSurvival.BOSS_BIT;
 
         fdef.shape = shape;
         fdef.restitution = 0f;
