@@ -48,25 +48,29 @@ public class Ninja extends Enemy {
 
         //run animation
         frames = new Array<TextureRegion>();
-        frames.add(screen.getCyborgAtlas().findRegion("Idle1"));
+        frames.add(screen.getCyborgAtlas().findRegion("Run1"));
+        frames.add(screen.getCyborgAtlas().findRegion("Run2"));
+        frames.add(screen.getCyborgAtlas().findRegion("Run3"));
+        frames.add(screen.getCyborgAtlas().findRegion("Run4"));
+        frames.add(screen.getCyborgAtlas().findRegion("Run5"));
+        frames.add(screen.getCyborgAtlas().findRegion("Run6"));
 
 
-        walkAnimation = new Animation<TextureRegion>(0.1f, frames);
+        walkAnimation = new Animation<TextureRegion>(0.3f, frames);
         setBounds(0,0,18/PPM, 20/PPM);
         frames.clear();
 
         //death animation
         frames.clear();
 
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie1"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie2"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie3"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie4"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie5"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie6"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie7"));
+        frames.add(screen.getCyborgAtlas().findRegion("Die1"));
+        frames.add(screen.getCyborgAtlas().findRegion("Die2"));
+        frames.add(screen.getCyborgAtlas().findRegion("Die3"));
+        frames.add(screen.getCyborgAtlas().findRegion("Die4"));
+        frames.add(screen.getCyborgAtlas().findRegion("Die5"));
+        frames.add(screen.getCyborgAtlas().findRegion("Die6"));
 
-        dieAnimation = new Animation <TextureRegion>(0.1f, frames);
+        dieAnimation = new Animation <TextureRegion>(0.3f, frames);
         frames.clear();
 
         stateTime = 0;

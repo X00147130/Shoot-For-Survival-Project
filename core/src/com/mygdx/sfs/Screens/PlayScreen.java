@@ -86,7 +86,7 @@ public class PlayScreen implements Screen {
         //admin
         punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");
         bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");
-        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.atlas");
+        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");
 
         //game management inits
         this.game = g;
@@ -165,7 +165,7 @@ public class PlayScreen implements Screen {
         return complete;
     }
 
-    public TextureAtlas getAtlas() {
+    public TextureAtlas getPunkAtlas() {
         return punkAtlas;
     }
     public TextureAtlas getBikerAtlas() {

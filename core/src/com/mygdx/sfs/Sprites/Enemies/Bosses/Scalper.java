@@ -40,12 +40,12 @@ public class Scalper extends Enemy {
 
         //run animation
         frames = new Array<TextureRegion>();
-        frames.add(screen.getAtlas().findRegion("enemyRun1"));
-        frames.add(screen.getAtlas().findRegion("enemyRun2"));
-        frames.add(screen.getAtlas().findRegion("enemyRun3"));
-        frames.add(screen.getAtlas().findRegion("enemyRun4"));
-        frames.add(screen.getAtlas().findRegion("enemyRun5"));
-        frames.add(screen.getAtlas().findRegion("enemyRun6"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyRun1"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyRun2"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyRun3"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyRun4"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyRun5"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyRun6"));
 
         walkAnimation = new Animation <TextureRegion>(0.3f, frames);
         frames.clear();
@@ -53,13 +53,13 @@ public class Scalper extends Enemy {
         //death animation
         frames.clear();
 
-        frames.add(screen.getAtlas().findRegion("enemyDie1"));
-        frames.add(screen.getAtlas().findRegion("enemyDie2"));
-        frames.add(screen.getAtlas().findRegion("enemyDie3"));
-        frames.add(screen.getAtlas().findRegion("enemyDie4"));
-        frames.add(screen.getAtlas().findRegion("enemyDie5"));
-        frames.add(screen.getAtlas().findRegion("enemyDie6"));
-        frames.add(screen.getAtlas().findRegion("enemyDie7"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyDie1"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyDie2"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyDie3"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyDie4"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyDie5"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyDie6"));
+        frames.add(screen.getCyborgAtlas().findRegion("enemyDie7"));
 
         dieAnimation = new Animation <TextureRegion>(0.1f, frames);
         frames.clear();

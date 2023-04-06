@@ -91,10 +91,10 @@ public class Player extends Sprite {
         Array<TextureRegion> frames = new Array<TextureRegion>();
         frames.clear();
 
-        frames.add(screen.getBikerAtlas().findRegion("Idle1"));
-        frames.add(screen.getBikerAtlas().findRegion("Idle2"));
-        frames.add(screen.getBikerAtlas().findRegion("Idle3"));
-        frames.add(screen.getBikerAtlas().findRegion("Idle4"));
+        frames.add(screen.getPunkAtlas().findRegion("Idle1"));
+        frames.add(screen.getPunkAtlas().findRegion("Idle2"));
+        frames.add(screen.getPunkAtlas().findRegion("Idle3"));
+        frames.add(screen.getPunkAtlas().findRegion("Idle4"));
 
         ryuStand = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.LOOP);
         setBounds(0, 0, 18 / PPM, 20 / PPM);
@@ -105,12 +105,12 @@ public class Player extends Sprite {
         //Creating Animation loop for Ryu running
         frames.clear();
 
-        frames.add(screen.getAtlas().findRegion("Run1"));
-        frames.add(screen.getAtlas().findRegion("Run2"));
-        frames.add(screen.getAtlas().findRegion("Run3"));
-        frames.add(screen.getAtlas().findRegion("Run4"));
-        frames.add(screen.getAtlas().findRegion("Run5"));
-        frames.add(screen.getAtlas().findRegion("Run6"));
+        frames.add(screen.getPunkAtlas().findRegion("Run1"));
+        frames.add(screen.getPunkAtlas().findRegion("Run2"));
+        frames.add(screen.getPunkAtlas().findRegion("Run3"));
+        frames.add(screen.getPunkAtlas().findRegion("Run4"));
+        frames.add(screen.getPunkAtlas().findRegion("Run5"));
+        frames.add(screen.getPunkAtlas().findRegion("Run6"));
 
         ryuRun = new Animation <TextureRegion>(0.2f, frames);
         setBounds(0,0,18 / PPM,20 / PPM);
@@ -122,12 +122,12 @@ public class Player extends Sprite {
         //Creating Jump Animation loop
         frames.clear();
 
-        frames.add(screen.getAtlas().findRegion("Jump1"));
-        frames.add(screen.getAtlas().findRegion("Jump2"));
-        frames.add(screen.getAtlas().findRegion("Jump3"));
-        frames.add(screen.getAtlas().findRegion("Jump4"));
+        frames.add(screen.getPunkAtlas().findRegion("Jump1"));
+        frames.add(screen.getPunkAtlas().findRegion("Jump2"));
+        frames.add(screen.getPunkAtlas().findRegion("Jump3"));
+        frames.add(screen.getPunkAtlas().findRegion("Jump4"));
 
-        ryuJump = new Animation <TextureRegion>(0.3f, frames);
+        ryuJump = new Animation <TextureRegion>(0.1f, frames);
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
             setBounds(0, 0, 18 / PPM, 20 / PPM);
         }
@@ -136,17 +136,22 @@ public class Player extends Sprite {
 
         //Ryu death animation
 
-        frames.add(screen.getAtlas().findRegion("Die"));
+        frames.add(screen.getPunkAtlas().findRegion("Die1"));
+        frames.add(screen.getPunkAtlas().findRegion("Die2"));
+        frames.add(screen.getPunkAtlas().findRegion("Die3"));
+        frames.add(screen.getPunkAtlas().findRegion("Die4"));
+        frames.add(screen.getPunkAtlas().findRegion("Die5"));
+        frames.add(screen.getPunkAtlas().findRegion("Die6"));
 
-        ryuDead = new Animation <TextureRegion>(0.1f, frames);
+        ryuDead = new Animation <TextureRegion>(0.3f, frames);
         if(Gdx.app.getType() == Application.ApplicationType.Android){
             setBounds(0, 0, 18 / PPM, 20 / PPM);}
         frames.clear();
 
 
         //Level Complete
-        frames.add(screen.getAtlas().findRegion("attack2"));
-        frames.add(screen.getAtlas().findRegion("attack3"));
+        frames.add(screen.getPunkAtlas().findRegion("Idle1"));
+        frames.add(screen.getPunkAtlas().findRegion("Idle2"));
         ryuComplete = new Animation<TextureRegion>(0.2f,frames);
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
             setBounds(0, 0, 18 / PPM, 20 / PPM);
