@@ -1,0 +1,75 @@
+
+Cyborg.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Run1
+  rotate: false
+  xy: 1, 201
+  size: 288, 48
+  orig: 288, 48
+  offset: 0, 0
+  index: -1
+Run2
+  rotate: false
+  xy: 1, 151
+  size: 288, 48
+  orig: 288, 48
+  offset: 0, 0
+  index: -1
+Walk1
+  rotate: false
+  xy: 1, 101
+  size: 288, 48
+  orig: 288, 48
+  offset: 0, 0
+  index: -1
+Walk2
+  rotate: false
+  xy: 1, 51
+  size: 288, 48
+  orig: 288, 48
+  offset: 0, 0
+  index: -1
+Idle1
+  rotate: false
+  xy: 291, 201
+  size: 192, 48
+  orig: 192, 48
+  offset: 0, 0
+  index: -1
+Idle2
+  rotate: false
+  xy: 1, 1
+  size: 192, 48
+  orig: 192, 48
+  offset: 0, 0
+  index: -1
+Jump1
+  rotate: false
+  xy: 291, 151
+  size: 192, 48
+  orig: 192, 48
+  offset: 0, 0
+  index: -1
+Jump2
+  rotate: false
+  xy: 291, 101
+  size: 192, 48
+  orig: 192, 48
+  offset: 0, 0
+  index: -1
+Sitdown1
+  rotate: false
+  xy: 291, 51
+  size: 192, 48
+  orig: 192, 48
+  offset: 0, 0
+  index: -1
+Sitdown2
+  rotate: false
+  xy: 195, 1
+  size: 192, 48
+  orig: 192, 48
+  offset: 0, 0
+  index: -1

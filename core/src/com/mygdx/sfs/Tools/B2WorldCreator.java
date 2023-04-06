@@ -67,14 +67,14 @@ public class B2WorldCreator {
             }
 
             //create Platforms fixtures
-            for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+            for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
 
                 // creation of Platform Objects
                 new Platforms(screen, object);
             }
 
             //create finish fixtures
-            for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
+            for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
 
                 // creation of end tree object
                 new Finish(ninja, screen, object);
@@ -82,7 +82,7 @@ public class B2WorldCreator {
 
             // create all ninjas e.g. multiple enemies
             ninjas = new Array<Ninja>();
-            for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
+            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
                 ninjas.add(new Ninja(ninja,screen, rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
             }
@@ -105,7 +105,7 @@ public class B2WorldCreator {
             }
 
             //Create barriers
-            for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
+            for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
                 new Barrier(screen,object);
             }
 

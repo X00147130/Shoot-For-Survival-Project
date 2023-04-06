@@ -1,0 +1,103 @@
+
+Punk.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Idle1
+  rotate: false
+  xy: 1, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Idle2
+  rotate: false
+  xy: 35, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Idle3
+  rotate: false
+  xy: 69, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Idle4
+  rotate: false
+  xy: 103, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Jump1
+  rotate: false
+  xy: 137, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Jump2
+  rotate: false
+  xy: 171, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Jump3
+  rotate: false
+  xy: 205, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Jump4
+  rotate: false
+  xy: 239, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run1
+  rotate: false
+  xy: 273, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run2
+  rotate: false
+  xy: 307, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run3
+  rotate: false
+  xy: 341, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run4
+  rotate: false
+  xy: 375, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run5
+  rotate: false
+  xy: 409, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run6
+  rotate: false
+  xy: 443, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1

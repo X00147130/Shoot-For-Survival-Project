@@ -61,7 +61,8 @@ public class Bullets {
         shape.setRadius(0.6f / shootForSurvival.PPM);
         bulletDef.filter.categoryBits = shootForSurvival.BULLET_BIT;
         bulletDef.filter.maskBits = shootForSurvival.ENEMY_BIT |
-                shootForSurvival.GROUND_BIT;
+                shootForSurvival.GROUND_BIT|
+                shootForSurvival.PLAYER_BIT;
 
         bulletDef.shape = shape;
         Fixture fix1 = bulletBody.createFixture(bulletDef);

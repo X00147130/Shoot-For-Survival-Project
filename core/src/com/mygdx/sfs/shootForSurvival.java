@@ -94,7 +94,6 @@ public class shootForSurvival extends Game {
         manager.load("backgrounds/deadbg.png", Texture.class); // game over
         manager.load("sprites/bullet.png", Texture.class); // bullet
 
-
         manager.finishLoading();
         setScreen(new LogoScreen(this));
     }
