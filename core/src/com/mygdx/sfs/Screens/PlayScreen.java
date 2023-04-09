@@ -8,7 +8,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -16,10 +15,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.sfs.Scenes.Hud;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
@@ -38,9 +34,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class PlayScreen implements Screen {
     private shootForSurvival game;
-    /*private TextureAtlas punkAtlas;
-    private TextureAtlas bikerAtlas;
-    private TextureAtlas cyborgAtlas;*/
     public AssetManager manager;
 
     //basic variables
@@ -82,11 +75,6 @@ public class PlayScreen implements Screen {
 
 
     public PlayScreen(shootForSurvival g, int level) {
-
-        //admin
-       /* punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");
-        bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");
-        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");*/
 
         //game management inits
         this.game = g;
@@ -164,16 +152,6 @@ public class PlayScreen implements Screen {
     public boolean isComplete() {
         return complete;
     }
-
-    /*public TextureAtlas getPunkAtlas() {
-        return punkAtlas;
-    }
-    public TextureAtlas getBikerAtlas() {
-        return bikerAtlas;
-    }
-    public TextureAtlas getCyborgAtlas() {
-        return cyborgAtlas;
-    }*/
 
     public Hud getHud() {
         return hud;

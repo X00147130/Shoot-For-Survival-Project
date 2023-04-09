@@ -99,9 +99,11 @@ public class shootForSurvival extends Game {
         manager.load("backgrounds/pausebg.png", Texture.class); // pause
         manager.load("backgrounds/deadbg.png", Texture.class); // game over
         manager.load("sprites/bullet.png", Texture.class); // bullet
-        punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");
-        bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");
-        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");
+
+
+        punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");//Punk Character
+        bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");//Biker Character
+        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");//Cyborg Character
 
 
         manager.finishLoading();
