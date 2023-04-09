@@ -38,9 +38,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class PlayScreen implements Screen {
     private shootForSurvival game;
-    private TextureAtlas punkAtlas;
+    /*private TextureAtlas punkAtlas;
     private TextureAtlas bikerAtlas;
-    private TextureAtlas cyborgAtlas;
+    private TextureAtlas cyborgAtlas;*/
     public AssetManager manager;
 
     //basic variables
@@ -84,9 +84,9 @@ public class PlayScreen implements Screen {
     public PlayScreen(shootForSurvival g, int level) {
 
         //admin
-        punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");
+       /* punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");
         bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");
-        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");
+        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");*/
 
         //game management inits
         this.game = g;
@@ -165,7 +165,7 @@ public class PlayScreen implements Screen {
         return complete;
     }
 
-    public TextureAtlas getPunkAtlas() {
+    /*public TextureAtlas getPunkAtlas() {
         return punkAtlas;
     }
     public TextureAtlas getBikerAtlas() {
@@ -173,7 +173,7 @@ public class PlayScreen implements Screen {
     }
     public TextureAtlas getCyborgAtlas() {
         return cyborgAtlas;
-    }
+    }*/
 
     public Hud getHud() {
         return hud;

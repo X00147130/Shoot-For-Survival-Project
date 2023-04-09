@@ -40,12 +40,12 @@ public class Scalper extends Enemy {
 
         //run animation
         frames = new Array<TextureRegion>();
-        frames.add(screen.getCyborgAtlas().findRegion("enemyRun1"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyRun2"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyRun3"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyRun4"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyRun5"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyRun6"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run1"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run2"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run3"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run4"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run5"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run6"));
 
         walkAnimation = new Animation <TextureRegion>(0.3f, frames);
         frames.clear();
@@ -53,13 +53,12 @@ public class Scalper extends Enemy {
         //death animation
         frames.clear();
 
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie1"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie2"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie3"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie4"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie5"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie6"));
-        frames.add(screen.getCyborgAtlas().findRegion("enemyDie7"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Die1"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Die2"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Die3"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Die4"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Die5"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Die6"));
 
         dieAnimation = new Animation <TextureRegion>(0.1f, frames);
         frames.clear();

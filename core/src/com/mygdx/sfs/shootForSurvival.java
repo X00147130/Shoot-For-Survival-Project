@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.mygdx.sfs.Scenes.Hud;
 import com.mygdx.sfs.Screens.LogoScreen;
 
@@ -50,15 +51,20 @@ public class shootForSurvival extends Game {
     public boolean musicIsChecked = false;
     public boolean soundIsChecked = false;
 
+    private TextureAtlas punkAtlas;
+    private TextureAtlas bikerAtlas;
+    private TextureAtlas cyborgAtlas;
+
+    public static AssetManager manager;
+
     public Hud getHud() {
         return hud;
     }
-
     public void setHud(Hud hud) {
         this.hud = hud;
     }
 
-    public static AssetManager manager;
+
 
 
     @Override
@@ -93,6 +99,10 @@ public class shootForSurvival extends Game {
         manager.load("backgrounds/pausebg.png", Texture.class); // pause
         manager.load("backgrounds/deadbg.png", Texture.class); // game over
         manager.load("sprites/bullet.png", Texture.class); // bullet
+        punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");
+        bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");
+        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");
+
 
         manager.finishLoading();
         setScreen(new LogoScreen(this));
@@ -160,6 +170,16 @@ public class shootForSurvival extends Game {
 
     public boolean isSoundIsChecked() {
         return soundIsChecked;
+    }
+
+    public TextureAtlas getPunkAtlas() {
+        return punkAtlas;
+    }
+    public TextureAtlas getBikerAtlas() {
+        return bikerAtlas;
+    }
+    public TextureAtlas getCyborgAtlas() {
+        return cyborgAtlas;
     }
 }
 
