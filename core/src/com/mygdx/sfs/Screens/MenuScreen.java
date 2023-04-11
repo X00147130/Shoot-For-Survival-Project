@@ -121,7 +121,7 @@ public class MenuScreen implements Screen  {
                 if(GAME.music.isPlaying())
                     GAME.music.stop();
 
-                GAME.setScreen(new PlayScreen(GAME, 1));
+                GAME.setScreen(new CharacterSelect(GAME));
 
             }
         });

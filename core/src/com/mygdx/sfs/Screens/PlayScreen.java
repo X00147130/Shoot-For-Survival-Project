@@ -122,6 +122,7 @@ public class PlayScreen implements Screen {
         items = new Array<Item>();
         itemToSpawn = new LinkedBlockingQueue<ItemDef>();
         coins = 0;
+        game.setWorld(world);
     }
 
     public void spawnItem(ItemDef idef) {
@@ -169,7 +170,7 @@ public class PlayScreen implements Screen {
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             if (player.currentState != Player.State.DEAD) {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, 3f), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(0, 2.6f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
 
                     game.loadSound("audio/sounds/soundnimja-jump.wav");
@@ -291,6 +292,7 @@ public class PlayScreen implements Screen {
 
         if (player.currentState != Player.State.DEAD) {
             gamecam.position.x = player.b2body.getPosition().x;
+            /*gamecam.position.y = player.b2body.getPosition().y + 0.4f;*/
         }
 
         gamecam.update();
@@ -386,7 +388,7 @@ public class PlayScreen implements Screen {
     }
 
     public boolean gameOver() {
-        if (player.currentState == Player.State.DEAD && player.getStateTimer() > 3) {
+        if (player.currentState == Player.State.DEAD && player.getStateTimer() > 4) {
             return true;
         }else {
                 return false;

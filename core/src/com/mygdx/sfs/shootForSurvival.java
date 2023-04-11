@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.sfs.Scenes.Hud;
 import com.mygdx.sfs.Screens.LogoScreen;
 
@@ -36,6 +37,7 @@ public class shootForSurvival extends Game {
 
     //variables
     public SpriteBatch batch;
+    public World world;
     public float volume = 0.5f;
     public float soundVolume = 0.5f;
     public boolean mutedM = false;
@@ -55,6 +57,8 @@ public class shootForSurvival extends Game {
     private TextureAtlas bikerAtlas;
     private TextureAtlas cyborgAtlas;
 
+    public TextureAtlas playersChoice;
+
     public static AssetManager manager;
 
     public Hud getHud() {
@@ -72,6 +76,8 @@ public class shootForSurvival extends Game {
         batch = new SpriteBatch();
 
         manager = new AssetManager();
+
+        playersChoice = new TextureAtlas();
 
         /*Sound Loading*/
         manager.load("audio/sounds/coin.mp3", Sound.class);
@@ -174,6 +180,14 @@ public class shootForSurvival extends Game {
         return soundIsChecked;
     }
 
+    public World getWorld() {
+        return world;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
     public TextureAtlas getPunkAtlas() {
         return punkAtlas;
     }
@@ -182,6 +196,14 @@ public class shootForSurvival extends Game {
     }
     public TextureAtlas getCyborgAtlas() {
         return cyborgAtlas;
+    }
+
+    public TextureAtlas getPlayersChoice() {
+        return playersChoice;
+    }
+
+    public void setPlayersChoice(TextureAtlas playersChoice) {
+        this.playersChoice = playersChoice;
     }
 }
 
