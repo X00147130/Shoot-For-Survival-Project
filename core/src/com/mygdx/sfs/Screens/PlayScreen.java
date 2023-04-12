@@ -169,42 +169,49 @@ public class PlayScreen implements Screen {
     public void handleInput(float dt) {
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             if (player.currentState != Player.State.DEAD) {
-                if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, 2.6f), player.b2body.getWorldCenter(), true);
-                    game.jumpCounter++;
+                if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE) {
+                        player.b2body.applyLinearImpulse(new Vector2(0, 2.6f), player.b2body.getWorldCenter(), true);
+                        game.jumpCounter++;
 
-                    game.loadSound("audio/sounds/soundnimja-jump.wav");
-                    long id = game.sound.play();
-                    if(game.getSoundVolume() != 0)
-                    game.sound.setVolume(id, game.getSoundVolume());
-                    else{
-                        game.sound.setVolume(id,0);
-                    }
+                        game.loadSound("audio/sounds/soundnimja-jump.wav");
+                        long id = game.sound.play();
+                        if (game.getSoundVolume() != 0)
+                            game.sound.setVolume(id, game.getSoundVolume());
+                        else {
+                            game.sound.setVolume(id, 0);
+                        }
 
-                    if(game.jumpCounter == 2){
-                        game.doubleJumped = true;
-                    }
+                        if (game.jumpCounter == 2) {
+                            game.doubleJumped = true;
+                        }
                 }else if ((Gdx.input.isKeyJustPressed(Input.Keys.UP) && (player.currentState == Player.State.JUMPING)) && game.doubleJumped == true) {
-                    player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
-                    Gdx.app.log("double"," jumped");
+                        player.b2body.applyLinearImpulse(new Vector2(0f, 0f), player.b2body.getWorldCenter(), false);
+                        Gdx.app.log("double", " jumped");
                 }
-                if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-                    bullets.add(new Bullets(game,this,player.b2body.getPosition().x,player.b2body.getPosition().y));
-                }
-
-                if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
-                    player.dash();
+                if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && player.currentState != Player.State.COMPLETE) {
+                        bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
                 }
 
-                if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+                if(Gdx.input.isKeyJustPressed(Input.Keys.D) && player.currentState != Player.State.COMPLETE){
+                        player.dash();
+                        player.setDash(true);
+                        if (player.getStateTimer() > 1) {
+                            player.setDash(false);
+                        }
+                    }else{
+                        player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
+                    }
+
+                if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)&& player.currentState != Player.State.COMPLETE) {
                     game.setScreen(new PauseScreen(game));
-                }
+                    }
 
-                if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 1.5) {
+
+                if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 1.5 && player.currentState != Player.State.COMPLETE) {
                     player.b2body.applyLinearImpulse(new Vector2(0.3f, 0), player.b2body.getWorldCenter(), true);
                 }
 
-                if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -1.5) {
+                if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -1.5 && player.currentState != Player.State.COMPLETE) {
                     player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0), player.b2body.getWorldCenter(), true);
                 }
             } else {
@@ -213,12 +220,11 @@ public class PlayScreen implements Screen {
         }
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             if (player.currentState != Player.State.DEAD) {
-                if (controller.isUpPressed() && game.jumpCounter < 2) {
+                if (controller.isUpPressed() && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE) {
                     player.b2body.applyLinearImpulse(new Vector2(0, 3.2f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
 
                     game.manager.get("audio/sounds/soundnimja-jump.wav", Sound.class).play(game.getSoundVolume());
-
 
                     if(game.jumpCounter == 2){
                         game.doubleJumped = true;
@@ -226,20 +232,21 @@ public class PlayScreen implements Screen {
                 }else if ((controller.isUpPressed() == true && (player.currentState == Player.State.JUMPING)) && game.doubleJumped == true) {
                     player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
                     Gdx.app.log("double"," jumped");
+
                 }
-                if (controller.isDownPressed() == true) {
+                if (controller.isDownPressed() == true && player.currentState != Player.State.COMPLETE) {
                     bullets.add(new Bullets(game,this,player.b2body.getPosition().x,player.b2body.getPosition().y));
                 }
 
-                if (controller.isRightPressed() == true && player.b2body.getLinearVelocity().x <= 1.3) {
-                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0), player.b2body.getWorldCenter(), true);
+                if (controller.isRightPressed() == true && player.b2body.getLinearVelocity().x <= 1.3 && player.currentState != Player.State.COMPLETE) {
+                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0f), player.b2body.getWorldCenter(), true);
                 }
 
-                if (controller.isLeftPressed() == true && player.b2body.getLinearVelocity().x >= -1.3) {
-                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0), player.b2body.getWorldCenter(), true);
+                if (controller.isLeftPressed() == true && player.b2body.getLinearVelocity().x >= -1.3 && player.currentState != Player.State.COMPLETE) {
+                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0f), player.b2body.getWorldCenter(), true);
                 }
             } else {
-                player.b2body.setLinearVelocity(new Vector2(0, 0));
+                player.b2body.setLinearVelocity(new Vector2(0f, 0f));
             }
         }
     }

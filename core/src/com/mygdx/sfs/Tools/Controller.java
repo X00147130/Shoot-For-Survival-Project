@@ -41,7 +41,7 @@ public class Controller {
         Gdx.input.setInputProcessor(stage);
         gameplay = game;
 
-        Texture pic = new Texture("controller/jumpArrow.png");
+        Texture pic = new Texture("controller/jump.png");
         TextureRegionDrawable picDraw = new TextureRegionDrawable(pic);
         final ImageButton upImg = new ImageButton(picDraw);
         upImg.setSize(30,30);
@@ -76,7 +76,7 @@ public class Controller {
             }
         });
 
-        Image rightImg = new Image(new Texture("controller/rightArrow.png"));
+        Image rightImg = new Image(new Texture("controller/right.png"));
         rightImg.setSize(30,30);
         rightImg.addListener(new InputListener(){
 
@@ -92,7 +92,7 @@ public class Controller {
             }
         });
 
-        Image leftImg = new Image(new Texture("controller/LTd5arLKc.png"));
+        Image leftImg = new Image(new Texture("controller/left.png"));
         leftImg.setSize(30,30);
         leftImg.addListener(new InputListener(){
 
@@ -108,7 +108,7 @@ public class Controller {
             }
         });
         //Image button
-        image = new Texture("controller/pause.png");
+        image = new Texture("controller/pauseBtn.png");
         draw = new TextureRegionDrawable(image);
         pause = new ImageButton(draw);
         pause.setSize(70,70);

@@ -65,6 +65,7 @@ public class Player extends Sprite {
 
     //movement variables
     private Vector2 limit;
+    private boolean dash = false;
 
     public Player(PlayScreen screen, shootForSurvival sfs){
         this.world = screen.getWorld();
@@ -268,7 +269,7 @@ public class Player extends Sprite {
         else if(hit == true && stateTimer > 3)
             return State.HURT;
 
-        else if(b2body.getLinearVelocity().x == 3f || b2body.getLinearVelocity().x == -3f)
+        else if(dash == true && stateTimer > 1)
             return State.DASH;
 
         else
@@ -326,7 +327,7 @@ public class Player extends Sprite {
         if(!isFlipX()){
             b2body.applyLinearImpulse(new Vector2(3f,0),new Vector2(-0.1f,0), true);
         }
-        else {
+        else{
             b2body.applyLinearImpulse(new Vector2(-3f,0),new Vector2(0.1f,0), true);
         }
         b2body.setAwake(true);
@@ -393,6 +394,10 @@ public class Player extends Sprite {
 
     public static void setHitCounter(int resetHits){
         hitCounter = resetHits;
+    }
+
+    public void setDash(boolean dash) {
+        this.dash = dash;
     }
 
     public void reverseVelocity(boolean x, boolean y){

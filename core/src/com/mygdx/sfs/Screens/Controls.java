@@ -136,9 +136,9 @@ public class Controls implements Screen {
 
     @Override
     public void render(float delta) {
-      if(Gdx.app.getType() == Application.ApplicationType.Desktop)
-            update(delta);
-
+      if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+          update(delta);
+      }
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
