@@ -6,9 +6,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.mygdx.sfs.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
-import com.mygdx.sfs.Sprites.Enemies.Ninja;
+import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.Sprites.Items.Bullets;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Player;
@@ -49,11 +48,11 @@ public class WorldContactListener implements ContactListener {
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Bullets) fixA.getUserData()).destroy();
                     ((Bullets) fixA.getUserData()).dispose();
-                    ((Ninja) fixB.getUserData()).attacked();
+                    ((Worker) fixB.getUserData()).shot();
                 }
                 else {
                     ((Bullets) fixB.getUserData()).destroy();
-                    ((Ninja) fixA.getUserData()).attacked();
+                    ((Worker) fixA.getUserData()).shot();
                     ((Bullets) fixB.getUserData()).dispose();
                 }
                 break;

@@ -96,7 +96,7 @@ public class PlayScreen implements Screen {
 
         //render/map setup
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("Maps/test.tmx");
+        map = mapLoader.load("Maps/Industry/Map/Lvl1-1.tmx");
         //map = mapLoader.load("levels/Level"+level+".tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / shootForSurvival.PPM);
 
@@ -170,21 +170,27 @@ public class PlayScreen implements Screen {
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             if (player.currentState != Player.State.DEAD) {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE) {
-                        player.b2body.applyLinearImpulse(new Vector2(0, 2.6f), player.b2body.getWorldCenter(), true);
-                        game.jumpCounter++;
+                    player.b2body.applyLinearImpulse(new Vector2(0, 2.6f), player.b2body.getWorldCenter(), true);
+                    game.jumpCounter++;
 
-                        game.loadSound("audio/sounds/soundnimja-jump.wav");
-                        long id = game.sound.play();
-                        if (game.getSoundVolume() != 0)
-                            game.sound.setVolume(id, game.getSoundVolume());
-                        else {
-                            game.sound.setVolume(id, 0);
-                        }
+                    game.loadSound("audio/sounds/soundnimja-jump.wav");
+                    long id = game.sound.play();
+                    if (game.getSoundVolume() != 0)
+                        game.sound.setVolume(id, game.getSoundVolume());
+                    else {
+                        game.sound.setVolume(id, 0);
+                    }
 
-                        if (game.jumpCounter == 2) {
-                            game.doubleJumped = true;
-                        }
-                }else if ((Gdx.input.isKeyJustPressed(Input.Keys.UP) && (player.currentState == Player.State.JUMPING)) && game.doubleJumped == true) {
+                    if (game.jumpCounter == 1) {
+                        player.currentState = Player.State.DOUBLEJUMP;
+                        Gdx.app.log("dJump", "Set");
+                    }
+
+                    if (game.jumpCounter == 2) {
+                        game.doubleJumped = true;
+                    }
+
+                }else if ((Gdx.input.isKeyJustPressed(Input.Keys.UP) && (player.currentState == Player.State.DOUBLEJUMP)) && game.doubleJumped == true) {
                         player.b2body.applyLinearImpulse(new Vector2(0f, 0f), player.b2body.getWorldCenter(), false);
                         Gdx.app.log("double", " jumped");
                 }
@@ -193,14 +199,11 @@ public class PlayScreen implements Screen {
                 }
 
                 if(Gdx.input.isKeyJustPressed(Input.Keys.D) && player.currentState != Player.State.COMPLETE){
-                        player.dash();
-                        player.setDash(true);
-                        if (player.getStateTimer() > 1) {
-                            player.setDash(false);
-                        }
-                    }else{
-                        player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
-                    }
+                    player.setDash(true);
+                    player.dash();
+                }else{
+                    player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
+                }
 
                 if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)&& player.currentState != Player.State.COMPLETE) {
                     game.setScreen(new PauseScreen(game));
@@ -299,7 +302,7 @@ public class PlayScreen implements Screen {
 
         if (player.currentState != Player.State.DEAD) {
             gamecam.position.x = player.b2body.getPosition().x;
-            /*gamecam.position.y = player.b2body.getPosition().y + 0.4f;*/
+            gamecam.position.y = player.b2body.getPosition().y + 0.4f;
         }
 
         gamecam.update();

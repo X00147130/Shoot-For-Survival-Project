@@ -1,25 +1,23 @@
-package com.mygdx.sfs.Sprites.Enemies;
+package com.mygdx.sfs.Sprites.Enemies.Grunts;
 
 import static com.mygdx.sfs.shootForSurvival.PPM;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Screens.PlayScreen;
-import com.mygdx.sfs.Sprites.Items.Bullets;
+import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.shootForSurvival;
 
-import java.util.ArrayList;
-
-public class Ninja extends Enemy {
+public class Worker extends Enemy {
     //animation variables
     public enum State{RUNNING, DEAD }
     public State currentState;
@@ -34,13 +32,15 @@ public class Ninja extends Enemy {
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;
+    private boolean hit = false;
+    private int hitCounter;
     private boolean runningRight;
 
     //private ArrayList<Bullets> bullet;
 
     private int enemyHitCounter;
 
-    public Ninja(shootForSurvival sfs, PlayScreen screen, float x, float y) {
+    public Worker(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
         this.sfs = sfs;
 
@@ -174,20 +174,50 @@ public class Ninja extends Enemy {
     }
 
     @Override
-    public void attacked() {
-        setToDestroy = true;
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            sfs.loadSound("audio/sounds/stomp.wav");
-            long id = sfs.sound.play();
-            if (sfs.getSoundVolume() != 0) {
-                sfs.sound.setVolume(id, sfs.getSoundVolume());
-            } else {
-                sfs.sound.setVolume(id, 0);
-            }
-        }
+    public void shot() {
+        if(hitCounter < 2){    //Grunt is pushed back
+            hit = true;
+            if(b2body.getLinearVelocity().x > 0)
+                b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
 
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            sfs.manager.get("audio/sounds/stomp.wav", Sound.class).play(sfs.getSoundVolume());
+            else if(b2body.getLinearVelocity().x < 0)
+                b2body.applyLinearImpulse(new Vector2(1f,1f),b2body.getWorldCenter(),true);
+
+            else{
+                b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
+            }
+
+            if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/getting-hit.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0) {
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                } else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+            if(Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/getting-hit.wav", Sound.class).play(sfs.getSoundVolume());
+            }
+
+            hitCounter++;
+        }else {
+
+            setToDestroy = true;
+            if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/stomp.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0) {
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                } else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/stomp.wav", Sound.class).play(sfs.getSoundVolume());
+            }
+            hitCounter = 3;
         }
     }
 }

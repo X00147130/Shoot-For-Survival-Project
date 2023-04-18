@@ -23,7 +23,7 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Player extends Sprite {
     //State Variables for animation purposes
-    public enum State{ FALLING, JUMPING, STANDING, HURT, DASH, RUNNING, DEAD, COMPLETE}
+    public enum State{ FALLING, JUMPING, DOUBLEJUMP, STANDING, HURT, RUNNING, DEAD, COMPLETE}
     public State currentState;
     public State previousState;
 
@@ -39,10 +39,10 @@ public class Player extends Sprite {
     private Animation <TextureRegion> playerStand;
     private Animation <TextureRegion> playerRun;
     private Animation <TextureRegion> playerJump;
+    private Animation <TextureRegion> playerDjump;
     private Animation <TextureRegion> playerDead;
     private Animation <TextureRegion> playerComplete;
     private Animation <TextureRegion> playerHurt;
-    private Animation <TextureRegion> playerDash;
     private boolean runningRight;
     private float stateTimer;
 
@@ -67,15 +67,15 @@ public class Player extends Sprite {
     private Vector2 limit;
     private boolean dash = false;
 
-    public Player(PlayScreen screen, shootForSurvival sfs){
+    public Player(PlayScreen screen, shootForSurvival sfs) {
         this.world = screen.getWorld();
         definePlayer();
         this.sfs = sfs;
 
-        limit = new Vector2(0,0);
+        limit = new Vector2(0, 0);
 
         this.screen = screen;
-        
+
         //initialising health variables
         health = 100;
         damage = 50;
@@ -88,7 +88,7 @@ public class Player extends Sprite {
         stateTimer = 0;
         runningRight = true;
 
-        //Animation initialization for Ryu Standing
+        //Animation initialization for Player Standing
         Array<TextureRegion> frames = new Array<TextureRegion>();
         frames.clear();
 
@@ -98,12 +98,12 @@ public class Player extends Sprite {
         frames.add(sfs.getPlayersChoice().findRegion("Idle4"));
 
         playerStand = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.LOOP);
-        setBounds(0, 0, 18 / PPM, 20 / PPM);
-        if(Gdx.app.getType() == Application.ApplicationType.Android){
+        /*setBounds(getX(), getY(), 26 / PPM , 26 / PPM);*/
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
             setBounds(0, 0, 18 / PPM, 20 / PPM);
         }
         frames.clear();
-        //Creating Animation loop for Ryu running
+        //Creating Animation loop for Player running
         frames.clear();
 
         frames.add(sfs.getPlayersChoice().findRegion("Run1"));
@@ -113,10 +113,10 @@ public class Player extends Sprite {
         frames.add(sfs.getPlayersChoice().findRegion("Run5"));
         frames.add(sfs.getPlayersChoice().findRegion("Run6"));
 
-        playerRun = new Animation <TextureRegion>(0.2f, frames);
-        setBounds(0,0,18 / PPM,20 / PPM);
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 18 / PPM, 20 / PPM);
+        playerRun = new Animation<TextureRegion>(0.2f, frames);
+        setBounds(0, 0, 18 / PPM, 20 / PPM);
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            setBounds(0, 0, 26 / PPM, 35 / PPM);
         }
         frames.clear();
 
@@ -128,14 +128,29 @@ public class Player extends Sprite {
         frames.add(sfs.getPlayersChoice().findRegion("Jump3"));
         frames.add(sfs.getPlayersChoice().findRegion("Jump4"));
 
-        playerJump = new Animation <TextureRegion>(0.1f, frames);
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 18 / PPM, 20 / PPM);
+        playerJump = new Animation<TextureRegion>(2f, frames);
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            setBounds(0, 0, 26 / PPM, 35 / PPM);
         }
         frames.clear();
 
 
-        //Ryu death animation
+        /*Players Double Jump animation*/
+        frames.clear();
+
+        frames.add(sfs.getPlayersChoice().findRegion("Djump1"));
+        frames.add(sfs.getPlayersChoice().findRegion("Djump2"));
+        frames.add(sfs.getPlayersChoice().findRegion("Djump3"));
+        frames.add(sfs.getPlayersChoice().findRegion("Djump4"));
+        frames.add(sfs.getPlayersChoice().findRegion("Djump5"));
+        frames.add(sfs.getPlayersChoice().findRegion("Djump6"));
+
+        playerDjump = new Animation<TextureRegion>(2f, frames);
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            setBounds(0, 0, 26 / PPM, 35 / PPM);
+        }
+        frames.clear();
+        //Player death animation
 
         frames.add(sfs.getPlayersChoice().findRegion("Die1"));
         frames.add(sfs.getPlayersChoice().findRegion("Die2"));
@@ -144,46 +159,35 @@ public class Player extends Sprite {
         frames.add(sfs.getPlayersChoice().findRegion("Die5"));
         frames.add(sfs.getPlayersChoice().findRegion("Die6"));
 
-        playerDead = new Animation <TextureRegion>(0.3f, frames);
-        if(Gdx.app.getType() == Application.ApplicationType.Android){
-            setBounds(0, 0, 18 / PPM, 20 / PPM);}
-        frames.clear();
+        playerDead = new Animation<TextureRegion>(0.3f, frames);
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            setBounds(0, 0, 26 / PPM, 35 / PPM);
+            frames.clear();
 
 
-        //Level Complete
-        frames.add(sfs.getPlayersChoice().findRegion("Happy1"));
-        frames.add(sfs.getPlayersChoice().findRegion("Happy2"));
-        frames.add(sfs.getPlayersChoice().findRegion("Happy3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Happy4"));
-        frames.add(sfs.getPlayersChoice().findRegion("Happy5"));
-        frames.add(sfs.getPlayersChoice().findRegion("Happy6"));
-        playerComplete = new Animation<TextureRegion>(0.2f,frames);
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 18 / PPM, 20 / PPM);
+            //Level Complete
+            frames.add(sfs.getPlayersChoice().findRegion("Happy1"));
+            frames.add(sfs.getPlayersChoice().findRegion("Happy2"));
+            frames.add(sfs.getPlayersChoice().findRegion("Happy3"));
+            frames.add(sfs.getPlayersChoice().findRegion("Happy4"));
+            frames.add(sfs.getPlayersChoice().findRegion("Happy5"));
+            frames.add(sfs.getPlayersChoice().findRegion("Happy6"));
+            playerComplete = new Animation<TextureRegion>(0.2f, frames);
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                setBounds(0, 0, 26 / PPM, 35 / PPM);
+            }
+            frames.clear();
+
+            //Player Hurt
+            frames.add(sfs.getPlayersChoice().findRegion("Hurt1"));
+            frames.add(sfs.getPlayersChoice().findRegion("Hurt2"));
+            playerHurt = new Animation<TextureRegion>(0.2f, frames);
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                setBounds(0, 0, 26 / PPM, 35 / PPM);
+            }
+            frames.clear();
+
         }
-        frames.clear();
-
-        //Player Hurt
-        frames.add(sfs.getPlayersChoice().findRegion("Hurt1"));
-        frames.add(sfs.getPlayersChoice().findRegion("Hurt2"));
-        playerHurt = new Animation<TextureRegion>(0.2f,frames);
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 18 / PPM, 20 / PPM);
-        }
-        frames.clear();
-
-        //Player Daash Animation
-        frames.add(sfs.getPlayersChoice().findRegion("Dash1"));
-        frames.add(sfs.getPlayersChoice().findRegion("Dash2"));
-        frames.add(sfs.getPlayersChoice().findRegion("Dash3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Dash4"));
-        frames.add(sfs.getPlayersChoice().findRegion("Dash5"));
-        frames.add(sfs.getPlayersChoice().findRegion("Dash6"));
-        playerDash = new Animation<TextureRegion>(0.1f,frames);
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 18 / PPM, 20 / PPM);
-        }
-        frames.clear();
 
     }
 
@@ -213,6 +217,10 @@ public class Player extends Sprite {
                 region =  playerJump.getKeyFrame(stateTimer, false);
                 break;
 
+            case DOUBLEJUMP:
+                region =  playerDjump.getKeyFrame(stateTimer, false);
+                break;
+
             case RUNNING:
                 region = playerRun.getKeyFrame(stateTimer, true);
                break;
@@ -224,10 +232,6 @@ public class Player extends Sprite {
 
             case HURT:
                 region = playerHurt.getKeyFrame(stateTimer, false);
-                break;
-
-            case DASH:
-                region = playerDash.getKeyFrame(stateTimer, true);
                 break;
 
             case FALLING:
@@ -254,7 +258,10 @@ public class Player extends Sprite {
         if(playerIsDead)
             return State.DEAD;
 
-        else if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING))
+        else if ((b2body.getLinearVelocity().y > 0 && previousState == State.JUMPING))
+            return State.DOUBLEJUMP;
+
+        else if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0))
             return State.JUMPING;
 
         else if(b2body.getLinearVelocity().y < 0)
@@ -269,9 +276,6 @@ public class Player extends Sprite {
         else if(hit == true && stateTimer > 3)
             return State.HURT;
 
-        else if(dash == true && stateTimer > 1)
-            return State.DASH;
-
         else
             return State.STANDING;
     }
@@ -280,7 +284,7 @@ public class Player extends Sprite {
 
     public void definePlayer(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(282 / PPM,31 / PPM);
+        bdef.position.set(282 / PPM,300 / PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
@@ -304,7 +308,7 @@ public class Player extends Sprite {
         b2body.createFixture(fdef).setUserData(this);
 
 
-    //Ryus Head(Used for colliding with bricks
+    //Player Head(Used for colliding with bricks
         EdgeShape head = new EdgeShape();
         head.set(new Vector2(-2 / PPM, 6 / PPM), new Vector2(2 / PPM, 6 / PPM));
         fdef.filter.categoryBits=shootForSurvival.RYU_HEAD_BIT;
@@ -337,9 +341,18 @@ public class Player extends Sprite {
     //getting hit method
     public void hit(){
 
-        if(hitCounter < 2){    //ryu is pushed back and says ow
+        if(hitCounter < 2){    //Player is pushed back and says ow
             hit = true;
-            b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
+            if(b2body.getLinearVelocity().x > 0)
+                b2body.applyLinearImpulse(new Vector2(-3f,2f),b2body.getWorldCenter(),true);
+
+            else if(b2body.getLinearVelocity().x < 0)
+                b2body.applyLinearImpulse(new Vector2(3f,2f),b2body.getWorldCenter(),true);
+
+            else{
+                b2body.applyLinearImpulse(new Vector2(-3f,2f),b2body.getWorldCenter(),true);
+            }
+
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/getting-hit.wav");
                 long id = sfs.sound.play();
@@ -355,7 +368,7 @@ public class Player extends Sprite {
 
             hitCounter++;
         }
-        else{   //Ryus death
+        else{   //Player death
             sfs.music.stop();
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");

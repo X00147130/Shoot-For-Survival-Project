@@ -6,31 +6,35 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
-import com.mygdx.sfs.Sprites.Enemies.Ninja;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Scalper extends Enemy {
     //animation variables
-    public enum State{RUNNING, DEAD }
-    public Ninja.State currentState;
-    public Ninja.State previousState;
-    private boolean ninjaDead;
+    public enum State{RUNNING, ATTACK, DEAD }
+    public State currentState;
+    public State previousState;
+    private boolean scalperDead;
+    private boolean attacking;
 
     private shootForSurvival sfs;
 
     private float stateTime;
     private Animation<TextureRegion> walkAnimation;
+    private Animation<TextureRegion> attackAnimation;
     private Animation<TextureRegion> dieAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;
     private boolean runningRight;
+    private boolean hit = false;
+    private int hitCounter;
 
     private int enemyHitCounter;
 
@@ -39,6 +43,18 @@ public class Scalper extends Enemy {
         this.sfs = scalper;
 
         //run animation
+        frames = new Array<TextureRegion>();
+        frames.add(scalper.getCyborgAtlas().findRegion("Run1"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run2"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run3"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run4"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run5"));
+        frames.add(scalper.getCyborgAtlas().findRegion("Run6"));
+
+        walkAnimation = new Animation <TextureRegion>(0.3f, frames);
+        frames.clear();
+
+        //attack animation
         frames = new Array<TextureRegion>();
         frames.add(scalper.getCyborgAtlas().findRegion("Run1"));
         frames.add(scalper.getCyborgAtlas().findRegion("Run2"));
@@ -68,16 +84,20 @@ public class Scalper extends Enemy {
         setToDestroy = false;
         destroyed =false;
         enemyHitCounter = 0;
-        ninjaDead = false;
+        scalperDead = false;
         runningRight = true;
     }
 
-    public Ninja.State getState() {
-        if(ninjaDead == true) {
-            return Ninja.State.DEAD;
+    public State getState() {
+        if(scalperDead == true) {
+            return State.DEAD;
+        }
+
+        else if(attacking == true) {
+            return State.ATTACK;
         }
         else {
-            return Ninja.State.RUNNING;
+            return State.RUNNING;
         }
     }
 
@@ -115,7 +135,7 @@ public class Scalper extends Enemy {
         stateTime += dt;
         setRegion(getFrame(dt));
         if (setToDestroy && !destroyed) {
-            ninjaDead = true;
+            scalperDead = true;
             world.destroyBody(b2body);
             destroyed = true;
             stateTime=0;
@@ -154,20 +174,50 @@ public class Scalper extends Enemy {
     }
 
     @Override
-    public void attacked() {
-        setToDestroy = true;
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            sfs.loadSound("audio/sounds/stomp.wav");
-            long id = sfs.sound.play();
-            if (sfs.getSoundVolume() != 0) {
-                sfs.sound.setVolume(id, sfs.getSoundVolume());
-            } else {
-                sfs.sound.setVolume(id, 0);
-            }
-        }
+    public void shot() {
+        if(hitCounter < 9){    //Grunt is pushed back
+            hit = true;
+            if(b2body.getLinearVelocity().x > 0)
+                b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
 
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            sfs.manager.get("audio/sounds/stomp.wav", Sound.class).play(sfs.getSoundVolume());
+            else if(b2body.getLinearVelocity().x < 0)
+                b2body.applyLinearImpulse(new Vector2(1f,1f),b2body.getWorldCenter(),true);
+
+            else{
+                b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
+            }
+
+            if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/getting-hit.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0) {
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                } else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+            if(Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/getting-hit.wav", Sound.class).play(sfs.getSoundVolume());
+            }
+
+            hitCounter++;
+        }else {
+
+            setToDestroy = true;
+            if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/stomp.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0) {
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                } else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/stomp.wav", Sound.class).play(sfs.getSoundVolume());
+            }
+            hitCounter = 10;
         }
     }
 }
