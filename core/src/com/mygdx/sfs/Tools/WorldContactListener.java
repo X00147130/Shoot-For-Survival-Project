@@ -76,10 +76,14 @@ public class WorldContactListener implements ContactListener {
                 break;
 
             case shootForSurvival.PLAYER_BIT | shootForSurvival.ENEMY_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT)
+                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
                     ((Player) fixA.getUserData()).hit();
-                else
+                    ((Worker) fixB.getUserData()).setAttack(true);
+                }
+                else {
                     ((Player) fixB.getUserData()).hit();
+                    ((Worker) fixA.getUserData()).setAttack(true);
+                }
                 break;
 
             case shootForSurvival.ENEMY_BIT | shootForSurvival.ENEMY_BIT:

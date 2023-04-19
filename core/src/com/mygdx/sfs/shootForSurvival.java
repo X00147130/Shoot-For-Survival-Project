@@ -10,12 +10,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.sfs.Scenes.Hud;
-import com.mygdx.sfs.Screens.LogoScreen;
+import com.mygdx.sfs.Scenes.Screens.LogoScreen;
 
 public class shootForSurvival extends Game {
     //constants
     public static final int V_WIDTH = 400;
     public static final int V_HEIGHT = 208;
+    public static final int MAP_WIDTH = 1200;
+    public static final int MAP_HEIGHT = 608;
     public static final float PPM = 150;
     public static final float MAX_VOL = 100;
     public static final float MIN_VOL = 0;
@@ -56,6 +58,8 @@ public class shootForSurvival extends Game {
     private TextureAtlas punkAtlas;
     private TextureAtlas bikerAtlas;
     private TextureAtlas cyborgAtlas;
+
+    private TextureAtlas worker1Atlas;
 
     public TextureAtlas playersChoice;
 
@@ -111,6 +115,8 @@ public class shootForSurvival extends Game {
         punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");//Punk Character
         bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");//Biker Character
         cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");//Cyborg Character
+
+        worker1Atlas = new TextureAtlas("sprites/Enemies/worker1.pack");//Worker1 (Enemy) Character
 
 
         manager.finishLoading();
@@ -197,6 +203,10 @@ public class shootForSurvival extends Game {
     }
     public TextureAtlas getCyborgAtlas() {
         return cyborgAtlas;
+    }
+
+    public TextureAtlas getWorker1Atlas() {
+        return worker1Atlas;
     }
 
     public TextureAtlas getPlayersChoice() {

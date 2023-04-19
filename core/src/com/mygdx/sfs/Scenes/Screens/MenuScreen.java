@@ -1,4 +1,4 @@
-package com.mygdx.sfs.Screens;
+package com.mygdx.sfs.Scenes.Screens;
 
 import static com.badlogic.gdx.graphics.Color.CYAN;
 import static com.badlogic.gdx.graphics.Color.MAGENTA;

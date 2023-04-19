@@ -13,28 +13,31 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.sfs.Screens.PlayScreen;
+import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Worker extends Enemy {
     //animation variables
-    public enum State{RUNNING, DEAD }
+    public enum State{ RUNNING, HURT, ATTACK, DEAD }
     public State currentState;
     public State previousState;
-    private boolean ninjaDead;
+    private boolean workerDead;
 
     private shootForSurvival sfs;
 
     private float stateTime;
-    private Animation<TextureRegion> walkAnimation;
+    private Animation<TextureRegion> runAnimation;
     private Animation<TextureRegion> dieAnimation;
+    private Animation<TextureRegion> attackAnimation;
+    private Animation<TextureRegion> hurtAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;
     private boolean hit = false;
     private int hitCounter;
     private boolean runningRight;
+    private boolean attack = false;
 
     //private ArrayList<Bullets> bullet;
 
@@ -46,49 +49,82 @@ public class Worker extends Enemy {
 
         //bullet.add(new Bullets(sfs, screen, b2body.getPosition().x, b2body.getPosition().y));
 
-        //run animation
+
+    //Run animation
         frames = new Array<TextureRegion>();
-        frames.add(sfs.getCyborgAtlas().findRegion("Run1"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Run2"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Run3"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Run4"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Run5"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Run6"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Run1"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Run2"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Run3"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Run4"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Run5"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Run6"));
 
 
-        walkAnimation = new Animation<TextureRegion>(0.3f, frames);
+        runAnimation = new Animation<TextureRegion>(3f, frames);
         setBounds(0,0,18/PPM, 20/PPM);
         frames.clear();
 
-        //death animation
+    //Death animation
         frames.clear();
 
-        frames.add(sfs.getCyborgAtlas().findRegion("Die1"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Die2"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Die3"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Die4"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Die5"));
-        frames.add(sfs.getCyborgAtlas().findRegion("Die6"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Dead1"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Dead2"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Dead3"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Dead4"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Dead5"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Dead6"));
 
         dieAnimation = new Animation <TextureRegion>(0.3f, frames);
         frames.clear();
+
+    //Attack Animation
+        frames.clear();
+
+        frames.add(sfs.getWorker1Atlas().findRegion("Attack1"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Attack2"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Attack3"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Attack4"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Attack5"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Attack6"));
+
+        attackAnimation = new Animation <TextureRegion>(1f, frames);
+        frames.clear();
+
+    //Hurt Animation
+        frames.clear();
+
+        frames.add(sfs.getWorker1Atlas().findRegion("Hurt1"));
+        frames.add(sfs.getWorker1Atlas().findRegion("Hurt2"));
+
+        hurtAnimation = new Animation <TextureRegion>(1f, frames);
+        frames.clear();
+
 
         stateTime = 0;
         setBounds(getX(), getY(), 26 / PPM , 26 / PPM);
         setToDestroy = false;
         destroyed =false;
         enemyHitCounter = 0;
-        ninjaDead = false;
+        workerDead = false;
         runningRight = true;
     }
 
     public State getState() {
-        if(ninjaDead == true) {
+        if(workerDead == true)
             return State.DEAD;
-        }
-        else {
+
+        else if(workerDead == false)
             return State.RUNNING;
-        }
+
+        else if(hit == true && workerDead == false)
+            return State.HURT;
+
+        else if(attack == true && workerDead == false)
+            return State.ATTACK;
+
+        else
+            return State.DEAD;
+
     }
 
     public TextureRegion getFrame(float dt) {
@@ -101,12 +137,22 @@ public class Worker extends Enemy {
                 region = dieAnimation.getKeyFrame(stateTime, false);
                 break;
 
+            case HURT:
+                region = hurtAnimation.getKeyFrame(stateTime, false);
+                break;
+
+            case ATTACK:
+                region = attackAnimation.getKeyFrame(stateTime, true);
+                break;
+
             case RUNNING:
 
             default:
-                region = walkAnimation.getKeyFrame(stateTime,true);
+                region = runAnimation.getKeyFrame(stateTime,true);
                 break;
+
         }
+
         if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
             region.flip(true, false);
             runningRight = false;
@@ -125,14 +171,19 @@ public class Worker extends Enemy {
         stateTime += dt;
         setRegion(getFrame(dt));
         if (setToDestroy && !destroyed) {
-            ninjaDead = true;
+            workerDead = true;
             world.destroyBody(b2body);
             destroyed = true;
             stateTime=0;
 
 
         } else if (!destroyed) {
-            b2body.setLinearVelocity(velocity);
+            if(attack == false)
+                b2body.setLinearVelocity(velocity);
+            else if (attack == true)
+                b2body.setLinearVelocity(0,0);
+                attack = false;
+
             setPosition(b2body.getPosition().x - getWidth() /2 , b2body.getPosition().y - getHeight() /3 );
             setRegion(getFrame(dt));
         }
@@ -219,6 +270,10 @@ public class Worker extends Enemy {
             }
             hitCounter = 3;
         }
+    }
+
+    public void setAttack(boolean attack) {
+        this.attack = attack;
     }
 }
 

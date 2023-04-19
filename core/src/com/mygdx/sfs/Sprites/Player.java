@@ -18,7 +18,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.sfs.Screens.PlayScreen;
+import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Player extends Sprite {
@@ -97,8 +97,8 @@ public class Player extends Sprite {
         frames.add(sfs.getPlayersChoice().findRegion("Idle3"));
         frames.add(sfs.getPlayersChoice().findRegion("Idle4"));
 
+
         playerStand = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.LOOP);
-        /*setBounds(getX(), getY(), 26 / PPM , 26 / PPM);*/
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             setBounds(0, 0, 18 / PPM, 20 / PPM);
         }
@@ -162,32 +162,31 @@ public class Player extends Sprite {
         playerDead = new Animation<TextureRegion>(0.3f, frames);
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             setBounds(0, 0, 26 / PPM, 35 / PPM);
-            frames.clear();
-
-
-            //Level Complete
-            frames.add(sfs.getPlayersChoice().findRegion("Happy1"));
-            frames.add(sfs.getPlayersChoice().findRegion("Happy2"));
-            frames.add(sfs.getPlayersChoice().findRegion("Happy3"));
-            frames.add(sfs.getPlayersChoice().findRegion("Happy4"));
-            frames.add(sfs.getPlayersChoice().findRegion("Happy5"));
-            frames.add(sfs.getPlayersChoice().findRegion("Happy6"));
-            playerComplete = new Animation<TextureRegion>(0.2f, frames);
-            if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                setBounds(0, 0, 26 / PPM, 35 / PPM);
-            }
-            frames.clear();
-
-            //Player Hurt
-            frames.add(sfs.getPlayersChoice().findRegion("Hurt1"));
-            frames.add(sfs.getPlayersChoice().findRegion("Hurt2"));
-            playerHurt = new Animation<TextureRegion>(0.2f, frames);
-            if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                setBounds(0, 0, 26 / PPM, 35 / PPM);
-            }
-            frames.clear();
-
         }
+        frames.clear();
+
+
+        //Level Complete
+        frames.add(sfs.getPlayersChoice().findRegion("Happy1"));
+        frames.add(sfs.getPlayersChoice().findRegion("Happy2"));
+        frames.add(sfs.getPlayersChoice().findRegion("Happy3"));
+        frames.add(sfs.getPlayersChoice().findRegion("Happy4"));
+        frames.add(sfs.getPlayersChoice().findRegion("Happy5"));
+        frames.add(sfs.getPlayersChoice().findRegion("Happy6"));
+        playerComplete = new Animation<TextureRegion>(0.2f, frames);
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            setBounds(0, 0, 26 / PPM, 35 / PPM);
+        }
+        frames.clear();
+
+        //Player Hurt
+        frames.add(sfs.getPlayersChoice().findRegion("Hurt1"));
+        frames.add(sfs.getPlayersChoice().findRegion("Hurt2"));
+        playerHurt = new Animation<TextureRegion>(0.2f, frames);
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            setBounds(0, 0, 26 / PPM, 35 / PPM);
+        }
+        frames.clear();
 
     }
 
@@ -258,7 +257,7 @@ public class Player extends Sprite {
         if(playerIsDead)
             return State.DEAD;
 
-        else if ((b2body.getLinearVelocity().y > 0 && previousState == State.JUMPING))
+        else if ((b2body.getLinearVelocity().y > 0 && sfs.doubleJumped == true))
             return State.DOUBLEJUMP;
 
         else if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0))
@@ -284,7 +283,7 @@ public class Player extends Sprite {
 
     public void definePlayer(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(282 / PPM,300 / PPM);
+        bdef.position.set(20/PPM,600/PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 

@@ -1,4 +1,4 @@
-package com.mygdx.sfs.Screens;
+package com.mygdx.sfs.Scenes.Screens;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -83,7 +83,7 @@ public class PlayScreen implements Screen {
 
         //view of the game
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(shootForSurvival.V_WIDTH / shootForSurvival.PPM, shootForSurvival.V_HEIGHT / shootForSurvival.PPM, gamecam);
+        gamePort = new FitViewport(shootForSurvival.MAP_WIDTH / shootForSurvival.PPM, shootForSurvival.MAP_HEIGHT / shootForSurvival.PPM, gamecam);
         hud = new Hud(game.batch, game,game.getScreen(),this);
 
         //controller
@@ -101,7 +101,7 @@ public class PlayScreen implements Screen {
         renderer = new OrthogonalTiledMapRenderer(map, 1 / shootForSurvival.PPM);
 
         //initiating game cam
-        gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
+        gamecam.position.set(gamePort.getWorldWidth() / 1.5f, gamePort.getWorldHeight() / 1.5f, 0);
 
         world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
@@ -170,7 +170,7 @@ public class PlayScreen implements Screen {
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             if (player.currentState != Player.State.DEAD) {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, 2.6f), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(0, 3.2f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
 
                     game.loadSound("audio/sounds/soundnimja-jump.wav");
@@ -211,11 +211,11 @@ public class PlayScreen implements Screen {
 
 
                 if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 1.5 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(0.5f, 0), player.b2body.getWorldCenter(), true);
                 }
 
                 if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -1.5 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(-0.5f, 0), player.b2body.getWorldCenter(), true);
                 }
             } else {
                 player.b2body.setLinearVelocity(new Vector2(0, 0));
@@ -224,7 +224,7 @@ public class PlayScreen implements Screen {
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             if (player.currentState != Player.State.DEAD) {
                 if (controller.isUpPressed() && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, 3.2f), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(0, 3.6f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
 
                     game.manager.get("audio/sounds/soundnimja-jump.wav", Sound.class).play(game.getSoundVolume());
@@ -242,11 +242,11 @@ public class PlayScreen implements Screen {
                 }
 
                 if (controller.isRightPressed() == true && player.b2body.getLinearVelocity().x <= 1.3 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0f), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(0.7f, 0f), player.b2body.getWorldCenter(), true);
                 }
 
                 if (controller.isLeftPressed() == true && player.b2body.getLinearVelocity().x >= -1.3 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0f), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(-0.7f, 0f), player.b2body.getWorldCenter(), true);
                 }
             } else {
                 player.b2body.setLinearVelocity(new Vector2(0f, 0f));
@@ -282,7 +282,7 @@ public class PlayScreen implements Screen {
 
         for (Enemy enemy : creator.getNinjas()) {
             enemy.update(dt);
-            if (enemy.getX() < player.getX() + 224 / shootForSurvival.PPM)
+            if (enemy.getX() < player.getX() + 424 / shootForSurvival.PPM)
                 enemy.b2body.setActive(true);
         }
 

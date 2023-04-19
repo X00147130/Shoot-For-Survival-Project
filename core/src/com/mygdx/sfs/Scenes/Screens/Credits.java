@@ -1,4 +1,4 @@
-package com.mygdx.sfs.Screens;
+package com.mygdx.sfs.Scenes.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

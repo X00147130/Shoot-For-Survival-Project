@@ -2,7 +2,7 @@ package com.mygdx.sfs.Sprites.TileObjects;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.maps.MapObject;
-import com.mygdx.sfs.Screens.PlayScreen;
+import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 

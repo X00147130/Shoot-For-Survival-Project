@@ -1,0 +1,173 @@
+
+worker1.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Dead4
+  rotate: false
+  xy: 1, 1
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+Attack1
+  rotate: false
+  xy: 40, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Attack2
+  rotate: false
+  xy: 74, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Attack3
+  rotate: false
+  xy: 108, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Attack4
+  rotate: false
+  xy: 142, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Attack5
+  rotate: false
+  xy: 176, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Attack6
+  rotate: false
+  xy: 210, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Dead1
+  rotate: false
+  xy: 244, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Dead2
+  rotate: false
+  xy: 278, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Dead3
+  rotate: false
+  xy: 312, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Dead5
+  rotate: false
+  xy: 346, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Dead6
+  rotate: false
+  xy: 380, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Hurt1
+  rotate: false
+  xy: 414, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Hurt2
+  rotate: false
+  xy: 448, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Idle1
+  rotate: false
+  xy: 482, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Idle2
+  rotate: false
+  xy: 516, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Idle3
+  rotate: false
+  xy: 550, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Idle4
+  rotate: false
+  xy: 584, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run1
+  rotate: false
+  xy: 618, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run2
+  rotate: false
+  xy: 652, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run3
+  rotate: false
+  xy: 686, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run4
+  rotate: false
+  xy: 720, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run5
+  rotate: false
+  xy: 754, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Run6
+  rotate: false
+  xy: 788, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1

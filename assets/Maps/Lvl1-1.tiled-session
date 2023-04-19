@@ -420,10 +420,10 @@
         },
         "Industry/Map/Lvl1-1.tmx": {
             "scale": 0.75,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 4238.666666666666,
-                "y": 378.6666666666667
+                "x": 517.3333333333334,
+                "y": 376
             }
         },
         "Industry/Map/Screen2.tsx": {
