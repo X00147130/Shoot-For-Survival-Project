@@ -63,12 +63,13 @@ public class CharacterSelect implements Screen {
 
 
         /*Image by "https://www.freepik.com/free-vector/purple-technology-background_18954511.htm" Freepik*/
-        background = new Texture("backgrounds/characterSelect.jpg");
+        background = new Texture("backgrounds/Background.png");
 
         /*initialising and instantiating of animatimation arrays*/
         characterSprites = new ArrayList<TextureAtlas.AtlasRegion>(3);
 
         characterSprites.add(sfs.getBikerAtlas().findRegion("Idle1"));
+
 
         characterSprites.add(sfs.getPunkAtlas().findRegion("Idle1"));
 
@@ -78,8 +79,8 @@ public class CharacterSelect implements Screen {
         //Setup of Screen
         TextButton.TextButtonStyle textStyle;
         BitmapFont buttonFont;
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), CYAN);
-        Label.LabelStyle font2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), CYAN);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
+        Label.LabelStyle font2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), MAGENTA);
 
         textStyle = new TextButton.TextButtonStyle();
         buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
@@ -231,7 +232,7 @@ public class CharacterSelect implements Screen {
 
         sfs.batch.begin();
 
-        sfs.batch.draw(background,0,0,700,300);
+        sfs.batch.draw(background,0,0,500,200);
 
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             arrows.setBounds(20, 155, 70, 70);

@@ -9,33 +9,38 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
-public class Coins extends Item {
+
+
+public class KeyCard extends Item {
     private static int count = 0;
     public shootForSurvival sfs;
-    private Animation<TextureRegion> money;
+    private Animation<TextureRegion> keycard;
 
 
-    public Coins(shootForSurvival sfs, PlayScreen screen, float  x, float y) {
+    public KeyCard(shootForSurvival sfs, PlayScreen screen, float  x, float y) {
         super(screen, x, y);
         this.sfs = sfs;
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
-        frames.add(sfs.getMoneyAtlas().findRegion("money1"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money2"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money3"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money4"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money5"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money6"));
+        frames.add(sfs.getKeycardAtlas().findRegion("keycard1"));
+        frames.add(sfs.getKeycardAtlas().findRegion("keycard2"));
+        frames.add(sfs.getKeycardAtlas().findRegion("keycard3"));
+        frames.add(sfs.getKeycardAtlas().findRegion("keycard4"));
+        frames.add(sfs.getKeycardAtlas().findRegion("keycard5"));
+        frames.add(sfs.getKeycardAtlas().findRegion("keycard6"));
+        frames.add(sfs.getKeycardAtlas().findRegion("keycard7"));
+        frames.add(sfs.getKeycardAtlas().findRegion("keycard8"));
 
-        money = new Animation<TextureRegion>(0.2f, frames);
+
+        keycard = new Animation<TextureRegion>(0.2f, frames);
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             setBounds(0, 0, 26 / PPM, 35 / PPM);
         }
@@ -50,13 +55,12 @@ public class Coins extends Item {
         body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(3 / shootForSurvival.PPM);
-        fdef.filter.categoryBits = shootForSurvival.MONEY_BIT;
+        PolygonShape shape = new PolygonShape();
+        shape.setRadius(5 / shootForSurvival.PPM);
+        fdef.filter.categoryBits = shootForSurvival.KEY_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
-                shootForSurvival.PLATFORM_BIT |
-                shootForSurvival.FINISH_BIT;
+                shootForSurvival.SCREEN_BIT;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);
@@ -65,9 +69,8 @@ public class Coins extends Item {
     @Override
     public void useItem(Player player) {
         destroy();
-        count += 100;
-        screen.setCoins(count);
-        Gdx.app.log("Coin", "destroyed");
+        Gdx.app.log("KEY", "Collected");
+
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             sfs.loadSound("audio/sounds/coin.mp3");
             long id = sfs.sound.play();
@@ -80,13 +83,13 @@ public class Coins extends Item {
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
             sfs.manager.get("audio/sounds/coin.mp3", Sound.class).play(sfs.getSoundVolume());
         }
-
     }
+
     @Override
     public void update(float dt) {
         super.update(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() /2);
-        setRegion(money.getKeyFrame(sfs.statetimer,true));
+        setRegion(keycard.getKeyFrame(sfs.statetimer,true));
         if(screen.isComplete() || (screen.getPlayer().currentState == Player.State.DEAD && screen.getPlayer().getStateTimer() > 3)){
             count = 0;
         }

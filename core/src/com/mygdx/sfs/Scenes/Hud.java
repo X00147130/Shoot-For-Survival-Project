@@ -24,10 +24,9 @@ public class Hud implements Disposable {
         private Viewport viewport;
 
         private int coinPouch;
+        private Label coinpouchLabel;
 
-        Label coinpouchLabel;
-
-        Label timeLabel;
+        /*Label timeLabel;*/
 
         //health bar
         private ShapeRenderer border;
@@ -39,11 +38,6 @@ public class Hud implements Disposable {
 
         static private boolean projectionMatrixSet;
 
-
-//    //Image Button Variable
-//    private ImageButton pause;
-//    private Texture image;
-//    private Drawable draw;
 
         private shootForSurvival gameplay;
         public final Screen play;
@@ -58,10 +52,6 @@ public class Hud implements Disposable {
 
             coinPouch = playScreen.getCoins();
 
-//        //Image button
-//        image = new Texture("pause.png");
-//        draw = new TextureRegionDrawable(image);
-//        pause = new ImageButton(draw);
             viewport = new FitViewport(shootForSurvival.V_WIDTH,shootForSurvival.V_HEIGHT, new OrthographicCamera());
             stage = new Stage(viewport, sb);
 
@@ -70,14 +60,14 @@ public class Hud implements Disposable {
             table.setFillParent(true);
 
             skin = new Skin(Gdx.files.internal("skins/comic/comic-ui.json"));
-            coinpouchLabel = new Label(String.format("%04d",coinPouch), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt")), Color.RED));
-            timeLabel = new Label("TIME:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt")), Color.RED));
-            healthLabel = new Label("HEALTH:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt")), Color.WHITE));
-            coinLabel = new Label("COINS:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt")), Color.GOLD));
+            coinpouchLabel = new Label(String.format("%04d",coinPouch), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.MAGENTA));
+            /*timeLabel = new Label("TIME:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt")), Color.RED));*/
+            healthLabel = new Label("HEALTH:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.GREEN));
+            coinLabel = new Label("COINS:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.CYAN));
 
             //group for health label scaling
 
-            table.add(healthLabel).expandX().left().padLeft(20).top();
+            table.add(healthLabel).expandX().left().padLeft(5).top();
             table.add(coinLabel).padRight(10).right().top();
             table.add(coinpouchLabel).padRight(10).right().top().spaceRight(11);
 
@@ -93,13 +83,6 @@ public class Hud implements Disposable {
             projectionMatrixSet = false;
 
 
-//        pause.addListener(new ClickListener() {
-//            @Override
-//            public void clicked(InputEvent event,float x, float y){
-//                gameplay.setScreen(new PauseScreen(gameplay));
-//            }
-//
-//        });
 
         }
 
@@ -108,16 +91,6 @@ public class Hud implements Disposable {
             coinpouchLabel.setText(String.format("%04d",coinPouch));
         }
 
-        public void resume(){
-//        pause.clearListeners();
-//        stage.addActor(pause);
-//        pause.addListener(new ClickListener(){
-//            @Override
-//            public void clicked(InputEvent event, float x, float y){
-//                gameplay.setScreen(new PauseScreen(gameplay));
-//            }
-//        });
-        }
 
         public void draw(SpriteBatch batch, float alpha){
             if(!projectionMatrixSet){
@@ -138,7 +111,7 @@ public class Hud implements Disposable {
             health.begin(ShapeRenderer.ShapeType.Filled);
             if(Player.getHitCounter() == 0) {
                 health.rect(5, 185, 99, 6);
-                health.setColor(Color.GREEN);
+                health.setColor(Color.MAGENTA);
             }
             else if (Player.getHitCounter() == 1){
                 health.rect(5,185,66,6);

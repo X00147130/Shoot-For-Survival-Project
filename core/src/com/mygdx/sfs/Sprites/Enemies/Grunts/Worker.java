@@ -60,7 +60,7 @@ public class Worker extends Enemy {
         frames.add(sfs.getWorker1Atlas().findRegion("Run6"));
 
 
-        runAnimation = new Animation<TextureRegion>(3f, frames);
+        runAnimation = new Animation<TextureRegion>(1f, frames);
         setBounds(0,0,18/PPM, 20/PPM);
         frames.clear();
 

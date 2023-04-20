@@ -19,6 +19,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
+import com.mygdx.sfs.Tools.B2WorldCreator;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Player extends Sprite {
@@ -278,7 +279,6 @@ public class Player extends Sprite {
         else
             return State.STANDING;
     }
-
 
 
     public void definePlayer(){

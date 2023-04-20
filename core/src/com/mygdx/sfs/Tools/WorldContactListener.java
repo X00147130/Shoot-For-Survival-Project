@@ -31,8 +31,9 @@ public class WorldContactListener implements ContactListener {
                 break;
 
             case shootForSurvival.PLAYER_BIT | shootForSurvival.GROUND_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT)
+                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
                     ((Player) fixA.getUserData()).jumpReset();
+                }
                 else
                     ((Player) fixB.getUserData()).jumpReset();
                 break;
@@ -101,6 +102,13 @@ public class WorldContactListener implements ContactListener {
 
             case shootForSurvival.MONEY_BIT | shootForSurvival.PLAYER_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.MONEY_BIT)
+                    ((Item) fixA.getUserData()).useItem((Player) fixB.getUserData());
+                else
+                    ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
+                break;
+
+            case shootForSurvival.KEY_BIT | shootForSurvival.PLAYER_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.KEY_BIT)
                     ((Item) fixA.getUserData()).useItem((Player) fixB.getUserData());
                 else
                     ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());

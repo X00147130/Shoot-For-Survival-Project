@@ -61,6 +61,11 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "Industry/Map/Entry.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Industry/Map/Fence1.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -420,13 +425,17 @@
         },
         "Industry/Map/Lvl1-1.tmx": {
             "scale": 0.75,
-            "selectedLayer": 3,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 517.3333333333334,
-                "y": 376
+                "x": 7954.666666666666,
+                "y": 405.33333333333337
             }
         },
         "Industry/Map/Screen2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Industry/Map/Transporter.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -445,6 +454,7 @@
             }
         }
     },
+    "frame.defaultDuration": 20,
     "last.imagePath": "E:/Conway Games Projects/Shoot For Survival Project/assets/Maps/Industry/4 Animated objects",
     "map.height": 25,
     "map.lastUsedFormat": "tmx",
@@ -552,10 +562,16 @@
         "Industry/Map/Locker1.tsx",
         "Industry/Map/Locker2.tsx",
         "Industry/Map/Locker3.tsx",
-        "Industry/Map/Locker4.tsx"
+        "Industry/Map/Locker4.tsx",
+        "Industry/Map/Entry.tsx",
+        "Industry/Map/Screen2.tsx",
+        "Industry/Map/Transporter.tsx"
     ],
     "project": "Lvl1-1.tiled-project",
     "recentFiles": [
+        "Industry/Map/Transporter.tsx",
+        "Industry/Map/Screen2.tsx",
+        "Industry/Map/Entry.tsx",
         "Industry/Map/Locker4.tsx",
         "Industry/Map/Locker3.tsx",
         "Industry/Map/Locker2.tsx",
@@ -564,10 +580,7 @@
         "Industry/Map/Fence3.tsx",
         "Industry/Map/Fence2.tsx",
         "Industry/Map/Fence1.tsx",
-        "Industry/Map/Box8.tsx",
-        "Industry/Map/Box7.tsx",
-        "Industry/Map/Box5.tsx",
-        "Industry/Map/Box4.tsx"
+        "Industry/Map/Box8.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

@@ -103,7 +103,7 @@ public class PauseScreen implements Screen {
 
 
                 game.setScreen(screen);
-                hud.resume();
+                /*hud.resume();*/
                 dispose();
 
             }

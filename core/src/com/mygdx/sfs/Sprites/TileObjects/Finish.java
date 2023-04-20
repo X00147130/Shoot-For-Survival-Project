@@ -9,10 +9,11 @@ import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Finish extends InteractiveTileObject {
-    private shootForSurvival ninja;
-    public Finish(shootForSurvival ninja, PlayScreen screen, MapObject object){
+    private shootForSurvival sfs;
+
+    public Finish(shootForSurvival game, PlayScreen screen, MapObject object){
         super(screen,object);
-        this.ninja = ninja;
+        this.sfs = game;
         fixture.setUserData(this);
         setCategoryFilter(shootForSurvival.FINISH_BIT);
     }
@@ -22,22 +23,21 @@ public class Finish extends InteractiveTileObject {
         Gdx.app.log("Finish", "Collision");
         screen.setLevelComplete(true);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            ninja.loadSound("audio/sounds/Mission Accomplished Fanfare 1.mp3");
-            long id = ninja.sound.play();
-            if (ninja.getSoundVolume() != 0)
-                ninja.sound.setVolume(id, ninja.getSoundVolume());
+            sfs.loadSound("audio/sounds/Mission Accomplished Fanfare 1.mp3");
+            long id = sfs.sound.play();
+            if (sfs.getSoundVolume() != 0)
+                sfs.sound.setVolume(id, sfs.getSoundVolume());
             else {
-                ninja.sound.setVolume(id, 0);
+                sfs.sound.setVolume(id, 0);
             }
         }
 
         if(Gdx.app.getType() == Application.ApplicationType.Android){
-            ninja.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).play(ninja.getSoundVolume());
+            sfs.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).play(sfs.getSoundVolume());
         }
 
-        ninja.music.stop();
+        sfs.music.stop();
         }
-
 
 
 }

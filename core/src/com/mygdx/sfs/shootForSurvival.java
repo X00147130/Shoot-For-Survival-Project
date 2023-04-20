@@ -16,8 +16,8 @@ public class shootForSurvival extends Game {
     //constants
     public static final int V_WIDTH = 400;
     public static final int V_HEIGHT = 208;
-    public static final int MAP_WIDTH = 1200;
-    public static final int MAP_HEIGHT = 608;
+    public static final int MAP_WIDTH = 900;
+    public static final int MAP_HEIGHT = 508;
     public static final float PPM = 150;
     public static final float MAX_VOL = 100;
     public static final float MIN_VOL = 0;
@@ -35,6 +35,8 @@ public class shootForSurvival extends Game {
     public static final short BULLET_BIT = 256;
     public static final short MONEY_BIT = 512;
     public static final short SKY_BIT = 1024;
+    public static final short KEY_BIT = 2048;
+    public static final short SCREEN_BIT = 4098;
 
 
     //variables
@@ -60,6 +62,11 @@ public class shootForSurvival extends Game {
     private TextureAtlas cyborgAtlas;
 
     private TextureAtlas worker1Atlas;
+
+    private TextureAtlas doorAtlas;
+    private TextureAtlas keycardAtlas;
+    private TextureAtlas moneyAtlas;
+    private TextureAtlas screenAtlas;
 
     public TextureAtlas playersChoice;
 
@@ -117,6 +124,11 @@ public class shootForSurvival extends Game {
         cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");//Cyborg Character
 
         worker1Atlas = new TextureAtlas("sprites/Enemies/worker1.pack");//Worker1 (Enemy) Character
+
+        doorAtlas = new TextureAtlas("sprites/Objects/door.pack"); //End Level Door
+        keycardAtlas = new TextureAtlas("sprites/Objects/keycard.pack"); // Key Card
+        moneyAtlas = new TextureAtlas("sprites/Objects/money.pack"); // Money
+        screenAtlas = new TextureAtlas("sprites/Objects/screen.pack"); // Screen At Door
 
 
         manager.finishLoading();
@@ -205,12 +217,26 @@ public class shootForSurvival extends Game {
         return cyborgAtlas;
     }
 
+    public TextureAtlas getPlayersChoice() {
+        return playersChoice;
+    }
+
+
     public TextureAtlas getWorker1Atlas() {
         return worker1Atlas;
     }
 
-    public TextureAtlas getPlayersChoice() {
-        return playersChoice;
+    public TextureAtlas getDoorAtlas() {
+        return doorAtlas;
+    }
+    public TextureAtlas getKeycardAtlas() {
+        return keycardAtlas;
+    }
+    public TextureAtlas getMoneyAtlas() {
+        return moneyAtlas;
+    }
+    public TextureAtlas getScreenAtlas() {
+        return screenAtlas;
     }
 
     public void setPlayersChoice(TextureAtlas playersChoice) {

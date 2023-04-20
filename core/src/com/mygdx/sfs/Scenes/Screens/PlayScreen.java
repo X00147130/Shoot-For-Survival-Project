@@ -21,6 +21,7 @@ import com.mygdx.sfs.Scenes.Hud;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Items.ItemDef;
+import com.mygdx.sfs.Sprites.Items.KeyCard;
 import com.mygdx.sfs.Sprites.Items.health;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.Items.Bullets;
@@ -135,6 +136,9 @@ public class PlayScreen implements Screen {
             if (idef.type == health.class) {
                 items.add(new health(game,this, idef.position.x, idef.position.y));
             }
+            if(idef.type == KeyCard.class){
+                items.add(new KeyCard(game,this,idef.position.x, idef.position.y));
+            }
         }
     }
 
@@ -170,7 +174,7 @@ public class PlayScreen implements Screen {
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             if (player.currentState != Player.State.DEAD) {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, 3.2f), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(0, 3.6f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
 
                     game.loadSound("audio/sounds/soundnimja-jump.wav");
@@ -280,7 +284,7 @@ public class PlayScreen implements Screen {
         player.update(dt);
 
 
-        for (Enemy enemy : creator.getNinjas()) {
+        for (Enemy enemy : creator.getWorkers()) {
             enemy.update(dt);
             if (enemy.getX() < player.getX() + 424 / shootForSurvival.PPM)
                 enemy.b2body.setActive(true);
@@ -333,7 +337,7 @@ public class PlayScreen implements Screen {
         player.draw(game.batch);
 
 
-        for (Enemy enemy : creator.getNinjas())
+        for (Enemy enemy : creator.getWorkers())
             enemy.draw(game.batch);
 
         for (Item item : items)
