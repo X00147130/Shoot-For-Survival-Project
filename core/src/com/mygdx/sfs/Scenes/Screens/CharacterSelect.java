@@ -1,6 +1,5 @@
 package com.mygdx.sfs.Scenes.Screens;
 
-import static com.badlogic.gdx.graphics.Color.CYAN;
 import static com.badlogic.gdx.graphics.Color.MAGENTA;
 
 import com.badlogic.gdx.Application;
@@ -8,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -61,9 +61,7 @@ public class CharacterSelect implements Screen {
         this.sfs = game;
         viewport = new FitViewport(sfs.V_WIDTH, sfs.V_HEIGHT, new OrthographicCamera());
 
-
-        /*Image by "https://www.freepik.com/free-vector/purple-technology-background_18954511.htm" Freepik*/
-        background = new Texture("backgrounds/Background.png");
+        background = sfs.manager.get("backgrounds/Background.png", Texture.class);
 
         /*initialising and instantiating of animatimation arrays*/
         characterSprites = new ArrayList<TextureAtlas.AtlasRegion>(3);

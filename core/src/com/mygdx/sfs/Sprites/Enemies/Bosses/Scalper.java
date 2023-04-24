@@ -160,7 +160,6 @@ public class Scalper extends Enemy {
         shape.setRadius(4 / shootForSurvival.PPM);
         fdef.filter.categoryBits = shootForSurvival.BOSS_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
-                shootForSurvival.PLATFORM_BIT |
                 shootForSurvival.BULLET_BIT|
                 shootForSurvival.PLAYER_BIT;
 

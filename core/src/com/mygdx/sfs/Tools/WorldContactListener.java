@@ -38,12 +38,6 @@ public class WorldContactListener implements ContactListener {
                     ((Player) fixB.getUserData()).jumpReset();
                 break;
 
-            case shootForSurvival.PLAYER_BIT | shootForSurvival.PLATFORM_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT)
-                    ((Player) fixA.getUserData()).jumpReset();
-                else
-                    ((Player) fixB.getUserData()).jumpReset();
-                break;
 
             case shootForSurvival.ENEMY_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {

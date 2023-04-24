@@ -21,7 +21,7 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Controller {
     private Viewport view;
-    private boolean upPressed = false,attackPressed = false,leftPressed = false,rightPressed = false;
+    private boolean upPressed = false, shootPressed = false,leftPressed = false,rightPressed = false,dashPressed = false;
     public Stage stage;
     private OrthographicCamera cam;
     private shootForSurvival gameplay;
@@ -60,23 +60,23 @@ public class Controller {
                 }
             });}
 
-        Image attackImg = new Image(new Texture("controller/attack button.png"));
-        attackImg.setSize(50,30);
+        Image attackImg = new Image(new Texture("controller/Shoot.png"));
+        attackImg.setSize(30,25);
         attackImg.addListener(new InputListener(){
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                attackPressed = true;
+                shootPressed = true;
                 return true;
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                attackPressed = false;
+                shootPressed = false;
             }
         });
 
-        Image rightImg = new Image(new Texture("controller/right.png"));
+        Image rightImg = new Image(new Texture("controller/Forward.png"));
         rightImg.setSize(30,30);
         rightImg.addListener(new InputListener(){
 
@@ -92,7 +92,7 @@ public class Controller {
             }
         });
 
-        Image leftImg = new Image(new Texture("controller/left.png"));
+        Image leftImg = new Image(new Texture("controller/Backward.png"));
         leftImg.setSize(30,30);
         leftImg.addListener(new InputListener(){
 
@@ -105,6 +105,22 @@ public class Controller {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 leftPressed = false;
+            }
+        });
+
+        Image dashImg = new Image(new Texture("controller/Dash.png"));
+        dashImg.setSize(30,25);
+        dashImg.addListener(new InputListener(){
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                dashPressed = true;
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                dashPressed = false;
             }
         });
         //Image button
@@ -146,6 +162,8 @@ public class Controller {
 
         action.add(upImg).size(upImg.getWidth(),upImg.getHeight()).padRight(10);
         action.add();
+        action.add(dashImg).size(dashImg.getWidth(),dashImg.getHeight()).padRight(10).padLeft(10);
+        action.add();
         action.add(attackImg).size(attackImg.getWidth(),attackImg.getHeight()).padLeft(10);
 
         stage.addActor(action);
@@ -158,13 +176,17 @@ public class Controller {
                     case Input.Keys.UP:
                         upPressed = true;
                         break;
-                    case Input.Keys.DOWN:
-                        attackPressed = true;
+                    case Input.Keys.SPACE:
+                        shootPressed = true;
                         break;
                     case Input.Keys.LEFT:
                         leftPressed = true;
+                        break;
                     case Input.Keys.RIGHT:
                         rightPressed = true;
+                        break;
+                    case Input.Keys.DOWN:
+                        dashPressed = true;
                         break;
                 }
                 return true;
@@ -176,13 +198,16 @@ public class Controller {
                     case Input.Keys.UP:
                         upPressed = false;
                         break;
-                    case Input.Keys.DOWN:
-                        attackPressed = false;
+                    case Input.Keys.SPACE:
+                        shootPressed = false;
                         break;
                     case Input.Keys.LEFT:
                         leftPressed = false;
                     case Input.Keys.RIGHT:
                         rightPressed = false;
+                        break;
+                    case Input.Keys.DOWN:
+                        dashPressed = false;
                         break;
                 }
                 return true;
@@ -203,19 +228,24 @@ public class Controller {
     }
 
     public void handleEvent(){
-        if(attackPressed == true)
-            attackPressed = false;
+        if(shootPressed == true)
+            shootPressed = false;
 
         if(upPressed == true)
             upPressed = false;
+
+        if(dashPressed == true)
+            dashPressed = false;
     }
     public boolean isUpPressed() {
         return upPressed;
     }
 
     public boolean isDownPressed() {
-        return attackPressed;
+        return dashPressed;
     }
+
+    public boolean isSpacePressed(){return shootPressed;}
 
     public boolean isLeftPressed() {
         return leftPressed;

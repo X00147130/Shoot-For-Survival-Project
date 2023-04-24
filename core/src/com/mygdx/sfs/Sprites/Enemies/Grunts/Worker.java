@@ -209,7 +209,6 @@ public class Worker extends Enemy {
         fdef.filter.categoryBits = shootForSurvival.ENEMY_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.FINISH_BIT |
-                shootForSurvival.PLATFORM_BIT |
                 shootForSurvival.ENEMY_BIT |
                 shootForSurvival.BARRIER_BIT |
                 shootForSurvival.BULLET_BIT|

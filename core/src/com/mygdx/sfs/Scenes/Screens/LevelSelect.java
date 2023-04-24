@@ -1,5 +1,7 @@
 package com.mygdx.sfs.Scenes.Screens;
 
+import static com.badlogic.gdx.graphics.Color.CYAN;
+import static com.badlogic.gdx.graphics.Color.GREEN;
 import static com.badlogic.gdx.graphics.Color.MAGENTA;
 import static com.badlogic.gdx.graphics.Color.RED;
 
@@ -7,6 +9,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -68,7 +71,7 @@ public class LevelSelect implements Screen {
         textStyle = new TextButton.TextButtonStyle();
         buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
         textStyle.font = buttonFont;
-        textStyle.fontColor = RED;
+        textStyle.fontColor = MAGENTA;
 
         level1 = new TextButton("Level 1", textStyle);
         level2 = new TextButton("Level 2", textStyle);
@@ -83,7 +86,7 @@ public class LevelSelect implements Screen {
         backButton = new TextButton("Back", textStyle);
 
         //Label
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), MAGENTA);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), GREEN);
         Label pageLabel = new Label("Level Select", font);
         pageLabel.setFontScale(2);
 

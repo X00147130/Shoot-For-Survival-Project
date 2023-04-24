@@ -1,5 +1,7 @@
 package com.mygdx.sfs.Scenes.Screens;
 
+import static com.badlogic.gdx.graphics.Color.CYAN;
+import static com.badlogic.gdx.graphics.Color.GREEN;
 import static com.badlogic.gdx.graphics.Color.MAGENTA;
 import static com.badlogic.gdx.graphics.Color.RED;
 
@@ -7,6 +9,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -61,19 +64,19 @@ public class Settings implements Screen {
 
         Label.LabelStyle title = new Label.LabelStyle();
         title.font = buttonFont;
-        title.fontColor = RED;
+        title.fontColor = MAGENTA;
 
         page = new Label("SETTINGS",title);
 
         //skin setup
         skin = new Skin(Gdx.files.internal("skins/star-soldier/skin/star-soldier-ui.json"));
         music = new CheckBox(" : Mute Music", skin);
-        music.setColor(RED);
+        music.setColor(MAGENTA);
         if (GAME.musicIsChecked == true)
             music.setChecked(true);
 
         sound = new CheckBox(" : Mute Sound", skin);
-        sound.setColor(RED);
+        sound.setColor(MAGENTA);
         if (GAME.soundIsChecked == true)
             sound.setChecked(true);
 

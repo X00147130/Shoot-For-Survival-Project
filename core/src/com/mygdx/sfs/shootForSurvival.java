@@ -26,7 +26,7 @@ public class shootForSurvival extends Game {
     public static final short BOSS_BIT = 0;
     public static final short GROUND_BIT = 1;
     public static final short PLAYER_BIT = 2;
-    public static final short PLATFORM_BIT = 4;
+    public static final short KEY_BIT = 4;
     public static final short FINISH_BIT = 8;
     public static final short BARRIER_BIT = 16;
     public static final short ENEMY_BIT = 32;
@@ -35,8 +35,7 @@ public class shootForSurvival extends Game {
     public static final short BULLET_BIT = 256;
     public static final short MONEY_BIT = 512;
     public static final short SKY_BIT = 1024;
-    public static final short KEY_BIT = 2048;
-    public static final short SCREEN_BIT = 4098;
+    public static final short SCREEN_BIT = 2048;
 
 
     //variables
@@ -109,15 +108,14 @@ public class shootForSurvival extends Game {
 
         /*Texture Loading*/
         manager.load("backgrounds/menubg.png", Texture.class); // main menu
+        manager.load("backgrounds/Background.png",Texture.class); //Character select background
         manager.load("backgrounds/lvlselectbg.png", Texture.class); // level select
         manager.load("backgrounds/lvlcompletebg.png", Texture.class); // level complete
         manager.load("backgrounds/settingsbg.png", Texture.class); // settings
         manager.load("backgrounds/controls.png", Texture.class); // controls Background
-        manager.load("backgrounds/characterSelect.jpg", Texture.class); // main menu
         manager.load("backgrounds/pausebg.png", Texture.class); // pause
         manager.load("backgrounds/deadbg.png", Texture.class); // game over
         manager.load("sprites/bullet.png", Texture.class); // bullet
-
 
         punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");//Punk Character
         bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");//Biker Character

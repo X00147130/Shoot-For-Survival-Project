@@ -16,7 +16,6 @@ import com.mygdx.sfs.Sprites.Items.KeyCard;
 import com.mygdx.sfs.Sprites.Items.health;
 import com.mygdx.sfs.Sprites.TileObjects.Barrier;
 import com.mygdx.sfs.Sprites.TileObjects.Finish;
-import com.mygdx.sfs.Sprites.TileObjects.Platforms;
 import com.mygdx.sfs.Sprites.TileObjects.Sky;
 import com.mygdx.sfs.shootForSurvival;
 
@@ -25,7 +24,7 @@ public class B2WorldCreator {
         private Array<Worker> workers;
         private Array<Coins> coins;
         private Array<health> vials;
-        public boolean conveyor = false;
+        private Array<KeyCard> keys;
 
 
         public B2WorldCreator(shootForSurvival game, PlayScreen screen) {
@@ -39,7 +38,7 @@ public class B2WorldCreator {
             FixtureDef fdef = new FixtureDef();
             Body body;
 
-            //create ground bodies fixtures
+//create ground bodies fixtures
             for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
@@ -53,7 +52,8 @@ public class B2WorldCreator {
                 body.createFixture(fdef);
             }
 
-            //create ground fixtures
+
+//create ground fixtures
             for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
@@ -69,29 +69,7 @@ public class B2WorldCreator {
                 body.createFixture(fdef);
             }
 
-            //create finish fixtures
-            for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-
-                // creation of end tree object
-                new Finish(sfs,screen,object);
-            }
-
-            // create all enemies
-            workers = new Array<Worker>();
-            for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rect = ((RectangleMapObject) object).getRectangle();
-                workers.add(new Worker(sfs,screen, rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
-            }
-
-            //create health fixtures
-            vials = new Array<health>();
-            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
-                Rectangle rect = ((RectangleMapObject) object).getRectangle();
-                // creation of health vials objects
-                vials.add(new health(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
-            }
-
-            //create Coins fixtures
+//create Coins fixtures
             coins = new Array<Coins>();
             for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
@@ -100,21 +78,50 @@ public class B2WorldCreator {
 
             }
 
-            //Create barriers
+
+//create finish fixtures
+            for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
+
+                // creation of end tree object
+                new Finish(sfs,screen,object);
+            }
+
+
+//create health fixtures
+            vials = new Array<health>();
+            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                // creation of health vials objects
+                vials.add(new health(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
+            }
+
+
+            // create all enemies
+            workers = new Array<Worker>();
+            for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                workers.add(new Worker(sfs,screen, rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
+            }
+
+
+//Create barriers
             for(MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)){
                 new Barrier(screen,object);
             }
 
-            //Sky limit
+
+//Sky limit
             for(MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)){
                 new Sky(screen,object);
             }
 
-            /*//create KeyCard fixtures
-            for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
+
+//create KeyCard fixtures
+           /* keys = new Array<KeyCard>();
+            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
-                // creation of keyCard objects
-                new KeyCard(sfs,screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM);
+                // creation of health vials objects
+                keys.add(new KeyCard(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
             }*/
 
         }

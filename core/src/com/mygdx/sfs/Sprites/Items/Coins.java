@@ -55,7 +55,6 @@ public class Coins extends Item {
         fdef.filter.categoryBits = shootForSurvival.MONEY_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
-                shootForSurvival.PLATFORM_BIT |
                 shootForSurvival.FINISH_BIT;
 
         fdef.shape = shape;

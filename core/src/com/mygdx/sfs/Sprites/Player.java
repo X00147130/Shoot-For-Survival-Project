@@ -146,7 +146,7 @@ public class Player extends Sprite {
         frames.add(sfs.getPlayersChoice().findRegion("Djump5"));
         frames.add(sfs.getPlayersChoice().findRegion("Djump6"));
 
-        playerDjump = new Animation<TextureRegion>(2f, frames);
+        playerDjump = new Animation<TextureRegion>(1f, frames);
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             setBounds(0, 0, 26 / PPM, 35 / PPM);
         }
@@ -293,11 +293,11 @@ public class Player extends Sprite {
         fdef.filter.categoryBits = shootForSurvival.PLAYER_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.FINISH_BIT |
-                shootForSurvival.PLATFORM_BIT |
                 shootForSurvival.ENEMY_BIT|
                 shootForSurvival.MONEY_BIT|
                 shootForSurvival.SKY_BIT|
                 shootForSurvival.ITEM_BIT|
+                shootForSurvival.KEY_BIT|
                 shootForSurvival.BOSS_BIT;
 
         fdef.shape = shape;
@@ -384,7 +384,7 @@ public class Player extends Sprite {
 
             playerIsDead = true;
             Filter filter = new Filter();
-            filter.maskBits = shootForSurvival.GROUND_BIT|shootForSurvival.PLATFORM_BIT;
+            filter.maskBits = shootForSurvival.GROUND_BIT;
             for (Fixture fixture : b2body.getFixtureList())
                 fixture.setFilterData(filter);
             b2body.applyLinearImpulse(new Vector2(-1f,2f), b2body.getWorldCenter(), true);
@@ -410,6 +410,10 @@ public class Player extends Sprite {
 
     public void setDash(boolean dash) {
         this.dash = dash;
+    }
+
+    public boolean isDash() {
+        return this.dash;
     }
 
     public void reverseVelocity(boolean x, boolean y){

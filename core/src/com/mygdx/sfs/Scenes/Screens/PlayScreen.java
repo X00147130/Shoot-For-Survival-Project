@@ -198,16 +198,21 @@ public class PlayScreen implements Screen {
                         player.b2body.applyLinearImpulse(new Vector2(0f, 0f), player.b2body.getWorldCenter(), false);
                         Gdx.app.log("double", " jumped");
                 }
+
+
                 if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && player.currentState != Player.State.COMPLETE) {
                         bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
                 }
 
+
                 if(Gdx.input.isKeyJustPressed(Input.Keys.D) && player.currentState != Player.State.COMPLETE){
                     player.setDash(true);
                     player.dash();
-                }else{
+                }else if(player.isDash() == true && player.currentState == Player.State.JUMPING){
+                    player.setDash(false);
                     player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
                 }
+
 
                 if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)&& player.currentState != Player.State.COMPLETE) {
                     game.setScreen(new PauseScreen(game));
@@ -218,12 +223,17 @@ public class PlayScreen implements Screen {
                     player.b2body.applyLinearImpulse(new Vector2(0.5f, 0), player.b2body.getWorldCenter(), true);
                 }
 
+
                 if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -1.5 && player.currentState != Player.State.COMPLETE) {
                     player.b2body.applyLinearImpulse(new Vector2(-0.5f, 0), player.b2body.getWorldCenter(), true);
                 }
             } else {
                 player.b2body.setLinearVelocity(new Vector2(0, 0));
             }
+
+
+
+
         }
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             if (player.currentState != Player.State.DEAD) {
@@ -241,13 +251,25 @@ public class PlayScreen implements Screen {
                     Gdx.app.log("double"," jumped");
 
                 }
-                if (controller.isDownPressed() == true && player.currentState != Player.State.COMPLETE) {
+
+
+                if(controller.isDownPressed() == true && player.currentState != Player.State.COMPLETE){
+                    player.setDash(true);
+                    player.dash();
+                }else if(player.isDash() == true && player.currentState == Player.State.JUMPING){
+                    player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
+                }
+
+
+                if (controller.isSpacePressed() == true && player.currentState != Player.State.COMPLETE) {
                     bullets.add(new Bullets(game,this,player.b2body.getPosition().x,player.b2body.getPosition().y));
                 }
+
 
                 if (controller.isRightPressed() == true && player.b2body.getLinearVelocity().x <= 1.3 && player.currentState != Player.State.COMPLETE) {
                     player.b2body.applyLinearImpulse(new Vector2(0.7f, 0f), player.b2body.getWorldCenter(), true);
                 }
+
 
                 if (controller.isLeftPressed() == true && player.b2body.getLinearVelocity().x >= -1.3 && player.currentState != Player.State.COMPLETE) {
                     player.b2body.applyLinearImpulse(new Vector2(-0.7f, 0f), player.b2body.getWorldCenter(), true);

@@ -1,6 +1,8 @@
 package com.mygdx.sfs.Scenes.Screens;
 
 
+import static com.badlogic.gdx.graphics.Color.MAGENTA;
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -48,7 +50,7 @@ public class Controls implements Screen {
         stage = new Stage(viewport,GAME.batch);
 
         /*Label Style*/
-        titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), Color.MAGENTA);
+        titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
         style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.GREEN);
 
         /*Labels*/
@@ -61,7 +63,7 @@ public class Controls implements Screen {
             backward = new Label("Backward: Left Arrow Key", style);
             shoot = new Label("Shoot: Space Bar ", style);
             jump = new Label("Jump: Up Arrow Key", style);
-            dash = new Label("Dash: D Key", style);
+            dash = new Label("Dash: D", style);
             back = new Label("Press space bar to go back", style);
         }
         /*Android*/
@@ -69,9 +71,9 @@ public class Controls implements Screen {
             pause = new Label("Pause: Pause Button", style);
             forward = new Label("Forward: Right Arrow", style);
             backward = new Label("Backward: Left Arrow", style);
-            shoot = new Label("Shoot: Attack", style);
+            shoot = new Label("Shoot: S", style);
             jump = new Label("Jump: Jump", style);
-            dash = new Label("Dash: D Key", style);
+            dash = new Label("Dash: D", style);
             back = new Label("Go Back", style);
         }
 

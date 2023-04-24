@@ -60,7 +60,7 @@ public class Hud implements Disposable {
             table.setFillParent(true);
 
             skin = new Skin(Gdx.files.internal("skins/comic/comic-ui.json"));
-            coinpouchLabel = new Label(String.format("%04d",coinPouch), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.MAGENTA));
+            coinpouchLabel = new Label(String.format("%04d",coinPouch), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.valueOf("ff0a7f")));
             /*timeLabel = new Label("TIME:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt")), Color.RED));*/
             healthLabel = new Label("HEALTH:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.GREEN));
             coinLabel = new Label("COINS:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.CYAN));
@@ -111,7 +111,7 @@ public class Hud implements Disposable {
             health.begin(ShapeRenderer.ShapeType.Filled);
             if(Player.getHitCounter() == 0) {
                 health.rect(5, 185, 99, 6);
-                health.setColor(Color.MAGENTA);
+                health.setColor(Color.CYAN);
             }
             else if (Player.getHitCounter() == 1){
                 health.rect(5,185,66,6);

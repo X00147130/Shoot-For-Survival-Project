@@ -24,7 +24,7 @@ import com.mygdx.sfs.shootForSurvival;
 public class LevelComplete implements Screen {
 
     //Admin
-    private shootForSurvival run;
+    private shootForSurvival sfs;
     private Viewport screen;
     private Stage stage;
     private int score = 0;
@@ -50,15 +50,15 @@ public class LevelComplete implements Screen {
     public LevelComplete(shootForSurvival game, int level){
         super();
         //admin setup
-        this.run = game;
+        this.sfs = game;
         screen = new FitViewport(shootForSurvival.V_WIDTH,shootForSurvival.V_HEIGHT,new OrthographicCamera());
-        stage = new Stage(screen,run.batch);
+        stage = new Stage(screen, sfs.batch);
         map = level + 1;
         batch = game.batch;
 
-        score = run.getCoins();
+        score = sfs.getCoins();
 
-        background = run.manager.get("backgrounds/lvlcompletebg.png",Texture.class);
+        background = sfs.manager.get("backgrounds/lvlcompletebg.png",Texture.class);
 
 
         //TextButton Style Admin
@@ -105,8 +105,8 @@ public class LevelComplete implements Screen {
         stage.addActor(table);
         Gdx.input.setInputProcessor(stage);
 
-        if(run.music.getVolume() == 0)
-            run.setVolume(0);
+        if(sfs.music.getVolume() == 0)
+            sfs.setVolume(0);
 
         //Setting up ClickListners for buttons
       if(map != 10) {
@@ -115,25 +115,25 @@ public class LevelComplete implements Screen {
               public void clicked(InputEvent event, float x, float y) {
 
                   if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                      run.sound.stop();
-                      run.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
-                      long id = run.sound.play();
-                      if (run.getSoundVolume() != 0) {
-                          run.sound.setVolume(id, run.getSoundVolume());
+                      sfs.sound.stop();
+                      sfs.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                      long id = sfs.sound.play();
+                      if (sfs.getSoundVolume() != 0) {
+                          sfs.sound.setVolume(id, sfs.getSoundVolume());
                       } else {
-                          run.sound.setVolume(id, 0);
+                          sfs.sound.setVolume(id, 0);
                       }
                   }
 
                   if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                      run.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).stop();
-                      run.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(run.getSoundVolume());
+                      sfs.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).stop();
+                      sfs.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(sfs.getSoundVolume());
                   }
 
 
 
-                  run.setScreen(new PlayScreen(run, map));
-                  run.setCoins(0);
+                  sfs.setScreen(new PlayScreen(sfs, map));
+                  sfs.setCoins(0);
               }
           });
       }
@@ -143,22 +143,22 @@ public class LevelComplete implements Screen {
             public void clicked(InputEvent event, float x, float y){
 
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    run.sound.stop();
-                    run.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
-                    long id = run.sound.play();
-                    if (run.getSoundVolume() != 0) {
-                        run.sound.setVolume(id, run.getSoundVolume());
+                    sfs.sound.stop();
+                    sfs.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    long id = sfs.sound.play();
+                    if (sfs.getSoundVolume() != 0) {
+                        sfs.sound.setVolume(id, sfs.getSoundVolume());
                     } else {
-                        run.sound.setVolume(id, 0);
+                        sfs.sound.setVolume(id, 0);
                     }
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    run.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).stop();
-                    run.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(run.getSoundVolume());
+                    sfs.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).stop();
+                    sfs.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(sfs.getSoundVolume());
                 }
 
-                run.setScreen(new MenuScreen(run));
+                sfs.setScreen(new MenuScreen(sfs));
             }
         });
 
@@ -167,25 +167,25 @@ public class LevelComplete implements Screen {
             public void clicked(InputEvent event, float x, float y) {
 
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    run.sound.stop();
-                    run.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    sfs.sound.stop();
+                    sfs.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
 
-                    long id = run.sound.play();
-                    if (run.getSoundVolume() != 0) {
-                        run.sound.setVolume(id, run.getSoundVolume());
+                    long id = sfs.sound.play();
+                    if (sfs.getSoundVolume() != 0) {
+                        sfs.sound.setVolume(id, sfs.getSoundVolume());
                     } else {
-                        run.sound.setVolume(id, 0);
+                        sfs.sound.setVolume(id, 0);
                     }
                 }
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    run.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).stop();
-                    run.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(run.getSoundVolume());
+                    sfs.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).stop();
+                    sfs.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(sfs.getSoundVolume());
                 }
-                run.setScreen(new LevelSelect(run));
-                run.loadMusic("audio/music/yoitrax - Ronin.mp3");
-                if (run.getVolume() != 0) {
-                    run.music.play();
-                    run.setVolume(run.getVolume());
+                sfs.setScreen(new LevelSelect(sfs));
+                sfs.loadMusic("audio/music/yoitrax - Ronin.mp3");
+                if (sfs.getVolume() != 0) {
+                    sfs.music.play();
+                    sfs.setVolume(sfs.getVolume());
                 }
             }
         });
