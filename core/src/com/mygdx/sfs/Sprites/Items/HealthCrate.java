@@ -1,22 +1,43 @@
 package com.mygdx.sfs.Sprites.Items;
 
+import static com.mygdx.sfs.shootForSurvival.PPM;
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
-public class health extends Item{
+public class HealthCrate extends Item{
     public shootForSurvival sfs;
+    private Animation<TextureRegion> healthCrate;
+    private boolean proxy = false;
+    private float x = 0;
 
-    public health(shootForSurvival sfs, PlayScreen screen, float x, float y) {
+    public HealthCrate(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
-        setRegion(new Texture("sprites/health_vial1.png"));
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+
+
+        frames.add(sfs.getHealthAtlas().findRegion("Health4"));
+        frames.add(sfs.getHealthAtlas().findRegion("Health5"));
+        frames.add(sfs.getHealthAtlas().findRegion("Health6"));
+        frames.add(sfs.getHealthAtlas().findRegion("Health7"));
+        frames.add(sfs.getHealthAtlas().findRegion("Health8"));
+
+        healthCrate = new Animation<TextureRegion>(0.2f, frames);
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            setBounds(0, 0, 26 / PPM, 35 / PPM);
+        }
+        frames.clear();
         this.sfs = sfs;
     }
 
@@ -62,5 +83,16 @@ public class health extends Item{
     public void update(float dt) {
         super.update(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+        setProxy();
+    }
+
+    public void setProxy() {
+        setRegion(healthCrate.getKeyFrame(sfs.statetimer, false));
+        if (healthCrate.isAnimationFinished(sfs.statetimer))
+            setRegion(sfs.getHealthAtlas().findRegion("Health8"));
+
+        else
+            setRegion(sfs.getHealthAtlas().findRegion("Health3"));
+
     }
 }

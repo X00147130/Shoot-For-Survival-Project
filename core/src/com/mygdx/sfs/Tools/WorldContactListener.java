@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.Sprites.Items.Bullets;
+import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
@@ -88,10 +89,23 @@ public class WorldContactListener implements ContactListener {
 
 
             case shootForSurvival.ITEM_BIT | shootForSurvival.PLAYER_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.ITEM_BIT)
+                if (fixA.getFilterData().categoryBits == shootForSurvival.ITEM_BIT) {
                     ((Item) fixA.getUserData()).useItem((Player) fixB.getUserData());
-                else
+
+                }
+                else {
                     ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
+                }
+                break;
+
+            case shootForSurvival.KEY_BIT | shootForSurvival.PLAYER_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.KEY_BIT) {
+                    ((Item) fixA.getUserData()).useItem((Player) fixB.getUserData());
+
+                }
+                else {
+                    ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
+                }
                 break;
 
             case shootForSurvival.MONEY_BIT | shootForSurvival.PLAYER_BIT:
@@ -101,12 +115,6 @@ public class WorldContactListener implements ContactListener {
                     ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
                 break;
 
-            case shootForSurvival.KEY_BIT | shootForSurvival.PLAYER_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.KEY_BIT)
-                    ((Item) fixA.getUserData()).useItem((Player) fixB.getUserData());
-                else
-                    ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
-                break;
 
             case shootForSurvival.SKY_BIT | shootForSurvival.PLAYER_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.SKY_BIT)

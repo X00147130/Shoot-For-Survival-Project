@@ -22,7 +22,7 @@ import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Items.ItemDef;
 import com.mygdx.sfs.Sprites.Items.KeyCard;
-import com.mygdx.sfs.Sprites.Items.health;
+import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.Items.Bullets;
 import com.mygdx.sfs.Tools.B2WorldCreator;
@@ -64,6 +64,7 @@ public class PlayScreen implements Screen {
     private Array<Item> items;
     public LinkedBlockingQueue<ItemDef> itemToSpawn;
     private int coins;
+    private int keys;
 
     //finish level variable
     public boolean complete = false;
@@ -133,8 +134,8 @@ public class PlayScreen implements Screen {
     public void handleSpawningItems() {
         if (!itemToSpawn.isEmpty()) {
             ItemDef idef = itemToSpawn.poll();
-            if (idef.type == health.class) {
-                items.add(new health(game,this, idef.position.x, idef.position.y));
+            if (idef.type == HealthCrate.class) {
+                items.add(new HealthCrate(game,this, idef.position.x, idef.position.y));
             }
             if(idef.type == KeyCard.class){
                 items.add(new KeyCard(game,this,idef.position.x, idef.position.y));
@@ -164,6 +165,26 @@ public class PlayScreen implements Screen {
 
     public void setHud(Hud hud) {
         this.hud = hud;
+    }
+
+    public shootForSurvival getGame() {
+        return game;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setMoney(int coins) {
+        this.coins = coins;
+    }
+
+    public int getKeys() {
+        return keys;
+    }
+
+    public void setKeys(int keys) {
+        this.keys = keys;
     }
 
     @Override
@@ -280,18 +301,6 @@ public class PlayScreen implements Screen {
         }
     }
 
-    public shootForSurvival getGame() {
-        return game;
-    }
-
-    public int getCoins() {
-        return coins;
-    }
-
-    public void setCoins(int coins) {
-        this.coins = coins;
-    }
-
     public void update(float dt) {
         if( Gdx.app.getType() == Application.ApplicationType.Android) {
             Gdx.input.setInputProcessor(controller.stage);
@@ -318,6 +327,10 @@ public class PlayScreen implements Screen {
         for (Item item : creator.getVials())
             item.update(dt);
 
+
+        for (Item item : creator.getKeys())
+            item.update(dt);
+
         hud.update(dt);
         game.setHud(hud);
 
@@ -333,7 +346,7 @@ public class PlayScreen implements Screen {
 
         gamecam.update();
         renderer.setView(gamecam);
-        game.setCoins(coins);
+        game.setMoney(coins);
         game.setStatetimer(player.getStateTimer());
     }
 
@@ -450,8 +463,6 @@ public class PlayScreen implements Screen {
     public void hide() {
 
     }
-
-
 
 
     public void coins (){

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="260" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="151">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="260" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="166">
  <tileset firstgid="1" source="Industry4.tsx"/>
  <tileset firstgid="2" source="Industry5.tsx"/>
  <tileset firstgid="3" source="Industry6.tsx"/>
@@ -217,7 +217,7 @@
   <object id="66" x="8224" y="288" width="64" height="160"/>
  </objectgroup>
  <objectgroup id="7" name="Scanner">
-  <object id="149" x="3040" y="416" width="32" height="32"/>
+  <object id="163" x="8160" y="416" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="8" name="Enemies">
   <object id="68" x="7360" y="640" width="32" height="32"/>
@@ -285,7 +285,20 @@
   <object id="129" x="0" y="96" height="96"/>
   <object id="130" x="8320" y="288" height="160"/>
  </objectgroup>
- <objectgroup id="13" name="Screen">
-  <object id="148" x="8160" y="416" width="32" height="32"/>
+ <objectgroup id="13" name="KeyCard">
+  <object id="155" x="2912" y="416" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="14" name="Death">
+  <object id="156" x="2240" y="800" width="256"/>
+  <object id="157" x="1056" y="800" width="128"/>
+  <object id="158" x="544" y="800" width="32"/>
+  <object id="159" x="3616" y="800" width="160"/>
+  <object id="160" x="5248" y="800" width="384"/>
+  <object id="161" x="6464" y="800" width="608"/>
+  <object id="162" x="7680" y="800" width="384"/>
+ </objectgroup>
+ <objectgroup id="15" name="Health">
+  <object id="164" x="3040" y="416" width="32" height="32"/>
+  <object id="165" x="6240" y="576" width="32" height="32"/>
  </objectgroup>
 </map>

@@ -26,16 +26,17 @@ public class shootForSurvival extends Game {
     public static final short BOSS_BIT = 0;
     public static final short GROUND_BIT = 1;
     public static final short PLAYER_BIT = 2;
-    public static final short KEY_BIT = 4;
+    public static final short SCREEN_BIT = 4;
     public static final short FINISH_BIT = 8;
     public static final short BARRIER_BIT = 16;
     public static final short ENEMY_BIT = 32;
     public static final short ITEM_BIT = 64;
-    public static final short RYU_HEAD_BIT = 128;
+    public static final short PLAYER_HEAD_BIT = 128;
     public static final short BULLET_BIT = 256;
     public static final short MONEY_BIT = 512;
     public static final short SKY_BIT = 1024;
-    public static final short SCREEN_BIT = 2048;
+    public static final short KEY_BIT = 2048;
+    public static final short DEATH_BIT = 4096;
 
 
     //variables
@@ -47,7 +48,7 @@ public class shootForSurvival extends Game {
     public boolean mutedS = false;
     public Music music;
     public Sound sound;
-    private int coins = 0;
+    private int money = 0;
     private Hud hud;
     public int jumpCounter = 0;
     public int justTouched = 0;
@@ -60,11 +61,15 @@ public class shootForSurvival extends Game {
     private TextureAtlas bikerAtlas;
     private TextureAtlas cyborgAtlas;
 
+
+    private TextureAtlas rifle1;
+
     private TextureAtlas worker1Atlas;
 
     private TextureAtlas doorAtlas;
     private TextureAtlas keycardAtlas;
     private TextureAtlas moneyAtlas;
+    private TextureAtlas healthAtlas;
     private TextureAtlas screenAtlas;
 
     public TextureAtlas playersChoice;
@@ -99,6 +104,8 @@ public class shootForSurvival extends Game {
         manager.load("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class);
         manager.load("audio/sounds/soundnimja-jump.wav", Sound.class);
         manager.load("audio/sounds/stomp.wav", Sound.class);
+        manager.load("audio/sounds/death.wav", Sound.class);
+
 
         /*Music Loading*/
         manager.load("audio/music/yoitrax - Fuji.mp3", Music.class);
@@ -121,12 +128,15 @@ public class shootForSurvival extends Game {
         bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");//Biker Character
         cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");//Cyborg Character
 
+        rifle1 = new TextureAtlas("sprites/Characters/rifle1.pack");//Cyborg Character
+
         worker1Atlas = new TextureAtlas("sprites/Enemies/worker1.pack");//Worker1 (Enemy) Character
 
         doorAtlas = new TextureAtlas("sprites/Objects/door.pack"); //End Level Door
-        keycardAtlas = new TextureAtlas("sprites/Objects/keycard.pack"); // Key Card
-        moneyAtlas = new TextureAtlas("sprites/Objects/money.pack"); // Money
-        screenAtlas = new TextureAtlas("sprites/Objects/screen.pack"); // Screen At Door
+        keycardAtlas = new TextureAtlas("sprites/Objects/keycard.pack"); //Key Card
+        healthAtlas = new TextureAtlas("sprites/Objects/HealthCrate.pack"); //Health Crate
+        moneyAtlas = new TextureAtlas("sprites/Objects/money.pack"); //Money
+        screenAtlas = new TextureAtlas("sprites/Objects/screen.pack"); //Screen At Door
 
 
         manager.finishLoading();
@@ -161,12 +171,12 @@ public class shootForSurvival extends Game {
         this.soundVolume = soundVolume;
     }
 
-    public int getCoins() {
-        return coins;
+    public int getMoney() {
+        return money;
     }
 
-    public void setCoins(int coins) {
-        this.coins = coins;
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     public void setStatetimer(float statetimer) {
@@ -214,15 +224,18 @@ public class shootForSurvival extends Game {
     public TextureAtlas getCyborgAtlas() {
         return cyborgAtlas;
     }
-
     public TextureAtlas getPlayersChoice() {
         return playersChoice;
     }
 
+    public TextureAtlas getRifle1() {
+        return rifle1;
+    }
 
     public TextureAtlas getWorker1Atlas() {
         return worker1Atlas;
     }
+
 
     public TextureAtlas getDoorAtlas() {
         return doorAtlas;
@@ -233,9 +246,10 @@ public class shootForSurvival extends Game {
     public TextureAtlas getMoneyAtlas() {
         return moneyAtlas;
     }
-    public TextureAtlas getScreenAtlas() {
-        return screenAtlas;
+    public TextureAtlas getHealthAtlas() {
+        return healthAtlas;
     }
+
 
     public void setPlayersChoice(TextureAtlas playersChoice) {
         this.playersChoice = playersChoice;

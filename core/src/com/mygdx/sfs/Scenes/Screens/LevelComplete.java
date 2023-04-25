@@ -56,7 +56,7 @@ public class LevelComplete implements Screen {
         map = level + 1;
         batch = game.batch;
 
-        score = sfs.getCoins();
+        score = sfs.getMoney();
 
         background = sfs.manager.get("backgrounds/lvlcompletebg.png",Texture.class);
 
@@ -133,7 +133,7 @@ public class LevelComplete implements Screen {
 
 
                   sfs.setScreen(new PlayScreen(sfs, map));
-                  sfs.setCoins(0);
+                  sfs.setMoney(0);
               }
           });
       }

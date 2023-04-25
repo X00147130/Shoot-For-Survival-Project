@@ -11,10 +11,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
-import com.mygdx.sfs.Sprites.Items.Coins;
+import com.mygdx.sfs.Sprites.Items.Money;
+import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.KeyCard;
-import com.mygdx.sfs.Sprites.Items.health;
 import com.mygdx.sfs.Sprites.TileObjects.Barrier;
+import com.mygdx.sfs.Sprites.TileObjects.Death;
 import com.mygdx.sfs.Sprites.TileObjects.Finish;
 import com.mygdx.sfs.Sprites.TileObjects.Sky;
 import com.mygdx.sfs.shootForSurvival;
@@ -22,8 +23,8 @@ import com.mygdx.sfs.shootForSurvival;
 public class B2WorldCreator {
         private shootForSurvival sfs;
         private Array<Worker> workers;
-        private Array<Coins> coins;
-        private Array<health> vials;
+        private Array<Money> coins;
+        private Array<HealthCrate> vials;
         private Array<KeyCard> keys;
 
 
@@ -70,11 +71,11 @@ public class B2WorldCreator {
             }
 
 //create Coins fixtures
-            coins = new Array<Coins>();
+            coins = new Array<Money>();
             for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
                 // creation of coin objects
-                coins.add(new Coins(sfs,screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
+                coins.add(new Money(sfs,screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
 
             }
 
@@ -88,11 +89,11 @@ public class B2WorldCreator {
 
 
 //create health fixtures
-            vials = new Array<health>();
-            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
+            vials = new Array<HealthCrate>();
+            for (MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
                 // creation of health vials objects
-                vials.add(new health(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
+                vials.add(new HealthCrate(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
             }
 
 
@@ -117,20 +118,25 @@ public class B2WorldCreator {
 
 
 //create KeyCard fixtures
-           /* keys = new Array<KeyCard>();
-            for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
+            keys = new Array<KeyCard>();
+            for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
-                // creation of health vials objects
+                // creation of Key Card objects
                 keys.add(new KeyCard(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
-            }*/
+            }
 
+
+            for(MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)){
+                new Death(screen,object);
+            }
         }
 
         public Array<Worker> getWorkers() {
             return workers;
         }
-        public Array<health> getVials(){return vials;}
-        public Array<Coins> getCoins(){return coins;}
+        public Array<HealthCrate> getVials(){return vials;}
+        public Array<Money> getCoins(){return coins;}
+        public Array<KeyCard> getKeys(){return keys;}
 
     }
 

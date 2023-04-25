@@ -101,7 +101,7 @@ public class Worker extends Enemy {
 
 
         stateTime = 0;
-        setBounds(getX(), getY(), 26 / PPM , 26 / PPM);
+        setBounds(getX(), getY(), 30 / PPM , 30 / PPM);
         setToDestroy = false;
         destroyed =false;
         enemyHitCounter = 0;
@@ -205,7 +205,7 @@ public class Worker extends Enemy {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(4 / PPM);
+        shape.setRadius(7 / PPM);
         fdef.filter.categoryBits = shootForSurvival.ENEMY_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.FINISH_BIT |

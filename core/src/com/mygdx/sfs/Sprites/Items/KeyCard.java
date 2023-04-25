@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
@@ -26,7 +27,6 @@ public class KeyCard extends Item {
 
     public KeyCard(shootForSurvival sfs, PlayScreen screen, float  x, float y) {
         super(screen, x, y);
-        this.sfs = sfs;
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
@@ -44,7 +44,10 @@ public class KeyCard extends Item {
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             setBounds(0, 0, 26 / PPM, 35 / PPM);
         }
+
+        setBounds(getX(),getY(),40,40);
         frames.clear();
+        this.sfs = sfs;
     }
 
     @Override
@@ -55,8 +58,8 @@ public class KeyCard extends Item {
         body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
-        shape.setRadius(5 / shootForSurvival.PPM);
+        CircleShape shape = new CircleShape();
+        shape.setRadius(6 / shootForSurvival.PPM);
         fdef.filter.categoryBits = shootForSurvival.KEY_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
@@ -70,6 +73,8 @@ public class KeyCard extends Item {
     public void useItem(Player player) {
         destroy();
         Gdx.app.log("KEY", "Collected");
+        count = 1;
+        screen.setKeys(count);
 
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             sfs.loadSound("audio/sounds/coin.mp3");

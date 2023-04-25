@@ -23,8 +23,11 @@ public class Hud implements Disposable {
         public Stage stage;
         private Viewport viewport;
 
-        private int coinPouch;
-        private Label coinpouchLabel;
+        private int walletAmount;
+        private Label walletLabel;
+
+        private int keys;
+        private Label keyAcquired;
 
         /*Label timeLabel;*/
 
@@ -33,8 +36,8 @@ public class Hud implements Disposable {
         private ShapeRenderer background;
         private ShapeRenderer health;
         Label healthLabel;
-        Label coinLabel;
-        private Skin skin;
+        Label wallet;
+        Label key;
 
         static private boolean projectionMatrixSet;
 
@@ -50,7 +53,9 @@ public class Hud implements Disposable {
 
             this.playScreen = playScreen;
 
-            coinPouch = playScreen.getCoins();
+            walletAmount = playScreen.getCoins();
+
+            keys = playScreen.getKeys();
 
             viewport = new FitViewport(shootForSurvival.V_WIDTH,shootForSurvival.V_HEIGHT, new OrthographicCamera());
             stage = new Stage(viewport, sb);
@@ -59,20 +64,34 @@ public class Hud implements Disposable {
             table.top();
             table.setFillParent(true);
 
-            skin = new Skin(Gdx.files.internal("skins/comic/comic-ui.json"));
-            coinpouchLabel = new Label(String.format("%04d",coinPouch), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.valueOf("ff0a7f")));
-            /*timeLabel = new Label("TIME:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/arcade/raw/screen-export.fnt")), Color.RED));*/
+            Table table2 = new Table();
+            table2.top();
+            table2.setFillParent(true);
+
+
+            walletLabel = new Label(String.format("%01d", walletAmount), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.valueOf("ff0a7f")));
+            wallet = new Label("MONEY:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.CYAN));
+
             healthLabel = new Label("HEALTH:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.GREEN));
-            coinLabel = new Label("COINS:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.CYAN));
+
+            keyAcquired = new Label(String.format("%01d", keys), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.valueOf("ff0a7f")));
+            key = new Label("KEYS:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.CYAN));
+
 
             //group for health label scaling
 
             table.add(healthLabel).expandX().left().padLeft(5).top();
-            table.add(coinLabel).padRight(10).right().top();
-            table.add(coinpouchLabel).padRight(10).right().top().spaceRight(11);
+            table.add(wallet).padRight(10).right().top();
+            table.add(walletLabel).padRight(10).right().top().spaceRight(11);
+            table.row();
+            table.row();
 
+
+            table2.add(key).right();
+            table2.add(keyAcquired).padRight(30).right();
 
             stage.addActor(table);
+            stage.addActor(table2);
 
 
 
@@ -87,8 +106,11 @@ public class Hud implements Disposable {
         }
 
         public void update(float dt) {
-            coinPouch = playScreen.getCoins();
-            coinpouchLabel.setText(String.format("%04d",coinPouch));
+            walletAmount = playScreen.getCoins();
+            walletLabel.setText(String.format("%01d", walletAmount));
+
+            keys = playScreen.getKeys();
+            keyAcquired.setText(String.format("%01d", keys));
         }
 
 

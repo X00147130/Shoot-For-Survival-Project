@@ -19,7 +19,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
-import com.mygdx.sfs.Tools.B2WorldCreator;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Player extends Sprite {
@@ -93,46 +92,55 @@ public class Player extends Sprite {
         Array<TextureRegion> frames = new Array<TextureRegion>();
         frames.clear();
 
-        frames.add(sfs.getPlayersChoice().findRegion("Idle1"));
+        /*frames.add(sfs.getPlayersChoice().findRegion("Idle1"));
         frames.add(sfs.getPlayersChoice().findRegion("Idle2"));
         frames.add(sfs.getPlayersChoice().findRegion("Idle3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Idle4"));
+        frames.add(sfs.getPlayersChoice().findRegion("Idle4"));*/
+        frames.add(sfs.getRifle1().findRegion("idle1"));
+        frames.add(sfs.getRifle1().findRegion("idle2"));
+        frames.add(sfs.getRifle1().findRegion("idle3"));
+        frames.add(sfs.getRifle1().findRegion("idle4"));
 
 
         playerStand = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.LOOP);
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 18 / PPM, 20 / PPM);
-        }
+
         frames.clear();
         //Creating Animation loop for Player running
         frames.clear();
 
-        frames.add(sfs.getPlayersChoice().findRegion("Run1"));
+        /*frames.add(sfs.getPlayersChoice().findRegion("Run1"));
         frames.add(sfs.getPlayersChoice().findRegion("Run2"));
         frames.add(sfs.getPlayersChoice().findRegion("Run3"));
         frames.add(sfs.getPlayersChoice().findRegion("Run4"));
         frames.add(sfs.getPlayersChoice().findRegion("Run5"));
-        frames.add(sfs.getPlayersChoice().findRegion("Run6"));
+        frames.add(sfs.getPlayersChoice().findRegion("Run6"));*/
+        frames.add(sfs.getRifle1().findRegion("run1"));
+        frames.add(sfs.getRifle1().findRegion("run2"));
+        frames.add(sfs.getRifle1().findRegion("run3"));
+        frames.add(sfs.getRifle1().findRegion("run4"));
+        frames.add(sfs.getRifle1().findRegion("run5"));
+        frames.add(sfs.getRifle1().findRegion("run6"));
 
         playerRun = new Animation<TextureRegion>(0.2f, frames);
         setBounds(0, 0, 18 / PPM, 20 / PPM);
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 26 / PPM, 35 / PPM);
-        }
+
         frames.clear();
 
         //Creating Jump Animation loop
         frames.clear();
 
-        frames.add(sfs.getPlayersChoice().findRegion("Jump1"));
+        /*frames.add(sfs.getPlayersChoice().findRegion("Jump1"));
         frames.add(sfs.getPlayersChoice().findRegion("Jump2"));
         frames.add(sfs.getPlayersChoice().findRegion("Jump3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Jump4"));
+        frames.add(sfs.getPlayersChoice().findRegion("Jump4"));*/
+
+        frames.add(sfs.getRifle1().findRegion("jump1"));
+        frames.add(sfs.getRifle1().findRegion("jump2"));
+        frames.add(sfs.getRifle1().findRegion("jump3"));
+        frames.add(sfs.getRifle1().findRegion("jump4"));
 
         playerJump = new Animation<TextureRegion>(2f, frames);
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 26 / PPM, 35 / PPM);
-        }
+
         frames.clear();
 
 
@@ -147,9 +155,7 @@ public class Player extends Sprite {
         frames.add(sfs.getPlayersChoice().findRegion("Djump6"));
 
         playerDjump = new Animation<TextureRegion>(1f, frames);
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 26 / PPM, 35 / PPM);
-        }
+
         frames.clear();
         //Player death animation
 
@@ -161,9 +167,7 @@ public class Player extends Sprite {
         frames.add(sfs.getPlayersChoice().findRegion("Die6"));
 
         playerDead = new Animation<TextureRegion>(0.3f, frames);
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 26 / PPM, 35 / PPM);
-        }
+
         frames.clear();
 
 
@@ -175,19 +179,17 @@ public class Player extends Sprite {
         frames.add(sfs.getPlayersChoice().findRegion("Happy5"));
         frames.add(sfs.getPlayersChoice().findRegion("Happy6"));
         playerComplete = new Animation<TextureRegion>(0.2f, frames);
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 26 / PPM, 35 / PPM);
-        }
+
         frames.clear();
 
         //Player Hurt
         frames.add(sfs.getPlayersChoice().findRegion("Hurt1"));
         frames.add(sfs.getPlayersChoice().findRegion("Hurt2"));
         playerHurt = new Animation<TextureRegion>(0.2f, frames);
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 26 / PPM, 35 / PPM);
-        }
+
         frames.clear();
+
+        setBounds(getX(),getY(),30 / sfs.PPM, 30 / sfs.PPM);
 
     }
 
@@ -196,7 +198,9 @@ public class Player extends Sprite {
             setPosition(b2body.getPosition().x - getWidth() /2, b2body.getPosition().y - getHeight() /2);
         setPosition(b2body.getPosition().x - getWidth() /2, b2body.getPosition().y - getHeight() /3);
         setRegion(getFrame(dt));
+        isDead();
         if(getY() < 0){
+            sfs.music.stop();
             playerIsDead = true;
             b2body.applyLinearImpulse(new Vector2(0, 20f), b2body.getWorldCenter(), true);
         }
@@ -289,7 +293,7 @@ public class Player extends Sprite {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(6 / PPM);
+        shape.setRadius(7 / PPM);
         fdef.filter.categoryBits = shootForSurvival.PLAYER_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.FINISH_BIT |
@@ -298,7 +302,8 @@ public class Player extends Sprite {
                 shootForSurvival.SKY_BIT|
                 shootForSurvival.ITEM_BIT|
                 shootForSurvival.KEY_BIT|
-                shootForSurvival.BOSS_BIT;
+                shootForSurvival.BOSS_BIT|
+                shootForSurvival.DEATH_BIT;
 
         fdef.shape = shape;
         fdef.restitution = 0f;
@@ -310,7 +315,7 @@ public class Player extends Sprite {
     //Player Head(Used for colliding with bricks
         EdgeShape head = new EdgeShape();
         head.set(new Vector2(-2 / PPM, 6 / PPM), new Vector2(2 / PPM, 6 / PPM));
-        fdef.filter.categoryBits=shootForSurvival.RYU_HEAD_BIT;
+        fdef.filter.categoryBits=shootForSurvival.PLAYER_HEAD_BIT;
         fdef.shape = head;
         fdef.isSensor = true;
 
@@ -370,7 +375,7 @@ public class Player extends Sprite {
         else{   //Player death
             sfs.music.stop();
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
+                sfs.loadSound("audio/sounds/death.wav");
                 long id = sfs.sound.play();
                 if (sfs.getSoundVolume() != 0) {
                     sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -379,12 +384,13 @@ public class Player extends Sprite {
                 }
             }
             if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                sfs.manager.get("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class).play(sfs.getSoundVolume());
+                sfs.manager.get("audio/sounds/death.wav", Sound.class).play(sfs.getSoundVolume());
             }
 
             playerIsDead = true;
             Filter filter = new Filter();
-            filter.maskBits = shootForSurvival.GROUND_BIT;
+            filter.maskBits = shootForSurvival.GROUND_BIT|
+            shootForSurvival.DEATH_BIT;
             for (Fixture fixture : b2body.getFixtureList())
                 fixture.setFilterData(filter);
             b2body.applyLinearImpulse(new Vector2(-1f,2f), b2body.getWorldCenter(), true);

@@ -30,8 +30,8 @@ public class Bullets {
 
         world = screen.getWorld();
         this.sfs = sfs;
-        this.y = y;
-        this.x = x;
+        this.y = y + 5 / sfs.PPM;
+        this.x = x + 2 / sfs.PPM;
         this.screen = screen;
         clip = new Texture("sprites/bullet.png");
         destroyed = false;

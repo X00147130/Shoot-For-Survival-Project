@@ -16,13 +16,13 @@ import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
-public class Coins extends Item {
+public class Money extends Item {
     private static int count = 0;
     public shootForSurvival sfs;
     private Animation<TextureRegion> money;
 
 
-    public Coins(shootForSurvival sfs, PlayScreen screen, float  x, float y) {
+    public Money(shootForSurvival sfs, PlayScreen screen, float  x, float y) {
         super(screen, x, y);
         this.sfs = sfs;
 
@@ -65,7 +65,7 @@ public class Coins extends Item {
     public void useItem(Player player) {
         destroy();
         count += 100;
-        screen.setCoins(count);
+        screen.setMoney(count);
         Gdx.app.log("Coin", "destroyed");
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             sfs.loadSound("audio/sounds/coin.mp3");
