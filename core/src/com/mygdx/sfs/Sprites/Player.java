@@ -23,7 +23,7 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Player extends Sprite {
     //State Variables for animation purposes
-    public enum State{ FALLING, JUMPING, DOUBLEJUMP, STANDING, HURT, RUNNING, DEAD, COMPLETE}
+    public enum State{ FALLING, JUMPING, DOUBLEJUMP, STANDING, RUNNING, DEAD, COMPLETE}
     public State currentState;
     public State previousState;
 
@@ -42,7 +42,6 @@ public class Player extends Sprite {
     private Animation <TextureRegion> playerDjump;
     private Animation <TextureRegion> playerDead;
     private Animation <TextureRegion> playerComplete;
-    private Animation <TextureRegion> playerHurt;
     private boolean runningRight;
     private float stateTimer;
 
@@ -76,75 +75,60 @@ public class Player extends Sprite {
 
         this.screen = screen;
 
-        //initialising health variables
+/*initialising health variables*/
         health = 100;
         damage = 50;
         hitCounter = 0;
 
 
-        //Animation variables initialization
+/*Animation variables initialization*/
         currentState = State.STANDING;
         previousState = State.STANDING;
         stateTimer = 0;
         runningRight = true;
 
-        //Animation initialization for Player Standing
+/*Standing Animation*/
+
         Array<TextureRegion> frames = new Array<TextureRegion>();
         frames.clear();
 
-        /*frames.add(sfs.getPlayersChoice().findRegion("Idle1"));
-        frames.add(sfs.getPlayersChoice().findRegion("Idle2"));
-        frames.add(sfs.getPlayersChoice().findRegion("Idle3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Idle4"));*/
-        frames.add(sfs.getRifle1().findRegion("idle1"));
-        frames.add(sfs.getRifle1().findRegion("idle2"));
-        frames.add(sfs.getRifle1().findRegion("idle3"));
-        frames.add(sfs.getRifle1().findRegion("idle4"));
-
+        frames.add(sfs.getPlayersChoice().findRegion("idle1"));
+        frames.add(sfs.getPlayersChoice().findRegion("idle2"));
+        frames.add(sfs.getPlayersChoice().findRegion("idle3"));
+        frames.add(sfs.getPlayersChoice().findRegion("idle4"));
 
         playerStand = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.LOOP);
 
         frames.clear();
-        //Creating Animation loop for Player running
+/*Running Animation*/
         frames.clear();
 
-        /*frames.add(sfs.getPlayersChoice().findRegion("Run1"));
-        frames.add(sfs.getPlayersChoice().findRegion("Run2"));
-        frames.add(sfs.getPlayersChoice().findRegion("Run3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Run4"));
-        frames.add(sfs.getPlayersChoice().findRegion("Run5"));
-        frames.add(sfs.getPlayersChoice().findRegion("Run6"));*/
-        frames.add(sfs.getRifle1().findRegion("run1"));
-        frames.add(sfs.getRifle1().findRegion("run2"));
-        frames.add(sfs.getRifle1().findRegion("run3"));
-        frames.add(sfs.getRifle1().findRegion("run4"));
-        frames.add(sfs.getRifle1().findRegion("run5"));
-        frames.add(sfs.getRifle1().findRegion("run6"));
+        frames.add(sfs.getPlayersChoice().findRegion("run1"));
+        frames.add(sfs.getPlayersChoice().findRegion("run2"));
+        frames.add(sfs.getPlayersChoice().findRegion("run3"));
+        frames.add(sfs.getPlayersChoice().findRegion("run4"));
+        frames.add(sfs.getPlayersChoice().findRegion("run5"));
+        frames.add(sfs.getPlayersChoice().findRegion("run6"));
 
         playerRun = new Animation<TextureRegion>(0.2f, frames);
         setBounds(0, 0, 18 / PPM, 20 / PPM);
 
         frames.clear();
 
-        //Creating Jump Animation loop
+/*Jump Animation*/
         frames.clear();
 
-        /*frames.add(sfs.getPlayersChoice().findRegion("Jump1"));
-        frames.add(sfs.getPlayersChoice().findRegion("Jump2"));
-        frames.add(sfs.getPlayersChoice().findRegion("Jump3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Jump4"));*/
-
-        frames.add(sfs.getRifle1().findRegion("jump1"));
-        frames.add(sfs.getRifle1().findRegion("jump2"));
-        frames.add(sfs.getRifle1().findRegion("jump3"));
-        frames.add(sfs.getRifle1().findRegion("jump4"));
+        frames.add(sfs.getPlayersChoice().findRegion("jump1"));
+        frames.add(sfs.getPlayersChoice().findRegion("jump2"));
+        frames.add(sfs.getPlayersChoice().findRegion("jump3"));
+        frames.add(sfs.getPlayersChoice().findRegion("jump4"));
 
         playerJump = new Animation<TextureRegion>(2f, frames);
 
         frames.clear();
 
 
-        /*Players Double Jump animation*/
+/*Players Double Jump animation*/
         frames.clear();
 
         frames.add(sfs.getPlayersChoice().findRegion("Djump1"));
@@ -157,7 +141,7 @@ public class Player extends Sprite {
         playerDjump = new Animation<TextureRegion>(1f, frames);
 
         frames.clear();
-        //Player death animation
+/*Player death animation*/
 
         frames.add(sfs.getPlayersChoice().findRegion("Die1"));
         frames.add(sfs.getPlayersChoice().findRegion("Die2"));
@@ -171,21 +155,14 @@ public class Player extends Sprite {
         frames.clear();
 
 
-        //Level Complete
-        frames.add(sfs.getPlayersChoice().findRegion("Happy1"));
+/*Level Complete Animation*/
+        /*frames.add(sfs.getPlayersChoice().findRegion("Happy1"));*/
         frames.add(sfs.getPlayersChoice().findRegion("Happy2"));
         frames.add(sfs.getPlayersChoice().findRegion("Happy3"));
         frames.add(sfs.getPlayersChoice().findRegion("Happy4"));
         frames.add(sfs.getPlayersChoice().findRegion("Happy5"));
         frames.add(sfs.getPlayersChoice().findRegion("Happy6"));
         playerComplete = new Animation<TextureRegion>(0.2f, frames);
-
-        frames.clear();
-
-        //Player Hurt
-        frames.add(sfs.getPlayersChoice().findRegion("Hurt1"));
-        frames.add(sfs.getPlayersChoice().findRegion("Hurt2"));
-        playerHurt = new Animation<TextureRegion>(0.2f, frames);
 
         frames.clear();
 
@@ -234,10 +211,6 @@ public class Player extends Sprite {
                 region = playerComplete.getKeyFrame(stateTimer, true);
                 break;
 
-            case HURT:
-                region = playerHurt.getKeyFrame(stateTimer, false);
-                break;
-
             case FALLING:
 
             case STANDING:
@@ -276,9 +249,6 @@ public class Player extends Sprite {
 
         else if(screen.complete == true)
             return State.COMPLETE;
-
-        else if(hit == true && stateTimer > 3)
-            return State.HURT;
 
         else
             return State.STANDING;

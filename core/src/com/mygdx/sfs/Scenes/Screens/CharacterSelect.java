@@ -66,12 +66,12 @@ public class CharacterSelect implements Screen {
         /*initialising and instantiating of animatimation arrays*/
         characterSprites = new ArrayList<TextureAtlas.AtlasRegion>(3);
 
-        characterSprites.add(sfs.getBikerAtlas().findRegion("Idle1"));
+        characterSprites.add(sfs.getbikerRifle1().findRegion("idle1"));
 
 
-        characterSprites.add(sfs.getPunkAtlas().findRegion("Idle1"));
+        characterSprites.add(sfs.getpunkRifle1().findRegion("idle1"));
 
-        characterSprites.add(sfs.getCyborgAtlas().findRegion("Idle1"));
+        characterSprites.add(sfs.getcyborgRifle1().findRegion("idle1"));
 
 
         //Setup of Screen
@@ -197,15 +197,15 @@ public class CharacterSelect implements Screen {
                     }
                     switch (i) {
                         case 0:
-                            selected = sfs.getBikerAtlas();
+                            selected = sfs.getbikerRifle1();
                             break;
 
                         case 1:
-                            selected = sfs.getPunkAtlas();
+                            selected = sfs.getpunkRifle1();
                             break;
 
                         case 2:
-                            selected = sfs.getCyborgAtlas();
+                            selected = sfs.getcyborgRifle1();
                             break;
 
                         default:
@@ -332,15 +332,15 @@ public class CharacterSelect implements Screen {
                 }
                 switch (i) {
                     case 0:
-                        selected = sfs.getBikerAtlas();
+                        selected = sfs.getbikerRifle1();
                         break;
 
                     case 1:
-                        selected = sfs.getPunkAtlas();
+                        selected = sfs.getpunkRifle1();
                         break;
 
                     case 2:
-                        selected = sfs.getCyborgAtlas();
+                        selected = sfs.getcyborgRifle1();
                         break;
 
                     default:

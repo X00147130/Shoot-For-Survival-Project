@@ -331,6 +331,7 @@ public class PlayScreen implements Screen {
         for (Item item : creator.getKeys())
             item.update(dt);
 
+
         hud.update(dt);
         game.setHud(hud);
 
