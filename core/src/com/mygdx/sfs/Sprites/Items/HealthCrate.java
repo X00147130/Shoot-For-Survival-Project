@@ -66,7 +66,7 @@ public class HealthCrate extends Item{
         destroy();
         Player.setHitCounter(0);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            sfs.loadSound("audio/sounds/healthDrink.wav");
+            sfs.loadSound("audio/sounds/health drink.mp3");
             long id = sfs.sound.play();
             if (sfs.getSoundVolume() != 0)
                 sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -75,7 +75,7 @@ public class HealthCrate extends Item{
             }
         }
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            sfs.manager.get("audio/sounds/healthDrink.wav", Sound.class).play(sfs.getSoundVolume());
+            sfs.manager.get("audio/sounds/health drink.mp3", Sound.class).play(sfs.getSoundVolume());
         }
     }
 

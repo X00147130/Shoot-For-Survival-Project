@@ -43,8 +43,8 @@ public class WorldContactListener implements ContactListener {
             case shootForSurvival.ENEMY_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Bullets) fixA.getUserData()).destroy();
-                    ((Bullets) fixA.getUserData()).dispose();
                     ((Worker) fixB.getUserData()).shot();
+                    ((Bullets) fixA.getUserData()).dispose();
                 }
                 else {
                     ((Bullets) fixB.getUserData()).destroy();

@@ -143,12 +143,12 @@ public class Player extends Sprite {
         frames.clear();
 /*Player death animation*/
 
-        frames.add(sfs.getPlayersChoice().findRegion("Die1"));
-        frames.add(sfs.getPlayersChoice().findRegion("Die2"));
-        frames.add(sfs.getPlayersChoice().findRegion("Die3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Die4"));
-        frames.add(sfs.getPlayersChoice().findRegion("Die5"));
-        frames.add(sfs.getPlayersChoice().findRegion("Die6"));
+        frames.add(sfs.getPlayersChoice().findRegion("die1"));
+        frames.add(sfs.getPlayersChoice().findRegion("die2"));
+        frames.add(sfs.getPlayersChoice().findRegion("die3"));
+        frames.add(sfs.getPlayersChoice().findRegion("die4"));
+        frames.add(sfs.getPlayersChoice().findRegion("die5"));
+        frames.add(sfs.getPlayersChoice().findRegion("die6"));
 
         playerDead = new Animation<TextureRegion>(0.3f, frames);
 
@@ -156,12 +156,12 @@ public class Player extends Sprite {
 
 
 /*Level Complete Animation*/
-        /*frames.add(sfs.getPlayersChoice().findRegion("Happy1"));*/
-        frames.add(sfs.getPlayersChoice().findRegion("Happy2"));
-        frames.add(sfs.getPlayersChoice().findRegion("Happy3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Happy4"));
-        frames.add(sfs.getPlayersChoice().findRegion("Happy5"));
-        frames.add(sfs.getPlayersChoice().findRegion("Happy6"));
+        frames.add(sfs.getPlayersChoice().findRegion("happy1"));
+        frames.add(sfs.getPlayersChoice().findRegion("happy2"));
+        frames.add(sfs.getPlayersChoice().findRegion("happy3"));
+        frames.add(sfs.getPlayersChoice().findRegion("happy4"));
+        frames.add(sfs.getPlayersChoice().findRegion("happy5"));
+        frames.add(sfs.getPlayersChoice().findRegion("happy6"));
         playerComplete = new Animation<TextureRegion>(0.2f, frames);
 
         frames.clear();
@@ -328,7 +328,7 @@ public class Player extends Sprite {
             }
 
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                sfs.loadSound("audio/sounds/getting-hit.wav");
+                sfs.loadSound("audio/sounds/getting-hit.mp3");
                 long id = sfs.sound.play();
                 if (sfs.getSoundVolume() != 0) {
                     sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -337,7 +337,7 @@ public class Player extends Sprite {
                 }
             }
             if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                sfs.manager.get("audio/sounds/getting-hit.wav", Sound.class).play(sfs.getSoundVolume());
+                sfs.manager.get("audio/sounds/getting-hit.mp3", Sound.class).play(sfs.getSoundVolume());
             }
 
             hitCounter++;

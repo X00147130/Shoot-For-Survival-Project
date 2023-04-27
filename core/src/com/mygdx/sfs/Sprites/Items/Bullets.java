@@ -3,6 +3,7 @@ package com.mygdx.sfs.Sprites.Items;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -15,7 +16,7 @@ import com.mygdx.sfs.shootForSurvival;
 public class Bullets {
 
     public static final float SPEED = 3f;
-    private Texture clip;
+    private TextureRegion clip;
     private shootForSurvival sfs;
     private FixtureDef bulletDef;
     public Body bulletBody;
@@ -33,7 +34,7 @@ public class Bullets {
         this.y = y + 5 / sfs.PPM;
         this.x = x + 2 / sfs.PPM;
         this.screen = screen;
-        clip = new Texture("sprites/bullet.png");
+        clip = sfs.getPistolBullets().findRegion("1");
         destroyed = false;
         defineBullet();
     }
@@ -84,11 +85,10 @@ public class Bullets {
 
     public void render(SpriteBatch batch){
         batch.begin();
-        batch.draw(clip, bulletBody.getPosition().x, bulletBody.getPosition().y,clip.getWidth() / sfs.PPM,clip.getHeight() / sfs.PPM);
+        batch.draw(clip, bulletBody.getPosition().x, bulletBody.getPosition().y,clip.getRegionWidth() / sfs.PPM,clip.getRegionHeight() / sfs.PPM);
         batch.end();
 
     }
     public void dispose(){
-        clip.dispose();
     }
 }

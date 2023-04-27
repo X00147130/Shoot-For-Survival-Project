@@ -1,5 +1,6 @@
 package com.mygdx.sfs;
 
+import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -66,6 +67,7 @@ public class shootForSurvival extends Game {
     private TextureAtlas punkRifle1;
     private TextureAtlas cyborgRifle1;
 
+    private TextureAtlas pistolBullets;
     private TextureAtlas rifleBullets;
 
     private TextureAtlas worker1Atlas;
@@ -100,8 +102,8 @@ public class shootForSurvival extends Game {
 
         /*Sound Loading*/
         manager.load("audio/sounds/coin.mp3", Sound.class);
-        manager.load("audio/sounds/getting-hit.wav", Sound.class);
-        manager.load("audio/sounds/healthDrink.wav", Sound.class);
+        manager.load("audio/sounds/getting-hit.mp3", Sound.class);
+        manager.load("audio/sounds/health drink.mp3", Sound.class);
         manager.load("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class);
         manager.load("audio/sounds/mixkit-fast-sword-whoosh-2792.wav", Sound.class);
         manager.load("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class);
@@ -109,6 +111,8 @@ public class shootForSurvival extends Game {
         manager.load("audio/sounds/soundnimja-jump.wav", Sound.class);
         manager.load("audio/sounds/stomp.wav", Sound.class);
         manager.load("audio/sounds/death.wav", Sound.class);
+        manager.load("audio/sounds/pistol shot.mp3", Sound.class);
+
 
 
         /*Music Loading*/
@@ -128,14 +132,15 @@ public class shootForSurvival extends Game {
         manager.load("backgrounds/deadbg.png", Texture.class); // game over
         manager.load("sprites/bullet.png", Texture.class); // bullet
 
-        punkAtlas = new TextureAtlas("sprites/Characters/Punk.pack");//Punk Character
-        bikerAtlas = new TextureAtlas("sprites/Characters/Biker.pack");//Biker Character
-        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg.pack");//Cyborg Character
+        punkAtlas = new TextureAtlas("sprites/Characters/punkPistol1.pack");//Punk Character
+        bikerAtlas = new TextureAtlas("sprites/Characters/bikerPistol1.pack");//Biker Character
+        cyborgAtlas = new TextureAtlas("sprites/Characters/cyborgPistol1.pack");//Cyborg Character
 
         bikerRifle1 = new TextureAtlas("sprites/Characters/bikerRifle1.pack");//Biker Character with rifle 1
         punkRifle1 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 1
         cyborgRifle1 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 1
 
+        pistolBullets = new TextureAtlas("sprites/Bullets/pistolBullets.pack"); //Pistol bullets
         /*rifleBullets = new TextureAtlas("sprites/Bullets/bullets.pack"); //Rifle bullets*/
 
 
@@ -247,6 +252,9 @@ public class shootForSurvival extends Game {
         return cyborgRifle1;
     }
 
+    public TextureAtlas getPistolBullets() {
+        return pistolBullets;
+    }
     public TextureAtlas getRifleBullets() {
         return rifleBullets;
     }

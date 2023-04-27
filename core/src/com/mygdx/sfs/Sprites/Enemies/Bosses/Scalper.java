@@ -187,7 +187,7 @@ public class Scalper extends Enemy {
             }
 
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                sfs.loadSound("audio/sounds/getting-hit.wav");
+                sfs.loadSound("audio/sounds/getting-hit.mp3");
                 long id = sfs.sound.play();
                 if (sfs.getSoundVolume() != 0) {
                     sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -196,7 +196,7 @@ public class Scalper extends Enemy {
                 }
             }
             if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                sfs.manager.get("audio/sounds/getting-hit.wav", Sound.class).play(sfs.getSoundVolume());
+                sfs.manager.get("audio/sounds/getting-hit.mp3", Sound.class).play(sfs.getSoundVolume());
             }
 
             hitCounter++;
@@ -204,7 +204,7 @@ public class Scalper extends Enemy {
 
             setToDestroy = true;
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                sfs.loadSound("audio/sounds/stomp.wav");
+                sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
                 long id = sfs.sound.play();
                 if (sfs.getSoundVolume() != 0) {
                     sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -214,7 +214,7 @@ public class Scalper extends Enemy {
             }
 
             if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                sfs.manager.get("audio/sounds/stomp.wav", Sound.class).play(sfs.getSoundVolume());
+                sfs.manager.get("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class).play(sfs.getSoundVolume());
             }
             hitCounter = 10;
         }
