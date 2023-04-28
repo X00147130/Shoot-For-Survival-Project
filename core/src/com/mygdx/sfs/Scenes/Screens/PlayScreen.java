@@ -23,6 +23,7 @@ import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Items.ItemDef;
 import com.mygdx.sfs.Sprites.Items.KeyCard;
 import com.mygdx.sfs.Sprites.Items.HealthCrate;
+import com.mygdx.sfs.Sprites.Items.Rifles;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.Items.Bullets;
 import com.mygdx.sfs.Tools.B2WorldCreator;
@@ -139,6 +140,9 @@ public class PlayScreen implements Screen {
             }
             if(idef.type == KeyCard.class){
                 items.add(new KeyCard(game,this,idef.position.x, idef.position.y));
+            }
+            if(idef.type == Rifles.class){
+                items.add(new Rifles(game,this,idef.position.x, idef.position.y));
             }
         }
     }
@@ -335,8 +339,10 @@ public class PlayScreen implements Screen {
         for (Item item : creator.getVials())
             item.update(dt);
 
-
         for (Item item : creator.getKeys())
+            item.update(dt);
+
+        for (Item item : creator.getRifles())
             item.update(dt);
 
 
@@ -398,6 +404,18 @@ public class PlayScreen implements Screen {
                 item.draw(game.batch);
             }
         }
+
+        if (creator.getKeys().notEmpty()) {
+            for (Item item : creator.getKeys()) {
+                item.draw(game.batch);
+            }
+        }
+
+        /*if (creator.getRifles().notEmpty()) {
+            for (Item item : creator.getRifles()) {
+                item.draw(game.batch);
+            }
+        }*/
 
         game.batch.end();
 

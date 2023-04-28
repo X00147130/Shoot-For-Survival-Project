@@ -42,6 +42,7 @@ public class CharacterSelect implements Screen {
 
     //Selection, Labels and buttons
     private TextureAtlas selected;
+    private TextureAtlas selectedRifle;
     private Image left, right;
     private TextButton choose;
     private Table table;
@@ -74,8 +75,6 @@ public class CharacterSelect implements Screen {
 
 
         //Setup of Screen
-        TextButton.TextButtonStyle textStyle;
-        BitmapFont buttonFont;
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
         Label.LabelStyle font2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), MAGENTA);
 
@@ -197,19 +196,23 @@ public class CharacterSelect implements Screen {
                     switch (i) {
                         case 0:
                             selected = sfs.getBikerAtlas();
+                            selectedRifle = sfs.getBikerRifle1();
                             break;
 
                         case 1:
                             selected = sfs.getPunkAtlas();
+                            selectedRifle = sfs.getPunkRifle1();
                             break;
 
                         case 2:
                             selected = sfs.getCyborgAtlas();
+                            selectedRifle = sfs.getCyborgRifle1();
                             break;
 
                         default:
                     }
                     sfs.setPlayersChoice(selected);
+                    sfs.setRifleChoice(selectedRifle);
                     sfs.setScreen(new PlayScreen(sfs, 1));
                 }
             });
@@ -332,19 +335,23 @@ public class CharacterSelect implements Screen {
                 switch (i) {
                     case 0:
                         selected = sfs.getBikerAtlas();
+                        selectedRifle = sfs.getBikerRifle1();
                         break;
 
                     case 1:
                         selected = sfs.getPunkAtlas();
+                        selectedRifle = sfs.getPunkRifle1();
                         break;
 
                     case 2:
                         selected = sfs.getCyborgAtlas();
+                        selectedRifle = sfs.getCyborgRifle1();
                         break;
 
                     default:
                 }
                 sfs.setPlayersChoice(selected);
+                sfs.setRifleChoice(selectedRifle);
                 sfs.setScreen(new PlayScreen(sfs, 1));
             }
         }

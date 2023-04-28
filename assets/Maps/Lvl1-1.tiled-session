@@ -425,10 +425,10 @@
         },
         "Industry/Map/Lvl1-1.tmx": {
             "scale": 0.75,
-            "selectedLayer": 6,
+            "selectedLayer": 13,
             "viewCenter": {
-                "x": 3192,
-                "y": 393.33333333333337
+                "x": 3277.333333333333,
+                "y": 389.33333333333337
             }
         },
         "Industry/Map/Screen2.tsx": {

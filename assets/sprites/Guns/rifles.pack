@@ -1,5 +1,5 @@
 
-Rifles.png
+rifles.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -9,67 +9,67 @@ repeat: none
   size: 31, 15
   orig: 31, 15
   offset: 0, 0
-  index: 1
+  index: -1
 5
   rotate: false
   xy: 34, 15
   size: 28, 16
   orig: 28, 16
   offset: 0, 0
-  index: 1
+  index: -1
 9
   rotate: false
   xy: 64, 15
   size: 27, 16
   orig: 27, 16
   offset: 0, 0
-  index: 1
+  index: -1
 7
   rotate: false
   xy: 93, 17
   size: 27, 14
   orig: 27, 14
   offset: 0, 0
-  index: 1
+  index: -1
 8
   rotate: false
   xy: 93, 1
   size: 25, 14
   orig: 25, 14
   offset: 0, 0
-  index: 1
+  index: -1
 4
   rotate: false
   xy: 1, 3
   size: 29, 11
   orig: 29, 11
   offset: 0, 0
-  index: 1
+  index: -1
 10
   rotate: false
   xy: 32, 1
   size: 26, 12
   orig: 26, 12
   offset: 0, 0
-  index: 1
+  index: -1
 3
   rotate: false
   xy: 122, 22
   size: 27, 9
   orig: 27, 9
   offset: 0, 0
-  index: 1
+  index: -1
 1
   rotate: false
   xy: 60, 6
   size: 26, 7
   orig: 26, 7
   offset: 0, 0
-  index: 1
+  index: -1
 2
   rotate: false
   xy: 151, 23
   size: 22, 8
   orig: 22, 8
   offset: 0, 0
-  index: 1
+  index: -1

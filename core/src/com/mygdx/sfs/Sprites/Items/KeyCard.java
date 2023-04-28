@@ -45,7 +45,7 @@ public class KeyCard extends Item {
             setBounds(0, 0, 26 / PPM, 35 / PPM);
         }
 
-        setBounds(getX(),getY(),40,40);
+        setBounds(getX(),getY(),30 / sfs.PPM,30 / sfs.PPM);
         frames.clear();
         this.sfs = sfs;
     }

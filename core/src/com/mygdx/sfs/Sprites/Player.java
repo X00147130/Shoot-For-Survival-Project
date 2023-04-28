@@ -42,8 +42,15 @@ public class Player extends Sprite {
     private Animation <TextureRegion> playerDjump;
     private Animation <TextureRegion> playerDead;
     private Animation <TextureRegion> playerComplete;
+    private Animation <TextureRegion> playerStand2;
+    private Animation <TextureRegion> playerRun2;
+    private Animation <TextureRegion> playerJump2;
+    private Animation <TextureRegion> playerDjump2;
+    private Animation <TextureRegion> playerDead2;
+    private Animation <TextureRegion> playerComplete2;
     private boolean runningRight;
     private float stateTimer;
+    private boolean rifle = false;
 
 
     //boolean tests
@@ -167,6 +174,87 @@ public class Player extends Sprite {
         frames.clear();
 
         setBounds(getX(),getY(),30 / sfs.PPM, 30 / sfs.PPM);
+/*rifle animations*/
+/*Standing Animation*/
+
+        Array<TextureRegion> frames2 = new Array<TextureRegion>();
+        frames2.clear();
+
+        frames2.add(sfs.getRifleChoice().findRegion("idle1"));
+        frames2.add(sfs.getRifleChoice().findRegion("idle2"));
+        frames2.add(sfs.getRifleChoice().findRegion("idle3"));
+        frames2.add(sfs.getRifleChoice().findRegion("idle4"));
+
+        playerStand2 = new Animation<TextureRegion>(0.3f, frames2, Animation.PlayMode.LOOP);
+
+        frames2.clear();
+        /*Running Animation*/
+        frames2.clear();
+
+        frames2.add(sfs.getRifleChoice().findRegion("run1"));
+        frames2.add(sfs.getRifleChoice().findRegion("run2"));
+        frames2.add(sfs.getRifleChoice().findRegion("run3"));
+        frames2.add(sfs.getRifleChoice().findRegion("run4"));
+        frames2.add(sfs.getRifleChoice().findRegion("run5"));
+        frames2.add(sfs.getRifleChoice().findRegion("run6"));
+
+        playerRun2 = new Animation<TextureRegion>(0.2f, frames2);
+        setBounds(0, 0, 18 / PPM, 20 / PPM);
+
+        frames2.clear();
+
+        /*Jump Animation*/
+        frames2.clear();
+
+        frames2.add(sfs.getRifleChoice().findRegion("jump1"));
+        frames2.add(sfs.getRifleChoice().findRegion("jump2"));
+        frames2.add(sfs.getRifleChoice().findRegion("jump3"));
+        frames2.add(sfs.getRifleChoice().findRegion("jump4"));
+
+        playerJump2 = new Animation<TextureRegion>(2f, frames2);
+
+        frames2.clear();
+
+
+        /*Players Double Jump animation*/
+        frames2.clear();
+
+        frames2.add(sfs.getRifleChoice().findRegion("Djump1"));
+        frames2.add(sfs.getRifleChoice().findRegion("Djump2"));
+        frames2.add(sfs.getRifleChoice().findRegion("Djump3"));
+        frames2.add(sfs.getRifleChoice().findRegion("Djump4"));
+        frames2.add(sfs.getRifleChoice().findRegion("Djump5"));
+        frames2.add(sfs.getRifleChoice().findRegion("Djump6"));
+
+        playerDjump2 = new Animation<TextureRegion>(1f, frames2);
+
+        frames2.clear();
+        /*Player death animation*/
+
+        frames2.add(sfs.getRifleChoice().findRegion("die1"));
+        frames2.add(sfs.getRifleChoice().findRegion("die2"));
+        frames2.add(sfs.getRifleChoice().findRegion("die3"));
+        frames2.add(sfs.getRifleChoice().findRegion("die4"));
+        frames2.add(sfs.getRifleChoice().findRegion("die5"));
+        frames2.add(sfs.getRifleChoice().findRegion("die6"));
+
+        playerDead2 = new Animation<TextureRegion>(0.3f, frames2);
+
+        frames2.clear();
+
+        /*Level Complete Animation*/
+        frames2.add(sfs.getRifleChoice().findRegion("happy1"));
+        frames2.add(sfs.getRifleChoice().findRegion("happy2"));
+        frames2.add(sfs.getRifleChoice().findRegion("happy3"));
+        frames2.add(sfs.getRifleChoice().findRegion("happy4"));
+        frames2.add(sfs.getRifleChoice().findRegion("happy5"));
+        frames2.add(sfs.getRifleChoice().findRegion("happy6"));
+        playerComplete2 = new Animation<TextureRegion>(0.2f, frames2);
+
+        frames2.clear();
+
+        setBounds(getX(),getY(),30 / sfs.PPM, 30 / sfs.PPM);
+
 
     }
 
@@ -183,41 +271,76 @@ public class Player extends Sprite {
         }
     }
 
-    public TextureRegion getFrame(float dt){
+
+    public TextureRegion getFrame(float dt) {
         currentState = getState();
 
-        TextureRegion region;
+        TextureRegion region = new TextureRegion();
+
+        if (rifle == false) {
+            switch (currentState) {
+                case DEAD:
+                    region = playerDead.getKeyFrame(stateTimer, false);
+                    break;
+
+                case JUMPING:
+                    region = playerJump.getKeyFrame(stateTimer, false);
+                    break;
+
+                case DOUBLEJUMP:
+                    region = playerDjump.getKeyFrame(stateTimer, false);
+                    break;
+
+                case RUNNING:
+                    region = playerRun.getKeyFrame(stateTimer, true);
+                    break;
 
 
-        switch(currentState){
-           case DEAD:
-                region = playerDead.getKeyFrame(stateTimer, false);
-            break;
+                case COMPLETE:
+                    region = playerComplete.getKeyFrame(stateTimer, true);
+                    break;
 
-            case JUMPING:
-                region =  playerJump.getKeyFrame(stateTimer, false);
-                break;
+                case FALLING:
 
-            case DOUBLEJUMP:
-                region =  playerDjump.getKeyFrame(stateTimer, false);
-                break;
+                case STANDING:
 
-            case RUNNING:
-                region = playerRun.getKeyFrame(stateTimer, true);
-               break;
+                default:
+                    region = playerStand.getKeyFrame(stateTimer, true);
+                    break;
+            }
+        }
+
+        else if (rifle == true) {
+            switch (currentState) {
+                case DEAD:
+                    region = playerDead2.getKeyFrame(stateTimer, false);
+                    break;
+
+                case JUMPING:
+                    region = playerJump2.getKeyFrame(stateTimer, false);
+                    break;
+
+                case DOUBLEJUMP:
+                    region = playerDjump2.getKeyFrame(stateTimer, false);
+                    break;
+
+                case RUNNING:
+                    region = playerRun2.getKeyFrame(stateTimer, true);
+                    break;
 
 
-            case COMPLETE:
-                region = playerComplete.getKeyFrame(stateTimer, true);
-                break;
+                case COMPLETE:
+                    region = playerComplete2.getKeyFrame(stateTimer, true);
+                    break;
 
-            case FALLING:
+                case FALLING:
 
-            case STANDING:
+                case STANDING:
 
-            default:
-                region = playerStand.getKeyFrame(stateTimer, true);
-                break;
+                default:
+                    region = playerStand2.getKeyFrame(stateTimer, true);
+                    break;
+            }
         }
         if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
             region.flip(true, false);
@@ -229,7 +352,8 @@ public class Player extends Sprite {
         stateTimer = currentState == previousState ? stateTimer + dt : 0;
         previousState = currentState;
         return region;
-        }
+
+    }
 
     public State getState(){
         if(playerIsDead)
@@ -399,5 +523,13 @@ public class Player extends Sprite {
         if(y) {
             limit.y = -limit.y;
         }
+    }
+
+    public boolean isRifle() {
+        return rifle;
+    }
+
+    public void setRifle(boolean rifle) {
+        this.rifle = rifle;
     }
 }
