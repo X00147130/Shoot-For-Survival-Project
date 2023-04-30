@@ -1,29 +1,43 @@
 package com.mygdx.sfs.Sprites.Items;
 
 
+import static com.mygdx.sfs.shootForSurvival.PPM;
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Rifles extends Item{
     public shootForSurvival sfs;
-    private TextureRegion rifle;
+    private Animation<TextureRegion> rifle;
     private boolean proxy = false;
     private float x = 0;
 
     public Rifles(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
 
-        /*rifle = sfs.getRifles().findRegion("1");*/
+        /*Array<TextureRegion> frames = new Array<TextureRegion>();
 
+        frames.add(sfs.getRifles().findRegion("1"));
+        frames.add(sfs.getRifles().findRegion("1"));
+
+        rifle = new Animation<TextureRegion>(0.2f, frames);
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            setBounds(0, 0, 26 / PPM, 35 / PPM);
+        }
+
+        setBounds(getX(),getY(),15 / sfs.PPM,7 / sfs.PPM);
+        frames.clear();*/
         this.sfs = sfs;
     }
 
@@ -70,8 +84,12 @@ public class Rifles extends Item{
     @Override
     public void update(float dt) {
         super.update(dt);
-        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);/*
-        setRegion(rifle, rifle.getRegionX(), rifle.getRegionY(), getRegionWidth() / (int)sfs.PPM, getRegionHeight() / (int)sfs.PPM);*/
+        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+        /*setRegion(rifle.getKeyFrame(sfs.statetimer,false));*/
+    }
+    @Override
+    public void draw(Batch batch) {
+        super.draw(batch);
     }
 }
 

@@ -115,6 +115,7 @@ public class shootForSurvival extends Game {
         manager.load("audio/sounds/stomp.wav", Sound.class);
         manager.load("audio/sounds/death.wav", Sound.class);
         manager.load("audio/sounds/pistol shot.mp3", Sound.class);
+        manager.load("audio/sounds/rifle shot.mp3", Sound.class);
 
 
 
@@ -133,7 +134,7 @@ public class shootForSurvival extends Game {
         manager.load("backgrounds/controls.png", Texture.class); // controls Background
         manager.load("backgrounds/pausebg.png", Texture.class); // pause
         manager.load("backgrounds/deadbg.png", Texture.class); // game over
-        manager.load("sprites/bullet.png", Texture.class); // bullet
+
 
         punkAtlas = new TextureAtlas("sprites/Characters/punkPistol1.pack");//Punk Character
         bikerAtlas = new TextureAtlas("sprites/Characters/bikerPistol1.pack");//Biker Character
@@ -143,10 +144,9 @@ public class shootForSurvival extends Game {
         punkRifle1 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 1
         cyborgRifle1 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 1
 
-        /*rifles = new TextureAtlas("sprites/Guns/rifles.pack");//Rifle Textures*/
-
+        /*rifles = new TextureAtlas("sprites/Guns/Rifles.pack");//Rifle Textures*/
         pistolBullets = new TextureAtlas("sprites/Bullets/pistolBullets.pack"); //Pistol bullets
-        /*rifleBullets = new TextureAtlas("sprites/Bullets/bullets.pack"); //Rifle bullets*/
+        rifleBullets = new TextureAtlas("sprites/Bullets/rifleBullets.pack"); //Rifle bullets
 
 
         worker1Atlas = new TextureAtlas("sprites/Enemies/worker1.pack");//Worker1 (Enemy) Character
@@ -250,13 +250,13 @@ public class shootForSurvival extends Game {
     public TextureAtlas getPlayersChoice() {
         return playersChoice;
     }
+
     public TextureAtlas getBikerRifle1() {
         return bikerRifle1;
     }
     public TextureAtlas getPunkRifle1() {
         return punkRifle1;
     }
-
     public TextureAtlas getCyborgRifle1() {
         return cyborgRifle1;
     }
@@ -267,14 +267,15 @@ public class shootForSurvival extends Game {
     public TextureAtlas getPistolBullets() {
         return pistolBullets;
     }
-
     public TextureAtlas getRifleBullets() {
         return rifleBullets;
     }
 
+
     public TextureAtlas getWorker1Atlas() {
         return worker1Atlas;
     }
+
 
     public TextureAtlas getDoorAtlas() {
         return doorAtlas;
@@ -285,7 +286,6 @@ public class shootForSurvival extends Game {
     public TextureAtlas getMoneyAtlas() {
         return moneyAtlas;
     }
-
     public TextureAtlas getHealthAtlas() {
         return healthAtlas;
     }

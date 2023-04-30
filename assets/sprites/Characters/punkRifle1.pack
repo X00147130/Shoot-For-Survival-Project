@@ -3,255 +3,255 @@ punkRifle1.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-jump1
-  rotate: false
-  xy: 1, 69
-  size: 40, 47
-  orig: 40, 47
-  offset: 0, 0
-  index: -1
-jump2
-  rotate: false
-  xy: 1, 20
-  size: 40, 47
-  orig: 40, 47
-  offset: 0, 0
-  index: -1
-jump3
-  rotate: false
-  xy: 43, 69
-  size: 40, 47
-  orig: 40, 47
-  offset: 0, 0
-  index: -1
-jump4
-  rotate: false
-  xy: 43, 20
-  size: 40, 47
-  orig: 40, 47
-  offset: 0, 0
-  index: -1
-run1
-  rotate: false
-  xy: 85, 79
-  size: 42, 37
-  orig: 42, 37
-  offset: 0, 0
-  index: -1
-run2
-  rotate: false
-  xy: 85, 40
-  size: 42, 37
-  orig: 42, 37
-  offset: 0, 0
-  index: -1
-run3
-  rotate: false
-  xy: 129, 79
-  size: 42, 37
-  orig: 42, 37
-  offset: 0, 0
-  index: -1
-run4
-  rotate: false
-  xy: 129, 40
-  size: 42, 37
-  orig: 42, 37
-  offset: 0, 0
-  index: -1
-run5
-  rotate: false
-  xy: 173, 79
-  size: 42, 37
-  orig: 42, 37
-  offset: 0, 0
-  index: -1
 crouch1
   rotate: false
-  xy: 173, 40
+  xy: 1, 90
   size: 40, 37
   orig: 40, 37
   offset: 0, 0
   index: -1
 crouch2
   rotate: false
-  xy: 217, 79
+  xy: 43, 90
   size: 40, 37
   orig: 40, 37
   offset: 0, 0
   index: -1
 crouch3
   rotate: false
-  xy: 215, 40
+  xy: 85, 90
   size: 40, 37
   orig: 40, 37
   offset: 0, 0
   index: -1
 crouch4
   rotate: false
-  xy: 259, 79
+  xy: 127, 90
   size: 40, 37
   orig: 40, 37
   offset: 0, 0
   index: -1
-idle1
+die2
   rotate: false
-  xy: 257, 40
+  xy: 169, 90
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+die3
+  rotate: false
+  xy: 208, 90
+  size: 39, 37
+  orig: 39, 37
+  offset: 0, 0
+  index: -1
+die4
+  rotate: false
+  xy: 249, 90
+  size: 39, 37
+  orig: 39, 37
+  offset: 0, 0
+  index: -1
+die5
+  rotate: false
+  xy: 290, 90
   size: 40, 37
   orig: 40, 37
   offset: 0, 0
   index: -1
-idle2
+die6
   rotate: false
-  xy: 301, 79
-  size: 40, 37
-  orig: 40, 37
-  offset: 0, 0
-  index: -1
-idle3
-  rotate: false
-  xy: 299, 40
-  size: 40, 37
-  orig: 40, 37
-  offset: 0, 0
-  index: -1
-idle4
-  rotate: false
-  xy: 343, 79
-  size: 40, 37
-  orig: 40, 37
-  offset: 0, 0
-  index: -1
-run6
-  rotate: false
-  xy: 341, 40
-  size: 40, 37
-  orig: 40, 37
-  offset: 0, 0
-  index: -1
-Die1
-  rotate: false
-  xy: 385, 79
-  size: 32, 37
-  orig: 32, 37
-  offset: 0, 0
-  index: -1
-Die2
-  rotate: false
-  xy: 383, 40
-  size: 32, 37
-  orig: 32, 37
-  offset: 0, 0
-  index: -1
-Die3
-  rotate: false
-  xy: 419, 79
-  size: 32, 37
-  orig: 32, 37
-  offset: 0, 0
-  index: -1
-Die4
-  rotate: false
-  xy: 417, 40
-  size: 32, 37
-  orig: 32, 37
-  offset: 0, 0
-  index: -1
-Die5
-  rotate: false
-  xy: 453, 79
-  size: 32, 37
-  orig: 32, 37
-  offset: 0, 0
-  index: -1
-Die6
-  rotate: false
-  xy: 451, 40
+  xy: 332, 90
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 Djump1
   rotate: false
-  xy: 85, 1
-  size: 32, 37
-  orig: 32, 37
-  offset: 0, 0
-  index: -1
-Djump2
-  rotate: false
-  xy: 119, 1
-  size: 32, 37
-  orig: 32, 37
-  offset: 0, 0
-  index: -1
-Djump3
-  rotate: false
-  xy: 153, 1
-  size: 32, 37
-  orig: 32, 37
+  xy: 366, 90
+  size: 34, 37
+  orig: 34, 37
   offset: 0, 0
   index: -1
 Djump4
   rotate: false
-  xy: 187, 1
+  xy: 402, 90
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 Djump5
   rotate: false
-  xy: 221, 1
-  size: 32, 37
-  orig: 32, 37
+  xy: 436, 90
+  size: 40, 37
+  orig: 40, 37
   offset: 0, 0
   index: -1
 Djump6
   rotate: false
-  xy: 255, 1
+  xy: 478, 90
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-Happy1
+happy2
   rotate: false
-  xy: 289, 1
+  xy: 1, 51
+  size: 41, 37
+  orig: 41, 37
+  offset: 0, 0
+  index: -1
+happy3
+  rotate: false
+  xy: 44, 51
+  size: 41, 37
+  orig: 41, 37
+  offset: 0, 0
+  index: -1
+happy4
+  rotate: false
+  xy: 87, 51
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-Happy2
+idle1
   rotate: false
-  xy: 323, 1
-  size: 32, 37
-  orig: 32, 37
+  xy: 121, 51
+  size: 40, 37
+  orig: 40, 37
   offset: 0, 0
   index: -1
-Happy3
+idle2
   rotate: false
-  xy: 357, 1
-  size: 32, 37
-  orig: 32, 37
+  xy: 163, 51
+  size: 40, 37
+  orig: 40, 37
   offset: 0, 0
   index: -1
-Happy4
+idle3
   rotate: false
-  xy: 391, 1
-  size: 32, 37
-  orig: 32, 37
+  xy: 205, 51
+  size: 40, 37
+  orig: 40, 37
   offset: 0, 0
   index: -1
-Happy5
+idle4
   rotate: false
-  xy: 425, 1
-  size: 32, 37
-  orig: 32, 37
+  xy: 247, 51
+  size: 40, 37
+  orig: 40, 37
   offset: 0, 0
   index: -1
-Happy6
+run1
   rotate: false
-  xy: 459, 1
-  size: 32, 37
-  orig: 32, 37
+  xy: 289, 51
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+run2
+  rotate: false
+  xy: 333, 51
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+run3
+  rotate: false
+  xy: 377, 51
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+run4
+  rotate: false
+  xy: 421, 51
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+run5
+  rotate: false
+  xy: 465, 51
+  size: 42, 37
+  orig: 42, 37
+  offset: 0, 0
+  index: -1
+run6
+  rotate: false
+  xy: 1, 12
+  size: 40, 37
+  orig: 40, 37
+  offset: 0, 0
+  index: -1
+Djump2
+  rotate: false
+  xy: 43, 11
+  size: 32, 38
+  orig: 32, 38
+  offset: 0, 0
+  index: -1
+die1
+  rotate: false
+  xy: 77, 8
+  size: 36, 41
+  orig: 36, 41
+  offset: 0, 0
+  index: -1
+Djump3
+  rotate: false
+  xy: 115, 6
+  size: 32, 43
+  orig: 32, 43
+  offset: 0, 0
+  index: -1
+happy1
+  rotate: false
+  xy: 149, 6
+  size: 32, 43
+  orig: 32, 43
+  offset: 0, 0
+  index: -1
+jump1
+  rotate: false
+  xy: 183, 2
+  size: 40, 47
+  orig: 40, 47
+  offset: 0, 0
+  index: -1
+jump2
+  rotate: false
+  xy: 225, 2
+  size: 40, 47
+  orig: 40, 47
+  offset: 0, 0
+  index: -1
+jump3
+  rotate: false
+  xy: 267, 2
+  size: 40, 47
+  orig: 40, 47
+  offset: 0, 0
+  index: -1
+jump4
+  rotate: false
+  xy: 309, 2
+  size: 40, 47
+  orig: 40, 47
+  offset: 0, 0
+  index: -1
+happy5
+  rotate: false
+  xy: 351, 1
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+happy6
+  rotate: false
+  xy: 385, 1
+  size: 32, 48
+  orig: 32, 48
   offset: 0, 0
   index: -1

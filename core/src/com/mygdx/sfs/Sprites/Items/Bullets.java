@@ -81,6 +81,9 @@ public class Bullets {
            world.destroyBody(bulletBody);
            destroyed = true;
        }
+       if (screen.getPlayer().isRifle() == true){
+           clip = sfs.getRifleBullets().findRegion("1");
+       }
     }
 
     public void render(SpriteBatch batch){

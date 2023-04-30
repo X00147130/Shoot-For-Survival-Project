@@ -227,7 +227,12 @@ public class PlayScreen implements Screen {
 
                 if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && player.currentState != Player.State.COMPLETE) {
                         bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
-                    game.loadSound("audio/sounds/pistol shot.mp3");
+                   if(player.isRifle() == false) {
+                       game.loadSound("audio/sounds/pistol shot.mp3");
+                   }
+                   else{
+                       game.loadSound("audio/sounds/rifle shot.mp3");
+                   }
                     long id = game.sound.play();
                     if (game.getSoundVolume() != 0)
                         game.sound.setVolume(id, game.getSoundVolume());
@@ -295,7 +300,10 @@ public class PlayScreen implements Screen {
 
                 if (controller.isSpacePressed() == true && player.currentState != Player.State.COMPLETE) {
                     bullets.add(new Bullets(game,this,player.b2body.getPosition().x,player.b2body.getPosition().y));
-                    game.manager.get("audio/sounds/pistol shot.mp3", Sound.class).play(game.getSoundVolume());
+                    if(player.isRifle() == false)
+                        game.manager.get("audio/sounds/pistol shot.mp3", Sound.class).play(game.getSoundVolume());
+                    else
+                        game.manager.get("audio/sounds/rifle shot.mp3", Sound.class).play(game.getSoundVolume());
                 }
 
 
