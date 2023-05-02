@@ -54,7 +54,7 @@ public class HealthCrate extends Item{
         fdef.filter.categoryBits = shootForSurvival.ITEM_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
-                shootForSurvival.FINISH_BIT;
+                shootForSurvival.DOOR_BIT;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);

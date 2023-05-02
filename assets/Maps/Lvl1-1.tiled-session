@@ -425,10 +425,10 @@
         },
         "Industry/Map/Lvl1-1.tmx": {
             "scale": 0.75,
-            "selectedLayer": 13,
+            "selectedLayer": 14,
             "viewCenter": {
-                "x": 3277.333333333333,
-                "y": 389.33333333333337
+                "x": 321.33333333333337,
+                "y": 381.33333333333337
             }
         },
         "Industry/Map/Screen2.tsx": {
@@ -454,7 +454,7 @@
             }
         }
     },
-    "frame.defaultDuration": 20,
+    "frame.defaultDuration": 200,
     "last.imagePath": "E:/Conway Games Projects/Shoot For Survival Project/assets/Maps/Industry/4 Animated objects",
     "map.height": 25,
     "map.lastUsedFormat": "tmx",
@@ -565,13 +565,14 @@
         "Industry/Map/Locker4.tsx",
         "Industry/Map/Entry.tsx",
         "Industry/Map/Screen2.tsx",
-        "Industry/Map/Transporter.tsx"
+        "Industry/Map/Transporter.tsx",
+        "Industry/Map/Entry.tsx"
     ],
     "project": "Lvl1-1.tiled-project",
     "recentFiles": [
+        "Industry/Map/Entry.tsx",
         "Industry/Map/Transporter.tsx",
         "Industry/Map/Screen2.tsx",
-        "Industry/Map/Entry.tsx",
         "Industry/Map/Locker4.tsx",
         "Industry/Map/Locker3.tsx",
         "Industry/Map/Locker2.tsx",

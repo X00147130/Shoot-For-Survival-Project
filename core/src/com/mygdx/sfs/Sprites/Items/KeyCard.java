@@ -63,7 +63,7 @@ public class KeyCard extends Item {
         fdef.filter.categoryBits = shootForSurvival.KEY_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
-                shootForSurvival.SCREEN_BIT;
+                shootForSurvival.SCANNER_BIT;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);
@@ -75,6 +75,7 @@ public class KeyCard extends Item {
         Gdx.app.log("KEY", "Collected");
         count = 1;
         screen.setKeys(count);
+        player.setKey(true);
 
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             sfs.loadSound("audio/sounds/coin.mp3");

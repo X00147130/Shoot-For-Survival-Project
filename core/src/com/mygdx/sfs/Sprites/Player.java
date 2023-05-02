@@ -1,6 +1,7 @@
 package com.mygdx.sfs.Sprites;
 
 import static com.mygdx.sfs.shootForSurvival.PPM;
+import static com.mygdx.sfs.shootForSurvival.SCANNER_BIT;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -33,6 +34,7 @@ public class Player extends Sprite {
     private PlayScreen screen;
     private shootForSurvival sfs;
     public Body b2body;
+    private Boolean key = false;
 
 
     //Animation Variables
@@ -381,7 +383,7 @@ public class Player extends Sprite {
 
     public void definePlayer(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(20/PPM,600/PPM);
+        bdef.position.set(20/PPM,615/PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
@@ -390,13 +392,15 @@ public class Player extends Sprite {
         shape.setRadius(7 / PPM);
         fdef.filter.categoryBits = shootForSurvival.PLAYER_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
-                shootForSurvival.FINISH_BIT |
+                shootForSurvival.DOOR_BIT |
                 shootForSurvival.ENEMY_BIT|
                 shootForSurvival.MONEY_BIT|
                 shootForSurvival.SKY_BIT|
                 shootForSurvival.ITEM_BIT|
+                shootForSurvival.WALL_BIT|
                 shootForSurvival.KEY_BIT|
                 shootForSurvival.BOSS_BIT|
+                shootForSurvival.SCANNER_BIT|
                 shootForSurvival.DEATH_BIT;
 
         fdef.shape = shape;
@@ -422,6 +426,16 @@ public class Player extends Sprite {
         sfs.jumpCounter = 0;
         sfs.doubleJumped = false;
         Gdx.app.log("Jumps", "Reset");
+    }
+
+    public void wall(){
+        if(!isFlipX()){
+            b2body.applyLinearImpulse(new Vector2(-2.8f,0),new Vector2(0.1f,0), true);
+        }
+        else{
+            b2body.applyLinearImpulse(new Vector2(2.8f,0),new Vector2(-0.1f,0), true);
+        }
+        b2body.setAwake(true);
     }
 
     //dash method
@@ -531,5 +545,13 @@ public class Player extends Sprite {
 
     public void setRifle(boolean rifle) {
         this.rifle = rifle;
+    }
+
+    public Boolean getKey() {
+        return key;
+    }
+
+    public void setKey(Boolean key) {
+        this.key = key;
     }
 }

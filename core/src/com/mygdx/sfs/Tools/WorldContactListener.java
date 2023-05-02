@@ -24,7 +24,7 @@ public class WorldContactListener implements ContactListener {
         int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
 
         switch (cDef) {
-            case shootForSurvival.PLAYER_BIT | shootForSurvival.FINISH_BIT:
+            case shootForSurvival.PLAYER_BIT | shootForSurvival.DOOR_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT)
                     ((InteractiveTileObject) fixB.getUserData()).onHit((Player) fixA.getUserData());
                 else
@@ -37,6 +37,14 @@ public class WorldContactListener implements ContactListener {
                 }
                 else
                     ((Player) fixB.getUserData()).jumpReset();
+                break;
+
+            case shootForSurvival.PLAYER_BIT | shootForSurvival.WALL_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
+                    ((Player) fixA.getUserData()).wall();
+                }
+                else
+                    ((Player) fixB.getUserData()).wall();
                 break;
 
 
@@ -70,6 +78,14 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
                 break;
+
+            case shootForSurvival.ENEMY_BIT | shootForSurvival.WALL_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.WALL_BIT)
+                    ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
+                else
+                    ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
+                break;
+
 
             case shootForSurvival.PLAYER_BIT | shootForSurvival.ENEMY_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
@@ -107,6 +123,19 @@ public class WorldContactListener implements ContactListener {
                     ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
                 }
                 break;
+
+
+            case shootForSurvival.SCANNER_BIT | shootForSurvival.PLAYER_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.SCANNER_BIT) {
+                    ((InteractiveTileObject) fixA.getUserData()).onHit((Player) fixB.getUserData());
+
+                }
+                else {
+                    ((InteractiveTileObject) fixB.getUserData()).onHit((Player) fixA.getUserData());
+                }
+                break;
+
+
 
             case shootForSurvival.MONEY_BIT | shootForSurvival.PLAYER_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.MONEY_BIT)

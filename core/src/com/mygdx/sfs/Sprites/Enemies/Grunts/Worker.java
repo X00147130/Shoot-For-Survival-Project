@@ -208,10 +208,11 @@ public class Worker extends Enemy {
         shape.setRadius(7 / PPM);
         fdef.filter.categoryBits = shootForSurvival.ENEMY_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
-                shootForSurvival.FINISH_BIT |
+                shootForSurvival.DOOR_BIT |
                 shootForSurvival.ENEMY_BIT |
                 shootForSurvival.BARRIER_BIT |
                 shootForSurvival.BULLET_BIT|
+                shootForSurvival.WALL_BIT|
                 shootForSurvival.PLAYER_BIT;
 
         fdef.shape = shape;

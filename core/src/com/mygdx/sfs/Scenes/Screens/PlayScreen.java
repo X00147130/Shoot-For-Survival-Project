@@ -51,7 +51,7 @@ public class PlayScreen implements Screen {
     //Box2D Variables
     public World world;
     private Box2DDebugRenderer b2dr;
-    private B2WorldCreator creator;
+    public B2WorldCreator creator;
 
     //Player variable
     private Player player;
@@ -419,11 +419,11 @@ public class PlayScreen implements Screen {
             }
         }
 
-        /*if (creator.getRifles().notEmpty()) {
+        if (creator.getRifles().notEmpty()) {
             for (Item item : creator.getRifles()) {
                 item.draw(game.batch);
             }
-        }*/
+        }
 
         game.batch.end();
 

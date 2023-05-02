@@ -27,8 +27,8 @@ public class shootForSurvival extends Game {
     public static final short BOSS_BIT = 0;
     public static final short GROUND_BIT = 1;
     public static final short PLAYER_BIT = 2;
-    public static final short SCREEN_BIT = 4;
-    public static final short FINISH_BIT = 8;
+    public static final short SCANNER_BIT = 4;
+    public static final short DOOR_BIT = 8;
     public static final short BARRIER_BIT = 16;
     public static final short ENEMY_BIT = 32;
     public static final short ITEM_BIT = 64;
@@ -38,6 +38,7 @@ public class shootForSurvival extends Game {
     public static final short SKY_BIT = 1024;
     public static final short KEY_BIT = 2048;
     public static final short DEATH_BIT = 4096;
+    public static final short WALL_BIT = 8192;
 
 
     //variables
@@ -78,7 +79,6 @@ public class shootForSurvival extends Game {
     private TextureAtlas keycardAtlas;
     private TextureAtlas moneyAtlas;
     private TextureAtlas healthAtlas;
-    private TextureAtlas screenAtlas;
 
     public TextureAtlas playersChoice;
     public TextureAtlas rifleChoice;
@@ -144,7 +144,7 @@ public class shootForSurvival extends Game {
         punkRifle1 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 1
         cyborgRifle1 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 1
 
-        /*rifles = new TextureAtlas("sprites/Guns/Rifles.pack");//Rifle Textures*/
+        rifles = new TextureAtlas("sprites/Guns/assaultRifles.pack");//Rifle Textures
         pistolBullets = new TextureAtlas("sprites/Bullets/pistolBullets.pack"); //Pistol bullets
         rifleBullets = new TextureAtlas("sprites/Bullets/rifleBullets.pack"); //Rifle bullets
 
@@ -155,7 +155,6 @@ public class shootForSurvival extends Game {
         keycardAtlas = new TextureAtlas("sprites/Objects/keycard.pack"); //Key Card
         healthAtlas = new TextureAtlas("sprites/Objects/HealthCrate.pack"); //Health Crate
         moneyAtlas = new TextureAtlas("sprites/Objects/money.pack"); //Money
-        screenAtlas = new TextureAtlas("sprites/Objects/screen.pack"); //Screen At Door
 
 
         manager.finishLoading();

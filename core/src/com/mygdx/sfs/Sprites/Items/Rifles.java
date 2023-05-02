@@ -26,7 +26,7 @@ public class Rifles extends Item{
     public Rifles(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
 
-        /*Array<TextureRegion> frames = new Array<TextureRegion>();
+        Array<TextureRegion> frames = new Array<TextureRegion>();
 
         frames.add(sfs.getRifles().findRegion("1"));
         frames.add(sfs.getRifles().findRegion("1"));
@@ -37,7 +37,7 @@ public class Rifles extends Item{
         }
 
         setBounds(getX(),getY(),15 / sfs.PPM,7 / sfs.PPM);
-        frames.clear();*/
+        frames.clear();
         this.sfs = sfs;
     }
 
@@ -54,7 +54,7 @@ public class Rifles extends Item{
         fdef.filter.categoryBits = shootForSurvival.ITEM_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
-                shootForSurvival.FINISH_BIT;
+                shootForSurvival.DOOR_BIT;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);
@@ -85,7 +85,7 @@ public class Rifles extends Item{
     public void update(float dt) {
         super.update(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-        /*setRegion(rifle.getKeyFrame(sfs.statetimer,false));*/
+        setRegion(rifle.getKeyFrame(sfs.statetimer,false));
     }
     @Override
     public void draw(Batch batch) {

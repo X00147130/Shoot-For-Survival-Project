@@ -17,7 +17,8 @@ import com.mygdx.sfs.Sprites.Items.KeyCard;
 import com.mygdx.sfs.Sprites.Items.Rifles;
 import com.mygdx.sfs.Sprites.TileObjects.Barrier;
 import com.mygdx.sfs.Sprites.TileObjects.Death;
-import com.mygdx.sfs.Sprites.TileObjects.Finish;
+import com.mygdx.sfs.Sprites.TileObjects.Door;
+import com.mygdx.sfs.Sprites.TileObjects.Scanner;
 import com.mygdx.sfs.Sprites.TileObjects.Sky;
 import com.mygdx.sfs.shootForSurvival;
 
@@ -28,6 +29,7 @@ public class B2WorldCreator {
     private Array<HealthCrate> vials;
     private Array<KeyCard> keys;
     private Array<Rifles> rifles;
+    public Door door;
 
 
     public B2WorldCreator(shootForSurvival game, PlayScreen screen) {
@@ -55,9 +57,24 @@ public class B2WorldCreator {
             body.createFixture(fdef);
         }
 
+        //create wall bodies fixtures
+        for (MapObject object : map.getLayers().get(14).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-//create ground fixtures
-        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / shootForSurvival.PPM, (rect.getY() + rect.getHeight() / 2) / shootForSurvival.PPM);
+
+            body = world.createBody(bdef);
+
+            shape.setAsBox(rect.getWidth() / 2 / shootForSurvival.PPM, rect.getHeight() / 2 / shootForSurvival.PPM);
+            fdef.shape = shape;
+            body.createFixture(fdef);
+        }
+
+
+
+//create wall fixtures
+        for (MapObject object : map.getLayers().get(14).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
@@ -68,7 +85,7 @@ public class B2WorldCreator {
 
             shape.setAsBox(rect.getWidth() / 2 / shootForSurvival.PPM, rect.getHeight() / 2 / shootForSurvival.PPM);
             fdef.shape = shape;
-            fdef.filter.categoryBits = shootForSurvival.BARRIER_BIT;
+            fdef.filter.categoryBits = shootForSurvival.WALL_BIT;
             body.createFixture(fdef);
         }
 
@@ -85,8 +102,8 @@ public class B2WorldCreator {
 //create finish fixtures
         for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
 
- // creation of end tree object
-            new Finish(sfs,screen,object);
+ // creation of finish/ door object
+            door = new Door(sfs,screen,object);
         }
 
 
@@ -138,6 +155,10 @@ public class B2WorldCreator {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 // creation of Rifle objects
             rifles.add(new Rifles(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
+        }
+
+        for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
+            new Scanner(sfs,screen,object);
         }
     }
 
