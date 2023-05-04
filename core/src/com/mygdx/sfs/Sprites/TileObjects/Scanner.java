@@ -23,6 +23,19 @@ public class Scanner extends InteractiveTileObject {
         Gdx.app.log("Scanner", "Collision");
         if (player.getKey() == true) {
             screen.creator.door.unlock();
+            if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/364688__alegemaate__electronic-door-opening.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0)
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/364688__alegemaate__electronic-door-opening.wav", Sound.class).play(sfs.getSoundVolume());
+            }
         } else {
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/stomp.wav");

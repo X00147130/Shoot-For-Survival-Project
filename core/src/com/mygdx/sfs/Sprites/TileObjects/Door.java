@@ -1,11 +1,10 @@
 package com.mygdx.sfs.Sprites.TileObjects;
 
-import static com.mygdx.sfs.shootForSurvival.PPM;
-
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.utils.Array;
@@ -17,10 +16,14 @@ public class Door extends InteractiveTileObject {
     private shootForSurvival sfs;
     private Animation<TextureRegion> door;
     private boolean open;
+    private PolygonSpriteBatch polyBatch;
 
     public Door(shootForSurvival game, PlayScreen screen, MapObject object){
         super(screen,object);
         this.sfs = game;
+
+        polyBatch = new PolygonSpriteBatch();
+
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
@@ -41,27 +44,51 @@ public class Door extends InteractiveTileObject {
     @Override
     public void onHit(Player player) {
         Gdx.app.log("Door", "Collision");
-        screen.setLevelComplete(true);
-        door.getKeyFrame(sfs.statetimer,false);
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            sfs.loadSound("audio/sounds/Mission Accomplished Fanfare 1.mp3");
-            long id = sfs.sound.play();
-            if (sfs.getSoundVolume() != 0)
-                sfs.sound.setVolume(id, sfs.getSoundVolume());
-            else {
-                sfs.sound.setVolume(id, 0);
+        if (open == true) {
+            screen.setLevelComplete(true);
+            door.getKeyFrame(sfs.statetimer, false);
+
+            if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/672801__silverillusionist__level-upmission-complete-resistance.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0)
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/672801__silverillusionist__level-upmission-complete-resistance.wav", Sound.class).play(sfs.getSoundVolume());
+            }
+            sfs.music.stop();
+
+        } else {
+            if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/stomp.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0)
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/stomp.wav", Sound.class).play(sfs.getSoundVolume());
             }
         }
-
-        if(Gdx.app.getType() == Application.ApplicationType.Android){
-            sfs.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).play(sfs.getSoundVolume());
-        }
-
-        sfs.music.stop();
-        }
+    }
 
         public void unlock(){
             open = true;
+        }
+
+        public void draw(){
+        polyBatch.begin();
+        polyBatch.draw(new TextureRegion(sfs.getDoorAtlas().findRegion("door1")),bounds.x /sfs.PPM,bounds.y /sfs.PPM);
+        polyBatch.end();
+
         }
 
 }

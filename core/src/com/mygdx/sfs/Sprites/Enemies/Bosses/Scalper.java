@@ -157,7 +157,7 @@ public class Scalper extends Enemy {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(4 / shootForSurvival.PPM);
+        shape.setRadius(7 / shootForSurvival.PPM);
         fdef.filter.categoryBits = shootForSurvival.BOSS_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.BULLET_BIT|
@@ -174,7 +174,7 @@ public class Scalper extends Enemy {
 
     @Override
     public void shot() {
-        if(hitCounter < 9){    //Grunt is pushed back
+        if(hitCounter < 9){    //Scalper is pushed back
             hit = true;
             if(b2body.getLinearVelocity().x > 0)
                 b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);

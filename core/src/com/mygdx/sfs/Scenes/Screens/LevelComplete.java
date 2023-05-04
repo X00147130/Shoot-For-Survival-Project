@@ -116,7 +116,7 @@ public class LevelComplete implements Screen {
 
                   if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
                       sfs.sound.stop();
-                      sfs.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                      sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                       long id = sfs.sound.play();
                       if (sfs.getSoundVolume() != 0) {
                           sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -126,8 +126,8 @@ public class LevelComplete implements Screen {
                   }
 
                   if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                      sfs.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).stop();
-                      sfs.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(sfs.getSoundVolume());
+                      sfs.manager.get("audio/sounds/672801__silverillusionist__level-upmission-complete-resistance.wav", Sound.class).stop();
+                      sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
                   }
 
 
@@ -144,7 +144,7 @@ public class LevelComplete implements Screen {
 
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
                     sfs.sound.stop();
-                    sfs.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = sfs.sound.play();
                     if (sfs.getSoundVolume() != 0) {
                         sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -154,8 +154,8 @@ public class LevelComplete implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    sfs.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).stop();
-                    sfs.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(sfs.getSoundVolume());
+                    sfs.manager.get("audio/sounds/672801__silverillusionist__level-upmission-complete-resistance.wav", Sound.class).stop();
+                    sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
                 }
 
                 sfs.setScreen(new MenuScreen(sfs));
@@ -168,7 +168,7 @@ public class LevelComplete implements Screen {
 
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
                     sfs.sound.stop();
-                    sfs.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
 
                     long id = sfs.sound.play();
                     if (sfs.getSoundVolume() != 0) {
@@ -178,8 +178,8 @@ public class LevelComplete implements Screen {
                     }
                 }
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    sfs.manager.get("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class).stop();
-                    sfs.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(sfs.getSoundVolume());
+                    sfs.manager.get("audio/sounds/672801__silverillusionist__level-upmission-complete-resistance.wav", Sound.class).stop();
+                    sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
                 }
                 sfs.setScreen(new LevelSelect(sfs));
                 sfs.loadMusic("audio/music/yoitrax - Ronin.mp3");

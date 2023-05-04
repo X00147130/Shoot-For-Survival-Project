@@ -127,7 +127,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -137,7 +137,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
 
@@ -150,7 +150,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -160,7 +160,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
 
@@ -173,7 +173,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -183,7 +183,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
 
@@ -196,7 +196,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -206,7 +206,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
 
@@ -219,7 +219,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -229,7 +229,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
 
@@ -242,7 +242,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -252,7 +252,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
                 GAME.music.stop();
@@ -264,7 +264,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -274,7 +274,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
 
@@ -287,7 +287,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -297,7 +297,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
 
@@ -310,7 +310,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -320,7 +320,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
 
@@ -333,7 +333,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -343,7 +343,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
                 GAME.music.stop();
@@ -355,7 +355,7 @@ public class LevelSelect implements Screen {
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
                         GAME.sound.setVolume(id, GAME.getSoundVolume());
@@ -365,7 +365,7 @@ public class LevelSelect implements Screen {
                 }
 
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
 

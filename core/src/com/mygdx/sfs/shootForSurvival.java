@@ -107,15 +107,17 @@ public class shootForSurvival extends Game {
         manager.load("audio/sounds/coin.mp3", Sound.class);
         manager.load("audio/sounds/getting-hit.mp3", Sound.class);
         manager.load("audio/sounds/health drink.mp3", Sound.class);
-        manager.load("audio/sounds/Mission Accomplished Fanfare 1.mp3", Sound.class);
+        manager.load("audio/sounds/672801__silverillusionist__level-upmission-complete-resistance.wav", Sound.class);
         manager.load("audio/sounds/mixkit-fast-sword-whoosh-2792.wav", Sound.class);
-        manager.load("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class);
+        manager.load("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class);
         manager.load("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class);
         manager.load("audio/sounds/soundnimja-jump.wav", Sound.class);
         manager.load("audio/sounds/stomp.wav", Sound.class);
         manager.load("audio/sounds/death.wav", Sound.class);
         manager.load("audio/sounds/pistol shot.mp3", Sound.class);
         manager.load("audio/sounds/rifle shot.mp3", Sound.class);
+        manager.load("audio/sounds/678385__jocabundus__item-pickup-v2.wav", Sound.class);
+        manager.load("audio/sounds/364688__alegemaate__electronic-door-opening.wav",Sound.class);
 
 
 

@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Filter;
@@ -33,6 +34,7 @@ public abstract class InteractiveTileObject {
         this.world = screen.getWorld();
         this.map = screen.getMap();
         this.bounds = ((RectangleMapObject) object).getRectangle();
+        bounds.setPosition(new Vector2(((RectangleMapObject) object).getRectangle().x,(((RectangleMapObject) object).getRectangle().y)));
 
         //Used in creation of coins and brick as they are the same
         BodyDef bdef = new BodyDef();

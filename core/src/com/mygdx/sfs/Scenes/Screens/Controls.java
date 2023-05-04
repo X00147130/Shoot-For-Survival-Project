@@ -109,7 +109,7 @@ public class Controls implements Screen {
             back.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    GAME.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(GAME.getSoundVolume());
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                     GAME.music.stop();
                     GAME.setScreen(new MenuScreen(GAME));
                 }

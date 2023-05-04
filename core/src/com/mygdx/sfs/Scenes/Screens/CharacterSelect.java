@@ -136,7 +136,7 @@ public class CharacterSelect implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                        sfs.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(sfs.getSoundVolume());
+                        sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
                     }
                     if (i == 0) {
                         i = 1;
@@ -164,7 +164,7 @@ public class CharacterSelect implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                        sfs.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(sfs.getSoundVolume());
+                        sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
                     }
                     if (i == 0) {
                         i = 2;
@@ -191,7 +191,7 @@ public class CharacterSelect implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                        sfs.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(sfs.getSoundVolume());
+                        sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
                     }
                     switch (i) {
                         case 0:
@@ -264,7 +264,7 @@ public class CharacterSelect implements Screen {
         if(Gdx.app.getType() == Application.ApplicationType.Desktop){
             if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
                 if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    sfs.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = sfs.sound.play();
                     if (sfs.getSoundVolume() != 0)
                         sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -294,7 +294,7 @@ public class CharacterSelect implements Screen {
             /*Move Right*/
             if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
                 if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    sfs.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = sfs.sound.play();
                     if (sfs.getSoundVolume() != 0)
                         sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -324,7 +324,7 @@ public class CharacterSelect implements Screen {
             /*Selection*/
             if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    sfs.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = sfs.sound.play();
                     if (sfs.getSoundVolume() != 0)
                         sfs.sound.setVolume(id, sfs.getSoundVolume());

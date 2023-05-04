@@ -87,7 +87,7 @@ public class Hud implements Disposable {
             table.row();
 
 
-            table2.add(key).right();
+            table2.add(key).spaceLeft(20).padLeft(20).right();
             table2.add(keyAcquired).padRight(30).right();
 
             stage.addActor(table);

@@ -26,6 +26,7 @@ import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.Rifles;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.Items.Bullets;
+import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
 import com.mygdx.sfs.Tools.B2WorldCreator;
 import com.mygdx.sfs.Tools.Controller;
 import com.mygdx.sfs.Tools.WorldContactListener;
@@ -107,7 +108,10 @@ public class PlayScreen implements Screen {
         gamecam.position.set(gamePort.getWorldWidth() / 1.5f, gamePort.getWorldHeight() / 1.5f, 0);
 
         world = new World(new Vector2(0, -10), true);
-        b2dr = new Box2DDebugRenderer();
+
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop)
+            b2dr = new Box2DDebugRenderer();
+
         creator = new B2WorldCreator(game,this);
 
         //Player creation
@@ -275,7 +279,7 @@ public class PlayScreen implements Screen {
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             if (player.currentState != Player.State.DEAD) {
                 if (controller.isUpPressed() && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, 3.6f), player.b2body.getWorldCenter(), true);
+                    player.b2body.applyLinearImpulse(new Vector2(0, 3.8f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
 
                     game.manager.get("audio/sounds/soundnimja-jump.wav", Sound.class).play(game.getSoundVolume());
@@ -395,6 +399,7 @@ public class PlayScreen implements Screen {
         player.draw(game.batch);
 
 
+
         for (Enemy enemy : creator.getWorkers())
             enemy.draw(game.batch);
 
@@ -427,6 +432,7 @@ public class PlayScreen implements Screen {
 
         game.batch.end();
 
+        /*creator.door.draw();*/
         for(Bullets bullet: bullets)
             bullet.render(game.batch);
 
@@ -509,11 +515,14 @@ public class PlayScreen implements Screen {
     public void dispose() {
         map.dispose();
         renderer.dispose();
-        b2dr.dispose();
+
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop)
+            b2dr.dispose();
+
         hud.dispose();
         world.dispose();
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+
+        if(Gdx.app.getType() == Application.ApplicationType.Android)
             controller.dispose();
-        }
     }
 }

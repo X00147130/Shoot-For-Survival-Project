@@ -425,10 +425,10 @@
         },
         "Industry/Map/Lvl1-1.tmx": {
             "scale": 0.75,
-            "selectedLayer": 14,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 321.33333333333337,
-                "y": 381.33333333333337
+                "x": 5016,
+                "y": 378.6666666666667
             }
         },
         "Industry/Map/Screen2.tsx": {
@@ -565,14 +565,13 @@
         "Industry/Map/Locker4.tsx",
         "Industry/Map/Entry.tsx",
         "Industry/Map/Screen2.tsx",
-        "Industry/Map/Transporter.tsx",
-        "Industry/Map/Entry.tsx"
+        "Industry/Map/Transporter.tsx"
     ],
     "project": "Lvl1-1.tiled-project",
     "recentFiles": [
-        "Industry/Map/Entry.tsx",
         "Industry/Map/Transporter.tsx",
         "Industry/Map/Screen2.tsx",
+        "Industry/Map/Entry.tsx",
         "Industry/Map/Locker4.tsx",
         "Industry/Map/Locker3.tsx",
         "Industry/Map/Locker2.tsx",

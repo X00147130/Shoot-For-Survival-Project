@@ -78,7 +78,7 @@ public class KeyCard extends Item {
         player.setKey(true);
 
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            sfs.loadSound("audio/sounds/coin.mp3");
+            sfs.loadSound("audio/sounds/678385__jocabundus__item-pickup-v2.wav");
             long id = sfs.sound.play();
             if (sfs.getSoundVolume() != 0)
                 sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -87,7 +87,7 @@ public class KeyCard extends Item {
             }
         }
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            sfs.manager.get("audio/sounds/coin.mp3", Sound.class).play(sfs.getSoundVolume());
+            sfs.manager.get("audio/sounds/678385__jocabundus__item-pickup-v2.wav", Sound.class).play(sfs.getSoundVolume());
         }
     }
 

@@ -89,7 +89,7 @@ public class PauseScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    game.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    game.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = game.sound.play();
                     if (game.getSoundVolume() != 0)
                         game.sound.setVolume(id, game.getSoundVolume());
@@ -98,7 +98,7 @@ public class PauseScreen implements Screen {
                     }
                 }
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    game.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(game.getSoundVolume());
+                    game.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(game.getSoundVolume());
                 }
 
 
@@ -113,7 +113,7 @@ public class PauseScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 if(Gdx.app.getType() ==Application.ApplicationType.Desktop){
-                    game.loadSound("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav");
+                    game.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = game.sound.play();
                     if (game.getSoundVolume() != 0)
                         game.sound.setVolume(id, game.getSoundVolume());
@@ -122,7 +122,7 @@ public class PauseScreen implements Screen {
                     }
                 }
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                    game.manager.get("audio/sounds/mixkit-gear-metallic-lock-sound-2858.wav", Sound.class).play(game.getSoundVolume());
+                    game.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(game.getSoundVolume());
                 }
 
 
