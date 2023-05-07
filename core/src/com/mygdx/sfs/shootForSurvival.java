@@ -104,7 +104,7 @@ public class shootForSurvival extends Game {
         playersChoice = new TextureAtlas();
 
         /*Sound Loading*/
-        manager.load("audio/sounds/coin.mp3", Sound.class);
+        manager.load("audio/sounds/coin sound.wav", Sound.class);
         manager.load("audio/sounds/getting-hit.mp3", Sound.class);
         manager.load("audio/sounds/health drink.mp3", Sound.class);
         manager.load("audio/sounds/672801__silverillusionist__level-upmission-complete-resistance.wav", Sound.class);
@@ -118,6 +118,8 @@ public class shootForSurvival extends Game {
         manager.load("audio/sounds/rifle shot.mp3", Sound.class);
         manager.load("audio/sounds/678385__jocabundus__item-pickup-v2.wav", Sound.class);
         manager.load("audio/sounds/364688__alegemaate__electronic-door-opening.wav",Sound.class);
+        manager.load("audio/sounds/gun pickup.mp3",Sound.class);
+
 
 
 

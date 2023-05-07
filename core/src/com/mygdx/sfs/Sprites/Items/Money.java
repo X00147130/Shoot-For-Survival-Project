@@ -68,7 +68,7 @@ public class Money extends Item {
         screen.setMoney(count);
         Gdx.app.log("Coin", "destroyed");
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            sfs.loadSound("audio/sounds/coin.mp3");
+            sfs.loadSound("audio/sounds/coin sound.wav");
             long id = sfs.sound.play();
             if (sfs.getSoundVolume() != 0)
                 sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -77,7 +77,7 @@ public class Money extends Item {
             }
         }
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            sfs.manager.get("audio/sounds/coin.mp3", Sound.class).play(sfs.getSoundVolume());
+            sfs.manager.get("audio/sounds/coin sound.wav", Sound.class).play(sfs.getSoundVolume());
         }
 
     }

@@ -68,7 +68,7 @@ public class Rifles extends Item{
         player.setRifle(true);
 
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            sfs.loadSound("audio/sounds/health drink.mp3");
+            sfs.loadSound("audio/sounds/gun pickup.mp3");
             long id = sfs.sound.play();
             if (sfs.getSoundVolume() != 0)
                 sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -77,7 +77,7 @@ public class Rifles extends Item{
             }
         }
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            sfs.manager.get("audio/sounds/health drink.mp3", Sound.class).play(sfs.getSoundVolume());
+            sfs.manager.get("audio/sounds/gun pickup.mp3", Sound.class).play(sfs.getSoundVolume());
         }
     }
 
