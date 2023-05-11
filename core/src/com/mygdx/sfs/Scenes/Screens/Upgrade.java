@@ -13,10 +13,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -26,8 +26,7 @@ import com.mygdx.sfs.shootForSurvival;
 
 import java.util.ArrayList;
 
-
-public class CharacterSelect implements Screen {
+public class Upgrade implements Screen {
     /* Admin Inits */
     private shootForSurvival sfs;
     private Viewport viewport;
@@ -57,7 +56,7 @@ public class CharacterSelect implements Screen {
 
 
 
-    public CharacterSelect(shootForSurvival game) {
+    public Upgrade(shootForSurvival game) {
         this.sfs = game;
         viewport = new FitViewport(sfs.V_WIDTH, sfs.V_HEIGHT, new OrthographicCamera());
 
@@ -218,7 +217,7 @@ public class CharacterSelect implements Screen {
         }
 
     }
-        @Override
+    @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -252,7 +251,7 @@ public class CharacterSelect implements Screen {
 
         if(Gdx.app.getType() == Application.ApplicationType.Android)
             stage.draw();
-        }
+    }
 
     public int getI() {
         return i;
@@ -391,3 +390,4 @@ public class CharacterSelect implements Screen {
         stage.dispose();
     }
 }
+
