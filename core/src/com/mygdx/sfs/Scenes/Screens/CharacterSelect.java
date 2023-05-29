@@ -42,6 +42,9 @@ public class CharacterSelect implements Screen {
     //Selection, Labels and buttons
     private TextureAtlas selected;
     private TextureAtlas selectedRifle;
+    private TextureAtlas selectedRifle2;
+    private TextureAtlas selectedRifle3;
+    //private TextureAtlas selectedRifle4;
     private Image left, right;
     private TextButton choose;
     private Table table;
@@ -196,6 +199,8 @@ public class CharacterSelect implements Screen {
                         case 0:
                             selected = sfs.getBikerAtlas();
                             selectedRifle = sfs.getBikerRifle1();
+                            selectedRifle2 = sfs.getBikerRifle2();
+                            selectedRifle3 = sfs.getBikerRifle3();
                             break;
 
                         case 1:
@@ -212,6 +217,9 @@ public class CharacterSelect implements Screen {
                     }
                     sfs.setPlayersChoice(selected);
                     sfs.setRifleChoice(selectedRifle);
+                    sfs.setRifleChoice2(selectedRifle2);
+                    sfs.setRifleChoice3(selectedRifle3);
+
                     sfs.setScreen(new PlayScreen(sfs, 1));
                 }
             });
@@ -335,6 +343,8 @@ public class CharacterSelect implements Screen {
                     case 0:
                         selected = sfs.getBikerAtlas();
                         selectedRifle = sfs.getBikerRifle1();
+                        selectedRifle2 = sfs.getBikerRifle2();
+                        selectedRifle3 = sfs.getBikerRifle3();
                         break;
 
                     case 1:
@@ -351,6 +361,8 @@ public class CharacterSelect implements Screen {
                 }
                 sfs.setPlayersChoice(selected);
                 sfs.setRifleChoice(selectedRifle);
+                sfs.setRifleChoice2(selectedRifle2);
+                sfs.setRifleChoice3(selectedRifle3);
                 sfs.setScreen(new PlayScreen(sfs, 1));
             }
         }

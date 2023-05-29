@@ -1,13 +1,13 @@
 package com.mygdx.sfs.Sprites;
 
 import static com.mygdx.sfs.shootForSurvival.PPM;
-import static com.mygdx.sfs.shootForSurvival.SCANNER_BIT;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -50,9 +50,13 @@ public class Player extends Sprite {
     private Animation <TextureRegion> playerDjump2;
     private Animation <TextureRegion> playerDead2;
     private Animation <TextureRegion> playerComplete2;
+
+
     private boolean runningRight;
     private float stateTimer;
     private boolean rifle = false;
+    private TextureAtlas upgradedRifle;
+    private int powerLVL;
 
 
     //boolean tests
@@ -84,6 +88,8 @@ public class Player extends Sprite {
 
         this.screen = screen;
 
+        upgradedRifle = sfs.getRifleChoice();
+
 /*initialising health variables*/
         health = 100;
         damage = 50;
@@ -95,6 +101,9 @@ public class Player extends Sprite {
         previousState = State.STANDING;
         stateTimer = 0;
         runningRight = true;
+        powerLVL = sfs.getPowerLVL();
+
+        upgradedRifle = sfs.getRifleChoice();
 
 /*Standing Animation*/
 
@@ -182,10 +191,11 @@ public class Player extends Sprite {
         Array<TextureRegion> frames2 = new Array<TextureRegion>();
         frames2.clear();
 
-        frames2.add(sfs.getRifleChoice().findRegion("idle1"));
-        frames2.add(sfs.getRifleChoice().findRegion("idle2"));
-        frames2.add(sfs.getRifleChoice().findRegion("idle3"));
-        frames2.add(sfs.getRifleChoice().findRegion("idle4"));
+        frames2.add(upgradedRifle.findRegion("idle1"));
+        frames2.add(upgradedRifle.findRegion("idle2"));
+        frames2.add(upgradedRifle.findRegion("idle3"));
+        frames2.add(upgradedRifle.findRegion("idle4"));
+
 
         playerStand2 = new Animation<TextureRegion>(0.3f, frames2, Animation.PlayMode.LOOP);
 
@@ -193,12 +203,12 @@ public class Player extends Sprite {
         /*Running Animation*/
         frames2.clear();
 
-        frames2.add(sfs.getRifleChoice().findRegion("run1"));
-        frames2.add(sfs.getRifleChoice().findRegion("run2"));
-        frames2.add(sfs.getRifleChoice().findRegion("run3"));
-        frames2.add(sfs.getRifleChoice().findRegion("run4"));
-        frames2.add(sfs.getRifleChoice().findRegion("run5"));
-        frames2.add(sfs.getRifleChoice().findRegion("run6"));
+        frames2.add(upgradedRifle.findRegion("run1"));
+        frames2.add(upgradedRifle.findRegion("run2"));
+        frames2.add(upgradedRifle.findRegion("run3"));
+        frames2.add(upgradedRifle.findRegion("run4"));
+        frames2.add(upgradedRifle.findRegion("run5"));
+        frames2.add(upgradedRifle.findRegion("run6"));
 
         playerRun2 = new Animation<TextureRegion>(0.2f, frames2);
         setBounds(0, 0, 18 / PPM, 20 / PPM);
@@ -208,10 +218,10 @@ public class Player extends Sprite {
         /*Jump Animation*/
         frames2.clear();
 
-        frames2.add(sfs.getRifleChoice().findRegion("jump1"));
-        frames2.add(sfs.getRifleChoice().findRegion("jump2"));
-        frames2.add(sfs.getRifleChoice().findRegion("jump3"));
-        frames2.add(sfs.getRifleChoice().findRegion("jump4"));
+        frames2.add(upgradedRifle.findRegion("jump1"));
+        frames2.add(upgradedRifle.findRegion("jump2"));
+        frames2.add(upgradedRifle.findRegion("jump3"));
+        frames2.add(upgradedRifle.findRegion("jump4"));
 
         playerJump2 = new Animation<TextureRegion>(2f, frames2);
 
@@ -221,56 +231,78 @@ public class Player extends Sprite {
         /*Players Double Jump animation*/
         frames2.clear();
 
-        frames2.add(sfs.getRifleChoice().findRegion("Djump1"));
-        frames2.add(sfs.getRifleChoice().findRegion("Djump2"));
-        frames2.add(sfs.getRifleChoice().findRegion("Djump3"));
-        frames2.add(sfs.getRifleChoice().findRegion("Djump4"));
-        frames2.add(sfs.getRifleChoice().findRegion("Djump5"));
-        frames2.add(sfs.getRifleChoice().findRegion("Djump6"));
+        frames2.add(upgradedRifle.findRegion("Djump1"));
+        frames2.add(upgradedRifle.findRegion("Djump2"));
+        frames2.add(upgradedRifle.findRegion("Djump3"));
+        frames2.add(upgradedRifle.findRegion("Djump4"));
+        frames2.add(upgradedRifle.findRegion("Djump5"));
+        frames2.add(upgradedRifle.findRegion("Djump6"));
 
         playerDjump2 = new Animation<TextureRegion>(1f, frames2);
 
         frames2.clear();
         /*Player death animation*/
 
-        frames2.add(sfs.getRifleChoice().findRegion("die1"));
-        frames2.add(sfs.getRifleChoice().findRegion("die2"));
-        frames2.add(sfs.getRifleChoice().findRegion("die3"));
-        frames2.add(sfs.getRifleChoice().findRegion("die4"));
-        frames2.add(sfs.getRifleChoice().findRegion("die5"));
-        frames2.add(sfs.getRifleChoice().findRegion("die6"));
+        frames2.add(upgradedRifle.findRegion("die1"));
+        frames2.add(upgradedRifle.findRegion("die2"));
+        frames2.add(upgradedRifle.findRegion("die3"));
+        frames2.add(upgradedRifle.findRegion("die4"));
+        frames2.add(upgradedRifle.findRegion("die5"));
+        frames2.add(upgradedRifle.findRegion("die6"));
 
         playerDead2 = new Animation<TextureRegion>(0.3f, frames2);
 
         frames2.clear();
 
         /*Level Complete Animation*/
-        frames2.add(sfs.getRifleChoice().findRegion("happy1"));
-        frames2.add(sfs.getRifleChoice().findRegion("happy2"));
-        frames2.add(sfs.getRifleChoice().findRegion("happy3"));
-        frames2.add(sfs.getRifleChoice().findRegion("happy4"));
-        frames2.add(sfs.getRifleChoice().findRegion("happy5"));
-        frames2.add(sfs.getRifleChoice().findRegion("happy6"));
+        frames2.add(upgradedRifle.findRegion("happy1"));
+        frames2.add(upgradedRifle.findRegion("happy2"));
+        frames2.add(upgradedRifle.findRegion("happy3"));
+        frames2.add(upgradedRifle.findRegion("happy4"));
+        frames2.add(upgradedRifle.findRegion("happy5"));
+        frames2.add(upgradedRifle.findRegion("happy6"));
         playerComplete2 = new Animation<TextureRegion>(0.2f, frames2);
 
         frames2.clear();
 
         setBounds(getX(),getY(),30 / sfs.PPM, 30 / sfs.PPM);
 
-
     }
 
-    public void update(float dt){
-        if(Gdx.app.getType() == Application.ApplicationType.Android)
-            setPosition(b2body.getPosition().x - getWidth() /2, b2body.getPosition().y - getHeight() /2);
+    public void update(float dt) {
+        if (Gdx.app.getType() == Application.ApplicationType.Android)
+            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+
+        if (powerLVL == 1) {
+            upgradedRifle = sfs.getRifleChoice();
+            renderUpgrade();
+        }
+
+        else if (powerLVL == 2) {
+            upgradedRifle = sfs.getRifleChoice2();
+            renderUpgrade();
+        }
+        else if (powerLVL == 3) {
+            upgradedRifle = sfs.getRifleChoice3();
+            renderUpgrade();
+        }
+
+
+
+
         setPosition(b2body.getPosition().x - getWidth() /2, b2body.getPosition().y - getHeight() /3);
         setRegion(getFrame(dt));
         isDead();
+
+        powerLVL = sfs.getPowerLVL();
+
         if(getY() < 0){
             sfs.music.stop();
+            sfs.setPowerLVL(0);
             playerIsDead = true;
             b2body.applyLinearImpulse(new Vector2(0, 20f), b2body.getWorldCenter(), true);
         }
+
     }
 
 
@@ -297,7 +329,6 @@ public class Player extends Sprite {
                     region = playerRun.getKeyFrame(stateTimer, true);
                     break;
 
-
                 case COMPLETE:
                     region = playerComplete.getKeyFrame(stateTimer, true);
                     break;
@@ -311,6 +342,7 @@ public class Player extends Sprite {
                     break;
             }
         }
+
 
         else if (rifle == true) {
             switch (currentState) {
@@ -330,7 +362,6 @@ public class Player extends Sprite {
                     region = playerRun2.getKeyFrame(stateTimer, true);
                     break;
 
-
                 case COMPLETE:
                     region = playerComplete2.getKeyFrame(stateTimer, true);
                     break;
@@ -344,6 +375,7 @@ public class Player extends Sprite {
                     break;
             }
         }
+
         if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
             region.flip(true, false);
             runningRight = false;
@@ -378,6 +410,89 @@ public class Player extends Sprite {
 
         else
             return State.STANDING;
+    }
+
+
+    public void renderUpgrade(){
+        Array<TextureRegion> frames2 = new Array<TextureRegion>();
+        frames2.clear();
+
+        frames2.add(upgradedRifle.findRegion("idle1"));
+        frames2.add(upgradedRifle.findRegion("idle2"));
+        frames2.add(upgradedRifle.findRegion("idle3"));
+        frames2.add(upgradedRifle.findRegion("idle4"));
+
+
+        playerStand2 = new Animation<TextureRegion>(0.3f, frames2, Animation.PlayMode.LOOP);
+
+        frames2.clear();
+        /*Running Animation*/
+        frames2.clear();
+
+        frames2.add(upgradedRifle.findRegion("run1"));
+        frames2.add(upgradedRifle.findRegion("run2"));
+        frames2.add(upgradedRifle.findRegion("run3"));
+        frames2.add(upgradedRifle.findRegion("run4"));
+        frames2.add(upgradedRifle.findRegion("run5"));
+        frames2.add(upgradedRifle.findRegion("run6"));
+
+        playerRun2 = new Animation<TextureRegion>(0.2f, frames2);
+        setBounds(0, 0, 18 / PPM, 20 / PPM);
+
+        frames2.clear();
+
+        /*Jump Animation*/
+        frames2.clear();
+
+        frames2.add(upgradedRifle.findRegion("jump1"));
+        frames2.add(upgradedRifle.findRegion("jump2"));
+        frames2.add(upgradedRifle.findRegion("jump3"));
+        frames2.add(upgradedRifle.findRegion("jump4"));
+
+        playerJump2 = new Animation<TextureRegion>(2f, frames2);
+
+        frames2.clear();
+
+
+        /*Players Double Jump animation*/
+        frames2.clear();
+
+        frames2.add(upgradedRifle.findRegion("Djump1"));
+        frames2.add(upgradedRifle.findRegion("Djump2"));
+        frames2.add(upgradedRifle.findRegion("Djump3"));
+        frames2.add(upgradedRifle.findRegion("Djump4"));
+        frames2.add(upgradedRifle.findRegion("Djump5"));
+        frames2.add(upgradedRifle.findRegion("Djump6"));
+
+        playerDjump2 = new Animation<TextureRegion>(1f, frames2);
+
+        frames2.clear();
+        /*Player death animation*/
+
+        frames2.add(upgradedRifle.findRegion("die1"));
+        frames2.add(upgradedRifle.findRegion("die2"));
+        frames2.add(upgradedRifle.findRegion("die3"));
+        frames2.add(upgradedRifle.findRegion("die4"));
+        frames2.add(upgradedRifle.findRegion("die5"));
+        frames2.add(upgradedRifle.findRegion("die6"));
+
+        playerDead2 = new Animation<TextureRegion>(0.3f, frames2);
+
+        frames2.clear();
+
+        /*Level Complete Animation*/
+        frames2.add(upgradedRifle.findRegion("happy1"));
+        frames2.add(upgradedRifle.findRegion("happy2"));
+        frames2.add(upgradedRifle.findRegion("happy3"));
+        frames2.add(upgradedRifle.findRegion("happy4"));
+        frames2.add(upgradedRifle.findRegion("happy5"));
+        frames2.add(upgradedRifle.findRegion("happy6"));
+        playerComplete2 = new Animation<TextureRegion>(0.2f, frames2);
+
+        frames2.clear();
+
+        setBounds(getX(),getY(),30 / sfs.PPM, 30 / sfs.PPM);
+
     }
 
 
@@ -494,6 +609,8 @@ public class Player extends Sprite {
             if(Gdx.app.getType() == Application.ApplicationType.Android) {
                 sfs.manager.get("audio/sounds/death.wav", Sound.class).play(sfs.getSoundVolume());
             }
+
+            sfs.setPowerLVL(0);
 
             playerIsDead = true;
             Filter filter = new Filter();

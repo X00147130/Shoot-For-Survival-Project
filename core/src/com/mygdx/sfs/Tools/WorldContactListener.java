@@ -128,8 +128,7 @@ public class WorldContactListener implements ContactListener {
             case shootForSurvival.SCANNER_BIT | shootForSurvival.PLAYER_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.SCANNER_BIT) {
                     ((InteractiveTileObject) fixA.getUserData()).onHit((Player) fixB.getUserData());
-
-                }
+                    }
                 else {
                     ((InteractiveTileObject) fixB.getUserData()).onHit((Player) fixA.getUserData());
                 }

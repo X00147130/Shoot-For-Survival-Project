@@ -22,12 +22,12 @@ public class Rifles extends Item{
     private Animation<TextureRegion> rifle;
     private boolean proxy = false;
     private float x = 0;
+    private int powerLVL = 0;
 
     public Rifles(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-
         frames.add(sfs.getRifles().findRegion("1"));
         frames.add(sfs.getRifles().findRegion("1"));
 
@@ -63,15 +63,22 @@ public class Rifles extends Item{
 
     @Override
     public void useItem(Player player) {
+
+        powerLVL++;
+        sfs.setPowerLVL(powerLVL);
+        player.setRifle(true);
+
         destroy();
 
-        player.setRifle(true);
+
+
 
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             sfs.loadSound("audio/sounds/gun pickup.mp3");
             long id = sfs.sound.play();
-            if (sfs.getSoundVolume() != 0)
+            if (sfs.getSoundVolume() != 0) {
                 sfs.sound.setVolume(id, sfs.getSoundVolume());
+            }
             else {
                 sfs.sound.setVolume(id, 0);
             }
@@ -84,6 +91,23 @@ public class Rifles extends Item{
     @Override
     public void update(float dt) {
         super.update(dt);
+        powerLVL = sfs.getPowerLVL();
+
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        if(powerLVL == 1) {
+            frames.clear();
+            frames.add(sfs.getRifles().findRegion("2"));
+            frames.add(sfs.getRifles().findRegion("2"));
+            rifle = new Animation<TextureRegion>(0.2f, frames);
+        }
+
+        else if(powerLVL == 2){
+            frames.clear();
+            frames.add(sfs.getRifles().findRegion("3"));
+            frames.add(sfs.getRifles().findRegion("3"));
+            rifle = new Animation<TextureRegion>(0.2f, frames);
+        }
+
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(rifle.getKeyFrame(sfs.statetimer,false));
     }
@@ -91,5 +115,6 @@ public class Rifles extends Item{
     public void draw(Batch batch) {
         super.draw(batch);
     }
+
 }
 

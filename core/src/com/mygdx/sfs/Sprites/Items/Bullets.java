@@ -2,6 +2,7 @@ package com.mygdx.sfs.Sprites.Items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.shootForSurvival;
 
@@ -23,6 +25,7 @@ public class Bullets {
     public boolean destroyed;
     private World world;
     private PlayScreen screen;
+    private int powerLVL = 0;
 
     public float x,y;
     public boolean shot = false;
@@ -81,9 +84,19 @@ public class Bullets {
            world.destroyBody(bulletBody);
            destroyed = true;
        }
-       if (screen.getPlayer().isRifle() == true){
-           clip = sfs.getRifleBullets().findRegion("1");
-       }
+
+
+       powerLVL = sfs.getPowerLVL();
+        if(powerLVL == 1) {
+            clip = sfs.getRifleBullets().findRegion("1");
+        }
+       else if(powerLVL == 2) {
+            clip = sfs.getRifleBullets().findRegion("2");
+        }
+
+        else if(powerLVL == 3){
+            clip = sfs.getRifleBullets().findRegion("3");
+        }
     }
 
     public void render(SpriteBatch batch){

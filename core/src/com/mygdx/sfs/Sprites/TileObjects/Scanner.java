@@ -10,6 +10,8 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Scanner extends InteractiveTileObject {
     private shootForSurvival sfs;
+    private boolean destroyed = false;
+    private boolean todestroy = false;
 
     public Scanner(shootForSurvival game, PlayScreen screen, MapObject object) {
         super(screen, object);
@@ -22,12 +24,14 @@ public class Scanner extends InteractiveTileObject {
     public void onHit(Player player) {
         Gdx.app.log("Scanner", "Collision");
         if (player.getKey() == true) {
+            todestroy = true;
             screen.creator.door.unlock();
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/364688__alegemaate__electronic-door-opening.wav");
                 long id = sfs.sound.play();
-                if (sfs.getSoundVolume() != 0)
+                if (sfs.getSoundVolume() != 0) {
                     sfs.sound.setVolume(id, sfs.getSoundVolume());
+                }
                 else {
                     sfs.sound.setVolume(id, 0);
                 }
@@ -36,7 +40,10 @@ public class Scanner extends InteractiveTileObject {
             if (Gdx.app.getType() == Application.ApplicationType.Android) {
                 sfs.manager.get("audio/sounds/364688__alegemaate__electronic-door-opening.wav", Sound.class).play(sfs.getSoundVolume());
             }
-        } else {
+        }
+
+        else {
+            todestroy = false;
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/stomp.wav");
                 long id = sfs.sound.play();

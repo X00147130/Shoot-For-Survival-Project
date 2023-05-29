@@ -13,6 +13,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.sfs.Scenes.Hud;
 import com.mygdx.sfs.Scenes.Screens.LogoScreen;
 
+import java.util.ArrayList;
+
 public class shootForSurvival extends Game {
     //constants
     public static final int V_WIDTH = 400;
@@ -58,6 +60,7 @@ public class shootForSurvival extends Game {
     public float statetimer = 0;
     public boolean musicIsChecked = false;
     public boolean soundIsChecked = false;
+    public int powerLVL = 0;
 
     private TextureAtlas punkAtlas;
     private TextureAtlas bikerAtlas;
@@ -65,6 +68,9 @@ public class shootForSurvival extends Game {
 
 
     private TextureAtlas bikerRifle1;
+    private TextureAtlas bikerRifle2;
+    private TextureAtlas bikerRifle3;
+
     private TextureAtlas punkRifle1;
     private TextureAtlas cyborgRifle1;
 
@@ -82,6 +88,9 @@ public class shootForSurvival extends Game {
 
     public TextureAtlas playersChoice;
     public TextureAtlas rifleChoice;
+    public TextureAtlas rifleChoice2;
+    public TextureAtlas rifleChoice3;
+
 
     public static AssetManager manager;
 
@@ -145,7 +154,11 @@ public class shootForSurvival extends Game {
         cyborgAtlas = new TextureAtlas("sprites/Characters/cyborgPistol1.pack");//Cyborg Character
 
         bikerRifle1 = new TextureAtlas("sprites/Characters/bikerRifle1.pack");//Biker Character with rifle 1
+        bikerRifle2 = new TextureAtlas("sprites/Characters/bikerRifle2.pack");//Biker Character with rifle 2
+        bikerRifle3 = new TextureAtlas("sprites/Characters/bikerRifle3.pack");//Biker Character with rifle 3
+
         punkRifle1 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 1
+
         cyborgRifle1 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 1
 
         rifles = new TextureAtlas("sprites/Guns/assaultRifles.pack");//Rifle Textures
@@ -246,17 +259,33 @@ public class shootForSurvival extends Game {
     public TextureAtlas getCyborgAtlas() {
         return cyborgAtlas;
     }
-    public TextureAtlas getRifleChoice() {
-        return rifleChoice;
-    }
+
 
     public TextureAtlas getPlayersChoice() {
         return playersChoice;
     }
 
+
+    public TextureAtlas getRifleChoice() {
+        return rifleChoice;
+    }
+    public TextureAtlas getRifleChoice2() {
+        return rifleChoice2;
+    }
+    public TextureAtlas getRifleChoice3() {
+        return rifleChoice3;
+    }
+
     public TextureAtlas getBikerRifle1() {
         return bikerRifle1;
     }
+    public TextureAtlas getBikerRifle2() {
+        return bikerRifle2;
+    }
+    public TextureAtlas getBikerRifle3() {
+        return bikerRifle3;
+    }
+
     public TextureAtlas getPunkRifle1() {
         return punkRifle1;
     }
@@ -298,8 +327,24 @@ public class shootForSurvival extends Game {
         this.playersChoice = playersChoice;
     }
 
+
     public void setRifleChoice(TextureAtlas rifleChoice) {
         this.rifleChoice = rifleChoice;
     }
+    public void setRifleChoice2(TextureAtlas rifleChoice2) {
+        this.rifleChoice2 = rifleChoice2;
+    }
+    public void setRifleChoice3(TextureAtlas rifleChoice3) {
+        this.rifleChoice3 = rifleChoice3;
+    }
+
+
+    public int getPowerLVL() {
+        return powerLVL;
+    }
+    public void setPowerLVL(int powerLVL) {
+        this.powerLVL = powerLVL;
+    }
+
 }
 
