@@ -44,7 +44,11 @@ public class CharacterSelect implements Screen {
     private TextureAtlas selectedRifle;
     private TextureAtlas selectedRifle2;
     private TextureAtlas selectedRifle3;
-    //private TextureAtlas selectedRifle4;
+    private TextureAtlas selectedRifle4;
+    private TextureAtlas selectedRifle5;
+    private TextureAtlas selectedRifle6;
+    private TextureAtlas selectedRifle7;
+
     private Image left, right;
     private TextButton choose;
     private Table table;
@@ -201,6 +205,10 @@ public class CharacterSelect implements Screen {
                             selectedRifle = sfs.getBikerRifle1();
                             selectedRifle2 = sfs.getBikerRifle2();
                             selectedRifle3 = sfs.getBikerRifle3();
+                            selectedRifle4 = sfs.getBikerRifle4();
+                            selectedRifle5 = sfs.getBikerRifle5();
+                            selectedRifle6 = sfs.getBikerRifle6();
+                            selectedRifle7 = sfs.getBikerRifle7();
                             break;
 
                         case 1:
@@ -219,6 +227,10 @@ public class CharacterSelect implements Screen {
                     sfs.setRifleChoice(selectedRifle);
                     sfs.setRifleChoice2(selectedRifle2);
                     sfs.setRifleChoice3(selectedRifle3);
+                    sfs.setRifleChoice4(selectedRifle4);
+                    sfs.setRifleChoice5(selectedRifle5);
+                    sfs.setRifleChoice6(selectedRifle6);
+                    sfs.setRifleChoice7(selectedRifle7);
 
                     sfs.setScreen(new PlayScreen(sfs, 1));
                 }
@@ -345,6 +357,10 @@ public class CharacterSelect implements Screen {
                         selectedRifle = sfs.getBikerRifle1();
                         selectedRifle2 = sfs.getBikerRifle2();
                         selectedRifle3 = sfs.getBikerRifle3();
+                        selectedRifle4 = sfs.getBikerRifle4();
+                        selectedRifle5 = sfs.getBikerRifle5();
+                        selectedRifle6 = sfs.getBikerRifle6();
+                        selectedRifle7 = sfs.getBikerRifle7();
                         break;
 
                     case 1:
@@ -363,6 +379,10 @@ public class CharacterSelect implements Screen {
                 sfs.setRifleChoice(selectedRifle);
                 sfs.setRifleChoice2(selectedRifle2);
                 sfs.setRifleChoice3(selectedRifle3);
+                sfs.setRifleChoice4(selectedRifle4);
+                sfs.setRifleChoice5(selectedRifle5);
+                sfs.setRifleChoice6(selectedRifle6);
+                sfs.setRifleChoice7(selectedRifle7);
                 sfs.setScreen(new PlayScreen(sfs, 1));
             }
         }

@@ -97,6 +97,23 @@ public class Bullets {
         else if(powerLVL == 3){
             clip = sfs.getRifleBullets().findRegion("3");
         }
+
+        else if(powerLVL == 4){
+            clip = sfs.getRifleBullets().findRegion("4");
+        }
+
+        else if(powerLVL == 5){
+            clip = sfs.getRifleBullets().findRegion("5");
+        }
+
+        else if(powerLVL == 6){
+            clip = sfs.getRifleBullets().findRegion("6");
+        }
+
+        else if(powerLVL == 7){
+            clip = sfs.getRifleBullets().findRegion("7");
+        }
+
     }
 
     public void render(SpriteBatch batch){

@@ -286,6 +286,22 @@ public class Player extends Sprite {
             upgradedRifle = sfs.getRifleChoice3();
             renderUpgrade();
         }
+        else if (powerLVL == 4) {
+            upgradedRifle = sfs.getRifleChoice4();
+            renderUpgrade();
+        }
+        else if (powerLVL == 5) {
+            upgradedRifle = sfs.getRifleChoice5();
+            renderUpgrade();
+        }
+        else if (powerLVL == 6) {
+            upgradedRifle = sfs.getRifleChoice6();
+            renderUpgrade();
+        }
+        else if (powerLVL == 7) {
+            upgradedRifle = sfs.getRifleChoice7();
+            renderUpgrade();
+        }
 
 
 

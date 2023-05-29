@@ -70,6 +70,10 @@ public class shootForSurvival extends Game {
     private TextureAtlas bikerRifle1;
     private TextureAtlas bikerRifle2;
     private TextureAtlas bikerRifle3;
+    private TextureAtlas bikerRifle4;
+    private TextureAtlas bikerRifle5;
+    private TextureAtlas bikerRifle6;
+    private TextureAtlas bikerRifle7;
 
     private TextureAtlas punkRifle1;
     private TextureAtlas cyborgRifle1;
@@ -90,6 +94,10 @@ public class shootForSurvival extends Game {
     public TextureAtlas rifleChoice;
     public TextureAtlas rifleChoice2;
     public TextureAtlas rifleChoice3;
+    public TextureAtlas rifleChoice4;
+    public TextureAtlas rifleChoice5;
+    public TextureAtlas rifleChoice6;
+    public TextureAtlas rifleChoice7;
 
 
     public static AssetManager manager;
@@ -156,6 +164,10 @@ public class shootForSurvival extends Game {
         bikerRifle1 = new TextureAtlas("sprites/Characters/bikerRifle1.pack");//Biker Character with rifle 1
         bikerRifle2 = new TextureAtlas("sprites/Characters/bikerRifle2.pack");//Biker Character with rifle 2
         bikerRifle3 = new TextureAtlas("sprites/Characters/bikerRifle3.pack");//Biker Character with rifle 3
+        bikerRifle4 = new TextureAtlas("sprites/Characters/bikerRifle4.pack");//Biker Character with rifle 4
+        bikerRifle5 = new TextureAtlas("sprites/Characters/bikerRifle5.pack");//Biker Character with rifle 5
+        bikerRifle6 = new TextureAtlas("sprites/Characters/bikerRifle6.pack");//Biker Character with rifle 6
+        bikerRifle7 = new TextureAtlas("sprites/Characters/bikerRifle7.pack");//Biker Character with rifle 7
 
         punkRifle1 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 1
 
@@ -275,6 +287,19 @@ public class shootForSurvival extends Game {
     public TextureAtlas getRifleChoice3() {
         return rifleChoice3;
     }
+    public TextureAtlas getRifleChoice4() {
+        return rifleChoice4;
+    }
+    public TextureAtlas getRifleChoice5() {
+        return rifleChoice5;
+    }
+    public TextureAtlas getRifleChoice6() {
+        return rifleChoice6;
+    }
+    public TextureAtlas getRifleChoice7() {
+        return rifleChoice7;
+    }
+
 
     public TextureAtlas getBikerRifle1() {
         return bikerRifle1;
@@ -285,6 +310,19 @@ public class shootForSurvival extends Game {
     public TextureAtlas getBikerRifle3() {
         return bikerRifle3;
     }
+    public TextureAtlas getBikerRifle4() {
+        return bikerRifle4;
+    }
+    public TextureAtlas getBikerRifle5() {
+        return bikerRifle5;
+    }
+    public TextureAtlas getBikerRifle6() {
+        return bikerRifle6;
+    }
+    public TextureAtlas getBikerRifle7() {
+        return bikerRifle7;
+    }
+
 
     public TextureAtlas getPunkRifle1() {
         return punkRifle1;
@@ -336,6 +374,18 @@ public class shootForSurvival extends Game {
     }
     public void setRifleChoice3(TextureAtlas rifleChoice3) {
         this.rifleChoice3 = rifleChoice3;
+    }
+    public void setRifleChoice4(TextureAtlas rifleChoice4) {
+        this.rifleChoice4 = rifleChoice4;
+    }
+    public void setRifleChoice5(TextureAtlas rifleChoice5) {
+        this.rifleChoice5 = rifleChoice5;
+    }
+    public void setRifleChoice6(TextureAtlas rifleChoice6) {
+        this.rifleChoice6 = rifleChoice6;
+    }
+    public void setRifleChoice7(TextureAtlas rifleChoice7) {
+        this.rifleChoice7 = rifleChoice7;
     }
 
 
