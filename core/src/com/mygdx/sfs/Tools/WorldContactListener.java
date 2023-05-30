@@ -62,6 +62,8 @@ public class WorldContactListener implements ContactListener {
                 break;
 
             case shootForSurvival.GROUND_BIT | shootForSurvival.BULLET_BIT:
+
+            case shootForSurvival.WALL_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Bullets) fixA.getUserData()).destroy();
                     ((Bullets) fixA.getUserData()).dispose();

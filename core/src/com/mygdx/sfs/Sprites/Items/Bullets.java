@@ -63,6 +63,7 @@ public class Bullets {
         bulletDef.filter.categoryBits = shootForSurvival.BULLET_BIT;
         bulletDef.filter.maskBits = shootForSurvival.ENEMY_BIT |
                 shootForSurvival.GROUND_BIT|
+                shootForSurvival.WALL_BIT|
                 shootForSurvival.PLAYER_BIT;
 
         bulletDef.shape = shape;
@@ -83,6 +84,7 @@ public class Bullets {
        if(shot && !destroyed) {
            world.destroyBody(bulletBody);
            destroyed = true;
+           dispose();
        }
 
 

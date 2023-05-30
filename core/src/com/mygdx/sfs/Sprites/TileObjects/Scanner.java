@@ -66,6 +66,11 @@ public class Scanner extends InteractiveTileObject {
         if (todestroy == true){
             if(!world.isLocked())
                 world.destroyBody(body);
+            destroyed = true;
         }
+    }
+
+    public boolean isDestroyed() {
+        return destroyed;
     }
 }

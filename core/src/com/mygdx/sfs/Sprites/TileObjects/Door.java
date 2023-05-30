@@ -15,15 +15,15 @@ import com.mygdx.sfs.shootForSurvival;
 public class Door extends InteractiveTileObject {
     private shootForSurvival sfs;
     private Animation<TextureRegion> door;
+    private TextureRegion closed;
     private boolean open;
-    private PolygonSpriteBatch polyBatch;
 
     public Door(shootForSurvival game, PlayScreen screen, MapObject object){
         super(screen,object);
         this.sfs = game;
 
-        polyBatch = new PolygonSpriteBatch();
 
+        closed = sfs.getDoorAtlas().findRegion("door1");
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
@@ -34,7 +34,9 @@ public class Door extends InteractiveTileObject {
         frames.add(sfs.getDoorAtlas().findRegion("door5"));
 
 
+
         door = new Animation<TextureRegion>(0.2f, frames);
+
         frames.clear();
 
         fixture.setUserData(this);
@@ -46,7 +48,6 @@ public class Door extends InteractiveTileObject {
         Gdx.app.log("Door", "Collision");
         if (open == true) {
             screen.setLevelComplete(true);
-            door.getKeyFrame(sfs.statetimer, false);
 
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/672801__silverillusionist__level-upmission-complete-resistance.wav");
@@ -80,15 +81,19 @@ public class Door extends InteractiveTileObject {
         }
     }
 
-        public void unlock(){
-            open = true;
+    public void unlock(){
+        open = true;
+    }
+
+    public void draw() {
+        if (open == false) {
+            sfs.batch.begin();
+            sfs.batch.draw(closed, bounds.x / sfs.PPM, bounds.y / sfs.PPM, closed.getRegionWidth() / sfs.PPM, closed.getRegionHeight() / sfs.PPM);
+            sfs.batch.end();
+        } else if (open) {
+            sfs.batch.begin();
+            sfs.batch.draw(door.getKeyFrame(sfs.statetimer, false), bounds.x / sfs.PPM, bounds.y / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionWidth() / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionHeight() / sfs.PPM);
+            sfs.batch.end();
         }
-
-        public void draw(){
-        polyBatch.begin();
-        polyBatch.draw(new TextureRegion(sfs.getDoorAtlas().findRegion("door1")),bounds.x /sfs.PPM,bounds.y /sfs.PPM);
-        polyBatch.end();
-
-        }
-
+    }
 }

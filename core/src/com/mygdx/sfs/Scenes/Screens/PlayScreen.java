@@ -359,6 +359,11 @@ public class PlayScreen implements Screen {
 
         creator.getScanner().destroyBody();
 
+        if(creator.getScanner().isDestroyed() == true){
+            creator.door.draw();
+        }
+
+
         hud.update(dt);
         game.setHud(hud);
 
@@ -433,7 +438,7 @@ public class PlayScreen implements Screen {
 
         game.batch.end();
 
-        /*creator.door.draw();*/
+        creator.door.draw();
         for(Bullets bullet: bullets)
             bullet.render(game.batch);
 
@@ -461,6 +466,7 @@ public class PlayScreen implements Screen {
                 }else{
                     game.setScreen(new Credits(game));
                 }
+                game.setPowerLVL(0);
                 dispose();
             }
         }

@@ -126,6 +126,7 @@ public class PauseScreen implements Screen {
                 }
 
 
+                game.setPowerLVL(0);
                 game.music.stop();
                 game.setScreen(new MenuScreen (game));
             }
