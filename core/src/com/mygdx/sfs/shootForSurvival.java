@@ -1,6 +1,5 @@
 package com.mygdx.sfs;
 
-import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -13,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.sfs.Scenes.Hud;
 import com.mygdx.sfs.Scenes.Screens.LogoScreen;
 
-import java.util.ArrayList;
 
 public class shootForSurvival extends Game {
     //constants

@@ -26,6 +26,7 @@ import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.Rifles;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.Items.Bullets;
+import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
 import com.mygdx.sfs.Tools.B2WorldCreator;
 import com.mygdx.sfs.Tools.Controller;
 import com.mygdx.sfs.Tools.WorldContactListener;
@@ -356,6 +357,7 @@ public class PlayScreen implements Screen {
         for (Item item : creator.getRifles())
             item.update(dt);
 
+        creator.getScanner().destroyBody();
 
         hud.update(dt);
         game.setHud(hud);

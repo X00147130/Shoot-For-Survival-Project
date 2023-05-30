@@ -26,6 +26,7 @@ public class Scanner extends InteractiveTileObject {
         if (player.getKey() == true) {
             todestroy = true;
             screen.creator.door.unlock();
+
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/364688__alegemaate__electronic-door-opening.wav");
                 long id = sfs.sound.play();
@@ -61,4 +62,10 @@ public class Scanner extends InteractiveTileObject {
     }
 
 
+    public void destroyBody(){
+        if (todestroy == true){
+            if(!world.isLocked())
+                world.destroyBody(body);
+        }
+    }
 }

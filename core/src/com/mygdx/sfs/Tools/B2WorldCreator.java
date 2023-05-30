@@ -30,6 +30,7 @@ public class B2WorldCreator {
     private Array<KeyCard> keys;
     private Array<Rifles> rifles;
     public Door door;
+    private Scanner scanner;
 
 
     public B2WorldCreator(shootForSurvival game, PlayScreen screen) {
@@ -158,7 +159,7 @@ public class B2WorldCreator {
         }
 
         for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
-            new Scanner(sfs,screen,object);
+            scanner = new Scanner(sfs,screen,object);
         }
     }
 
@@ -169,6 +170,8 @@ public class B2WorldCreator {
     public Array<Money> getCoins(){return coins;}
     public Array<KeyCard> getKeys(){return keys;}
     public Array<Rifles> getRifles(){return rifles;}
-
+    public Scanner getScanner() {
+        return scanner;
+    }
 }
 
