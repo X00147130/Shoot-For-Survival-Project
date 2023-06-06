@@ -181,42 +181,42 @@ public class shootForSurvival extends Game {
         manager.load("backgrounds/deadbg.png", Texture.class); // game over
 
 
-        punkAtlas = new TextureAtlas("sprites/Characters/punkPistol1.pack");//Punk Character
-        bikerAtlas = new TextureAtlas("sprites/Characters/bikerPistol1.pack");//Biker Character
-        cyborgAtlas = new TextureAtlas("sprites/Characters/cyborgPistol1.pack");//Cyborg Character
+        punkAtlas = new TextureAtlas("sprites/Characters/Punk/punkPistol1.pack");//Punk Character
+        bikerAtlas = new TextureAtlas("sprites/Characters/Biker/bikerPistol1.pack");//Biker Character
+        cyborgAtlas = new TextureAtlas("sprites/Characters/Cyborg/cyborgPistol1.pack");//Cyborg Character
 
-        bikerRifle1 = new TextureAtlas("sprites/Characters/bikerRifle1.pack");//Biker Character with rifle 1
-        bikerRifle2 = new TextureAtlas("sprites/Characters/bikerRifle2.pack");//Biker Character with rifle 2
-        bikerRifle3 = new TextureAtlas("sprites/Characters/bikerRifle3.pack");//Biker Character with rifle 3
-        bikerRifle4 = new TextureAtlas("sprites/Characters/bikerRifle4.pack");//Biker Character with rifle 4
-        bikerRifle5 = new TextureAtlas("sprites/Characters/bikerRifle5.pack");//Biker Character with rifle 5
-        bikerRifle6 = new TextureAtlas("sprites/Characters/bikerRifle6.pack");//Biker Character with rifle 6
-        bikerRifle7 = new TextureAtlas("sprites/Characters/bikerRifle7.pack");//Biker Character with rifle 7
-        bikerRifle8 = new TextureAtlas("sprites/Characters/bikerRifle8.pack");//Biker Character with rifle 8
-        bikerRifle9 = new TextureAtlas("sprites/Characters/bikerRifle9.pack");//Biker Character with rifle 9
-        bikerRifle10 = new TextureAtlas("sprites/Characters/bikerRifle10.pack");//Biker Character with rifle 10
+        bikerRifle1 = new TextureAtlas("sprites/Characters/Biker/bikerRifle1.pack");//Biker Character with rifle 1
+        bikerRifle2 = new TextureAtlas("sprites/Characters/Biker/bikerRifle2.pack");//Biker Character with rifle 2
+        bikerRifle3 = new TextureAtlas("sprites/Characters/Biker/bikerRifle3.pack");//Biker Character with rifle 3
+        bikerRifle4 = new TextureAtlas("sprites/Characters/Biker/bikerRifle4.pack");//Biker Character with rifle 4
+        bikerRifle5 = new TextureAtlas("sprites/Characters/Biker/bikerRifle5.pack");//Biker Character with rifle 5
+        bikerRifle6 = new TextureAtlas("sprites/Characters/Biker/bikerRifle6.pack");//Biker Character with rifle 6
+        bikerRifle7 = new TextureAtlas("sprites/Characters/Biker/bikerRifle7.pack");//Biker Character with rifle 7
+        bikerRifle8 = new TextureAtlas("sprites/Characters/Biker/bikerRifle8.pack");//Biker Character with rifle 8
+        bikerRifle9 = new TextureAtlas("sprites/Characters/Biker/bikerRifle9.pack");//Biker Character with rifle 9
+        bikerRifle10 = new TextureAtlas("sprites/Characters/Biker/bikerRifle10.pack");//Biker Character with rifle 10
 
-        punkRifle1 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 1
-        punkRifle2 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 2
-        punkRifle3 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 3
-        punkRifle4 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 4
-        punkRifle5 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 5
-        punkRifle6 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 6
-        punkRifle7 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 7
-        punkRifle8 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 8
-        punkRifle9 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 9
-        punkRifle10 = new TextureAtlas("sprites/Characters/punkRifle1.pack");//Punk Character with rifle 10
+        punkRifle1 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 1
+        punkRifle2 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 2
+        punkRifle3 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 3
+        punkRifle4 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 4
+        punkRifle5 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 5
+        punkRifle6 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 6
+        punkRifle7 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 7
+        punkRifle8 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 8
+        punkRifle9 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 9
+        punkRifle10 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 10
 
-        cyborgRifle1 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 1
-        cyborgRifle2 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 2
-        cyborgRifle3 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 3
-        cyborgRifle4 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 4
-        cyborgRifle5 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 5
-        cyborgRifle6 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 6
-        cyborgRifle7 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 7
-        cyborgRifle8 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 8
-        cyborgRifle9 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 9
-        cyborgRifle10 = new TextureAtlas("sprites/Characters/cyborgRifle1.pack");//Cyborg Character with rifle 10
+        cyborgRifle1 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 1
+        cyborgRifle2 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 2
+        cyborgRifle3 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 3
+        cyborgRifle4 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 4
+        cyborgRifle5 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 5
+        cyborgRifle6 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 6
+        cyborgRifle7 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 7
+        cyborgRifle8 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 8
+        cyborgRifle9 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 9
+        cyborgRifle10 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 10
 
 
 
