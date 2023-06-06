@@ -48,6 +48,10 @@ public class CharacterSelect implements Screen {
     private TextureAtlas selectedRifle5;
     private TextureAtlas selectedRifle6;
     private TextureAtlas selectedRifle7;
+    private TextureAtlas selectedRifle8;
+    private TextureAtlas selectedRifle9;
+    private TextureAtlas selectedRifle10;
+
 
     private Image left, right;
     private TextButton choose;
@@ -209,16 +213,37 @@ public class CharacterSelect implements Screen {
                             selectedRifle5 = sfs.getBikerRifle5();
                             selectedRifle6 = sfs.getBikerRifle6();
                             selectedRifle7 = sfs.getBikerRifle7();
+                            selectedRifle8 = sfs.getBikerRifle8();
+                            selectedRifle9 = sfs.getBikerRifle9();
+                            selectedRifle10 = sfs.getBikerRifle10();
                             break;
 
                         case 1:
                             selected = sfs.getPunkAtlas();
                             selectedRifle = sfs.getPunkRifle1();
+                            selectedRifle2 = sfs.getPunkRifle2();
+                            selectedRifle3 = sfs.getPunkRifle3();
+                            selectedRifle4 = sfs.getPunkRifle4();
+                            selectedRifle5 = sfs.getPunkRifle5();
+                            selectedRifle6 = sfs.getPunkRifle6();
+                            selectedRifle7 = sfs.getPunkRifle7();
+                            selectedRifle8 = sfs.getPunkRifle8();
+                            selectedRifle9 = sfs.getPunkRifle9();
+                            selectedRifle10 = sfs.getPunkRifle10();
                             break;
 
                         case 2:
                             selected = sfs.getCyborgAtlas();
                             selectedRifle = sfs.getCyborgRifle1();
+                            selectedRifle2 = sfs.getCyborgRifle2();
+                            selectedRifle3 = sfs.getCyborgRifle3();
+                            selectedRifle4 = sfs.getCyborgRifle4();
+                            selectedRifle5 = sfs.getCyborgRifle5();
+                            selectedRifle6 = sfs.getCyborgRifle6();
+                            selectedRifle7 = sfs.getCyborgRifle7();
+                            selectedRifle8 = sfs.getCyborgRifle8();
+                            selectedRifle9 = sfs.getCyborgRifle9();
+                            selectedRifle10 = sfs.getCyborgRifle10();
                             break;
 
                         default:
@@ -231,6 +256,9 @@ public class CharacterSelect implements Screen {
                     sfs.setRifleChoice5(selectedRifle5);
                     sfs.setRifleChoice6(selectedRifle6);
                     sfs.setRifleChoice7(selectedRifle7);
+                    sfs.setRifleChoice8(selectedRifle8);
+                    sfs.setRifleChoice9(selectedRifle9);
+                    sfs.setRifleChoice10(selectedRifle10);
 
                     sfs.setScreen(new PlayScreen(sfs, 1));
                 }
@@ -361,16 +389,37 @@ public class CharacterSelect implements Screen {
                         selectedRifle5 = sfs.getBikerRifle5();
                         selectedRifle6 = sfs.getBikerRifle6();
                         selectedRifle7 = sfs.getBikerRifle7();
+                        selectedRifle8 = sfs.getBikerRifle8();
+                        selectedRifle9 = sfs.getBikerRifle9();
+                        selectedRifle10 = sfs.getBikerRifle10();
                         break;
 
                     case 1:
                         selected = sfs.getPunkAtlas();
                         selectedRifle = sfs.getPunkRifle1();
+                        selectedRifle2 = sfs.getPunkRifle2();
+                        selectedRifle3 = sfs.getPunkRifle3();
+                        selectedRifle4 = sfs.getPunkRifle4();
+                        selectedRifle5 = sfs.getPunkRifle5();
+                        selectedRifle6 = sfs.getPunkRifle6();
+                        selectedRifle7 = sfs.getPunkRifle7();
+                        selectedRifle8 = sfs.getPunkRifle8();
+                        selectedRifle9 = sfs.getPunkRifle9();
+                        selectedRifle10 = sfs.getPunkRifle10();
                         break;
 
                     case 2:
                         selected = sfs.getCyborgAtlas();
                         selectedRifle = sfs.getCyborgRifle1();
+                        selectedRifle2 = sfs.getCyborgRifle2();
+                        selectedRifle3 = sfs.getCyborgRifle3();
+                        selectedRifle4 = sfs.getCyborgRifle4();
+                        selectedRifle5 = sfs.getCyborgRifle5();
+                        selectedRifle6 = sfs.getCyborgRifle6();
+                        selectedRifle7 = sfs.getCyborgRifle7();
+                        selectedRifle8 = sfs.getCyborgRifle8();
+                        selectedRifle9 = sfs.getCyborgRifle9();
+                        selectedRifle10 = sfs.getCyborgRifle10();
                         break;
 
                     default:
@@ -383,6 +432,9 @@ public class CharacterSelect implements Screen {
                 sfs.setRifleChoice5(selectedRifle5);
                 sfs.setRifleChoice6(selectedRifle6);
                 sfs.setRifleChoice7(selectedRifle7);
+                sfs.setRifleChoice8(selectedRifle8);
+                sfs.setRifleChoice9(selectedRifle9);
+                sfs.setRifleChoice10(selectedRifle10);
                 sfs.setScreen(new PlayScreen(sfs, 1));
             }
         }

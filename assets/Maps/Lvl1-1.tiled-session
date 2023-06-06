@@ -427,8 +427,8 @@
             "scale": 0.75,
             "selectedLayer": 13,
             "viewCenter": {
-                "x": 4018.666666666666,
-                "y": 377.33333333333337
+                "x": 880,
+                "y": 376
             }
         },
         "Industry/Map/Screen2.tsx": {

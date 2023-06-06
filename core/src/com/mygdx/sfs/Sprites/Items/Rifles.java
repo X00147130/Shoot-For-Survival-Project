@@ -136,6 +136,34 @@ public class Rifles extends Item{
             rifle = new Animation<TextureRegion>(0.2f, frames);
         }
 
+        else if(powerLVL == 7){
+            frames.clear();
+            frames.add(sfs.getRifles().findRegion("8"));
+            frames.add(sfs.getRifles().findRegion("8"));
+            rifle = new Animation<TextureRegion>(0.2f, frames);
+        }
+
+        else if(powerLVL == 8){
+            frames.clear();
+            frames.add(sfs.getRifles().findRegion("9"));
+            frames.add(sfs.getRifles().findRegion("9"));
+            rifle = new Animation<TextureRegion>(0.2f, frames);
+        }
+
+        else if(powerLVL == 9){
+            frames.clear();
+            frames.add(sfs.getRifles().findRegion("10"));
+            frames.add(sfs.getRifles().findRegion("10"));
+            rifle = new Animation<TextureRegion>(0.2f, frames);
+        }
+
+        else if(powerLVL == 10){
+            frames.clear();
+            frames.add(sfs.getRifles().findRegion("1"));
+            frames.add(sfs.getRifles().findRegion("1"));
+            rifle = new Animation<TextureRegion>(0.2f, frames);
+        }
+
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(rifle.getKeyFrame(sfs.statetimer,false));
     }
