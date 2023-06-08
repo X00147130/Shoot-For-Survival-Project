@@ -197,15 +197,15 @@ public class shootForSurvival extends Game {
         bikerRifle10 = new TextureAtlas("sprites/Characters/Biker/bikerRifle10.pack");//Biker Character with rifle 10
 
         punkRifle1 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 1
-        punkRifle2 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 2
-        punkRifle3 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 3
-        punkRifle4 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 4
-        punkRifle5 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 5
-        punkRifle6 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 6
-        punkRifle7 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 7
-        punkRifle8 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 8
-        punkRifle9 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 9
-        punkRifle10 = new TextureAtlas("sprites/Characters/Punk/punkRifle1.pack");//Punk Character with rifle 10
+        punkRifle2 = new TextureAtlas("sprites/Characters/Punk/punkRifle2.pack");//Punk Character with rifle 2
+        punkRifle3 = new TextureAtlas("sprites/Characters/Punk/punkRifle3.pack");//Punk Character with rifle 3
+        punkRifle4 = new TextureAtlas("sprites/Characters/Punk/punkRifle4.pack");//Punk Character with rifle 4
+        punkRifle5 = new TextureAtlas("sprites/Characters/Punk/punkRifle5.pack");//Punk Character with rifle 5
+        punkRifle6 = new TextureAtlas("sprites/Characters/Punk/punkRifle6.pack");//Punk Character with rifle 6
+        punkRifle7 = new TextureAtlas("sprites/Characters/Punk/punkRifle7.pack");//Punk Character with rifle 7
+        punkRifle8 = new TextureAtlas("sprites/Characters/Punk/punkRifle8.pack");//Punk Character with rifle 8
+        punkRifle9 = new TextureAtlas("sprites/Characters/Punk/punkRifle9.pack");//Punk Character with rifle 9
+        punkRifle10 = new TextureAtlas("sprites/Characters/Punk/punkRifle10.pack");//Punk Character with rifle 10
 
         cyborgRifle1 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 1
         cyborgRifle2 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 2

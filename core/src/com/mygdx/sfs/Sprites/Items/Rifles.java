@@ -33,10 +33,10 @@ public class Rifles extends Item{
 
         rifle = new Animation<TextureRegion>(0.2f, frames);
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 26 / PPM, 35 / PPM);
+            setBounds(0, 0, 36 / PPM, 45 / PPM);
         }
 
-        setBounds(getX(),getY(),15 / sfs.PPM,7 / sfs.PPM);
+        setBounds(getX(),getY(),22 / sfs.PPM,12 / sfs.PPM);
         frames.clear();
         this.sfs = sfs;
     }
