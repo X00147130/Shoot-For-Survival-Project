@@ -1,0 +1,257 @@
+
+cyborgRifle10.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+die3
+  rotate: false
+  xy: 1, 72
+  size: 33, 51
+  orig: 33, 51
+  offset: 0, 0
+  index: -1
+die4
+  rotate: false
+  xy: 36, 78
+  size: 37, 45
+  orig: 37, 45
+  offset: 0, 0
+  index: -1
+happy5
+  rotate: false
+  xy: 1, 22
+  size: 32, 48
+  orig: 32, 48
+  offset: 0, 0
+  index: -1
+jump3
+  rotate: false
+  xy: 75, 79
+  size: 35, 44
+  orig: 35, 44
+  offset: 0, 0
+  index: -1
+run6
+  rotate: false
+  xy: 112, 86
+  size: 41, 37
+  orig: 41, 37
+  offset: 0, 0
+  index: -1
+happy2
+  rotate: false
+  xy: 155, 86
+  size: 40, 37
+  orig: 40, 37
+  offset: 0, 0
+  index: -1
+run1
+  rotate: false
+  xy: 197, 86
+  size: 39, 37
+  orig: 39, 37
+  offset: 0, 0
+  index: -1
+run2
+  rotate: false
+  xy: 238, 86
+  size: 39, 37
+  orig: 39, 37
+  offset: 0, 0
+  index: -1
+Djump5
+  rotate: false
+  xy: 279, 86
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+jump1
+  rotate: false
+  xy: 319, 86
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+jump2
+  rotate: false
+  xy: 359, 86
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+run3
+  rotate: false
+  xy: 399, 86
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+run4
+  rotate: false
+  xy: 439, 86
+  size: 38, 37
+  orig: 38, 37
+  offset: 0, 0
+  index: -1
+happy6
+  rotate: false
+  xy: 479, 76
+  size: 32, 47
+  orig: 32, 47
+  offset: 0, 0
+  index: -1
+crouch4
+  rotate: false
+  xy: 35, 27
+  size: 32, 43
+  orig: 32, 43
+  offset: 0, 0
+  index: -1
+Djump3
+  rotate: false
+  xy: 112, 47
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+jump4
+  rotate: false
+  xy: 151, 47
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+crouch3
+  rotate: false
+  xy: 190, 47
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+happy3
+  rotate: false
+  xy: 228, 47
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+idle2
+  rotate: false
+  xy: 266, 47
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+idle3
+  rotate: false
+  xy: 304, 47
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+idle4
+  rotate: false
+  xy: 342, 47
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+run5
+  rotate: false
+  xy: 380, 47
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+crouch2
+  rotate: false
+  xy: 418, 47
+  size: 35, 37
+  orig: 35, 37
+  offset: 0, 0
+  index: -1
+Djump2
+  rotate: false
+  xy: 75, 40
+  size: 35, 37
+  orig: 35, 37
+  offset: 0, 0
+  index: -1
+idle1
+  rotate: false
+  xy: 69, 1
+  size: 35, 37
+  orig: 35, 37
+  offset: 0, 0
+  index: -1
+crouch1
+  rotate: false
+  xy: 106, 1
+  size: 34, 37
+  orig: 34, 37
+  offset: 0, 0
+  index: -1
+die2
+  rotate: false
+  xy: 142, 3
+  size: 32, 42
+  orig: 32, 42
+  offset: 0, 0
+  index: -1
+happy4
+  rotate: false
+  xy: 176, 8
+  size: 34, 37
+  orig: 34, 37
+  offset: 0, 0
+  index: -1
+die1
+  rotate: false
+  xy: 212, 8
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+die5
+  rotate: false
+  xy: 246, 8
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+die6
+  rotate: false
+  xy: 280, 8
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Djump1
+  rotate: false
+  xy: 314, 8
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Djump4
+  rotate: false
+  xy: 348, 8
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Djump6
+  rotate: false
+  xy: 382, 8
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+happy1
+  rotate: false
+  xy: 416, 8
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1

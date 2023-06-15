@@ -208,15 +208,15 @@ public class shootForSurvival extends Game {
         punkRifle10 = new TextureAtlas("sprites/Characters/Punk/punkRifle10.pack");//Punk Character with rifle 10
 
         cyborgRifle1 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 1
-        cyborgRifle2 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 2
-        cyborgRifle3 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 3
-        cyborgRifle4 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 4
-        cyborgRifle5 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 5
-        cyborgRifle6 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 6
-        cyborgRifle7 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 7
-        cyborgRifle8 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 8
-        cyborgRifle9 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 9
-        cyborgRifle10 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle1.pack");//Cyborg Character with rifle 10
+        cyborgRifle2 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle2.pack");//Cyborg Character with rifle 2
+        cyborgRifle3 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle3.pack");//Cyborg Character with rifle 3
+        cyborgRifle4 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle4.pack");//Cyborg Character with rifle 4
+        cyborgRifle5 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle5.pack");//Cyborg Character with rifle 5
+        cyborgRifle6 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle6.pack");//Cyborg Character with rifle 6
+        cyborgRifle7 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle7.pack");//Cyborg Character with rifle 7
+        cyborgRifle8 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle8.pack");//Cyborg Character with rifle 8
+        cyborgRifle9 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle9.pack");//Cyborg Character with rifle 9
+        cyborgRifle10 = new TextureAtlas("sprites/Characters/Cyborg/cyborgRifle10.pack");//Cyborg Character with rifle 10
 
 
 
