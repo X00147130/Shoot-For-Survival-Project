@@ -44,7 +44,7 @@ public class Controller {
         Texture pic = new Texture("controller/jump.png");
         TextureRegionDrawable picDraw = new TextureRegionDrawable(pic);
         final ImageButton upImg = new ImageButton(picDraw);
-        upImg.setSize(30,30);
+        upImg.setSize(40,35);
         if (upImg.isPressed() == Gdx.input.justTouched()){
             upImg.addListener(new InputListener(){
 
@@ -61,8 +61,9 @@ public class Controller {
             });}
 
         Image attackImg = new Image(new Texture("controller/Shoot.png"));
-        attackImg.setSize(30,25);
+        attackImg.setSize(40,35);
         attackImg.addListener(new InputListener(){
+
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -76,8 +77,9 @@ public class Controller {
             }
         });
 
+
         Image rightImg = new Image(new Texture("controller/Forward.png"));
-        rightImg.setSize(30,30);
+        rightImg.setSize(40,35);
         rightImg.addListener(new InputListener(){
 
             @Override
@@ -93,7 +95,7 @@ public class Controller {
         });
 
         Image leftImg = new Image(new Texture("controller/Backward.png"));
-        leftImg.setSize(30,30);
+        leftImg.setSize(40,35);
         leftImg.addListener(new InputListener(){
 
             @Override
@@ -109,7 +111,7 @@ public class Controller {
         });
 
         Image dashImg = new Image(new Texture("controller/Dash.png"));
-        dashImg.setSize(30,25);
+        dashImg.setSize(40,35);
         dashImg.addListener(new InputListener(){
 
             @Override

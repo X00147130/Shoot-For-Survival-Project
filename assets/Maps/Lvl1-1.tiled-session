@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Industry/Map/Lvl1-1.tmx",
+    "activeFile": "Industry/Map/Lvl1-2.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -17,7 +17,37 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "Industry/Map/92x60.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Industry/Map/Ad 1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Industry/Map/Ad 2.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Industry/Map/Ad 3.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Industry/Map/Ad1.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Industry/Map/Background.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Industry/Map/Billboard 2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Industry/Map/Billboard.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -425,10 +455,32 @@
         },
         "Industry/Map/Lvl1-1.tmx": {
             "scale": 0.75,
-            "selectedLayer": 13,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 880,
-                "y": 376
+                "x": 4180,
+                "y": 494
+            }
+        },
+        "Industry/Map/Lvl1-2.tmx": {
+            "expandedObjectLayers": [
+                9,
+                12,
+                13,
+                7,
+                15,
+                5,
+                10,
+                6,
+                14,
+                4,
+                8,
+                11
+            ],
+            "scale": 1.5,
+            "selectedLayer": 14,
+            "viewCenter": {
+                "x": 8076,
+                "y": 406
             }
         },
         "Industry/Map/Screen2.tsx": {
@@ -436,6 +488,10 @@
             "scaleInEditor": 1
         },
         "Industry/Map/Transporter.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Industry/Map/tv news.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -454,8 +510,8 @@
             }
         }
     },
-    "frame.defaultDuration": 200,
-    "last.imagePath": "E:/Conway Games Projects/Shoot For Survival Project/assets/Maps/Industry/4 Animated objects",
+    "frame.defaultDuration": 75,
+    "last.imagePath": "E:/Conway Games Projects/Shoot For Survival Project/assets/Maps/Billboards/Billboard2/PSD",
     "map.height": 25,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 32,
@@ -547,7 +603,6 @@
         "Industry/Map/1.tsx",
         "Industry/Map/Board1.tsx",
         "Industry/Map/Board2.tsx",
-        "Industry/Map/Board3.tsx",
         "Industry/Map/Box1.tsx",
         "Industry/Map/Box2.tsx",
         "Industry/Map/Box3.tsx",
@@ -565,27 +620,32 @@
         "Industry/Map/Locker4.tsx",
         "Industry/Map/Entry.tsx",
         "Industry/Map/Screen2.tsx",
-        "Industry/Map/Transporter.tsx"
+        "Industry/Map/Transporter.tsx",
+        "Industry/Map/Lvl1-2.tmx",
+        "Industry/Map/Ad 1.tsx",
+        "Industry/Map/Billboard.tsx",
+        "Industry/Map/Billboard 2.tsx",
+        "Industry/Map/Ad 2.tsx"
     ],
     "project": "Lvl1-1.tiled-project",
     "recentFiles": [
-        "Industry/Map/Transporter.tsx",
-        "Industry/Map/Screen2.tsx",
-        "Industry/Map/Entry.tsx",
-        "Industry/Map/Locker4.tsx",
-        "Industry/Map/Locker3.tsx",
-        "Industry/Map/Locker2.tsx",
-        "Industry/Map/Locker1.tsx",
-        "Industry/Map/Flag.tsx",
-        "Industry/Map/Fence3.tsx",
-        "Industry/Map/Fence2.tsx",
-        "Industry/Map/Fence1.tsx",
-        "Industry/Map/Box8.tsx"
+        "Industry/Map/Lvl1-1.tmx",
+        "Industry/Map/Industry5.tsx",
+        "Industry/Map/Industry6.tsx",
+        "Industry/Map/Industry7.tsx",
+        "Industry/Map/Industry8.tsx",
+        "Industry/Map/Industry9.tsx",
+        "Industry/Map/Industry10.tsx",
+        "Industry/Map/Industry11.tsx",
+        "Industry/Map/Industry12.tsx",
+        "Industry/Map/Industry13.tsx",
+        "Industry/Map/Industry14.tsx",
+        "Industry/Map/Industry15.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 32,
-        "width": 32
+        "height": 60,
+        "width": 92
     },
     "tileset.type": 0
 }

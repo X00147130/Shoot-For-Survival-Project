@@ -31,8 +31,8 @@ public class CharacterSelect implements Screen {
     /* Admin Inits */
     private shootForSurvival sfs;
     private Viewport viewport;
-    private Animation preview;
     private Texture background;
+    private int map;
 
     /* Arrays To Loop through for Selection */
     private ArrayList<TextureAtlas.AtlasRegion> characterSprites;
@@ -68,12 +68,13 @@ public class CharacterSelect implements Screen {
 
 
 
-    public CharacterSelect(shootForSurvival game) {
+    public CharacterSelect(shootForSurvival game, int level) {
         this.sfs = game;
         viewport = new FitViewport(sfs.V_WIDTH, sfs.V_HEIGHT, new OrthographicCamera());
 
         background = sfs.manager.get("backgrounds/Background.png", Texture.class);
 
+        map = level;
         /*initialising and instantiating of animatimation arrays*/
         characterSprites = new ArrayList<TextureAtlas.AtlasRegion>(3);
 
@@ -260,7 +261,7 @@ public class CharacterSelect implements Screen {
                     sfs.setRifleChoice9(selectedRifle9);
                     sfs.setRifleChoice10(selectedRifle10);
 
-                    sfs.setScreen(new PlayScreen(sfs, 1));
+                    sfs.setScreen(new PlayScreen(sfs, map));
                 }
             });
         }
@@ -435,7 +436,7 @@ public class CharacterSelect implements Screen {
                 sfs.setRifleChoice8(selectedRifle8);
                 sfs.setRifleChoice9(selectedRifle9);
                 sfs.setRifleChoice10(selectedRifle10);
-                sfs.setScreen(new PlayScreen(sfs, 1));
+                sfs.setScreen(new PlayScreen(sfs, map));
             }
         }
     }

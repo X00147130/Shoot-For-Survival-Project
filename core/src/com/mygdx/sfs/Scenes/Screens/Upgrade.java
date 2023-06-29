@@ -1,22 +1,23 @@
 package com.mygdx.sfs.Scenes.Screens;
 
-import static com.badlogic.gdx.graphics.Color.MAGENTA;
-
+import static com.badlogic.gdx.graphics.Color.GOLD;
+import static com.badlogic.gdx.graphics.Color.RED;
+import static com.badlogic.gdx.graphics.Color.WHITE;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -24,349 +25,107 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.sfs.shootForSurvival;
 
-import java.util.ArrayList;
-
 public class Upgrade implements Screen {
-    /* Admin Inits */
-    private shootForSurvival sfs;
     private Viewport viewport;
-    private Animation preview;
+    private Stage stage;
+    private shootForSurvival GAME;
+    private Table table;
+    public boolean reset = false;
+
+    private int map = 1;
+
     private Texture background;
 
-    /* Arrays To Loop through for Selection */
-    private ArrayList<TextureAtlas.AtlasRegion> characterSprites;
-    private ArrayList<Label> characterNames;
-    private int i = 0;
+    //buttons
+    private Button upgradeButton;
+    private Button continueButton;
 
-    //Selection, Labels and buttons
-    private TextureAtlas selected;
-    private TextureAtlas selectedRifle;
-    private Image left, right;
-    private TextButton choose;
-    private Table table;
-    private Stage stage;
-    private TextButton.TextButtonStyle textStyle;
-    private BitmapFont buttonFont;
-    private Label punkLabel;
-    private Label bikerLabel;
-    private Label cyborgLabel;
-    private Label arrows;
-    private Label enter;
+    public Upgrade(final shootForSurvival game, int level){
+        this.GAME = game;
+        viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
+        stage = new Stage(viewport, GAME.batch);
+        this.map = level;
 
+        background = GAME.manager.get("backgrounds/deadbg.png", Texture.class);
 
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.valueOf("ff0a7f"));
 
+        table = new Table();
+        table.center();
+        table.setFillParent(true);
 
-    public Upgrade(shootForSurvival game) {
-        this.sfs = game;
-        viewport = new FitViewport(sfs.V_WIDTH, sfs.V_HEIGHT, new OrthographicCamera());
-
-        background = sfs.manager.get("backgrounds/Background.png", Texture.class);
-
-        /*initialising and instantiating of animatimation arrays*/
-        characterSprites = new ArrayList<TextureAtlas.AtlasRegion>(3);
-
-        characterSprites.add(sfs.getBikerAtlas().findRegion("idle1"));
-
-        characterSprites.add(sfs.getPunkAtlas().findRegion("idle1"));
-
-        characterSprites.add(sfs.getCyborgAtlas().findRegion("idle1"));
+        Skin skin = new Skin(Gdx.files.internal("skins/quantum-horizon/skin/quantum-horizon-ui.json"));
+        upgradeButton = new TextButton(" UPGRADE ", skin);
+        continueButton = new TextButton(" SKIP ", skin);
 
 
-        //Setup of Screen
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
-        Label.LabelStyle font2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), MAGENTA);
-
-        textStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
-        textStyle.font = buttonFont;
-        textStyle.fontColor = MAGENTA;
-
-        arrows = new Label("Arrows To Swap Character",font2);
-        enter = new Label("Enter to Select",font2);
-
-        /*Intiatialising and Names of characters added to the arraylist*/
-        characterNames = new ArrayList<Label>(3);
+        Label gameOverLabel = new Label("NEED SOME", font);
+        Label gameOverLabel2 = new Label("HELP PAL???", font);
+        table.add(gameOverLabel).expandX().center();
+        table.row();
+        table.add(gameOverLabel2).expandX().center();
+        table.row();
+        table.add(upgradeButton).expandX().padTop(10).center();
+        table.row();
+        table.add(continueButton).expandX().padTop(10).center();
+        stage.addActor(table);
+        Gdx.input.setInputProcessor(stage);
 
 
-        bikerLabel = new Label("Clyde", font);
-        punkLabel = new Label("Chad", font);
-        cyborgLabel = new Label("X01F", font);
-
-
-        characterNames.add(0,bikerLabel);
-        characterNames.add(1,punkLabel);
-        characterNames.add(2,cyborgLabel);
-
-
-        Texture button1 = new Texture("controller/rightBtn.png");
-        Texture button2 = new Texture("controller/leftBtn.png");
-
-
-        right = new Image(button1);
-        right.setSize(3 / sfs.PPM, 3 / sfs.PPM);
-
-
-        left = new Image(button2);
-        left.setSize(3 / sfs.PPM, 3 / sfs.PPM);
-
-
-        choose = new TextButton("Select", textStyle);
-
-
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-
-            stage = new Stage(viewport, sfs.batch);
-            table = new Table();
-            table.setFillParent(true);
-            table.center();
-
-
-            table.add(left).left().size(button2.getWidth() / 10, button2.getHeight() / 10).padRight(60).padTop(20);
-            table.add(right).right().size(button1.getWidth() / 10, button1.getHeight() / 10).padLeft(60).padTop(20);
-            table.row();
-            table.row();
-            table.add(choose).center().padLeft(130).padTop(30);
-
-            stage.addActor(table);
-            Gdx.input.setInputProcessor(stage);
-
-            right.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                        sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
-                    }
-                    if (i == 0) {
-                        i = 1;
-                        characterNames.get(i);
-
-                        characterSprites.get(i);
-
-                    } else if (i == 1) {
-                        i = 2;
-                        characterNames.get(i);
-
-                        characterSprites.get(i);
-
-                    } else if (i == 2) {
-                        i = 0;
-                        characterNames.get(i);
-
-                        characterSprites.get(i);
+        // Upgrades pistol
+        upgradeButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
+                    long id = GAME.sound.play();
+                    if (GAME.getSoundVolume() != 0)
+                        GAME.sound.setVolume(id, GAME.getSoundVolume());
+                    else {
+                        GAME.sound.setVolume(id, 0);
                     }
                 }
-            });
+                if(Gdx.app.getType() == Application.ApplicationType.Android) {
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
+                }
 
+                GAME.music.stop();
+                GAME.setScreen(new PlayScreen(GAME,map));
+            }
+        });
 
-            left.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                        sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
-                    }
-                    if (i == 0) {
-                        i = 2;
-                        characterSprites.get(i);
-
-                        characterNames.get(i);
-
-                    } else if (i == 1) {
-                        i = 0;
-                        characterSprites.get(i);
-
-                        characterNames.get(i);
-                    } else if (i == 2) {
-                        i = 1;
-                        characterSprites.get(i);
-
-                        characterNames.get(i);
+        //Button for the continuing
+        continueButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
+                    long id = GAME.sound.play();
+                    if (GAME.getSoundVolume() != 0)
+                        GAME.sound.setVolume(id, GAME.getSoundVolume());
+                    else {
+                        GAME.sound.setVolume(id, 0);
                     }
                 }
-            });
-
-
-            choose.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                        sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
-                    }
-                    switch (i) {
-                        case 0:
-                            selected = sfs.getBikerAtlas();
-                            selectedRifle = sfs.getBikerRifle1();
-                            break;
-
-                        case 1:
-                            selected = sfs.getPunkAtlas();
-                            selectedRifle = sfs.getPunkRifle1();
-                            break;
-
-                        case 2:
-                            selected = sfs.getCyborgAtlas();
-                            selectedRifle = sfs.getCyborgRifle1();
-                            break;
-
-                        default:
-                    }
-                    sfs.setPlayersChoice(selected);
-                    sfs.setRifleChoice(selectedRifle);
-                    sfs.setScreen(new PlayScreen(sfs, 1));
+                if(Gdx.app.getType() == Application.ApplicationType.Android) {
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
-            });
+
+
+                GAME.music.stop();
+                GAME.setScreen(new PlayScreen(GAME,map));
+            }
+        });
+        GAME.loadMusic("audio/music/mixkit-piano-horror-671.mp3");
+        if(GAME.getVolume() != 0) {
+            GAME.music.setVolume(GAME.getVolume());
+            GAME.music.play();
         }
 
     }
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop)
-            update(delta);
-
-
-
-
-        sfs.batch.begin();
-
-        sfs.batch.draw(background,0,0,500,200);
-
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            arrows.setBounds(20, 155, 70, 70);
-            arrows.draw(sfs.batch,1);
-
-            enter.setBounds(95, 5, 70, 70);
-            enter.draw(sfs.batch,1);
-        }
-
-        sfs.batch.draw(characterSprites.get(i),185,105);
-
-        characterNames.get(0).setBounds(115, 55, 70, 70);
-        characterNames.get(1).setBounds(135, 55, 70, 70);
-        characterNames.get(2).setBounds(135, 55, 70, 70);
-        characterNames.get(i).draw(sfs.batch,1);
-
-        sfs.batch.end();
-
-        if(Gdx.app.getType() == Application.ApplicationType.Android)
-            stage.draw();
-    }
-
-    public int getI() {
-        return i;
-    }
-
-    public void handleInput(float dt){
-        /*Move Left*/
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop){
-            if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-                if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
-                    long id = sfs.sound.play();
-                    if (sfs.getSoundVolume() != 0)
-                        sfs.sound.setVolume(id, sfs.getSoundVolume());
-                    else {
-                        sfs.sound.setVolume(id, 0);
-                    }
-                }
-                if (i == 0) {
-                    i = 2;
-                    characterSprites.get(i);
-
-                    characterNames.get(i);
-
-                } else if (i == 1) {
-                    i = 0;
-                    characterSprites.get(i);
-
-                    characterNames.get(i);
-                } else if (i == 2) {
-                    i = 1;
-                    characterSprites.get(i);
-
-                    characterNames.get(i);
-                }
-            }
-
-            /*Move Right*/
-            if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-                if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
-                    long id = sfs.sound.play();
-                    if (sfs.getSoundVolume() != 0)
-                        sfs.sound.setVolume(id, sfs.getSoundVolume());
-                    else {
-                        sfs.sound.setVolume(id, 0);
-                    }
-                }
-                if (i == 0) {
-                    i = 1;
-                    characterSprites.get(i);
-
-                    characterNames.get(i);
-
-                } else if (i == 1) {
-                    i = 2;
-                    characterSprites.get(i);
-
-                    characterNames.get(i);
-                } else if (i == 2) {
-                    i = 0;
-                    characterSprites.get(i);
-
-                    characterNames.get(i);
-                }
-            }
-
-            /*Selection*/
-            if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-                if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
-                    long id = sfs.sound.play();
-                    if (sfs.getSoundVolume() != 0)
-                        sfs.sound.setVolume(id, sfs.getSoundVolume());
-                    else {
-                        sfs.sound.setVolume(id, 0);
-                    }
-                }
-                switch (i) {
-                    case 0:
-                        selected = sfs.getBikerAtlas();
-                        selectedRifle = sfs.getBikerRifle1();
-                        break;
-
-                    case 1:
-                        selected = sfs.getPunkAtlas();
-                        selectedRifle = sfs.getPunkRifle1();
-                        break;
-
-                    case 2:
-                        selected = sfs.getCyborgAtlas();
-                        selectedRifle = sfs.getCyborgRifle1();
-                        break;
-
-                    default:
-                }
-                sfs.setPlayersChoice(selected);
-                sfs.setRifleChoice(selectedRifle);
-                sfs.setScreen(new PlayScreen(sfs, 1));
-            }
-        }
-    }
-
-    public void update(float dt){
-        handleInput(dt);
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
+    public boolean isReset() {
+        return reset;
     }
 
     @Override
@@ -374,6 +133,28 @@ public class Upgrade implements Screen {
 
     }
 
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        GAME.batch.begin();
+        GAME.batch.draw(background,0,0,400,300);
+        GAME.batch.end();
+        stage.draw();
+    }
+
+
+
+
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width,height,true);
+    }
+
+    @Override
+    public void pause() {
+
+    }
 
     @Override
     public void resume() {
@@ -388,6 +169,6 @@ public class Upgrade implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        GAME.dispose();
     }
 }
-

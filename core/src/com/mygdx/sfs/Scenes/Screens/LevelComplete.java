@@ -132,7 +132,7 @@ public class LevelComplete implements Screen {
 
 
 
-                  sfs.setScreen(new PlayScreen(sfs, map));
+                  sfs.setScreen(new Upgrade(sfs, map));
                   sfs.setMoney(0);
               }
           });

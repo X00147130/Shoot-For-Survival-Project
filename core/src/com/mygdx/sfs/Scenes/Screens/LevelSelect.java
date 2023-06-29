@@ -1,15 +1,12 @@
 package com.mygdx.sfs.Scenes.Screens;
 
-import static com.badlogic.gdx.graphics.Color.CYAN;
 import static com.badlogic.gdx.graphics.Color.GREEN;
 import static com.badlogic.gdx.graphics.Color.MAGENTA;
-import static com.badlogic.gdx.graphics.Color.RED;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -165,7 +162,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,1));
+                GAME.setScreen(new CharacterSelect(GAME , 1));
             }
         });
 
@@ -188,7 +185,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,2));
+                GAME.setScreen(new CharacterSelect(GAME , 2));
             }
         });
 
@@ -211,7 +208,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,3));
+                GAME.setScreen(new CharacterSelect(GAME , 3));
             }
         });
 
@@ -234,7 +231,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,4));
+                GAME.setScreen(new CharacterSelect(GAME , 4));
             }
         });
 
@@ -256,7 +253,7 @@ public class LevelSelect implements Screen {
                 }
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,5));
+                GAME.setScreen(new CharacterSelect(GAME , 5));
             }
         });
 
@@ -279,7 +276,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,6));
+                GAME.setScreen(new CharacterSelect(GAME , 6));
             }
         });
 
@@ -302,7 +299,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,7));
+                GAME.setScreen(new CharacterSelect(GAME , 7));
             }
         });
 
@@ -325,7 +322,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,8));
+                GAME.setScreen(new CharacterSelect(GAME , 8));
             }
         });
 
@@ -347,7 +344,7 @@ public class LevelSelect implements Screen {
                 }
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,9));
+                GAME.setScreen(new CharacterSelect(GAME , 9));
             }
         });
 
@@ -370,7 +367,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,10));
+                GAME.setScreen(new CharacterSelect(GAME , 10));
             }
         });
     }

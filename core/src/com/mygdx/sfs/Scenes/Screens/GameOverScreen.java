@@ -1,6 +1,5 @@
 package com.mygdx.sfs.Scenes.Screens;
 
-import static com.badlogic.gdx.graphics.Color.RED;
 import static com.badlogic.gdx.graphics.Color.WHITE;
 
 import com.badlogic.gdx.Application;

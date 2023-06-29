@@ -100,7 +100,7 @@ public class PlayScreen implements Screen {
 
         //render/map setup
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("Maps/Industry/Map/Lvl1-1.tmx");
+        map = mapLoader.load("Maps/Industry/Map/Lvl1-"+level+".tmx");
         //map = mapLoader.load("levels/Level"+level+".tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / shootForSurvival.PPM);
 

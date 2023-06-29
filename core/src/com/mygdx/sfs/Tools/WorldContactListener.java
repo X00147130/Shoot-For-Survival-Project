@@ -75,17 +75,12 @@ public class WorldContactListener implements ContactListener {
                 break;
 
             case shootForSurvival.ENEMY_BIT | shootForSurvival.BARRIER_BIT:
+
+            case shootForSurvival.ENEMY_BIT | shootForSurvival.WALL_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.ENEMY_BIT)
                     ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
                 else
                     ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
-                break;
-
-            case shootForSurvival.ENEMY_BIT | shootForSurvival.WALL_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.WALL_BIT)
-                    ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
-                else
-                    ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
                 break;
 
 
