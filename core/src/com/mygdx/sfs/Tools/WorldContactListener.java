@@ -123,11 +123,13 @@ public class WorldContactListener implements ContactListener {
             case shootForSurvival.HAMMER_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Bullets) fixA.getUserData()).destroy();
+                    ((Hammer) fixB.getUserData()).setHit(true);
                     ((Hammer) fixB.getUserData()).shot();
                     ((Bullets) fixA.getUserData()).dispose();
                 }
                 else {
                     ((Bullets) fixB.getUserData()).destroy();
+                    ((Hammer) fixA.getUserData()).setHit(true);
                     ((Hammer) fixA.getUserData()).shot();
                     ((Bullets) fixB.getUserData()).dispose();
                 }
@@ -148,11 +150,13 @@ public class WorldContactListener implements ContactListener {
                 if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
                     ((Player) fixA.getUserData()).hit();
                     ((Hammer) fixB.getUserData()).setAttack(true);
+                    ((Hammer) fixB.getUserData()).attack();
 
                 }
                 else {
                     ((Player) fixB.getUserData()).hit();
                     ((Hammer) fixA.getUserData()).setAttack(true);
+                    ((Hammer) fixA.getUserData()).attack();
                 }
                 break;
 

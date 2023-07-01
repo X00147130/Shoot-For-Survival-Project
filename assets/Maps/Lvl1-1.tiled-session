@@ -466,24 +466,24 @@
         },
         "Industry/Map/Lvl1-2.tmx": {
             "expandedObjectLayers": [
-                8,
-                7,
-                11,
-                5,
-                13,
-                4,
-                6,
                 10,
-                9,
-                15,
+                13,
+                5,
+                14,
                 12,
-                14
+                8,
+                15,
+                6,
+                11,
+                9,
+                4,
+                7
             ],
             "scale": 0.75,
-            "selectedLayer": 15,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 665.3333333333334,
-                "y": 489.33333333333337
+                "x": 662.6666666666665,
+                "y": 486.6666666666666
             }
         },
         "Industry/Map/Screen2.tsx": {

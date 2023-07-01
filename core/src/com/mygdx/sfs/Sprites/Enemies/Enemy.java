@@ -17,6 +17,7 @@ public abstract class Enemy extends Sprite {
 
     //movement
     public Vector2 velocity;
+    public Vector2 attackStop;
 
     public Enemy(PlayScreen screen, float x, float y){
         this.world = screen.getWorld();
@@ -24,6 +25,7 @@ public abstract class Enemy extends Sprite {
         setPosition(x,y);
         defineEnemy();
         velocity = new Vector2(-1.3f, -2);
+        attackStop = new Vector2(0,0);
         b2body.setActive(false);
     }
     protected abstract void defineEnemy();
