@@ -61,6 +61,7 @@ public class Player extends Sprite {
 
     //boolean tests
     private boolean playerIsDead;
+    private boolean fellToDeath;
     private boolean hit = false;
 
 
@@ -658,6 +659,34 @@ public class Player extends Sprite {
         }
     }
 
+    public void fellToDeath(){
+        if(fellToDeath){
+            sfs.music.stop();
+            if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/death.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0) {
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                } else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+            if(Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/death.wav", Sound.class).play(sfs.getSoundVolume());
+            }
+
+            sfs.setPowerLVL(0);
+
+            playerIsDead = true;
+            Filter filter = new Filter();
+            filter.maskBits = shootForSurvival.GROUND_BIT|
+                    shootForSurvival.DEATH_BIT;
+            for (Fixture fixture : b2body.getFixtureList())
+                fixture.setFilterData(filter);
+            hitCounter = 3;
+        }
+    }
+
     public boolean isDead(){
         return playerIsDead;
     }
@@ -705,5 +734,13 @@ public class Player extends Sprite {
 
     public void setKey(Boolean key) {
         this.key = key;
+    }
+
+    public void setFellToDeath(boolean fellToDeath) {
+        this.fellToDeath = fellToDeath;
+    }
+
+    public void setPlayerIsDead(boolean playerIsDead) {
+        this.playerIsDead = playerIsDead;
     }
 }

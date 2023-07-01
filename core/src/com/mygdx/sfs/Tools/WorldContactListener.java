@@ -203,6 +203,17 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((InteractiveTileObject) fixB.getUserData()).onHit((Player) fixA.getUserData());
                 break;
+
+            case shootForSurvival.DEATH_BIT | shootForSurvival.PLAYER_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
+                    ((Player) fixA.getUserData()).setFellToDeath(true);
+                    ((Player) fixA.getUserData()).fellToDeath();
+                }
+                else {
+                    ((Player) fixB.getUserData()).setFellToDeath(true);
+                    ((Player) fixB.getUserData()).fellToDeath();
+                }
+                break;
         }
     }
 
