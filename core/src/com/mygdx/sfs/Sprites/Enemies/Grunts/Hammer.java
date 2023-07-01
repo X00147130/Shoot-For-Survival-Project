@@ -17,12 +17,12 @@ import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.shootForSurvival;
 
-public class Worker extends Enemy {
+public class Hammer extends Enemy {
     //animation variables
     public enum State{ RUNNING, HURT, ATTACK, DEAD }
     public State currentState;
     public State previousState;
-    private boolean workerDead;
+    private boolean hammerDead;
 
     private shootForSurvival sfs;
 
@@ -39,62 +39,58 @@ public class Worker extends Enemy {
     private boolean runningRight;
     private boolean attack = false;
 
-    //private ArrayList<Bullets> bullet;
+    /*private int enemyHitCounter;*/
 
-    private int enemyHitCounter;
-
-    public Worker(shootForSurvival sfs, PlayScreen screen, float x, float y) {
+    public Hammer(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
         this.sfs = sfs;
 
-        //bullet.add(new Bullets(sfs, screen, b2body.getPosition().x, b2body.getPosition().y));
-
-
-    //Run animation
+        //Run animation
         frames = new Array<TextureRegion>();
-        frames.add(sfs.getWorker1Atlas().findRegion("Run1"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run2"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run3"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run4"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run5"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run6"));
+        frames.add(sfs.getHammerAtlas().findRegion("Run1"));
+        frames.add(sfs.getHammerAtlas().findRegion("Run2"));
+        frames.add(sfs.getHammerAtlas().findRegion("Run3"));
+        frames.add(sfs.getHammerAtlas().findRegion("Run4"));
+        frames.add(sfs.getHammerAtlas().findRegion("Run5"));
+        frames.add(sfs.getHammerAtlas().findRegion("Run6"));
 
 
         runAnimation = new Animation<TextureRegion>(1f, frames);
         setBounds(0,0,18/PPM, 20/PPM);
         frames.clear();
 
-    //Death animation
+        //Death animation
         frames.clear();
 
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead1"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead2"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead3"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead4"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead5"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead6"));
+        frames.add(sfs.getHammerAtlas().findRegion("Death1"));
+        frames.add(sfs.getHammerAtlas().findRegion("Death2"));
+        frames.add(sfs.getHammerAtlas().findRegion("Death3"));
+        frames.add(sfs.getHammerAtlas().findRegion("Death4"));
+
 
         dieAnimation = new Animation <TextureRegion>(0.3f, frames);
         frames.clear();
 
-    //Attack Animation
+        //Attack Animation
         frames.clear();
 
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack1"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack2"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack3"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack4"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack5"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack6"));
+        frames.add(sfs.getHammerAtlas().findRegion("Attack1"));
+        frames.add(sfs.getHammerAtlas().findRegion("Attack2"));
+        frames.add(sfs.getHammerAtlas().findRegion("Attack3"));
+        frames.add(sfs.getHammerAtlas().findRegion("Attack4"));
+        frames.add(sfs.getHammerAtlas().findRegion("Attack5"));
+        frames.add(sfs.getHammerAtlas().findRegion("Attack6"));
+        frames.add(sfs.getHammerAtlas().findRegion("Attack7"));
+        frames.add(sfs.getHammerAtlas().findRegion("Attack8"));
 
         attackAnimation = new Animation <TextureRegion>(1f, frames);
         frames.clear();
 
-    //Hurt Animation
+        //Hurt Animation
         frames.clear();
 
-        frames.add(sfs.getWorker1Atlas().findRegion("Hurt1"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Hurt2"));
+        frames.add(sfs.getHammerAtlas().findRegion("Hurt1"));
+        frames.add(sfs.getHammerAtlas().findRegion("Hurt2"));
 
         hurtAnimation = new Animation <TextureRegion>(1f, frames);
         frames.clear();
@@ -104,23 +100,23 @@ public class Worker extends Enemy {
         setBounds(getX(), getY(), 30 / PPM , 30 / PPM);
         setToDestroy = false;
         destroyed =false;
-        enemyHitCounter = 0;
-        workerDead = false;
+        /*enemyHitCounter = 0;*/
+        hammerDead = false;
         runningRight = true;
     }
 
     public State getState() {
-        if(workerDead == true)
+        if(hammerDead)
             return State.DEAD;
 
-        else if(workerDead == false)
-            return State.RUNNING;
-
-        else if(hit == true && workerDead == false)
+        else if(hit == true && hammerDead == false)
             return State.HURT;
 
-        else if(attack == true && workerDead == false)
+        else if(attack == true && hammerDead == false)
             return State.ATTACK;
+
+        else if(!hammerDead)
+            return State.RUNNING;
 
         else
             return State.DEAD;
@@ -172,16 +168,17 @@ public class Worker extends Enemy {
         setRegion(getFrame(dt));
 
         if (setToDestroy && !destroyed) {
-            workerDead = true;
+            hammerDead = true;
             world.destroyBody(b2body);
             destroyed = true;
             stateTime=0;
 
 
         } else if (!destroyed) {
-            if(attack == false)
+            hammerDead = false;
+            if(!attack)
                 b2body.setLinearVelocity(velocity);
-            else if (attack == true) {
+            else if (attack) {
                 b2body.setLinearVelocity(0, 0);
                 attack = false;
             }
@@ -201,8 +198,8 @@ public class Worker extends Enemy {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(7 / PPM);
-        fdef.filter.categoryBits = shootForSurvival.ENEMY_BIT;
+        shape.setRadius(9 / PPM);
+        fdef.filter.categoryBits = shootForSurvival.HAMMER_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.DOOR_BIT |
                 shootForSurvival.ENEMY_BIT |
@@ -222,7 +219,7 @@ public class Worker extends Enemy {
 
     @Override
     public void shot() {
-        if(hitCounter < 1){    //Worker is pushed back
+        if(hitCounter < 3){    //Hammer is pushed back
             hit = true;
             if(b2body.getLinearVelocity().x > 0)
                 b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
@@ -235,7 +232,7 @@ public class Worker extends Enemy {
             }
 
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                sfs.loadSound("audio/sounds/getting-hit.mp3");
+                sfs.loadSound("audio/sounds/394499__mobeyee__hurting-the-robot.wav");
                 long id = sfs.sound.play();
                 if (sfs.getSoundVolume() != 0) {
                     sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -244,7 +241,7 @@ public class Worker extends Enemy {
                 }
             }
             if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                sfs.manager.get("audio/sounds/getting-hit.mp3", Sound.class).play(sfs.getSoundVolume());
+                sfs.manager.get("audio/sounds/394499__mobeyee__hurting-the-robot.wav", Sound.class).play(sfs.getSoundVolume());
             }
 
             hitCounter++;
@@ -253,7 +250,7 @@ public class Worker extends Enemy {
 
             setToDestroy = true;
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
+                sfs.loadSound("audio/sounds/523553__matrixxx__tv_shutdown.wav");
                 long id = sfs.sound.play();
                 if (sfs.getSoundVolume() != 0) {
                     sfs.sound.setVolume(id, sfs.getSoundVolume());
@@ -263,9 +260,9 @@ public class Worker extends Enemy {
             }
 
             if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                sfs.manager.get("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class).play(sfs.getSoundVolume());
+                sfs.manager.get("audio/sounds/523553__matrixxx__tv_shutdown.wav", Sound.class).play(sfs.getSoundVolume());
             }
-            hitCounter = 2;
+            hitCounter = 4;
         }
         hit = false;
     }
@@ -274,4 +271,3 @@ public class Worker extends Enemy {
         this.attack = attack;
     }
 }
-

@@ -1,0 +1,173 @@
+
+hammer.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Attack6
+  rotate: false
+  xy: 1, 1
+  size: 46, 42
+  orig: 46, 42
+  offset: 0, 0
+  index: -1
+Attack7
+  rotate: false
+  xy: 49, 1
+  size: 46, 42
+  orig: 46, 42
+  offset: 0, 0
+  index: -1
+Attack8
+  rotate: false
+  xy: 97, 1
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+Attack5
+  rotate: false
+  xy: 141, 1
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+Attack1
+  rotate: false
+  xy: 183, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Attack2
+  rotate: false
+  xy: 222, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Attack3
+  rotate: false
+  xy: 261, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Attack4
+  rotate: false
+  xy: 300, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Death1
+  rotate: false
+  xy: 339, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Death2
+  rotate: false
+  xy: 378, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Death3
+  rotate: false
+  xy: 417, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Death4
+  rotate: false
+  xy: 456, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Hurt1
+  rotate: false
+  xy: 495, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Hurt2
+  rotate: false
+  xy: 534, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Idle1
+  rotate: false
+  xy: 573, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Idle2
+  rotate: false
+  xy: 612, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Idle3
+  rotate: false
+  xy: 651, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Idle4
+  rotate: false
+  xy: 690, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Run1
+  rotate: false
+  xy: 729, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Run2
+  rotate: false
+  xy: 768, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Run3
+  rotate: false
+  xy: 807, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Run4
+  rotate: false
+  xy: 846, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Run5
+  rotate: false
+  xy: 885, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1
+Run6
+  rotate: false
+  xy: 924, 1
+  size: 37, 42
+  orig: 37, 42
+  offset: 0, 0
+  index: -1

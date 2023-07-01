@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="260" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="251">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="260" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="282">
  <tileset firstgid="1" source="Background.tsx"/>
  <tileset firstgid="181" source="Industry3.tsx"/>
  <tileset firstgid="182" source="Industry21.tsx"/>
@@ -201,11 +201,29 @@
   <object id="242" x="1984" y="256.667" width="159.333"/>
   <object id="249" x="8224" y="575.333" width="94.6667"/>
  </objectgroup>
- <objectgroup id="5" name="Cover">
-  <object id="185" x="1248" y="713" width="32" height="19"/>
-  <object id="187" x="2369" y="746" width="32" height="18"/>
-  <object id="188" x="1312" y="394" width="32" height="19"/>
-  <object id="189" x="4543" y="716" width="32" height="17"/>
+ <objectgroup id="5" name="Money">
+  <object id="185" x="1309.33" y="710.333" width="32" height="19"/>
+  <object id="187" x="2427.67" y="747.333" width="32" height="18"/>
+  <object id="188" x="1246.67" y="390" width="32" height="19"/>
+  <object id="189" x="4447" y="714.667" width="32" height="17"/>
+  <object id="251" x="2565.33" y="582.667" width="21.3333" height="17.3333"/>
+  <object id="252" x="2765.33" y="485.333" width="16" height="21.3333"/>
+  <object id="253" x="2244" y="450.667" width="26.6667" height="14.6667"/>
+  <object id="254" x="3186.67" y="644" width="16" height="20"/>
+  <object id="255" x="3220" y="642.667" width="13.3333" height="17.3333"/>
+  <object id="256" x="3237.33" y="638.667" width="20" height="20"/>
+  <object id="257" x="3266.67" y="642.667" width="25.3333" height="17.3333"/>
+  <object id="259" x="5572" y="482.667" width="22.6667" height="21.3333"/>
+  <object id="260" x="5609.33" y="480" width="14.6667" height="17.3333"/>
+  <object id="261" x="5069.33" y="422.667" width="17.3333" height="18.6667"/>
+  <object id="262" x="4964" y="710.667" width="22.6667" height="16"/>
+  <object id="263" x="7209.33" y="742.667" width="21.3333" height="18.6667"/>
+  <object id="264" x="7266.67" y="745.333" width="21.3333" height="21.3333"/>
+  <object id="265" x="7745.33" y="613.333" width="26.6667" height="21.3333"/>
+  <object id="266" x="7844" y="324" width="26.6667" height="20"/>
+  <object id="267" x="4453.33" y="262.667" width="21.3333" height="18.6667"/>
+  <object id="268" x="4738.67" y="260" width="21.3333" height="22.6667"/>
+  <object id="269" x="324" y="614.667" width="25.3333" height="20"/>
  </objectgroup>
  <objectgroup id="6" name="Door">
   <object id="248" x="8256" y="576" width="64" height="64"/>
@@ -213,7 +231,7 @@
  <objectgroup id="7" name="Scanner">
   <object id="101" x="7936" y="604" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="8" name="Enemies">
+ <objectgroup id="8" name="Workers">
   <object id="114" x="5697" y="476" width="32" height="32"/>
   <object id="115" x="5473" y="316" width="32" height="32"/>
   <object id="116" x="4288" y="700" width="32" height="32"/>
@@ -366,5 +384,19 @@
   <object id="243" x="2144" y="258" height="29.3333"/>
   <object id="244" x="1984.67" y="258" width="1.33333" height="28.6667"/>
   <object id="250" x="8222.67" y="352.667" width="0.666667" height="220"/>
+ </objectgroup>
+ <objectgroup id="16" name="Hammer">
+  <object id="270" x="385.333" y="602.667" width="32" height="32"/>
+  <object id="271" x="96" y="602.667" width="32" height="32"/>
+  <object id="272" x="1376" y="700" width="32" height="32"/>
+  <object id="273" x="608" y="281.333" width="32" height="32"/>
+  <object id="274" x="2718.67" y="730.667" width="32" height="32"/>
+  <object id="275" x="3870.67" y="474.667" width="32" height="32"/>
+  <object id="276" x="4672" y="698.667" width="32" height="32"/>
+  <object id="277" x="5792" y="314.667" width="32" height="32"/>
+  <object id="278" x="6209.33" y="602.667" width="32" height="32"/>
+  <object id="279" x="6978.67" y="346.667" width="32" height="32"/>
+  <object id="280" x="7585.33" y="600" width="32" height="32"/>
+  <object id="281" x="7616" y="314.667" width="32" height="32"/>
  </objectgroup>
 </map>

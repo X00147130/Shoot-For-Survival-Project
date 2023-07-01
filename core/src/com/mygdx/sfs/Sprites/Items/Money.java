@@ -36,8 +36,9 @@ public class Money extends Item {
         frames.add(sfs.getMoneyAtlas().findRegion("money6"));
 
         money = new Animation<TextureRegion>(0.2f, frames);
+        setBounds(0, 0, 25 / PPM, 35 / PPM);
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 26 / PPM, 35 / PPM);
+            setBounds(0, 0, 35 / PPM, 45 / PPM);
         }
         frames.clear();
     }
@@ -51,7 +52,7 @@ public class Money extends Item {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(3 / shootForSurvival.PPM);
+        shape.setRadius(4 / shootForSurvival.PPM);
         fdef.filter.categoryBits = shootForSurvival.MONEY_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |

@@ -548,6 +548,7 @@ public class Player extends Sprite {
                 shootForSurvival.ITEM_BIT|
                 shootForSurvival.WALL_BIT|
                 shootForSurvival.KEY_BIT|
+                shootForSurvival.HAMMER_BIT|
                 shootForSurvival.BOSS_BIT|
                 shootForSurvival.SCANNER_BIT|
                 shootForSurvival.DEATH_BIT;

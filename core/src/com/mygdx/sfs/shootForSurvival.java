@@ -39,6 +39,7 @@ public class shootForSurvival extends Game {
     public static final short KEY_BIT = 2048;
     public static final short DEATH_BIT = 4096;
     public static final short WALL_BIT = 8192;
+    public static final short HAMMER_BIT = 16384;
 
 
     //variables
@@ -104,6 +105,7 @@ public class shootForSurvival extends Game {
     private TextureAtlas rifleBullets;
 
     private TextureAtlas worker1Atlas;
+    private TextureAtlas hammerAtlas;
 
     private TextureAtlas doorAtlas;
     private TextureAtlas keycardAtlas;
@@ -155,11 +157,13 @@ public class shootForSurvival extends Game {
         manager.load("audio/sounds/soundnimja-jump.wav", Sound.class);
         manager.load("audio/sounds/stomp.wav", Sound.class);
         manager.load("audio/sounds/death.wav", Sound.class);
-        manager.load("audio/sounds/pistol shot.mp3", Sound.class);
-        manager.load("audio/sounds/rifle shot.mp3", Sound.class);
+        manager.load("audio/sounds/414888__matrixxx__retro_laser_shot_04(Pistol).wav", Sound.class);
+        manager.load("audio/sounds/214990__peridactyloptrix__laser-blast-(Rifle).wav", Sound.class);
         manager.load("audio/sounds/678385__jocabundus__item-pickup-v2.wav", Sound.class);
         manager.load("audio/sounds/364688__alegemaate__electronic-door-opening.wav",Sound.class);
         manager.load("audio/sounds/gun pickup.mp3",Sound.class);
+        manager.load("audio/sounds/523553__matrixxx__tv_shutdown.wav", Sound.class);
+        manager.load("audio/sounds/394499__mobeyee__hurting-the-robot.wav",Sound.class);
 
 
 
@@ -226,6 +230,7 @@ public class shootForSurvival extends Game {
 
 
         worker1Atlas = new TextureAtlas("sprites/Enemies/worker1.pack");//Worker1 (Enemy) Character
+        hammerAtlas = new TextureAtlas("sprites/Enemies/hammer.pack");//Hammer (Enemy) Character
 
         doorAtlas = new TextureAtlas("sprites/Objects/door.pack"); //End Level Door
         keycardAtlas = new TextureAtlas("sprites/Objects/keycard.pack"); //Key Card
@@ -464,7 +469,9 @@ public class shootForSurvival extends Game {
     public TextureAtlas getWorker1Atlas() {
         return worker1Atlas;
     }
-
+    public TextureAtlas getHammerAtlas() {
+        return hammerAtlas;
+    }
 
     public TextureAtlas getDoorAtlas() {
         return doorAtlas;

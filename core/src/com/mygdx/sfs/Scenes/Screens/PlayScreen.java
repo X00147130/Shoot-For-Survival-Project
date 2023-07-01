@@ -232,10 +232,10 @@ public class PlayScreen implements Screen {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && player.currentState != Player.State.COMPLETE) {
                         bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
                    if(player.isRifle() == false) {
-                       game.loadSound("audio/sounds/pistol shot.mp3");
+                       game.loadSound("audio/sounds/414888__matrixxx__retro_laser_shot_04(Pistol).wav");
                    }
                    else{
-                       game.loadSound("audio/sounds/rifle shot.mp3");
+                       game.loadSound("audio/sounds/214990__peridactyloptrix__laser-blast-(Rifle).wav");
                    }
                     long id = game.sound.play();
                     if (game.getSoundVolume() != 0)
@@ -305,9 +305,9 @@ public class PlayScreen implements Screen {
                 if (controller.isSpacePressed() == true && player.currentState != Player.State.COMPLETE) {
                     bullets.add(new Bullets(game,this,player.b2body.getPosition().x,player.b2body.getPosition().y));
                     if(player.isRifle() == false)
-                        game.manager.get("audio/sounds/pistol shot.mp3", Sound.class).play(game.getSoundVolume());
+                        game.manager.get("audio/sounds/414888__matrixxx__retro_laser_shot_04(Pistol).wav", Sound.class).play(game.getSoundVolume());
                     else
-                        game.manager.get("audio/sounds/rifle shot.mp3", Sound.class).play(game.getSoundVolume());
+                        game.manager.get("audio/sounds/214990__peridactyloptrix__laser-blast-(Rifle).wav", Sound.class).play(game.getSoundVolume());
                 }
 
 
@@ -340,6 +340,12 @@ public class PlayScreen implements Screen {
 
 
         for (Enemy enemy : creator.getWorkers()) {
+            enemy.update(dt);
+            if (enemy.getX() < player.getX() + 424 / shootForSurvival.PPM)
+                enemy.b2body.setActive(true);
+        }
+
+        for (Enemy enemy : creator.getHammers()) {
             enemy.update(dt);
             if (enemy.getX() < player.getX() + 424 / shootForSurvival.PPM)
                 enemy.b2body.setActive(true);
@@ -407,6 +413,9 @@ public class PlayScreen implements Screen {
 
 
         for (Enemy enemy : creator.getWorkers())
+            enemy.draw(game.batch);
+
+        for (Enemy enemy : creator.getHammers())
             enemy.draw(game.batch);
 
         for (Item item : items)
@@ -485,7 +494,7 @@ public class PlayScreen implements Screen {
     }
 
     public boolean gameOver() {
-        if (player.currentState == Player.State.DEAD && player.getStateTimer() > 4) {
+        if (player.currentState == Player.State.DEAD && player.getStateTimer() > 3) {
             return true;
         }else {
                 return false;

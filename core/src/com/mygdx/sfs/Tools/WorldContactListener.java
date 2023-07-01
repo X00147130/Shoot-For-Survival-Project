@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
+import com.mygdx.sfs.Sprites.Enemies.Grunts.Hammer;
 import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.Sprites.Items.Bullets;
 import com.mygdx.sfs.Sprites.Items.HealthCrate;
@@ -31,6 +32,7 @@ public class WorldContactListener implements ContactListener {
                     ((InteractiveTileObject) fixA.getUserData()).onHit((Player) fixB.getUserData());
                 break;
 
+
             case shootForSurvival.PLAYER_BIT | shootForSurvival.GROUND_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
                     ((Player) fixA.getUserData()).jumpReset();
@@ -38,6 +40,7 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((Player) fixB.getUserData()).jumpReset();
                 break;
+
 
             case shootForSurvival.PLAYER_BIT | shootForSurvival.WALL_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
@@ -52,6 +55,7 @@ public class WorldContactListener implements ContactListener {
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Bullets) fixA.getUserData()).destroy();
                     ((Worker) fixB.getUserData()).shot();
+                    ((Worker) fixB.getUserData()).currentState = Worker.State.HURT;
                     ((Bullets) fixA.getUserData()).dispose();
                 }
                 else {
@@ -60,6 +64,7 @@ public class WorldContactListener implements ContactListener {
                     ((Bullets) fixB.getUserData()).dispose();
                 }
                 break;
+
 
             case shootForSurvival.GROUND_BIT | shootForSurvival.BULLET_BIT:
 
@@ -73,6 +78,7 @@ public class WorldContactListener implements ContactListener {
                     ((Bullets) fixB.getUserData()).dispose();
                 }
                 break;
+
 
             case shootForSurvival.ENEMY_BIT | shootForSurvival.BARRIER_BIT:
 
@@ -88,6 +94,7 @@ public class WorldContactListener implements ContactListener {
                 if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
                     ((Player) fixA.getUserData()).hit();
                     ((Worker) fixB.getUserData()).setAttack(true);
+
                 }
                 else {
                     ((Player) fixB.getUserData()).hit();
@@ -95,9 +102,58 @@ public class WorldContactListener implements ContactListener {
                 }
                 break;
 
+
             case shootForSurvival.ENEMY_BIT | shootForSurvival.ENEMY_BIT:
                 ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
                 ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
+                break;
+
+
+            case shootForSurvival.ENEMY_BIT | shootForSurvival.HAMMER_BIT:
+                if(fixA.getFilterData().categoryBits == shootForSurvival.ENEMY_BIT){
+                    ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
+                    ((Hammer) fixB.getUserData()).reverseVelocity(true, false);
+            }else {
+                    ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
+                    ((Hammer) fixA.getUserData()).reverseVelocity(true, false);
+                }
+                break;
+
+
+            case shootForSurvival.HAMMER_BIT | shootForSurvival.BULLET_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
+                    ((Bullets) fixA.getUserData()).destroy();
+                    ((Hammer) fixB.getUserData()).shot();
+                    ((Bullets) fixA.getUserData()).dispose();
+                }
+                else {
+                    ((Bullets) fixB.getUserData()).destroy();
+                    ((Hammer) fixA.getUserData()).shot();
+                    ((Bullets) fixB.getUserData()).dispose();
+                }
+                break;
+
+
+            case shootForSurvival.HAMMER_BIT | shootForSurvival.BARRIER_BIT:
+
+            case shootForSurvival.HAMMER_BIT | shootForSurvival.WALL_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.HAMMER_BIT)
+                    ((Hammer) fixA.getUserData()).reverseVelocity(true, false);
+                else
+                    ((Hammer) fixB.getUserData()).reverseVelocity(true, false);
+                break;
+
+
+            case shootForSurvival.PLAYER_BIT | shootForSurvival.HAMMER_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
+                    ((Player) fixA.getUserData()).hit();
+                    ((Hammer) fixB.getUserData()).setAttack(true);
+
+                }
+                else {
+                    ((Player) fixB.getUserData()).hit();
+                    ((Hammer) fixA.getUserData()).setAttack(true);
+                }
                 break;
 
 
@@ -110,6 +166,7 @@ public class WorldContactListener implements ContactListener {
                     ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
                 }
                 break;
+
 
             case shootForSurvival.KEY_BIT | shootForSurvival.PLAYER_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.KEY_BIT) {
@@ -130,7 +187,6 @@ public class WorldContactListener implements ContactListener {
                     ((InteractiveTileObject) fixB.getUserData()).onHit((Player) fixA.getUserData());
                 }
                 break;
-
 
 
             case shootForSurvival.MONEY_BIT | shootForSurvival.PLAYER_BIT:

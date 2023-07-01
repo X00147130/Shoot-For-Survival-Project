@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
+import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Bullets {
@@ -64,6 +65,7 @@ public class Bullets {
         bulletDef.filter.maskBits = shootForSurvival.ENEMY_BIT |
                 shootForSurvival.GROUND_BIT|
                 shootForSurvival.WALL_BIT|
+                shootForSurvival.HAMMER_BIT|
                 shootForSurvival.PLAYER_BIT;
 
         bulletDef.shape = shape;

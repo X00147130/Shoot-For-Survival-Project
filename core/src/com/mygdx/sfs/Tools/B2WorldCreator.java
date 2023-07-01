@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
+import com.mygdx.sfs.Sprites.Enemies.Grunts.Hammer;
 import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.Sprites.Items.Money;
 import com.mygdx.sfs.Sprites.Items.HealthCrate;
@@ -25,6 +26,7 @@ import com.mygdx.sfs.shootForSurvival;
 public class B2WorldCreator {
     private shootForSurvival sfs;
     private Array<Worker> workers;
+    private Array<Hammer> hammers;
     private Array<Money> coins;
     private Array<HealthCrate> vials;
     private Array<KeyCard> keys;
@@ -161,10 +163,19 @@ public class B2WorldCreator {
         for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
             scanner = new Scanner(sfs,screen,object);
         }
+        // create all enemies
+        hammers = new Array<Hammer>();
+        for (MapObject object : map.getLayers().get(15).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            hammers.add(new Hammer(sfs,screen, rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
+        }
     }
 
     public Array<Worker> getWorkers() {
         return workers;
+    }
+    public Array<Hammer> getHammers() {
+        return hammers;
     }
     public Array<HealthCrate> getVials(){return vials;}
     public Array<Money> getCoins(){return coins;}

@@ -454,33 +454,36 @@
             "scaleInEditor": 1
         },
         "Industry/Map/Lvl1-1.tmx": {
+            "expandedObjectLayers": [
+                19
+            ],
             "scale": 0.75,
-            "selectedLayer": 2,
+            "selectedLayer": 15,
             "viewCenter": {
-                "x": 4180,
-                "y": 494
+                "x": 1112,
+                "y": 490.6666666666666
             }
         },
         "Industry/Map/Lvl1-2.tmx": {
             "expandedObjectLayers": [
-                9,
-                12,
-                13,
-                7,
-                15,
-                5,
-                10,
-                6,
-                14,
-                4,
                 8,
-                11
+                7,
+                11,
+                5,
+                13,
+                4,
+                6,
+                10,
+                9,
+                15,
+                12,
+                14
             ],
-            "scale": 1.5,
-            "selectedLayer": 14,
+            "scale": 0.75,
+            "selectedLayer": 15,
             "viewCenter": {
-                "x": 8076,
-                "y": 406
+                "x": 665.3333333333334,
+                "y": 489.33333333333337
             }
         },
         "Industry/Map/Screen2.tsx": {
