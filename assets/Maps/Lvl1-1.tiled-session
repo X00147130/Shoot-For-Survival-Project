@@ -455,35 +455,37 @@
         },
         "Industry/Map/Lvl1-1.tmx": {
             "expandedObjectLayers": [
+                16,
+                5,
                 19
             ],
             "scale": 0.75,
-            "selectedLayer": 15,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 4180,
-                "y": 494
+                "x": 545.3333333333334,
+                "y": 488
             }
         },
         "Industry/Map/Lvl1-2.tmx": {
             "expandedObjectLayers": [
-                10,
-                13,
-                5,
-                14,
-                12,
-                8,
-                15,
-                6,
-                11,
                 9,
+                12,
+                6,
+                7,
                 4,
-                7
+                14,
+                5,
+                8,
+                13,
+                15,
+                11,
+                10
             ],
             "scale": 0.75,
-            "selectedLayer": 11,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 662.6666666666665,
-                "y": 486.6666666666666
+                "x": 6958.666666666666,
+                "y": 396
             }
         },
         "Industry/Map/Screen2.tsx": {

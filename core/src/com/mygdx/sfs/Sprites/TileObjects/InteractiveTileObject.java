@@ -36,7 +36,6 @@ public abstract class InteractiveTileObject {
         this.bounds = ((RectangleMapObject) object).getRectangle();
         bounds.setPosition(new Vector2(((RectangleMapObject) object).getRectangle().x,(((RectangleMapObject) object).getRectangle().y)));
 
-        //Used in creation of coins and brick as they are the same
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();

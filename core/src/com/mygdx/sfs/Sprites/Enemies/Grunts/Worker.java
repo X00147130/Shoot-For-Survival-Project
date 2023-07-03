@@ -46,11 +46,10 @@ public class Worker extends Enemy {
     public Worker(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
         this.sfs = sfs;
+        previousState = State.RUNNING;
+        currentState = State.RUNNING;
 
-        //bullet.add(new Bullets(sfs, screen, b2body.getPosition().x, b2body.getPosition().y));
-
-
-    //Run animation
+        //Run animation
         frames = new Array<TextureRegion>();
         frames.add(sfs.getWorker1Atlas().findRegion("Run1"));
         frames.add(sfs.getWorker1Atlas().findRegion("Run2"));
@@ -64,7 +63,7 @@ public class Worker extends Enemy {
         setBounds(0,0,18/PPM, 20/PPM);
         frames.clear();
 
-    //Death animation
+        //Death animation
         frames.clear();
 
         frames.add(sfs.getWorker1Atlas().findRegion("Dead1"));
@@ -77,7 +76,7 @@ public class Worker extends Enemy {
         dieAnimation = new Animation <TextureRegion>(0.3f, frames);
         frames.clear();
 
-    //Attack Animation
+        //Attack Animation
         frames.clear();
 
         frames.add(sfs.getWorker1Atlas().findRegion("Attack1"));
@@ -90,7 +89,7 @@ public class Worker extends Enemy {
         attackAnimation = new Animation <TextureRegion>(1f, frames);
         frames.clear();
 
-    //Hurt Animation
+        //Hurt Animation
         frames.clear();
 
         frames.add(sfs.getWorker1Atlas().findRegion("Hurt1"));
@@ -153,11 +152,11 @@ public class Worker extends Enemy {
 
         }
 
-        if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
+        if ((enemyBody.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
             region.flip(true, false);
             runningRight = false;
 
-        } else if ((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
+        } else if ((enemyBody.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
             region.flip(true, false);
             runningRight = true;
         }
@@ -173,20 +172,20 @@ public class Worker extends Enemy {
 
         if (setToDestroy && !destroyed) {
             workerDead = true;
-            world.destroyBody(b2body);
+            world.destroyBody(enemyBody);
             destroyed = true;
             stateTime=0;
 
 
         } else if (!destroyed) {
             if(attack == false)
-                b2body.setLinearVelocity(velocity);
+                enemyBody.setLinearVelocity(velocity);
             else if (attack == true) {
-                b2body.setLinearVelocity(0, 0);
+                enemyBody.setLinearVelocity(0, 0);
                 attack = false;
             }
 
-            setPosition(b2body.getPosition().x - getWidth() /2 , b2body.getPosition().y - getHeight() /3 );
+            setPosition(enemyBody.getPosition().x - getWidth() /2 , enemyBody.getPosition().y - getHeight() /3 );
             setRegion(getFrame(dt));
         }
 
@@ -197,7 +196,7 @@ public class Worker extends Enemy {
         BodyDef bdef = new BodyDef();
         bdef.position.set(getX(),getY());
         bdef.type = BodyDef.BodyType.DynamicBody;
-        b2body = world.createBody(bdef);
+        enemyBody = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
@@ -212,7 +211,7 @@ public class Worker extends Enemy {
                 shootForSurvival.PLAYER_BIT;
 
         fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(this);
+        enemyBody.createFixture(fdef).setUserData(this);
     }
 
     public void draw(Batch batch){
@@ -224,14 +223,14 @@ public class Worker extends Enemy {
     public void shot() {
         if(hitCounter < 1){    //Worker is pushed back
             hit = true;
-            if(b2body.getLinearVelocity().x > 0)
-                b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
+            if(enemyBody.getLinearVelocity().x > 0)
+                enemyBody.applyLinearImpulse(new Vector2(-1f,1f),enemyBody.getWorldCenter(),true);
 
-            else if(b2body.getLinearVelocity().x < 0)
-                b2body.applyLinearImpulse(new Vector2(1f,1f),b2body.getWorldCenter(),true);
+            else if(enemyBody.getLinearVelocity().x < 0)
+                enemyBody.applyLinearImpulse(new Vector2(1f,1f),enemyBody.getWorldCenter(),true);
 
             else{
-                b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
+                enemyBody.applyLinearImpulse(new Vector2(-1f,1f),enemyBody.getWorldCenter(),true);
             }
 
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -274,4 +273,3 @@ public class Worker extends Enemy {
         this.attack = attack;
     }
 }
-

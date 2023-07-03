@@ -65,8 +65,9 @@ public class Bullets {
         bulletDef.filter.maskBits = shootForSurvival.ENEMY_BIT |
                 shootForSurvival.GROUND_BIT|
                 shootForSurvival.WALL_BIT|
-                shootForSurvival.HAMMER_BIT|
-                shootForSurvival.PLAYER_BIT;
+                shootForSurvival.ITEM_BIT|
+                shootForSurvival.PLAYER_BIT|
+                shootForSurvival.HAMMER_BIT;
 
         bulletDef.shape = shape;
         Fixture fix1 = bulletBody.createFixture(bulletDef);
@@ -86,7 +87,6 @@ public class Bullets {
        if(shot && !destroyed) {
            world.destroyBody(bulletBody);
            destroyed = true;
-           dispose();
        }
 
 
@@ -137,7 +137,5 @@ public class Bullets {
         batch.draw(clip, bulletBody.getPosition().x, bulletBody.getPosition().y,clip.getRegionWidth() / sfs.PPM,clip.getRegionHeight() / sfs.PPM);
         batch.end();
 
-    }
-    public void dispose(){
     }
 }

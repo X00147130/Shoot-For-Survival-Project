@@ -56,12 +56,10 @@ public class WorldContactListener implements ContactListener {
                     ((Bullets) fixA.getUserData()).destroy();
                     ((Worker) fixB.getUserData()).shot();
                     ((Worker) fixB.getUserData()).currentState = Worker.State.HURT;
-                    ((Bullets) fixA.getUserData()).dispose();
                 }
                 else {
                     ((Bullets) fixB.getUserData()).destroy();
                     ((Worker) fixA.getUserData()).shot();
-                    ((Bullets) fixB.getUserData()).dispose();
                 }
                 break;
 
@@ -71,11 +69,9 @@ public class WorldContactListener implements ContactListener {
             case shootForSurvival.WALL_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Bullets) fixA.getUserData()).destroy();
-                    ((Bullets) fixA.getUserData()).dispose();
                 }
                 else {
                     ((Bullets) fixB.getUserData()).destroy();
-                    ((Bullets) fixB.getUserData()).dispose();
                 }
                 break;
 
@@ -109,14 +105,9 @@ public class WorldContactListener implements ContactListener {
                 break;
 
 
-            case shootForSurvival.ENEMY_BIT | shootForSurvival.HAMMER_BIT:
-                if(fixA.getFilterData().categoryBits == shootForSurvival.ENEMY_BIT){
-                    ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
-                    ((Hammer) fixB.getUserData()).reverseVelocity(true, false);
-            }else {
-                    ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
-                    ((Hammer) fixA.getUserData()).reverseVelocity(true, false);
-                }
+            case shootForSurvival.HAMMER_BIT | shootForSurvival.HAMMER_BIT:
+                ((Hammer) fixA.getUserData()).reverseVelocity(true, false);
+                ((Hammer) fixB.getUserData()).reverseVelocity(true, false);
                 break;
 
 
@@ -125,13 +116,11 @@ public class WorldContactListener implements ContactListener {
                     ((Bullets) fixA.getUserData()).destroy();
                     ((Hammer) fixB.getUserData()).setHit(true);
                     ((Hammer) fixB.getUserData()).shot();
-                    ((Bullets) fixA.getUserData()).dispose();
                 }
                 else {
                     ((Bullets) fixB.getUserData()).destroy();
                     ((Hammer) fixA.getUserData()).setHit(true);
                     ((Hammer) fixA.getUserData()).shot();
-                    ((Bullets) fixB.getUserData()).dispose();
                 }
                 break;
 
@@ -168,6 +157,18 @@ public class WorldContactListener implements ContactListener {
                 }
                 else {
                     ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
+                }
+                break;
+
+            case shootForSurvival.ITEM_BIT | shootForSurvival.BULLET_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.ITEM_BIT) {
+                    ((HealthCrate) fixA.getUserData()).setShot(true);
+                    ((HealthCrate) fixA.getUserData()).open();
+
+                }
+                else {
+                    ((HealthCrate) fixB.getUserData()).setShot(true);
+                    ((HealthCrate) fixB.getUserData()).open();
                 }
                 break;
 

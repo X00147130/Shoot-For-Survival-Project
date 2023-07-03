@@ -22,7 +22,7 @@ public class Hammer extends Enemy {
     public enum State{ ATTACK, RUNNING, HURT, DEAD }
     public State currentState;
     public State previousState;
-    private boolean hammerDead;
+    public boolean hammerDead;
 
     private shootForSurvival sfs;
 
@@ -36,16 +36,21 @@ public class Hammer extends Enemy {
     private boolean destroyed;
     private boolean hit = false;
     private int hitCounter;
-    private boolean runningRight;
+    private boolean runningForward;
     private boolean attack = false;
+    private boolean justAttacked = false;
 
 
     public Hammer(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
         this.sfs = sfs;
 
+        previousState = State.RUNNING;
+        currentState = State.RUNNING;
+
         //Run animation
         frames = new Array<TextureRegion>();
+
         frames.add(sfs.getHammerAtlas().findRegion("Run1"));
         frames.add(sfs.getHammerAtlas().findRegion("Run2"));
         frames.add(sfs.getHammerAtlas().findRegion("Run3"));
@@ -100,7 +105,7 @@ public class Hammer extends Enemy {
         setToDestroy = false;
         destroyed =false;
         hammerDead = false;
-        runningRight = true;
+        runningForward = true;
     }
 
     public State getState() {
@@ -148,13 +153,13 @@ public class Hammer extends Enemy {
                 break;
         }
 
-        if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
+        if ((enemyBody.getLinearVelocity().x < 0 || !runningForward) && !region.isFlipX()) {
             region.flip(true, false);
-            runningRight = false;
+            runningForward = false;
 
-        } else if ((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
+        } else if ((enemyBody.getLinearVelocity().x > 0 || runningForward) && region.isFlipX()) {
             region.flip(true, false);
-            runningRight = true;
+            runningForward = true;
         }
         stateTime = currentState == previousState ? stateTime + dt : 0;
         previousState = currentState;
@@ -164,36 +169,34 @@ public class Hammer extends Enemy {
 
     public void update(float dt) {
         stateTime += dt;
+        setRegion(getFrame(dt));
 
         if (setToDestroy && !destroyed) {
             hammerDead = true;
-            world.destroyBody(b2body);
+            world.destroyBody(enemyBody);
             destroyed = true;
-            stateTime=0;
         } else {
             hammerDead = false;
         }
 
-        if(previousState == State.ATTACK){
-            currentState = State.RUNNING;
-        }
-        b2body.setLinearVelocity(velocity);
 
-        setPosition(b2body.getPosition().x - getWidth() /2 , b2body.getPosition().y - getHeight() /3 );
+        enemyBody.setLinearVelocity(velocity);
+
+        if (justAttacked && attackAnimation.isAnimationFinished(stateTime) == true) {
+            stateTime = 0;
+            currentState = State.RUNNING;
+            attack = false;
+        }
+
+        setPosition(enemyBody.getPosition().x - getWidth() /2 , enemyBody.getPosition().y - getHeight() /3 );
         setRegion(getFrame(dt));
     }
 
     public void attack(){
         if(attack) {
-            b2body.setLinearVelocity(attackStop);
             stateTime = 0;
             currentState = State.ATTACK;
-
-            if(attackAnimation.isAnimationFinished(stateTime)){
-                stateTime = 0;
-                currentState = State.RUNNING;
-                attack = false;
-            }
+            justAttacked = true;
         }
     }
 
@@ -202,7 +205,7 @@ public class Hammer extends Enemy {
         BodyDef bdef = new BodyDef();
         bdef.position.set(getX(),getY());
         bdef.type = BodyDef.BodyType.DynamicBody;
-        b2body = world.createBody(bdef);
+        enemyBody = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
@@ -210,14 +213,13 @@ public class Hammer extends Enemy {
         fdef.filter.categoryBits = shootForSurvival.HAMMER_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.DOOR_BIT |
-                shootForSurvival.ENEMY_BIT |
                 shootForSurvival.BARRIER_BIT |
                 shootForSurvival.BULLET_BIT|
                 shootForSurvival.WALL_BIT|
                 shootForSurvival.PLAYER_BIT;
 
         fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(this);
+        enemyBody.createFixture(fdef).setUserData(this);
     }
 
     public void draw(Batch batch){
@@ -229,17 +231,14 @@ public class Hammer extends Enemy {
     public void shot() {
         if(hitCounter < 3) {    //Hammer is pushed back
             if (hit = true) {
+                if (enemyBody.getLinearVelocity().x > 0)
+                    enemyBody.applyLinearImpulse(new Vector2(-1f, 1f), enemyBody.getWorldCenter(), true);
 
-                stateTime = 0;
-                currentState = State.HURT;
-                if (b2body.getLinearVelocity().x > 0)
-                    b2body.applyLinearImpulse(new Vector2(-1f, 1f), b2body.getWorldCenter(), true);
-
-                else if (b2body.getLinearVelocity().x < 0)
-                    b2body.applyLinearImpulse(new Vector2(1f, 1f), b2body.getWorldCenter(), true);
+                else if (enemyBody.getLinearVelocity().x < 0)
+                    enemyBody.applyLinearImpulse(new Vector2(1f, 1f), enemyBody.getWorldCenter(), true);
 
                 else {
-                    b2body.applyLinearImpulse(new Vector2(-1f, 1f), b2body.getWorldCenter(), true);
+                    enemyBody.applyLinearImpulse(new Vector2(-1f, 1f), enemyBody.getWorldCenter(), true);
                 }
 
                 if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -285,4 +284,5 @@ public class Hammer extends Enemy {
     public void setHit(boolean hit) {
         this.hit = hit;
     }
+
 }

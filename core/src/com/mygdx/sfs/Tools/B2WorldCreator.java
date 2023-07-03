@@ -61,7 +61,7 @@ public class B2WorldCreator {
         }
 
         //create wall bodies fixtures
-        for (MapObject object : map.getLayers().get(14).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(15).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
@@ -77,7 +77,7 @@ public class B2WorldCreator {
 
 
 //create wall fixtures
-        for (MapObject object : map.getLayers().get(14).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(15).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             bdef.type = BodyDef.BodyType.StaticBody;
@@ -112,7 +112,7 @@ public class B2WorldCreator {
 
 //create health fixtures
         vials = new Array<HealthCrate>();
-        for (MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 // creation of health vials objects
             vials.add(new HealthCrate(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
@@ -128,33 +128,33 @@ public class B2WorldCreator {
 
 
 //Create barriers
-        for(MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)){
             new Barrier(screen,object);
         }
 
 
 //Sky limit
-        for(MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)){
             new Sky(screen,object);
         }
 
 
 //create KeyCard fixtures
         keys = new Array<KeyCard>();
-        for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 // creation of Key Card objects
             keys.add(new KeyCard(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
         }
 
 
-        for(MapObject object : map.getLayers().get(11).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : map.getLayers().get(13).getObjects().getByType(RectangleMapObject.class)){
             new Death(screen,object);
         }
 
 //create Rifle fixtures
         rifles = new Array<Rifles>();
-        for (MapObject object : map.getLayers().get(13).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(14).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 // creation of Rifle objects
             rifles.add(new Rifles(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
@@ -165,7 +165,7 @@ public class B2WorldCreator {
         }
         // create all enemies
         hammers = new Array<Hammer>();
-        for (MapObject object : map.getLayers().get(15).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             hammers.add(new Hammer(sfs,screen, rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
         }

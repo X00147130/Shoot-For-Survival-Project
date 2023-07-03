@@ -117,11 +117,11 @@ public class Scalper extends Enemy {
                 region = walkAnimation.getKeyFrame(stateTime,true);
                 break;
         }
-        if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
+        if ((enemyBody.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
             region.flip(true, false);
             runningRight = false;
 
-        } else if ((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
+        } else if ((enemyBody.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
             region.flip(true, false);
             runningRight = true;
         }
@@ -136,14 +136,14 @@ public class Scalper extends Enemy {
         setRegion(getFrame(dt));
         if (setToDestroy && !destroyed) {
             scalperDead = true;
-            world.destroyBody(b2body);
+            world.destroyBody(enemyBody);
             destroyed = true;
             stateTime=0;
 
 
         } else if (!destroyed) {
-            b2body.setLinearVelocity(velocity);
-            setPosition(b2body.getPosition().x - getWidth() /2 , b2body.getPosition().y - getHeight() /3 );
+            enemyBody.setLinearVelocity(velocity);
+            setPosition(enemyBody.getPosition().x - getWidth() /2 , enemyBody.getPosition().y - getHeight() /3 );
             setRegion(getFrame(dt));
         }
     }
@@ -153,7 +153,7 @@ public class Scalper extends Enemy {
         BodyDef bdef = new BodyDef();
         bdef.position.set(getX(),getY());
         bdef.type = BodyDef.BodyType.DynamicBody;
-        b2body = world.createBody(bdef);
+        enemyBody = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
@@ -164,7 +164,7 @@ public class Scalper extends Enemy {
                 shootForSurvival.PLAYER_BIT;
 
         fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(this);
+        enemyBody.createFixture(fdef).setUserData(this);
     }
 
     public void draw(Batch batch){
@@ -176,14 +176,14 @@ public class Scalper extends Enemy {
     public void shot() {
         if(hitCounter < 9){    //Scalper is pushed back
             hit = true;
-            if(b2body.getLinearVelocity().x > 0)
-                b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
+            if(enemyBody.getLinearVelocity().x > 0)
+                enemyBody.applyLinearImpulse(new Vector2(-1f,1f),enemyBody.getWorldCenter(),true);
 
-            else if(b2body.getLinearVelocity().x < 0)
-                b2body.applyLinearImpulse(new Vector2(1f,1f),b2body.getWorldCenter(),true);
+            else if(enemyBody.getLinearVelocity().x < 0)
+                enemyBody.applyLinearImpulse(new Vector2(1f,1f),enemyBody.getWorldCenter(),true);
 
             else{
-                b2body.applyLinearImpulse(new Vector2(-1f,1f),b2body.getWorldCenter(),true);
+                enemyBody.applyLinearImpulse(new Vector2(-1f,1f),enemyBody.getWorldCenter(),true);
             }
 
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {

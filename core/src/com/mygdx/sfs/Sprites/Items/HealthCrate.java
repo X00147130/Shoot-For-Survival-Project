@@ -21,6 +21,7 @@ public class HealthCrate extends Item{
     private Animation<TextureRegion> healthCrate;
     private boolean proxy = false;
     private float x = 0;
+    private boolean isShot = false;
 
     public HealthCrate(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
@@ -50,11 +51,11 @@ public class HealthCrate extends Item{
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(6 / shootForSurvival.PPM);
+        shape.setRadius(8 / shootForSurvival.PPM);
         fdef.filter.categoryBits = shootForSurvival.ITEM_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
-                shootForSurvival.GROUND_BIT |
-                shootForSurvival.DOOR_BIT;
+                shootForSurvival.GROUND_BIT|
+                shootForSurvival.BULLET_BIT;
 
         fdef.shape = shape;
         body.createFixture(fdef).setUserData(this);
@@ -63,19 +64,51 @@ public class HealthCrate extends Item{
 
     @Override
     public void useItem(Player player) {
-        destroy();
-        Player.setHitCounter(0);
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            sfs.loadSound("audio/sounds/health drink.mp3");
-            long id = sfs.sound.play();
-            if (sfs.getSoundVolume() != 0)
-                sfs.sound.setVolume(id, sfs.getSoundVolume());
-            else {
-                sfs.sound.setVolume(id, 0);
+        if (isShot) {
+            destroy();
+            Player.setHitCounter(0);
+            if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/health drink.mp3");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0)
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/health drink.mp3", Sound.class).play(sfs.getSoundVolume());
             }
         }
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            sfs.manager.get("audio/sounds/health drink.mp3", Sound.class).play(sfs.getSoundVolume());
+
+        else{
+            if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/stomp.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0)
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/stomp.wav", Sound.class).play(sfs.getSoundVolume());
+            }
+        }
+    }
+
+
+    public void open(){
+        if(isShot){
+            setRegion(sfs.getHealthAtlas().findRegion("Health8"));
+
+
+            FixtureDef fdef2 = new FixtureDef();
+            fdef2.filter.categoryBits = shootForSurvival.ITEM_BIT;
+            fdef2.filter.maskBits = shootForSurvival.GROUND_BIT|
+                    shootForSurvival.PLAYER_BIT;
+
+            body.getFixtureList().get(0).setFilterData(fdef2.filter);
         }
     }
 
@@ -83,16 +116,13 @@ public class HealthCrate extends Item{
     public void update(float dt) {
         super.update(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-        setProxy();
+        body.setGravityScale(100);
+        if(!isShot)
+            setRegion(sfs.getHealthAtlas().findRegion("Health3"));
     }
 
-    public void setProxy() {
-        setRegion(healthCrate.getKeyFrame(sfs.statetimer, false));
-        if (healthCrate.isAnimationFinished(sfs.statetimer))
-            setRegion(sfs.getHealthAtlas().findRegion("Health8"));
 
-        else
-            setRegion(sfs.getHealthAtlas().findRegion("Health3"));
-
+    public void setShot(boolean shot) {
+        isShot = shot;
     }
 }
