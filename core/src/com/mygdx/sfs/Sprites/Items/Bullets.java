@@ -1,8 +1,6 @@
 package com.mygdx.sfs.Sprites.Items;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -11,12 +9,10 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
-import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.shootForSurvival;
 
-public class Bullets {
+public class Bullets{
 
     public static final float SPEED = 3f;
     private TextureRegion clip;
@@ -62,16 +58,17 @@ public class Bullets {
         CircleShape shape = new CircleShape();
         shape.setRadius(0.6f / shootForSurvival.PPM);
         bulletDef.filter.categoryBits = shootForSurvival.BULLET_BIT;
-        bulletDef.filter.maskBits = shootForSurvival.ENEMY_BIT |
+        bulletDef.filter.maskBits = shootForSurvival.ENEMY_BIT|
+                shootForSurvival.HAMMER_BIT|
                 shootForSurvival.GROUND_BIT|
                 shootForSurvival.WALL_BIT|
                 shootForSurvival.ITEM_BIT|
-                shootForSurvival.PLAYER_BIT|
-                shootForSurvival.HAMMER_BIT;
+                shootForSurvival.PLAYER_BIT;
 
         bulletDef.shape = shape;
         Fixture fix1 = bulletBody.createFixture(bulletDef);
         fix1.setUserData(this);
+        fix1.setFriction(1f);
         bulletBody.setGravityScale(0);
         Gdx.app.log("bullet", "shoot");
 

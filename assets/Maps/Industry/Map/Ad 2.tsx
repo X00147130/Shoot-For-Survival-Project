@@ -185,6 +185,45 @@
    <frame tileid="174" duration="75"/>
   </animation>
  </tile>
+ <tile id="140">
+  <animation>
+   <frame tileid="140" duration="75"/>
+   <frame tileid="141" duration="75"/>
+   <frame tileid="142" duration="75"/>
+   <frame tileid="143" duration="75"/>
+   <frame tileid="144" duration="75"/>
+   <frame tileid="145" duration="75"/>
+   <frame tileid="146" duration="75"/>
+   <frame tileid="147" duration="75"/>
+   <frame tileid="148" duration="75"/>
+   <frame tileid="149" duration="75"/>
+   <frame tileid="150" duration="75"/>
+   <frame tileid="151" duration="75"/>
+   <frame tileid="152" duration="75"/>
+   <frame tileid="153" duration="75"/>
+   <frame tileid="154" duration="75"/>
+   <frame tileid="155" duration="75"/>
+   <frame tileid="156" duration="75"/>
+   <frame tileid="157" duration="75"/>
+   <frame tileid="158" duration="75"/>
+   <frame tileid="159" duration="75"/>
+   <frame tileid="160" duration="75"/>
+   <frame tileid="161" duration="75"/>
+   <frame tileid="162" duration="75"/>
+   <frame tileid="163" duration="75"/>
+   <frame tileid="164" duration="75"/>
+   <frame tileid="165" duration="75"/>
+   <frame tileid="166" duration="75"/>
+   <frame tileid="167" duration="75"/>
+   <frame tileid="168" duration="75"/>
+   <frame tileid="169" duration="75"/>
+   <frame tileid="170" duration="75"/>
+   <frame tileid="171" duration="75"/>
+   <frame tileid="172" duration="75"/>
+   <frame tileid="173" duration="75"/>
+   <frame tileid="174" duration="75"/>
+  </animation>
+ </tile>
  <tile id="175">
   <animation>
    <frame tileid="175" duration="75"/>

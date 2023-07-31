@@ -581,10 +581,10 @@ public class Player extends Sprite {
 
     public void wall(){
         if(!isFlipX()){
-            b2body.applyLinearImpulse(new Vector2(-2.8f,0),new Vector2(0.1f,0), true);
+            b2body.applyLinearImpulse(new Vector2(-0.8f,0),new Vector2(0.1f,0), true);
         }
         else{
-            b2body.applyLinearImpulse(new Vector2(2.8f,0),new Vector2(-0.1f,0), true);
+            b2body.applyLinearImpulse(new Vector2(0.8f,0),new Vector2(-0.1f,0), true);
         }
         b2body.setAwake(true);
     }

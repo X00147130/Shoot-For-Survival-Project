@@ -227,6 +227,8 @@ public class Settings implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        buttonFont.dispose();
+        batch.dispose();
         GAME.dispose();
         GAME.batch.dispose();
     }

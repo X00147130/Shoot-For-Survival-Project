@@ -26,7 +26,6 @@ import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.Rifles;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.Items.Bullets;
-import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
 import com.mygdx.sfs.Tools.B2WorldCreator;
 import com.mygdx.sfs.Tools.Controller;
 import com.mygdx.sfs.Tools.WorldContactListener;
@@ -246,6 +245,7 @@ public class PlayScreen implements Screen {
                 }
 
 
+
                 if(Gdx.input.isKeyJustPressed(Input.Keys.D) && player.currentState != Player.State.COMPLETE){
                     player.setDash(true);
                     player.dash();
@@ -338,12 +338,10 @@ public class PlayScreen implements Screen {
 
         player.update(dt);
 
-        for (Enemy enemy2 : creator.getHammers()) {
-            enemy2.update(dt);
-            if (enemy2.getX() < player.getX() + 424 / shootForSurvival.PPM){
-                enemy2.enemyBody.setActive(true);
-            }
-
+        for(Bullets bullet: bullets){
+            if(!bullet.destroyed)
+                bullet.update(dt);
+            bullet.bulletBody.setActive(true);
         }
 
 
@@ -352,6 +350,15 @@ public class PlayScreen implements Screen {
             if (enemy.getX() < player.getX() + 424 / shootForSurvival.PPM) {
                 enemy.enemyBody.setActive(true);
             }
+        }
+
+
+        for (Enemy enemy2 : creator.getHammers()) {
+            enemy2.update(dt);
+            if (enemy2.getX() < player.getX() + 424 / shootForSurvival.PPM){
+                enemy2.enemyBody.setActive(true);
+            }
+
         }
 
 
@@ -376,10 +383,6 @@ public class PlayScreen implements Screen {
         hud.update(dt);
         game.setHud(hud);
 
-        for(Bullets bullet: bullets){
-            bullet.update(dt);
-            bullet.bulletBody.setActive(true);
-        }
 
         if (player.currentState != Player.State.DEAD) {
             gamecam.position.x = player.b2body.getPosition().x;
@@ -452,6 +455,7 @@ public class PlayScreen implements Screen {
         game.batch.end();
 
         creator.door.draw();
+
         for(Bullets bullet: bullets)
             bullet.render(game.batch);
 

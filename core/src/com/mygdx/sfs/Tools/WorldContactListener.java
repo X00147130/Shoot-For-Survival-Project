@@ -13,6 +13,7 @@ import com.mygdx.sfs.Sprites.Items.Bullets;
 import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Player;
+import com.mygdx.sfs.Sprites.TileObjects.Door;
 import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
 import com.mygdx.sfs.shootForSurvival;
 
@@ -113,14 +114,12 @@ public class WorldContactListener implements ContactListener {
 
             case shootForSurvival.HAMMER_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
-                    ((Bullets) fixA.getUserData()).destroy();
-                    ((Hammer) fixB.getUserData()).setHit(true);
                     ((Hammer) fixB.getUserData()).shot();
+                    ((Bullets) fixA.getUserData()).destroy();
                 }
                 else {
-                    ((Bullets) fixB.getUserData()).destroy();
-                    ((Hammer) fixA.getUserData()).setHit(true);
                     ((Hammer) fixA.getUserData()).shot();
+                    ((Bullets) fixB.getUserData()).destroy();
                 }
                 break;
 
@@ -157,18 +156,6 @@ public class WorldContactListener implements ContactListener {
                 }
                 else {
                     ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
-                }
-                break;
-
-            case shootForSurvival.ITEM_BIT | shootForSurvival.BULLET_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.ITEM_BIT) {
-                    ((HealthCrate) fixA.getUserData()).setShot(true);
-                    ((HealthCrate) fixA.getUserData()).open();
-
-                }
-                else {
-                    ((HealthCrate) fixB.getUserData()).setShot(true);
-                    ((HealthCrate) fixB.getUserData()).open();
                 }
                 break;
 

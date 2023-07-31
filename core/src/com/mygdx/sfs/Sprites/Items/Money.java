@@ -52,13 +52,14 @@ public class Money extends Item {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(4 / shootForSurvival.PPM);
+        shape.setRadius(9 / shootForSurvival.PPM);
         fdef.filter.categoryBits = shootForSurvival.MONEY_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
                 shootForSurvival.DOOR_BIT;
 
         fdef.shape = shape;
+        body.setGravityScale(0);
         body.createFixture(fdef).setUserData(this);
     }
 

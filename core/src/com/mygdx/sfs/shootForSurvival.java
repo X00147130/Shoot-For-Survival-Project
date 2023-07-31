@@ -33,8 +33,8 @@ public class shootForSurvival extends Game {
     public static final short ENEMY_BIT = 32;
     public static final short ITEM_BIT = 64;
     public static final short HAMMER_BIT = 128;
-    public static final short BULLET_BIT = 256;
-    public static final short MONEY_BIT = 512;
+    public static final short MONEY_BIT = 256;
+    public static final short BULLET_BIT = 512;
     public static final short SKY_BIT = 1024;
     public static final short KEY_BIT = 2048;
     public static final short DEATH_BIT = 4096;

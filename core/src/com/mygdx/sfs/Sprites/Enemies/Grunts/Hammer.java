@@ -19,7 +19,8 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Hammer extends Enemy {
     //animation variables
-    public enum State{ ATTACK, RUNNING, HURT, DEAD }
+    public enum State {ATTACK, RUNNING, HURT, DEAD}
+
     public State currentState;
     public State previousState;
     public boolean hammerDead;
@@ -60,7 +61,7 @@ public class Hammer extends Enemy {
 
 
         runAnimation = new Animation<TextureRegion>(0.6f, frames);
-        setBounds(0,0,18/PPM, 20/PPM);
+        setBounds(0, 0, 18 / PPM, 20 / PPM);
         frames.clear();
 
         //Death animation
@@ -72,7 +73,7 @@ public class Hammer extends Enemy {
         frames.add(sfs.getHammerAtlas().findRegion("Death4"));
 
 
-        dieAnimation = new Animation <TextureRegion>(0.3f, frames);
+        dieAnimation = new Animation<TextureRegion>(0.3f, frames);
         frames.clear();
 
         //Attack Animation
@@ -87,38 +88,25 @@ public class Hammer extends Enemy {
         frames.add(sfs.getHammerAtlas().findRegion("Attack7"));
         frames.add(sfs.getHammerAtlas().findRegion("Attack8"));
 
-        attackAnimation = new Animation <TextureRegion>(0.1f, frames);
+        attackAnimation = new Animation<TextureRegion>(0.1f, frames);
         frames.clear();
-
-        //Hurt Animation
-        frames.clear();
-
-        frames.add(sfs.getHammerAtlas().findRegion("Hurt1"));
-        frames.add(sfs.getHammerAtlas().findRegion("Hurt2"));
-
-        hurtAnimation = new Animation <TextureRegion>(0.5f, frames);
-        frames.clear();
-
 
         stateTime = 0;
-        setBounds(getX(), getY(), 30 / PPM , 30 / PPM);
+        setBounds(getX(), getY(), 30 / PPM, 30 / PPM);
         setToDestroy = false;
-        destroyed =false;
+        destroyed = false;
         hammerDead = false;
         runningForward = true;
     }
 
     public State getState() {
-        if(hammerDead)
+        if (hammerDead)
             return State.DEAD;
 
-        else if(hit == true && !hammerDead)
-            return State.HURT;
-
-        else if(attack == true && !hammerDead)
+        else if (attack == true && !hammerDead)
             return State.ATTACK;
 
-        else if(!attack && !hammerDead)
+        else if (!attack && !hammerDead)
             return State.RUNNING;
 
         else {
@@ -137,11 +125,6 @@ public class Hammer extends Enemy {
                 break;
 
 
-            case HURT:
-                region = hurtAnimation.getKeyFrame(stateTime, false);
-                break;
-
-
             case ATTACK:
                 region = attackAnimation.getKeyFrame(stateTime, false);
                 break;
@@ -149,7 +132,7 @@ public class Hammer extends Enemy {
 
             case RUNNING:
             default:
-                region = runAnimation.getKeyFrame(stateTime,true);
+                region = runAnimation.getKeyFrame(stateTime, true);
                 break;
         }
 
@@ -188,12 +171,12 @@ public class Hammer extends Enemy {
             attack = false;
         }
 
-        setPosition(enemyBody.getPosition().x - getWidth() /2 , enemyBody.getPosition().y - getHeight() /3 );
+        setPosition(enemyBody.getPosition().x - getWidth() / 2, enemyBody.getPosition().y - getHeight() / 3);
         setRegion(getFrame(dt));
     }
 
-    public void attack(){
-        if(attack) {
+    public void attack() {
+        if (attack) {
             stateTime = 0;
             currentState = State.ATTACK;
             justAttacked = true;
@@ -203,7 +186,7 @@ public class Hammer extends Enemy {
     @Override
     protected void defineEnemy() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(getX(),getY());
+        bdef.position.set(getX(), getY());
         bdef.type = BodyDef.BodyType.DynamicBody;
         enemyBody = world.createBody(bdef);
 
@@ -214,50 +197,48 @@ public class Hammer extends Enemy {
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.DOOR_BIT |
                 shootForSurvival.BARRIER_BIT |
-                shootForSurvival.BULLET_BIT|
-                shootForSurvival.WALL_BIT|
+                shootForSurvival.BULLET_BIT |
+                shootForSurvival.WALL_BIT |
                 shootForSurvival.PLAYER_BIT;
 
         fdef.shape = shape;
         enemyBody.createFixture(fdef).setUserData(this);
     }
 
-    public void draw(Batch batch){
-        if(!destroyed || stateTime < 1)
+    public void draw(Batch batch) {
+        if (!destroyed || stateTime < 1)
             super.draw(batch);
     }
 
     @Override
     public void shot() {
-        if(hitCounter < 3) {    //Hammer is pushed back
-            if (hit = true) {
-                if (enemyBody.getLinearVelocity().x > 0)
-                    enemyBody.applyLinearImpulse(new Vector2(-1f, 1f), enemyBody.getWorldCenter(), true);
+        if (hitCounter < 3) { //Hammer is pushed back
+            hit = true;
+            if (enemyBody.getLinearVelocity().x > 0)
+                enemyBody.applyLinearImpulse(new Vector2(-1f, 1f), enemyBody.getWorldCenter(), true);
 
-                else if (enemyBody.getLinearVelocity().x < 0)
-                    enemyBody.applyLinearImpulse(new Vector2(1f, 1f), enemyBody.getWorldCenter(), true);
+            else if (enemyBody.getLinearVelocity().x < 0)
+                enemyBody.applyLinearImpulse(new Vector2(1f, 1f), enemyBody.getWorldCenter(), true);
 
-                else {
-                    enemyBody.applyLinearImpulse(new Vector2(-1f, 1f), enemyBody.getWorldCenter(), true);
-                }
-
-                if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    sfs.loadSound("audio/sounds/394499__mobeyee__hurting-the-robot.wav");
-                    long id = sfs.sound.play();
-                    if (sfs.getSoundVolume() != 0) {
-                        sfs.sound.setVolume(id, sfs.getSoundVolume());
-                    } else {
-                        sfs.sound.setVolume(id, 0);
-                    }
-                }
-                if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                    sfs.manager.get("audio/sounds/394499__mobeyee__hurting-the-robot.wav", Sound.class).play(sfs.getSoundVolume());
-                }
-
-                hitCounter++;
+            else {
+                enemyBody.applyLinearImpulse(new Vector2(-1f, 1f), enemyBody.getWorldCenter(), true);
             }
-        }
-        else {
+
+            if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                sfs.loadSound("audio/sounds/394499__mobeyee__hurting-the-robot.wav");
+                long id = sfs.sound.play();
+                if (sfs.getSoundVolume() != 0) {
+                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+                } else {
+                    sfs.sound.setVolume(id, 0);
+                }
+            }
+            if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                sfs.manager.get("audio/sounds/394499__mobeyee__hurting-the-robot.wav", Sound.class).play(sfs.getSoundVolume());
+            }
+
+            hitCounter++;
+        } else {
             setToDestroy = true;
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/523553__matrixxx__tv_shutdown.wav");
@@ -273,16 +254,17 @@ public class Hammer extends Enemy {
                 sfs.manager.get("audio/sounds/523553__matrixxx__tv_shutdown.wav", Sound.class).play(sfs.getSoundVolume());
             }
             hitCounter = 4;
+            hit = false;
         }
-        hit = false;
     }
 
-    public void setAttack(boolean attack) {
-        this.attack = attack;
+        public void setAttack ( boolean attack){
+            this.attack = attack;
+        }
+
+        public void setHit ( boolean hit){
+            this.hit = hit;
+        }
+
     }
 
-    public void setHit(boolean hit) {
-        this.hit = hit;
-    }
-
-}
