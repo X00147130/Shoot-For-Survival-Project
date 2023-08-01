@@ -338,12 +338,6 @@ public class PlayScreen implements Screen {
 
         player.update(dt);
 
-        for(Bullets bullet: bullets){
-            if(!bullet.destroyed)
-                bullet.update(dt);
-            bullet.bulletBody.setActive(true);
-        }
-
 
         for (Enemy enemy : creator.getWorkers()) {
             enemy.update(dt);
@@ -359,6 +353,12 @@ public class PlayScreen implements Screen {
                 enemy2.enemyBody.setActive(true);
             }
 
+        }
+
+        for(Bullets bullet: bullets){
+            bullet.bulletBody.setActive(true);
+            if(!bullet.destroyed)
+                bullet.update(dt);
         }
 
 
@@ -452,12 +452,14 @@ public class PlayScreen implements Screen {
             }
         }
 
+        for(Bullets bullet: bullets)
+            bullet.render(game.batch);
+
         game.batch.end();
 
         creator.door.draw();
 
-        for(Bullets bullet: bullets)
-            bullet.render(game.batch);
+
 
 
         //Set to draw what hud sees

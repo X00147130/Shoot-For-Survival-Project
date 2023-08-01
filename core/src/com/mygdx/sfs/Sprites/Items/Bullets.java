@@ -82,8 +82,10 @@ public class Bullets{
     public void update(float dt){
        y = SPEED * dt;
        if(shot && !destroyed) {
+           world.setAutoClearForces(true);
            world.destroyBody(bulletBody);
            destroyed = true;
+           screen.update(dt);
        }
 
 
@@ -130,9 +132,6 @@ public class Bullets{
     }
 
     public void render(SpriteBatch batch){
-        batch.begin();
         batch.draw(clip, bulletBody.getPosition().x, bulletBody.getPosition().y,clip.getRegionWidth() / sfs.PPM,clip.getRegionHeight() / sfs.PPM);
-        batch.end();
-
     }
 }
