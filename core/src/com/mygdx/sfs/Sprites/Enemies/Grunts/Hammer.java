@@ -158,6 +158,7 @@ public class Hammer extends Enemy {
             hammerDead = true;
             world.destroyBody(enemyBody);
             destroyed = true;
+            world.setAutoClearForces(true);
         } else {
             hammerDead = false;
         }

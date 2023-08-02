@@ -100,7 +100,6 @@ public class PlayScreen implements Screen {
         //render/map setup
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("Maps/Industry/Map/Lvl1-"+level+".tmx");
-        //map = mapLoader.load("levels/Level"+level+".tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / shootForSurvival.PPM);
 
         //initiating game cam
@@ -303,12 +302,14 @@ public class PlayScreen implements Screen {
 
 
                 if (controller.isSpacePressed() == true && player.currentState != Player.State.COMPLETE) {
-                    bullets.add(new Bullets(game,this,player.b2body.getPosition().x,player.b2body.getPosition().y));
-                    if(player.isRifle() == false)
+
+                    bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
+                    if (player.isRifle() == false)
                         game.manager.get("audio/sounds/414888__matrixxx__retro_laser_shot_04(Pistol).wav", Sound.class).play(game.getSoundVolume());
                     else
                         game.manager.get("audio/sounds/214990__peridactyloptrix__laser-blast-(Rifle).wav", Sound.class).play(game.getSoundVolume());
                 }
+
 
 
                 if (controller.isRightPressed() == true && player.b2body.getLinearVelocity().x <= 1.3 && player.currentState != Player.State.COMPLETE) {
@@ -360,7 +361,6 @@ public class PlayScreen implements Screen {
             if(!bullet.destroyed)
                 bullet.update(dt);
         }
-
 
         for (Item item : creator.getCoins())
             item.update(dt);
@@ -416,14 +416,15 @@ public class PlayScreen implements Screen {
         game.batch.begin();
         player.draw(game.batch);
 
-
-
         for (Enemy enemy : creator.getWorkers())
             enemy.draw(game.batch);
 
         for (Enemy enemy : creator.getHammers()){
             enemy.draw(game.batch);
         }
+
+        for(Bullets bullet: bullets)
+            bullet.render(game.batch);
 
         for (Item item : items)
             item.draw(game.batch);
@@ -452,8 +453,6 @@ public class PlayScreen implements Screen {
             }
         }
 
-        for(Bullets bullet: bullets)
-            bullet.render(game.batch);
 
         game.batch.end();
 

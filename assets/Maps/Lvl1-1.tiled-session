@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Industry/Map/Lvl1-4.tmx",
+    "activeFile": "Industry/Map/Lvl1-5.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -507,50 +507,50 @@
         },
         "Industry/Map/Lvl1-1.tmx": {
             "expandedObjectLayers": [
-                5,
                 19,
+                5,
                 16
             ],
             "scale": 0.75,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 4180,
-                "y": 494
+                "x": 4188,
+                "y": 492
             }
         },
         "Industry/Map/Lvl1-2.tmx": {
             "expandedObjectLayers": [
-                7,
-                5,
+                14,
+                13,
+                11,
                 15,
+                5,
+                6,
                 8,
                 9,
-                6,
-                12,
-                13,
                 4,
-                11,
-                10,
-                14
+                7,
+                12,
+                10
             ],
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 4160,
-                "y": 399.33333333333326
+                "y": 400
             }
         },
         "Industry/Map/Lvl1-3.tmx": {
             "expandedObjectLayers": [
-                4,
+                14,
                 17,
-                14
+                4
             ],
             "scale": 1.5,
             "selectedLayer": 15,
             "viewCenter": {
                 "x": 4160,
-                "y": 399.66666666666663
+                "y": 400
             }
         },
         "Industry/Map/Lvl1-4.tmx": {
@@ -559,11 +559,29 @@
                 8,
                 12
             ],
-            "scale": 1.5,
-            "selectedLayer": 2,
+            "scale": 0.33,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 210.99999999999997,
-                "y": 368
+                "x": 4157.575757575757,
+                "y": 399.99999999999994
+            }
+        },
+        "Industry/Map/Lvl1-5.tmx": {
+            "expandedObjectLayers": [
+                14,
+                13,
+                11,
+                15,
+                6,
+                7,
+                4,
+                12
+            ],
+            "scale": 1,
+            "selectedLayer": 15,
+            "viewCenter": {
+                "x": 2229.5,
+                "y": 386.5
             }
         },
         "Industry/Map/Mop.tsx": {
@@ -737,7 +755,8 @@
         "Industry/Map/Bucket.tsx",
         "Industry/Map/Mop.tsx",
         "Industry/Map/Pointer1.tsx",
-        "Industry/Map/Pointer2.tsx"
+        "Industry/Map/Pointer2.tsx",
+        "Industry/Map/Lvl1-5.tmx"
     ],
     "project": "Lvl1-1.tiled-project",
     "recentFiles": [

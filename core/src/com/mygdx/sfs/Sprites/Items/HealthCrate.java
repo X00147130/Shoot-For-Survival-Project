@@ -40,6 +40,7 @@ public class HealthCrate extends Item{
     @Override
     public void useItem(Player player) {
             destroy();
+            world.clearForces();
             Player.setHitCounter(0);
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/health drink.mp3");

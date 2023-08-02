@@ -82,10 +82,11 @@ public class Bullets{
     public void update(float dt){
        y = SPEED * dt;
        if(shot && !destroyed) {
-           world.setAutoClearForces(true);
            world.destroyBody(bulletBody);
+           world.setAutoClearForces(true);
            destroyed = true;
-           screen.update(dt);
+           if(dt > 1f)
+            screen.update(dt);
        }
 
 
