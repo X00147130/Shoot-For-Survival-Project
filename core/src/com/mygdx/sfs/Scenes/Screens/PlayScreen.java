@@ -76,6 +76,8 @@ public class PlayScreen implements Screen {
     //controller creation
     public Controller controller;
 
+    private boolean scannerJustTouched = false;
+
 
     public PlayScreen(shootForSurvival g, int level) {
 
@@ -376,8 +378,8 @@ public class PlayScreen implements Screen {
 
         creator.getScanner().destroyBody();
 
-        if(creator.getScanner().isDestroyed() == true){
-            creator.door.draw();
+        if(creator.getScanner().isDestroyed()){
+            creator.door.unlock();
         }
 
         hud.update(dt);
@@ -453,11 +455,11 @@ public class PlayScreen implements Screen {
             }
         }
 
-
         game.batch.end();
 
-        creator.door.draw();
 
+
+        creator.door.draw();
 
 
 
@@ -531,11 +533,14 @@ public class PlayScreen implements Screen {
     }
 
 
+
     public void coins (){
         if(creator.getCoins().size > 0){
             coins = creator.getCoins().size;
         }
     }
+
+
     @Override
     public void dispose() {
         map.dispose();

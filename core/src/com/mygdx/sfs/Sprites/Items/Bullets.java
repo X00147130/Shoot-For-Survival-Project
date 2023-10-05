@@ -24,6 +24,8 @@ public class Bullets{
     private PlayScreen screen;
     private int powerLVL = 0;
 
+    private int pistolLvl = 1;
+
     public float x,y;
     public boolean shot = false;
 
@@ -34,7 +36,6 @@ public class Bullets{
         this.y = y + 5 / sfs.PPM;
         this.x = x + 2 / sfs.PPM;
         this.screen = screen;
-        clip = sfs.getPistolBullets().findRegion("1");
         destroyed = false;
         defineBullet();
     }
@@ -89,6 +90,45 @@ public class Bullets{
             screen.update(dt);
        }
 
+        pistolLvl = sfs.getPistolLvl();
+        if(pistolLvl == 1) {
+            clip = sfs.getPistolBullets().findRegion("1");
+        }
+        else if(pistolLvl == 2) {
+            clip = sfs.getPistolBullets().findRegion("2");
+        }
+
+        else if(pistolLvl == 3){
+            clip = sfs.getPistolBullets().findRegion("3");
+        }
+
+        else if(pistolLvl == 4){
+            clip = sfs.getPistolBullets().findRegion("4");
+        }
+
+        else if(pistolLvl == 5){
+            clip = sfs.getPistolBullets().findRegion("5");
+        }
+
+        else if(pistolLvl == 6){
+            clip = sfs.getPistolBullets().findRegion("6");
+        }
+
+        else if(pistolLvl == 7){
+            clip = sfs.getPistolBullets().findRegion("7");
+        }
+
+        else if(pistolLvl == 8){
+            clip = sfs.getPistolBullets().findRegion("8");
+        }
+
+        else if(pistolLvl == 9){
+            clip = sfs.getPistolBullets().findRegion("9");
+        }
+
+        else if(pistolLvl == 10){
+            clip = sfs.getPistolBullets().findRegion("10");
+        }
 
        powerLVL = sfs.getPowerLVL();
         if(powerLVL == 1) {

@@ -56,7 +56,11 @@ public class Player extends Sprite {
     private float stateTimer;
     private boolean rifle = false;
     private TextureAtlas upgradedRifle;
+
+    private TextureAtlas pistolUpgrade;
     private int powerLVL;
+
+    private int pistolLvl;
 
 
     //boolean tests
@@ -103,7 +107,9 @@ public class Player extends Sprite {
         stateTimer = 0;
         runningRight = true;
         powerLVL = sfs.getPowerLVL();
+        pistolLvl = sfs.getPistolLvl();
 
+        pistolUpgrade = sfs.getPlayersChoice();
         upgradedRifle = sfs.getRifleChoice();
 
 /*Standing Animation*/
@@ -111,10 +117,10 @@ public class Player extends Sprite {
         Array<TextureRegion> frames = new Array<TextureRegion>();
         frames.clear();
 
-        frames.add(sfs.getPlayersChoice().findRegion("idle1"));
-        frames.add(sfs.getPlayersChoice().findRegion("idle2"));
-        frames.add(sfs.getPlayersChoice().findRegion("idle3"));
-        frames.add(sfs.getPlayersChoice().findRegion("idle4"));
+        frames.add(pistolUpgrade.findRegion("idle1"));
+        frames.add(pistolUpgrade.findRegion("idle2"));
+        frames.add(pistolUpgrade.findRegion("idle3"));
+        frames.add(pistolUpgrade.findRegion("idle4"));
 
         playerStand = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.LOOP);
 
@@ -122,12 +128,12 @@ public class Player extends Sprite {
 /*Running Animation*/
         frames.clear();
 
-        frames.add(sfs.getPlayersChoice().findRegion("run1"));
-        frames.add(sfs.getPlayersChoice().findRegion("run2"));
-        frames.add(sfs.getPlayersChoice().findRegion("run3"));
-        frames.add(sfs.getPlayersChoice().findRegion("run4"));
-        frames.add(sfs.getPlayersChoice().findRegion("run5"));
-        frames.add(sfs.getPlayersChoice().findRegion("run6"));
+        frames.add(pistolUpgrade.findRegion("run1"));
+        frames.add(pistolUpgrade.findRegion("run2"));
+        frames.add(pistolUpgrade.findRegion("run3"));
+        frames.add(pistolUpgrade.findRegion("run4"));
+        frames.add(pistolUpgrade.findRegion("run5"));
+        frames.add(pistolUpgrade.findRegion("run6"));
 
         playerRun = new Animation<TextureRegion>(0.2f, frames);
         setBounds(0, 0, 18 / PPM, 20 / PPM);
@@ -137,10 +143,10 @@ public class Player extends Sprite {
 /*Jump Animation*/
         frames.clear();
 
-        frames.add(sfs.getPlayersChoice().findRegion("jump1"));
-        frames.add(sfs.getPlayersChoice().findRegion("jump2"));
-        frames.add(sfs.getPlayersChoice().findRegion("jump3"));
-        frames.add(sfs.getPlayersChoice().findRegion("jump4"));
+        frames.add(pistolUpgrade.findRegion("jump1"));
+        frames.add(pistolUpgrade.findRegion("jump2"));
+        frames.add(pistolUpgrade.findRegion("jump3"));
+        frames.add(pistolUpgrade.findRegion("jump4"));
 
         playerJump = new Animation<TextureRegion>(2f, frames);
 
@@ -150,24 +156,24 @@ public class Player extends Sprite {
 /*Players Double Jump animation*/
         frames.clear();
 
-        frames.add(sfs.getPlayersChoice().findRegion("Djump1"));
-        frames.add(sfs.getPlayersChoice().findRegion("Djump2"));
-        frames.add(sfs.getPlayersChoice().findRegion("Djump3"));
-        frames.add(sfs.getPlayersChoice().findRegion("Djump4"));
-        frames.add(sfs.getPlayersChoice().findRegion("Djump5"));
-        frames.add(sfs.getPlayersChoice().findRegion("Djump6"));
+        frames.add(pistolUpgrade.findRegion("Djump1"));
+        frames.add(pistolUpgrade.findRegion("Djump2"));
+        frames.add(pistolUpgrade.findRegion("Djump3"));
+        frames.add(pistolUpgrade.findRegion("Djump4"));
+        frames.add(pistolUpgrade.findRegion("Djump5"));
+        frames.add(pistolUpgrade.findRegion("Djump6"));
 
         playerDjump = new Animation<TextureRegion>(1f, frames);
 
         frames.clear();
 /*Player death animation*/
 
-        frames.add(sfs.getPlayersChoice().findRegion("die1"));
-        frames.add(sfs.getPlayersChoice().findRegion("die2"));
-        frames.add(sfs.getPlayersChoice().findRegion("die3"));
-        frames.add(sfs.getPlayersChoice().findRegion("die4"));
-        frames.add(sfs.getPlayersChoice().findRegion("die5"));
-        frames.add(sfs.getPlayersChoice().findRegion("die6"));
+        frames.add(pistolUpgrade.findRegion("die1"));
+        frames.add(pistolUpgrade.findRegion("die2"));
+        frames.add(pistolUpgrade.findRegion("die3"));
+        frames.add(pistolUpgrade.findRegion("die4"));
+        frames.add(pistolUpgrade.findRegion("die5"));
+        frames.add(pistolUpgrade.findRegion("die6"));
 
         playerDead = new Animation<TextureRegion>(0.3f, frames);
 
@@ -175,12 +181,12 @@ public class Player extends Sprite {
 
 
 /*Level Complete Animation*/
-        frames.add(sfs.getPlayersChoice().findRegion("happy1"));
-        frames.add(sfs.getPlayersChoice().findRegion("happy2"));
-        frames.add(sfs.getPlayersChoice().findRegion("happy3"));
-        frames.add(sfs.getPlayersChoice().findRegion("happy4"));
-        frames.add(sfs.getPlayersChoice().findRegion("happy5"));
-        frames.add(sfs.getPlayersChoice().findRegion("happy6"));
+        frames.add(pistolUpgrade.findRegion("happy1"));
+        frames.add(pistolUpgrade.findRegion("happy2"));
+        frames.add(pistolUpgrade.findRegion("happy3"));
+        frames.add(pistolUpgrade.findRegion("happy4"));
+        frames.add(pistolUpgrade.findRegion("happy5"));
+        frames.add(pistolUpgrade.findRegion("happy6"));
         playerComplete = new Animation<TextureRegion>(0.2f, frames);
 
         frames.clear();
@@ -274,6 +280,52 @@ public class Player extends Sprite {
         if (Gdx.app.getType() == Application.ApplicationType.Android)
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 
+        //Pistol Read in
+        if (pistolLvl == 1) {
+            pistolUpgrade = sfs.getPlayersChoice();
+            renderUpgrade();
+        }
+
+        else if (pistolLvl == 2) {
+            pistolUpgrade = sfs.getPlayersChoice2();
+            renderUpgrade();
+        }
+        /*else if (pistolLvl == 3) {
+            pistolUpgrade = sfs.getPlayersChoice3();
+            renderUpgrade();
+        }
+        else if (pistolLvl == 4) {
+            pistolUpgrade = sfs.getPlayersChoice4();
+            renderUpgrade();
+        }
+        else if (pistolLvl == 5) {
+            pistolUpgrade = sfs.getPlayersChoice5();
+            renderUpgrade();
+        }
+        else if (pistolLvl == 6) {
+            pistolUpgrade = sfs.getPlayersChoice6();
+            renderUpgrade();
+        }
+        else if (pistolLvl == 7) {
+           pistolUpgrade = sfs.getPlayersChoice7();
+            renderUpgrade();
+        }
+        else if (pistolLvl == 8) {
+            pistolUpgrade = sfs.getPlayersChoice8();
+            renderUpgrade();
+        }
+        else if (pistolLvl == 9) {
+           pistolUpgrade = sfs.getPlayersChoice9();
+            renderUpgrade();
+        }
+        else if (pistolLvl == 10) {
+            pistolUpgrade = sfs.getPlayersChoice10();
+            renderUpgrade();
+        }*/
+
+
+
+        //Rifle Read in
         if (powerLVL == 1) {
             upgradedRifle = sfs.getRifleChoice();
             renderUpgrade();
@@ -449,6 +501,90 @@ public class Player extends Sprite {
 
 
     public void renderUpgrade(){
+
+        //Pistol Upgrade
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        frames.clear();
+
+        frames.add(pistolUpgrade.findRegion("idle1"));
+        frames.add(pistolUpgrade.findRegion("idle2"));
+        frames.add(pistolUpgrade.findRegion("idle3"));
+        frames.add(pistolUpgrade.findRegion("idle4"));
+
+
+        playerStand = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.LOOP);
+
+        frames.clear();
+        /*Running Animation*/
+        frames.clear();
+
+        frames.add(pistolUpgrade.findRegion("run1"));
+        frames.add(pistolUpgrade.findRegion("run2"));
+        frames.add(pistolUpgrade.findRegion("run3"));
+        frames.add(pistolUpgrade.findRegion("run4"));
+        frames.add(pistolUpgrade.findRegion("run5"));
+        frames.add(pistolUpgrade.findRegion("run6"));
+
+        playerRun = new Animation<TextureRegion>(0.2f, frames);
+        setBounds(0, 0, 18 / PPM, 20 / PPM);
+
+        frames.clear();
+
+        /*Jump Animation*/
+        frames.clear();
+
+        frames.add(pistolUpgrade.findRegion("jump1"));
+        frames.add(pistolUpgrade.findRegion("jump2"));
+        frames.add(pistolUpgrade.findRegion("jump3"));
+        frames.add(pistolUpgrade.findRegion("jump4"));
+
+        playerJump = new Animation<TextureRegion>(2f, frames);
+
+        frames.clear();
+
+
+        /*Players Double Jump animation*/
+        frames.clear();
+
+        frames.add(pistolUpgrade.findRegion("Djump1"));
+        frames.add(pistolUpgrade.findRegion("Djump2"));
+        frames.add(pistolUpgrade.findRegion("Djump3"));
+        frames.add(pistolUpgrade.findRegion("Djump4"));
+        frames.add(pistolUpgrade.findRegion("Djump5"));
+        frames.add(pistolUpgrade.findRegion("Djump6"));
+
+        playerDjump = new Animation<TextureRegion>(1f, frames);
+
+        frames.clear();
+        /*Player death animation*/
+
+        frames.add(pistolUpgrade.findRegion("die1"));
+        frames.add(pistolUpgrade.findRegion("die2"));
+        frames.add(pistolUpgrade.findRegion("die3"));
+        frames.add(pistolUpgrade.findRegion("die4"));
+        frames.add(pistolUpgrade.findRegion("die5"));
+        frames.add(pistolUpgrade.findRegion("die6"));
+
+        playerDead = new Animation<TextureRegion>(0.3f, frames);
+
+        frames.clear();
+
+        /*Level Complete Animation*/
+        frames.add(pistolUpgrade.findRegion("happy1"));
+        frames.add(pistolUpgrade.findRegion("happy2"));
+        frames.add(pistolUpgrade.findRegion("happy3"));
+        frames.add(pistolUpgrade.findRegion("happy4"));
+        frames.add(pistolUpgrade.findRegion("happy5"));
+        frames.add(pistolUpgrade.findRegion("happy6"));
+        playerComplete = new Animation<TextureRegion>(0.2f, frames);
+
+        frames.clear();
+
+        setBounds(getX(),getY(),30 / sfs.PPM, 30 / sfs.PPM);
+
+
+
+        //Rifle upgrade
         Array<TextureRegion> frames2 = new Array<TextureRegion>();
         frames2.clear();
 
@@ -542,16 +678,14 @@ public class Player extends Sprite {
         shape.setRadius(7 / PPM);
         fdef.filter.categoryBits = shootForSurvival.PLAYER_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
-                shootForSurvival.DOOR_BIT |
+                shootForSurvival.HAMMER_BIT|
                 shootForSurvival.ENEMY_BIT|
-                shootForSurvival.MONEY_BIT|
-                shootForSurvival.SKY_BIT|
                 shootForSurvival.ITEM_BIT|
                 shootForSurvival.WALL_BIT|
-                shootForSurvival.KEY_BIT|
-                shootForSurvival.HAMMER_BIT|
-                shootForSurvival.BOSS_BIT|
+                shootForSurvival.DOOR_BIT |
                 shootForSurvival.SCANNER_BIT|
+                shootForSurvival.BOSS_BIT|
+                shootForSurvival.SKY_BIT|
                 shootForSurvival.DEATH_BIT;
 
         fdef.shape = shape;

@@ -31,7 +31,6 @@ public class Hammer extends Enemy {
     private Animation<TextureRegion> runAnimation;
     private Animation<TextureRegion> dieAnimation;
     private Animation<TextureRegion> attackAnimation;
-    private Animation<TextureRegion> hurtAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;

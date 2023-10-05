@@ -4,7 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.utils.Array;
@@ -18,26 +18,30 @@ public class Door extends InteractiveTileObject {
     private TextureRegion closed;
     private boolean open;
 
+    private SpriteBatch batch;
+
     public Door(shootForSurvival game, PlayScreen screen, MapObject object){
         super(screen,object);
         this.sfs = game;
 
+        batch = new SpriteBatch();
+
 
         closed = sfs.getDoorAtlas().findRegion("door1");
 
-        Array<TextureRegion> frames = new Array<TextureRegion>();
+        Array<TextureRegion> doorAnimation = new Array<TextureRegion>();
 
-        frames.add(sfs.getDoorAtlas().findRegion("door1"));
-        frames.add(sfs.getDoorAtlas().findRegion("door2"));
-        frames.add(sfs.getDoorAtlas().findRegion("door3"));
-        frames.add(sfs.getDoorAtlas().findRegion("door4"));
-        frames.add(sfs.getDoorAtlas().findRegion("door5"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("door1"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("door2"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("door3"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("door4"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("door5"));
 
 
 
-        door = new Animation<TextureRegion>(0.2f, frames);
+        door = new Animation<TextureRegion>(0.2f, doorAnimation);
 
-        frames.clear();
+        doorAnimation.clear();
 
         fixture.setUserData(this);
         setCategoryFilter(shootForSurvival.DOOR_BIT);
@@ -86,7 +90,7 @@ public class Door extends InteractiveTileObject {
     }
 
     public void draw() {
-        if (open == false) {
+        if (!open) {
             sfs.batch.begin();
             sfs.batch.draw(closed, bounds.x / sfs.PPM, bounds.y / sfs.PPM, closed.getRegionWidth() / sfs.PPM, closed.getRegionHeight() / sfs.PPM);
             sfs.batch.end();

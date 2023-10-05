@@ -60,7 +60,7 @@ public class KeyCard extends Item {
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / shootForSurvival.PPM);
-        fdef.filter.categoryBits = shootForSurvival.KEY_BIT;
+        fdef.filter.categoryBits = shootForSurvival.ITEM_BIT;
         fdef.filter.maskBits = shootForSurvival.PLAYER_BIT |
                 shootForSurvival.GROUND_BIT |
                 shootForSurvival.SCANNER_BIT;

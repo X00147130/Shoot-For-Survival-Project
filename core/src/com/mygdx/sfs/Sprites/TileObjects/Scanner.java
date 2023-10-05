@@ -12,6 +12,7 @@ public class Scanner extends InteractiveTileObject {
     private shootForSurvival sfs;
     private boolean destroyed = false;
     private boolean todestroy = false;
+    private boolean scannerJustTouched = false;
 
     public Scanner(shootForSurvival game, PlayScreen screen, MapObject object) {
         super(screen, object);
@@ -25,7 +26,8 @@ public class Scanner extends InteractiveTileObject {
         Gdx.app.log("Scanner", "Collision");
         if (player.getKey() == true) {
             todestroy = true;
-            screen.creator.door.unlock();
+            /*screen.creator.door.unlock();*/
+            scannerJustTouched = true;
 
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/364688__alegemaate__electronic-door-opening.wav");
@@ -67,10 +69,15 @@ public class Scanner extends InteractiveTileObject {
             if(!world.isLocked())
                 world.destroyBody(body);
             destroyed = true;
+
         }
     }
 
     public boolean isDestroyed() {
         return destroyed;
+    }
+
+    public boolean isScannerJustTouched() {
+        return scannerJustTouched;
     }
 }

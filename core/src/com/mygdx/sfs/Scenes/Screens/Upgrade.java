@@ -1,8 +1,5 @@
 package com.mygdx.sfs.Scenes.Screens;
 
-import static com.badlogic.gdx.graphics.Color.GOLD;
-import static com.badlogic.gdx.graphics.Color.RED;
-import static com.badlogic.gdx.graphics.Color.WHITE;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -12,7 +9,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -59,9 +55,10 @@ public class Upgrade implements Screen {
         continueButton = new TextButton(" SKIP ", skin);
 
 
-        Label gameOverLabel = new Label("NEED SOME", font);
+        Label upgradeLabel = new Label("NEED SOME", font);
         Label gameOverLabel2 = new Label("HELP PAL???", font);
-        table.add(gameOverLabel).expandX().center();
+
+        table.add(upgradeLabel).expandX().center();
         table.row();
         table.add(gameOverLabel2).expandX().center();
         table.row();
@@ -73,10 +70,10 @@ public class Upgrade implements Screen {
 
 
         // Upgrades pistol
-        upgradeButton.addListener(new ClickListener(){
+        upgradeButton.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
-                if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+            public void clicked(InputEvent event, float x, float y) {
+                if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                     GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
                     long id = GAME.sound.play();
                     if (GAME.getSoundVolume() != 0)
@@ -85,12 +82,14 @@ public class Upgrade implements Screen {
                         GAME.sound.setVolume(id, 0);
                     }
                 }
-                if(Gdx.app.getType() == Application.ApplicationType.Android) {
+                if (Gdx.app.getType() == Application.ApplicationType.Android) {
                     GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
+                GAME.setPistolLvl(GAME.getPistolLvl() + 1);
+
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,map));
+                GAME.setScreen(new PlayScreen(GAME, map));
             }
         });
 
@@ -135,10 +134,10 @@ public class Upgrade implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         GAME.batch.begin();
-        GAME.batch.draw(background,0,0,400,300);
+        GAME.batch.draw(background, 0, 0, 400, 300);
         GAME.batch.end();
         stage.draw();
     }
