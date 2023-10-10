@@ -25,9 +25,8 @@ public class Scanner extends InteractiveTileObject {
     public void onHit(Player player) {
         Gdx.app.log("Scanner", "Collision");
         if (player.getKey() == true) {
-            todestroy = true;
-            /*screen.creator.door.unlock();*/
             scannerJustTouched = true;
+            todestroy = true;
 
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/364688__alegemaate__electronic-door-opening.wav");

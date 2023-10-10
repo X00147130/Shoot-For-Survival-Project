@@ -24,7 +24,7 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Player extends Sprite {
     //State Variables for animation purposes
-    public enum State{ FALLING, JUMPING, DOUBLEJUMP, STANDING, RUNNING, DEAD, COMPLETE}
+    public enum State{ FALLING, JUMPING, DOUBLEJUMP, STANDING, RUNNING, DEAD, COMPLETE, INTERACT}
     public State currentState;
     public State previousState;
 
@@ -187,6 +187,20 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("happy4"));
         frames.add(pistolUpgrade.findRegion("happy5"));
         frames.add(pistolUpgrade.findRegion("happy6"));
+        playerComplete = new Animation<TextureRegion>(0.2f, frames);
+
+        frames.clear();
+
+        setBounds(getX(),getY(),30 / sfs.PPM, 30 / sfs.PPM);
+
+
+/*Interact Animation*/
+        frames.add(pistolUpgrade.findRegion("Interact1"));
+        frames.add(pistolUpgrade.findRegion("Interact2"));
+        frames.add(pistolUpgrade.findRegion("Interact3"));
+        frames.add(pistolUpgrade.findRegion("Interact4"));
+        frames.add(pistolUpgrade.findRegion("Interact5"));
+        frames.add(pistolUpgrade.findRegion("Interact6"));
         playerComplete = new Animation<TextureRegion>(0.2f, frames);
 
         frames.clear();
@@ -418,6 +432,10 @@ public class Player extends Sprite {
 
                 case COMPLETE:
                     region = playerComplete.getKeyFrame(stateTimer, true);
+                    break;
+
+                case INTERACT:
+                    region = playerComplete.getKeyFrame(stateTimer, false);
                     break;
 
                 case FALLING:

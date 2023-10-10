@@ -105,17 +105,13 @@ public class B2WorldCreator {
 //create finish fixtures
         for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
 
- // creation of finish/ door object
+            // creation of finish/ door object
             door = new Door(sfs,screen,object);
         }
 
-
-//create health fixtures
-        vials = new Array<HealthCrate>();
-        for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-// creation of health vials objects
-            vials.add(new HealthCrate(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
+//create Scanner Fixtures
+        for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
+            scanner = new Scanner(sfs,screen,object);
         }
 
 
@@ -127,15 +123,27 @@ public class B2WorldCreator {
         }
 
 
+// create all enemies
+        hammers = new Array<Hammer>();
+        for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            hammers.add(new Hammer(sfs,screen, rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
+        }
+
+
 //Create barriers
         for(MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)){
             new Barrier(screen,object);
         }
 
 
-//Sky limit
-        for(MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)){
-            new Sky(screen,object);
+//create health fixtures
+        vials = new Array<HealthCrate>();
+        for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+// creation of health vials objects
+            vials.add(new HealthCrate(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
         }
 
 
@@ -148,6 +156,13 @@ public class B2WorldCreator {
         }
 
 
+//Sky limit
+        for(MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)){
+            new Sky(screen,object);
+        }
+
+
+//Death fixtures
         for(MapObject object : map.getLayers().get(13).getObjects().getByType(RectangleMapObject.class)){
             new Death(screen,object);
         }
@@ -158,16 +173,6 @@ public class B2WorldCreator {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 // creation of Rifle objects
             rifles.add(new Rifles(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
-        }
-
-        for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
-            scanner = new Scanner(sfs,screen,object);
-        }
-        // create all enemies
-        hammers = new Array<Hammer>();
-        for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            hammers.add(new Hammer(sfs,screen, rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
         }
     }
 

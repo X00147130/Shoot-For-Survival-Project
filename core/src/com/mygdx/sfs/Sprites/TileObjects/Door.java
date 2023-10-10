@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.utils.Array;
@@ -18,26 +19,20 @@ public class Door extends InteractiveTileObject {
     private TextureRegion closed;
     private boolean open;
 
-    private SpriteBatch batch;
-
     public Door(shootForSurvival game, PlayScreen screen, MapObject object){
         super(screen,object);
         this.sfs = game;
-
-        batch = new SpriteBatch();
 
 
         closed = sfs.getDoorAtlas().findRegion("door1");
 
         Array<TextureRegion> doorAnimation = new Array<TextureRegion>();
 
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("door1"));
+        doorAnimation.add (sfs.getDoorAtlas().findRegion("door1"));
         doorAnimation.add(sfs.getDoorAtlas().findRegion("door2"));
         doorAnimation.add(sfs.getDoorAtlas().findRegion("door3"));
         doorAnimation.add(sfs.getDoorAtlas().findRegion("door4"));
         doorAnimation.add(sfs.getDoorAtlas().findRegion("door5"));
-
-
 
         door = new Animation<TextureRegion>(0.2f, doorAnimation);
 
@@ -89,15 +84,15 @@ public class Door extends InteractiveTileObject {
         open = true;
     }
 
-    public void draw() {
+    public void draw(SpriteBatch batch) {
         if (!open) {
-            sfs.batch.begin();
-            sfs.batch.draw(closed, bounds.x / sfs.PPM, bounds.y / sfs.PPM, closed.getRegionWidth() / sfs.PPM, closed.getRegionHeight() / sfs.PPM);
-            sfs.batch.end();
+            batch.draw(closed, bounds.x / sfs.PPM, bounds.y / sfs.PPM, closed.getRegionWidth() / sfs.PPM, closed.getRegionHeight() / sfs.PPM);
         } else if (open) {
-            sfs.batch.begin();
-            sfs.batch.draw(door.getKeyFrame(sfs.statetimer, false), bounds.x / sfs.PPM, bounds.y / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionWidth() / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionHeight() / sfs.PPM);
-            sfs.batch.end();
+            batch.draw(door.getKeyFrame(sfs.statetimer, false), bounds.x / sfs.PPM, bounds.y / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionWidth() / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionHeight() / sfs.PPM);
         }
+    }
+
+    public Animation<TextureRegion> getDoor() {
+        return door;
     }
 }

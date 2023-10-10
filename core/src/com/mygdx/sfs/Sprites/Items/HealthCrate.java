@@ -63,7 +63,12 @@ public class HealthCrate extends Item{
         super.update(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         body.setGravityScale(100);
-        setRegion(sfs.getHealthAtlas().findRegion("Health3"));
+        if(screen.getPlayer().b2body.getPosition().x < body.getPosition().x - 0.2)
+            setRegion(sfs.getHealthAtlas().findRegion("Health3"));
+
+        else{
+            setRegion(sfs.getHealthAtlas().findRegion("Health8"));
+        }
     }
 
 }

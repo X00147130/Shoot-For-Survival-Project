@@ -88,7 +88,7 @@ public class Money extends Item {
         super.update(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() /2);
         setRegion(money.getKeyFrame(sfs.statetimer,true));
-        if(screen.isComplete() || (screen.getPlayer().currentState == Player.State.DEAD && screen.getPlayer().getStateTimer() > 3)){
+        if(screen.isComplete() || (screen.getPlayer().currentState == Player.State.DEAD && screen.getPlayer().getStateTimer() > 0.01)){
             count = 0;
         }
 

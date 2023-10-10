@@ -200,9 +200,12 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
+
+//PC
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
             if (player.currentState != Player.State.DEAD) {
-                if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE) {
+//jump / double jump
+                if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
                     player.b2body.applyLinearImpulse(new Vector2(0, 3.6f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
 
@@ -228,8 +231,8 @@ public class PlayScreen implements Screen {
                         Gdx.app.log("double", " jumped");
                 }
 
-
-                if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && player.currentState != Player.State.COMPLETE) {
+//shoot
+                if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
                         bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
                    if(player.isRifle() == false) {
                        game.loadSound("audio/sounds/414888__matrixxx__retro_laser_shot_04(Pistol).wav");
@@ -246,8 +249,8 @@ public class PlayScreen implements Screen {
                 }
 
 
-
-                if(Gdx.input.isKeyJustPressed(Input.Keys.D) && player.currentState != Player.State.COMPLETE){
+//dash
+                if(Gdx.input.isKeyJustPressed(Input.Keys.D) && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT){
                     player.setDash(true);
                     player.dash();
                 }else if(player.isDash() == true && player.currentState == Player.State.JUMPING){
@@ -255,28 +258,33 @@ public class PlayScreen implements Screen {
                     player.b2body.applyLinearImpulse(new Vector2(0f,0f),player.b2body.getWorldCenter(), false);
                 }
 
-
+//pause
                 if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)&& player.currentState != Player.State.COMPLETE) {
                     game.setScreen(new PauseScreen(game));
                     }
 
-
-                if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 1.5 && player.currentState != Player.State.COMPLETE) {
+//move right
+                if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 1.5 && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
                     player.b2body.applyLinearImpulse(new Vector2(0.5f, 0), player.b2body.getWorldCenter(), true);
                 }
 
-
-                if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -1.5 && player.currentState != Player.State.COMPLETE) {
+//move left
+                if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -1.5 && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
                     player.b2body.applyLinearImpulse(new Vector2(-0.5f, 0), player.b2body.getWorldCenter(), true);
                 }
+
+/* //interact
+                if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER) && scannerJustTouched){
+                    player.currentState = Player.State.INTERACT;
+                    if(keys != 0)
+                        creator.door.unlock();
+                }*/
             } else {
                 player.b2body.setLinearVelocity(new Vector2(0, 0));
             }
-
-
-
-
         }
+
+//Android Phone
         else if(Gdx.app.getType() == Application.ApplicationType.Android){
             if (player.currentState != Player.State.DEAD) {
                 if (controller.isUpPressed() && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE) {
@@ -339,7 +347,6 @@ public class PlayScreen implements Screen {
         world.step(1 / 60f, 6, 2);
 
 
-        player.update(dt);
 
 
         for (Enemy enemy : creator.getWorkers()) {
@@ -360,8 +367,9 @@ public class PlayScreen implements Screen {
 
         for(Bullets bullet: bullets){
             bullet.bulletBody.setActive(true);
-            if(!bullet.destroyed)
+            if(!bullet.destroyed) {
                 bullet.update(dt);
+            }
         }
 
         for (Item item : creator.getCoins())
@@ -377,6 +385,8 @@ public class PlayScreen implements Screen {
             item.update(dt);
 
         creator.getScanner().destroyBody();
+
+        player.update(dt);
 
         if(creator.getScanner().isDestroyed()){
             creator.door.unlock();
@@ -409,13 +419,16 @@ public class PlayScreen implements Screen {
         renderer.render();
 
         //box2d debug lines
-        if(Gdx.app.getType() == Application.ApplicationType.Desktop)
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             b2dr.render(world, gamecam.combined);
+        }
 
         game.batch.setProjectionMatrix(gamecam.combined);
 
 
         game.batch.begin();
+
+
         player.draw(game.batch);
 
         for (Enemy enemy : creator.getWorkers())
@@ -455,12 +468,9 @@ public class PlayScreen implements Screen {
             }
         }
 
+        creator.door.draw(game.batch);
+
         game.batch.end();
-
-
-
-        creator.door.draw();
-
 
 
         //Set to draw what hud sees
