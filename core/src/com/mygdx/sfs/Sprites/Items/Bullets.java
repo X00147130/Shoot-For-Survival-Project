@@ -19,7 +19,7 @@ public class Bullets{
     private shootForSurvival sfs;
     private FixtureDef bulletDef;
     public Body bulletBody;
-    public boolean destroyed;
+    public boolean destroy;
     private World world;
     private PlayScreen screen;
     private int powerLVL = 0;
@@ -27,7 +27,6 @@ public class Bullets{
     private int pistolLvl = 1;
 
     public float x,y;
-    public boolean shot = false;
 
     public Bullets(shootForSurvival sfs,PlayScreen screen, float x, float y) {
 
@@ -36,7 +35,7 @@ public class Bullets{
         this.y = y + 5 / sfs.PPM;
         this.x = x + 2 / sfs.PPM;
         this.screen = screen;
-        destroyed = false;
+        destroy = false;
         defineBullet();
     }
 
@@ -77,18 +76,14 @@ public class Bullets{
     }
 
     public void destroy(){
-        shot = true;
+        destroy = true;
     }
 
     public void update(float dt){
        y = SPEED * dt;
-       if(shot && !destroyed) {
-           world.destroyBody(bulletBody);
-           world.setAutoClearForces(true);
-           destroyed = true;
-           if(dt > 1f)
-            screen.update(dt);
-       }
+
+       if(dt > 10f)
+           destroy();
 
         pistolLvl = sfs.getPistolLvl();
         if(pistolLvl == 1) {

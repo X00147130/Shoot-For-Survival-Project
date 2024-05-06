@@ -204,6 +204,7 @@ public class MenuScreen implements Screen  {
                     GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
+                System.gc();
                 System.exit(0);
             }
         });
@@ -261,5 +262,6 @@ public class MenuScreen implements Screen  {
     @Override
     public void dispose() {
     stage.dispose();
+    System.gc();
     }
 }

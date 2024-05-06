@@ -24,7 +24,7 @@ public class Scanner extends InteractiveTileObject {
     @Override
     public void onHit(Player player) {
         Gdx.app.log("Scanner", "Collision");
-        if (player.getKey() == true) {
+        if (player.getKey()) {
             scannerJustTouched = true;
             todestroy = true;
 
@@ -64,7 +64,7 @@ public class Scanner extends InteractiveTileObject {
 
 
     public void destroyBody(){
-        if (todestroy == true){
+        if (todestroy){
             if(!world.isLocked())
                 world.destroyBody(body);
             destroyed = true;

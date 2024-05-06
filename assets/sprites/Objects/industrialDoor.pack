@@ -1,0 +1,47 @@
+
+industrialDoor.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Industrial1
+  rotate: false
+  xy: 1, 1
+  size: 29, 45
+  orig: 29, 45
+  offset: 0, 0
+  index: -1
+Industrial2
+  rotate: false
+  xy: 32, 1
+  size: 29, 45
+  orig: 29, 45
+  offset: 0, 0
+  index: -1
+Industrial3
+  rotate: false
+  xy: 63, 1
+  size: 29, 45
+  orig: 29, 45
+  offset: 0, 0
+  index: -1
+Industrial4
+  rotate: false
+  xy: 94, 1
+  size: 29, 45
+  orig: 29, 45
+  offset: 0, 0
+  index: -1
+Industrial5
+  rotate: false
+  xy: 125, 1
+  size: 29, 45
+  orig: 29, 45
+  offset: 0, 0
+  index: -1
+Industrial6
+  rotate: false
+  xy: 156, 1
+  size: 29, 45
+  orig: 29, 45
+  offset: 0, 0
+  index: -1

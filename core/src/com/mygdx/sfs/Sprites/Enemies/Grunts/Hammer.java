@@ -17,7 +17,10 @@ import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.shootForSurvival;
 
+
 public class Hammer extends Enemy {
+
+
     //animation variables
     public enum State {ATTACK, RUNNING, HURT, DEAD}
 
@@ -31,6 +34,7 @@ public class Hammer extends Enemy {
     private Animation<TextureRegion> runAnimation;
     private Animation<TextureRegion> dieAnimation;
     private Animation<TextureRegion> attackAnimation;
+    private Animation<TextureRegion> hurtAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
     private boolean destroyed;
@@ -90,6 +94,16 @@ public class Hammer extends Enemy {
         attackAnimation = new Animation<TextureRegion>(0.1f, frames);
         frames.clear();
 
+        //Hurt Animation
+
+        frames.clear();
+
+        frames.add(sfs.getHammerAtlas().findRegion("Hurt1"));
+        frames.add(sfs.getHammerAtlas().findRegion("Hurt2"));
+
+        hurtAnimation = new Animation<TextureRegion>(0.3f, frames);
+        frames.clear();
+
         stateTime = 0;
         setBounds(getX(), getY(), 30 / PPM, 30 / PPM);
         setToDestroy = false;
@@ -99,16 +113,16 @@ public class Hammer extends Enemy {
     }
 
     public State getState() {
-        if (hammerDead)
-            return State.DEAD;
-
-        else if (attack == true && !hammerDead)
+        if (attack && !hammerDead)
             return State.ATTACK;
 
-        else if (!attack && !hammerDead)
-            return State.RUNNING;
+        else if (hit && !hammerDead)
+            return State.HURT;
 
-        else {
+        else if (hammerDead)
+            return State.DEAD;
+
+        else  {
             return State.RUNNING;
         }
     }
@@ -121,6 +135,11 @@ public class Hammer extends Enemy {
         switch (currentState) {
             case DEAD:
                 region = dieAnimation.getKeyFrame(stateTime, false);
+                break;
+
+
+            case HURT:
+                region = hurtAnimation.getKeyFrame(stateTime, false);
                 break;
 
 
@@ -158,6 +177,7 @@ public class Hammer extends Enemy {
             world.destroyBody(enemyBody);
             destroyed = true;
             world.setAutoClearForces(true);
+
         } else {
             hammerDead = false;
         }
@@ -165,7 +185,7 @@ public class Hammer extends Enemy {
 
         enemyBody.setLinearVelocity(velocity);
 
-        if (justAttacked && attackAnimation.isAnimationFinished(stateTime) == true) {
+        if (justAttacked && attackAnimation.isAnimationFinished(stateTime)) {
             stateTime = 0;
             currentState = State.RUNNING;
             attack = false;
@@ -203,6 +223,8 @@ public class Hammer extends Enemy {
 
         fdef.shape = shape;
         enemyBody.createFixture(fdef).setUserData(this);
+        if(destroyed)
+            enemyBody.setUserData(null);
     }
 
     public void draw(Batch batch) {
@@ -238,7 +260,8 @@ public class Hammer extends Enemy {
             }
 
             hitCounter++;
-        } else {
+        }else {
+            /*destroy();*/
             setToDestroy = true;
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/523553__matrixxx__tv_shutdown.wav");
@@ -254,17 +277,14 @@ public class Hammer extends Enemy {
                 sfs.manager.get("audio/sounds/523553__matrixxx__tv_shutdown.wav", Sound.class).play(sfs.getSoundVolume());
             }
             hitCounter = 4;
-            hit = false;
         }
+        hit = false;
     }
 
         public void setAttack ( boolean attack){
             this.attack = attack;
         }
 
-        public void setHit ( boolean hit){
-            this.hit = hit;
-        }
 
     }
 

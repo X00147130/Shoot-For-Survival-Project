@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
@@ -109,17 +110,14 @@ public class Worker extends Enemy {
     }
 
     public State getState() {
-        if(workerDead == true)
-            return State.DEAD;
-
-        else if(workerDead == false)
-            return State.RUNNING;
-
-        else if(hit == true && workerDead == false)
+        if(hit && !workerDead)
             return State.HURT;
 
-        else if(attack == true && workerDead == false)
+        else if(attack && !workerDead)
             return State.ATTACK;
+
+        else if(!workerDead)
+            return State.RUNNING;
 
         else
             return State.DEAD;
@@ -224,13 +222,13 @@ public class Worker extends Enemy {
         if(hitCounter < 1){    //Worker is pushed back
             hit = true;
             if(enemyBody.getLinearVelocity().x > 0)
-                enemyBody.applyLinearImpulse(new Vector2(-1f,1f),enemyBody.getWorldCenter(),true);
+                enemyBody.applyLinearImpulse(new Vector2(-1f,1f), enemyBody.getWorldCenter(),true);
 
             else if(enemyBody.getLinearVelocity().x < 0)
-                enemyBody.applyLinearImpulse(new Vector2(1f,1f),enemyBody.getWorldCenter(),true);
+                enemyBody.applyLinearImpulse(new Vector2(1f,1f), enemyBody.getWorldCenter(),true);
 
             else{
-                enemyBody.applyLinearImpulse(new Vector2(-1f,1f),enemyBody.getWorldCenter(),true);
+                enemyBody.applyLinearImpulse(new Vector2(-1f,1f), enemyBody.getWorldCenter(),true);
             }
 
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -249,7 +247,6 @@ public class Worker extends Enemy {
             hitCounter++;
         }
         else {
-
             setToDestroy = true;
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
@@ -268,6 +265,7 @@ public class Worker extends Enemy {
         }
         hit = false;
     }
+
 
     public void setAttack(boolean attack) {
         this.attack = attack;

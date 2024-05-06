@@ -38,6 +38,7 @@ public class shootForSurvival extends Game {
     public static final short DEATH_BIT = 1024;
     public static final short WALL_BIT = 2048;
     public static final short PLAYER_HEAD_BIT = 4096;
+    public static final short END_BIT = 8192;
 
 
     //variables
@@ -62,8 +63,19 @@ public class shootForSurvival extends Game {
     public int pistolLvl = 1;
 
     private TextureAtlas punkAtlas;
+
+//Biker Pistol Atlas'
     private TextureAtlas bikerAtlas;
     private TextureAtlas bikerAtlas2;
+    private TextureAtlas bikerAtlas3;
+    private TextureAtlas bikerAtlas4;
+    /*private TextureAtlas bikerAtlas5;*/
+    /*private TextureAtlas bikerAtlas6;*/
+    /*private TextureAtlas bikerAtlas7;*/
+    /*private TextureAtlas bikerAtlas8;*/
+    /*private TextureAtlas bikerAtlas9;*/
+    /*private TextureAtlas bikerAtlas10;*/
+
     private TextureAtlas cyborgAtlas;
 
 
@@ -117,6 +129,15 @@ public class shootForSurvival extends Game {
 
     public TextureAtlas playersChoice;
     public TextureAtlas playersChoice2;
+    public TextureAtlas playersChoice3;
+    public TextureAtlas playersChoice4;
+    /*public TextureAtlas playersChoice5;*/
+    /*public TextureAtlas playersChoice6;*/
+    /*public TextureAtlas playersChoice7;*/
+    /*public TextureAtlas playersChoice8;*/
+    /*public TextureAtlas playersChoice9;*/
+    /*public TextureAtlas playersChoice10;*/
+
     public TextureAtlas rifleChoice;
     public TextureAtlas rifleChoice2;
     public TextureAtlas rifleChoice3;
@@ -203,6 +224,15 @@ public class shootForSurvival extends Game {
         //Biker
         bikerAtlas = new TextureAtlas("sprites/Characters/Biker/bikerPistol1.pack");//Biker Character
         bikerAtlas2 = new TextureAtlas("sprites/Characters/Biker/bikerPistol2.pack");//Biker Character
+        bikerAtlas3 = new TextureAtlas("sprites/Characters/Biker/bikerPistol3.pack");//Biker Character
+        bikerAtlas4 = new TextureAtlas("sprites/Characters/Biker/bikerPistol4.pack");//Biker Character
+        /*bikerAtlas5 = new TextureAtlas("sprites/Characters/Biker/bikerPistol5.pack");//Biker Character*/
+        /*bikerAtlas6 = new TextureAtlas("sprites/Characters/Biker/bikerPistol6.pack");//Biker Character*/
+        /*bikerAtlas7 = new TextureAtlas("sprites/Characters/Biker/bikerPistol7.pack");//Biker Character*/
+        /*bikerAtlas8 = new TextureAtlas("sprites/Characters/Biker/bikerPistol8.pack");//Biker Character*/
+        /*bikerAtlas9 = new TextureAtlas("sprites/Characters/Biker/bikerPistol9.pack");//Biker Character*/
+        /*bikerAtlas10 = new TextureAtlas("sprites/Characters/Biker/bikerPistol10.pack");//Biker Character*/
+
 
         bikerRifle1 = new TextureAtlas("sprites/Characters/Biker/bikerRifle1.pack");//Biker Character with rifle 1
         bikerRifle2 = new TextureAtlas("sprites/Characters/Biker/bikerRifle2.pack");//Biker Character with rifle 2
@@ -260,7 +290,7 @@ public class shootForSurvival extends Game {
         worker1Atlas = new TextureAtlas("sprites/Enemies/worker1.pack");//Worker1 (Enemy) Character
         hammerAtlas = new TextureAtlas("sprites/Enemies/hammer.pack");//Hammer (Enemy) Character
 
-        doorAtlas = new TextureAtlas("sprites/Objects/door.pack"); //End Level Door
+        doorAtlas = new TextureAtlas("sprites/Objects/industrialDoor.pack"); //End Level Door
         keycardAtlas = new TextureAtlas("sprites/Objects/keycard.pack"); //Key Card
         healthAtlas = new TextureAtlas("sprites/Objects/HealthCrate.pack"); //Health Crate
         moneyAtlas = new TextureAtlas("sprites/Objects/money.pack"); //Money
@@ -352,6 +382,33 @@ public class shootForSurvival extends Game {
     public TextureAtlas getBikerAtlas2() {
         return bikerAtlas2;
     }
+    public TextureAtlas getBikerAtlas3() {
+        return bikerAtlas3;
+    }
+    public TextureAtlas getBikerAtlas4() {
+        return bikerAtlas4;
+    }
+    /*public TextureAtlas getBikerAtlas5() {
+        return bikerAtlas5;
+    }*/
+    /*public TextureAtlas getBikerAtlas6() {
+        return bikerAtlas6;
+    }*/
+    /*public TextureAtlas getBikerAtlas7() {
+        return bikerAtlas7;
+    }*/
+    /*public TextureAtlas getBikerAtlas8() {
+        return bikerAtlas8;
+    }*/
+    /*public TextureAtlas getBikerAtlas9() {
+        return bikerAtlas9;
+    }*/
+    /*public TextureAtlas getBikerAtlas10() {
+        return bikerAtlas10;
+    }*/
+
+
+
 
 
     public TextureAtlas getCyborgAtlas() {
@@ -365,6 +422,30 @@ public class shootForSurvival extends Game {
     public TextureAtlas getPlayersChoice2() {
         return playersChoice2;
     }
+    public TextureAtlas getPlayersChoice3() {
+        return playersChoice3;
+    }public TextureAtlas getPlayersChoice4() {
+        return playersChoice4;
+    }
+    /*public TextureAtlas getPlayersChoice5() {
+        return playersChoice5;
+    }*/
+    /*public TextureAtlas getPlayersChoice6() {
+        return playersChoice6;
+    }*/
+    /*public TextureAtlas getPlayersChoice7() {
+        return playersChoice7;
+    }*/
+    /*public TextureAtlas getPlayersChoice8() {
+        return playersChoice8;
+    }*/
+    /*public TextureAtlas getPlayersChoice9() {
+        return playersChoice9;
+    }*/
+    /*public TextureAtlas getPlayersChoice10() {
+        return playersChoice10;
+    }*/
+
 
 
     public TextureAtlas getRifleChoice() {
@@ -530,7 +611,30 @@ public class shootForSurvival extends Game {
     public void setPlayersChoice2(TextureAtlas playersChoice2) {
         this.playersChoice2 = playersChoice2;
     }
-
+    public void setPlayersChoice3(TextureAtlas playersChoice3) {
+        this.playersChoice3 = playersChoice3;
+    }
+    public void setPlayersChoice4(TextureAtlas playersChoice4) {
+        this.playersChoice4 = playersChoice4;
+    }
+    /*public void setPlayersChoice5(TextureAtlas playersChoice5) {
+        this.playersChoice5 = playersChoice5;
+    }*/
+    /*public void setPlayersChoice6(TextureAtlas playersChoice6) {
+        this.playersChoice6 = playersChoice6;
+    }*/
+    /*public void setPlayersChoice7(TextureAtlas playersChoice7) {
+        this.playersChoice7 = playersChoice7;
+    }*/
+    /*public void setPlayersChoice8(TextureAtlas playersChoice8) {
+        this.playersChoice8 = playersChoice8;
+    }*/
+    /*public void setPlayersChoice9(TextureAtlas playersChoice9) {
+        this.playersChoice9 = playersChoice9;
+    }*/
+    /*public void setPlayersChoice10(TextureAtlas playersChoice10) {
+        this.playersChoice10 = playersChoice10;
+    }*/
 
     public void setRifleChoice(TextureAtlas rifleChoice) {
         this.rifleChoice = rifleChoice;

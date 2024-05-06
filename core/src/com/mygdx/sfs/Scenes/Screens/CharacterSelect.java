@@ -42,6 +42,14 @@ public class CharacterSelect implements Screen {
     //Selection, Labels and buttons
     private TextureAtlas selected;
     private TextureAtlas selected2;
+    private TextureAtlas selected3;
+    private TextureAtlas selected4;
+    /*private TextureAtlas selected5;*/
+    /*private TextureAtlas selected6;*/
+    /*private TextureAtlas selected7;*/
+    /*private TextureAtlas selected8;*/
+    /*private TextureAtlas selected9;*/
+    /*private TextureAtlas selected10;*/
     private TextureAtlas selectedRifle;
     private TextureAtlas selectedRifle2;
     private TextureAtlas selectedRifle3;
@@ -209,6 +217,14 @@ public class CharacterSelect implements Screen {
                         case 0:
                             selected = sfs.getBikerAtlas();
                             selected2 = sfs.getBikerAtlas2();
+                            selected3 = sfs.getBikerAtlas3();
+                            selected4 = sfs.getBikerAtlas4();
+                            /*selected5 = sfs.getBikerAtlas5();*/
+                            /*selected6 = sfs.getBikerAtlas6();*/
+                            /*selected7 = sfs.getBikerAtlas7();*/
+                            /*selected8 = sfs.getBikerAtlas8();*/
+                            /*selected9 = sfs.getBikerAtlas9();*/
+                            /*selected10 = sfs.getBikerAtlas10();*/
                             selectedRifle = sfs.getBikerRifle1();
                             selectedRifle2 = sfs.getBikerRifle2();
                             selectedRifle3 = sfs.getBikerRifle3();
@@ -253,6 +269,14 @@ public class CharacterSelect implements Screen {
                     }
                     sfs.setPlayersChoice(selected);
                     sfs.setPlayersChoice2(selected2);
+                    sfs.setPlayersChoice3(selected3);
+                    sfs.setPlayersChoice4(selected4);
+                    /*sfs.setPlayersChoice2(selected5);*/
+                    /*sfs.setPlayersChoice2(selected6);*/
+                    /*sfs.setPlayersChoice2(selected7);*/
+                    /*sfs.setPlayersChoice2(selected8);*/
+                    /*sfs.setPlayersChoice2(selected9);*/
+                    /*sfs.setPlayersChoice2(selected10);*/
                     sfs.setRifleChoice(selectedRifle);
                     sfs.setRifleChoice2(selectedRifle2);
                     sfs.setRifleChoice3(selectedRifle3);
@@ -387,6 +411,14 @@ public class CharacterSelect implements Screen {
                     case 0:
                         selected = sfs.getBikerAtlas();
                         selected2 = sfs.getBikerAtlas2();
+                        selected3 = sfs.getBikerAtlas3();
+                        selected4 = sfs.getBikerAtlas4();
+                        /*selected5 = sfs.getBikerAtlas5();*/
+                        /*selected6 = sfs.getBikerAtlas6();*/
+                        /*selected7 = sfs.getBikerAtlas7();*/
+                        /*selected8 = sfs.getBikerAtlas8();*/
+                        /*selected9 = sfs.getBikerAtlas9();*/
+                        /*selected10 = sfs.getBikerAtlas10();*/
                         selectedRifle = sfs.getBikerRifle1();
                         selectedRifle2 = sfs.getBikerRifle2();
                         selectedRifle3 = sfs.getBikerRifle3();
@@ -431,6 +463,14 @@ public class CharacterSelect implements Screen {
                 }
                 sfs.setPlayersChoice(selected);
                 sfs.setPlayersChoice2(selected2);
+                sfs.setPlayersChoice3(selected3);
+                sfs.setPlayersChoice4(selected4);
+                /*sfs.setPlayersChoice2(selected5);*/
+                /*sfs.setPlayersChoice2(selected6);*/
+                /*sfs.setPlayersChoice2(selected7);*/
+                /*sfs.setPlayersChoice2(selected8);*/
+                /*sfs.setPlayersChoice2(selected9);*/
+                /*sfs.setPlayersChoice2(selected10);*/
                 sfs.setRifleChoice(selectedRifle);
                 sfs.setRifleChoice2(selectedRifle2);
                 sfs.setRifleChoice3(selectedRifle3);
@@ -479,5 +519,6 @@ public class CharacterSelect implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        System.gc();
     }
 }

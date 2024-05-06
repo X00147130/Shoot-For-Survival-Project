@@ -304,7 +304,7 @@ public class Player extends Sprite {
             pistolUpgrade = sfs.getPlayersChoice2();
             renderUpgrade();
         }
-        /*else if (pistolLvl == 3) {
+        else if (pistolLvl == 3) {
             pistolUpgrade = sfs.getPlayersChoice3();
             renderUpgrade();
         }
@@ -312,27 +312,27 @@ public class Player extends Sprite {
             pistolUpgrade = sfs.getPlayersChoice4();
             renderUpgrade();
         }
-        else if (pistolLvl == 5) {
+        /*else if (pistolLvl == 5) {
             pistolUpgrade = sfs.getPlayersChoice5();
             renderUpgrade();
-        }
-        else if (pistolLvl == 6) {
+        }*/
+        /*else if (pistolLvl == 6) {
             pistolUpgrade = sfs.getPlayersChoice6();
             renderUpgrade();
-        }
-        else if (pistolLvl == 7) {
+        }*/
+        /*else if (pistolLvl == 7) {
            pistolUpgrade = sfs.getPlayersChoice7();
             renderUpgrade();
-        }
-        else if (pistolLvl == 8) {
+        }*/
+        /*else if (pistolLvl == 8) {
             pistolUpgrade = sfs.getPlayersChoice8();
             renderUpgrade();
-        }
-        else if (pistolLvl == 9) {
+        }*/
+        /*else if (pistolLvl == 9) {
            pistolUpgrade = sfs.getPlayersChoice9();
             renderUpgrade();
-        }
-        else if (pistolLvl == 10) {
+        }*/
+        /*else if (pistolLvl == 10) {
             pistolUpgrade = sfs.getPlayersChoice10();
             renderUpgrade();
         }*/

@@ -1,5 +1,5 @@
 
-bikerRifle3.png
+BikerRifle3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -136,7 +136,7 @@ die6
   orig: 36, 37
   offset: 0, 0
   index: -1
-Happy1
+happy1
   rotate: false
   xy: 254, 45
   size: 32, 43
