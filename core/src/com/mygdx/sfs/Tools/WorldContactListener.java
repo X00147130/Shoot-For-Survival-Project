@@ -10,10 +10,8 @@ import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.Sprites.Enemies.Grunts.Hammer;
 import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.Sprites.Items.Bullets;
-import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Player;
-import com.mygdx.sfs.Sprites.TileObjects.Door;
 import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
 import com.mygdx.sfs.shootForSurvival;
 
@@ -56,7 +54,6 @@ public class WorldContactListener implements ContactListener {
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Bullets) fixA.getUserData()).destroy();
                     ((Worker) fixB.getUserData()).shot();
-                    ((Worker) fixB.getUserData()).currentState = Worker.State.HURT;
                 }
                 else {
                     ((Bullets) fixB.getUserData()).destroy();
@@ -100,13 +97,13 @@ public class WorldContactListener implements ContactListener {
                 break;
 
 
-            case shootForSurvival.ENEMY_BIT | shootForSurvival.ENEMY_BIT:
+            case shootForSurvival.ENEMY_BIT:
                 ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
                 ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
                 break;
 
 
-            case shootForSurvival.HAMMER_BIT | shootForSurvival.HAMMER_BIT:
+            case shootForSurvival.HAMMER_BIT:
                 ((Hammer) fixA.getUserData()).reverseVelocity(true, false);
                 ((Hammer) fixB.getUserData()).reverseVelocity(true, false);
                 break;

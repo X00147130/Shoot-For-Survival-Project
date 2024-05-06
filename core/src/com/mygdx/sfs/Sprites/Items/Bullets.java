@@ -82,8 +82,10 @@ public class Bullets{
     public void update(float dt){
        y = SPEED * dt;
 
-       if(dt > 10f)
+       if(dt > 10f) {
            destroy();
+           bodyRemoval();
+       }
 
         pistolLvl = sfs.getPistolLvl();
         if(pistolLvl == 1) {
@@ -164,9 +166,16 @@ public class Bullets{
         else if(powerLVL == 10){
             clip = sfs.getRifleBullets().findRegion("10");
         }
-
+    bodyRemoval();
     }
 
+
+    public void bodyRemoval(){
+        if (destroy) {
+            if (!world.isLocked())
+                world.destroyBody(bulletBody);
+        }
+    }
     public void render(SpriteBatch batch){
         batch.draw(clip, bulletBody.getPosition().x, bulletBody.getPosition().y,clip.getRegionWidth() / sfs.PPM,clip.getRegionHeight() / sfs.PPM);
     }

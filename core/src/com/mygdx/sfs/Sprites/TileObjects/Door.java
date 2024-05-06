@@ -5,12 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Player;
+import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Door extends InteractiveTileObject {
@@ -24,15 +27,16 @@ public class Door extends InteractiveTileObject {
         this.sfs = game;
 
 
-        closed = sfs.getDoorAtlas().findRegion("door1");
+        closed = sfs.getDoorAtlas().findRegion("Industrial1");
 
         Array<TextureRegion> doorAnimation = new Array<TextureRegion>();
 
-        doorAnimation.add (sfs.getDoorAtlas().findRegion("door1"));
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("door2"));
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("door3"));
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("door4"));
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("door5"));
+        doorAnimation.add (sfs.getDoorAtlas().findRegion("Industria1"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial2"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial3"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial4"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial5"));
+        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial6"));
 
         door = new Animation<TextureRegion>(0.2f, doorAnimation);
 

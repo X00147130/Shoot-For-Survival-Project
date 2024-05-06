@@ -261,7 +261,7 @@ public class Hammer extends Enemy {
 
             hitCounter++;
         }else {
-            /*destroy();*/
+            destroy();
             setToDestroy = true;
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/523553__matrixxx__tv_shutdown.wav");
@@ -285,6 +285,14 @@ public class Hammer extends Enemy {
             this.attack = attack;
         }
 
+public void destroy(){
 
+        if(hammerDead) {
+            enemyBody.destroyFixture(enemyBody.getFixtureList().get(0));
+            if (!world.isLocked())
+                world.destroyBody(enemyBody);
+        }
     }
+}
+
 

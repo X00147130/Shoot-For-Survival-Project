@@ -248,6 +248,7 @@ public class Worker extends Enemy {
         }
         else {
             setToDestroy = true;
+            destroy();
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
                 long id = sfs.sound.play();
@@ -269,5 +270,14 @@ public class Worker extends Enemy {
 
     public void setAttack(boolean attack) {
         this.attack = attack;
+    }
+
+    public void destroy(){
+
+        if(destroyed) {
+            enemyBody.destroyFixture(enemyBody.getFixtureList().get(0));
+            if (!world.isLocked())
+                world.destroyBody(enemyBody);
+        }
     }
 }

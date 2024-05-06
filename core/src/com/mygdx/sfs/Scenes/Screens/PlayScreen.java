@@ -368,12 +368,6 @@ public class PlayScreen implements Screen {
             bullet.bulletBody.setActive(true);
             bullet.update(dt);
 
-            if (bullet.destroy) {
-                while (bullet.bulletBody.getFixtureList().size > 0) {
-                    bullet.bulletBody.destroyFixture(bullet.bulletBody.getFixtureList().get(0));
-                    bullet.bulletBody.setUserData(null);
-                }
-            }
         }
 
         for (Item item : creator.getCoins())
@@ -391,7 +385,7 @@ public class PlayScreen implements Screen {
         creator.getScanner().destroyBody();
 
         if (creator.getScanner().isDestroyed()) {
-            creator.getEndLevel().unlock();
+            creator.door.unlock();
         }
 
         hud.update(dt);

@@ -96,7 +96,7 @@ public class B2WorldCreator {
         coins = new Array<Money>();
         for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
- // creation of coin objects
+// creation of coin objects
             coins.add(new Money(sfs,screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
 
         }
@@ -104,8 +104,7 @@ public class B2WorldCreator {
 
 //create finish fixtures
         for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-
-            // creation of finish/ door object
+ // creation of finish/ door object
             door = new Door(sfs,screen,object);
         }
 
@@ -115,7 +114,7 @@ public class B2WorldCreator {
         }
 
 
-// create all enemies
+// create workers enemies
         workers = new Array<Worker>();
         for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
@@ -123,7 +122,7 @@ public class B2WorldCreator {
         }
 
 
-// create all enemies
+// create hammers enemies
         hammers = new Array<Hammer>();
         for (MapObject object : map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
@@ -174,6 +173,8 @@ public class B2WorldCreator {
 // creation of Rifle objects
             rifles.add(new Rifles(sfs, screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
         }
+
+
     }
 
     public Array<Worker> getWorkers() {
@@ -188,6 +189,11 @@ public class B2WorldCreator {
     public Array<Rifles> getRifles(){return rifles;}
     public Scanner getScanner() {
         return scanner;
+    }
+
+
+    public void dispose(){
+
     }
 }
 
