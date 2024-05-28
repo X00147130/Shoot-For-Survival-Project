@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="260" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="327">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="260" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="328">
  <tileset firstgid="1" source="Industry4.tsx"/>
  <tileset firstgid="2" source="Industry5.tsx"/>
  <tileset firstgid="3" source="Industry6.tsx"/>
@@ -237,7 +237,7 @@
   <object id="61" x="226.667" y="581.334" width="32" height="21.3333"/>
  </objectgroup>
  <objectgroup id="6" name="Door">
-  <object id="323" x="8288" y="384" width="32" height="64"/>
+  <object id="327" x="8288" y="384" width="32" height="64"/>
  </objectgroup>
  <objectgroup id="7" name="Scanner">
   <object id="163" x="8160" y="416" width="32" height="32"/>
@@ -265,17 +265,6 @@
   <object id="88" x="577.333" y="282.667" width="32" height="32"/>
   <object id="89" x="864" y="218.667" width="32" height="32"/>
   <object id="90" x="98.6667" y="572" width="32" height="32"/>
- </objectgroup>
- <objectgroup id="19" name="Hammer">
-  <object id="309" x="960" y="474.667" width="32" height="32"/>
-  <object id="310" x="2112" y="570.667" width="32" height="32"/>
-  <object id="311" x="3264" y="410.667" width="32" height="32"/>
-  <object id="312" x="4224" y="58.6667" width="32" height="32"/>
-  <object id="313" x="4864" y="634.667" width="32" height="32"/>
-  <object id="314" x="4160" y="633.333" width="32" height="32"/>
-  <object id="315" x="5950.67" y="570.667" width="32" height="32"/>
-  <object id="316" x="5664" y="154.667" width="32" height="32"/>
-  <object id="317" x="7168" y="633.333" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="9" name="Barriers">
   <object id="91" x="544" y="576" height="32"/>
@@ -323,7 +312,6 @@
  <objectgroup id="10" name="Roof">
   <object id="123" x="0" y="0" width="8320"/>
   <object id="129" x="0" y="96" height="96"/>
-  <object id="130" x="8320" y="288" height="160"/>
  </objectgroup>
  <objectgroup id="14" name="Death">
   <object id="156" x="2240" y="800" width="256"/>

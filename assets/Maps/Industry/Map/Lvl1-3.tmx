@@ -252,13 +252,6 @@
   <object id="185" x="6977.33" y="385.333" width="28" height="26.6667"/>
   <object id="187" x="7681.33" y="318.667" width="28" height="29.3333"/>
  </objectgroup>
- <objectgroup id="10" name="hammer">
-  <object id="165" x="958.667" y="289.333" width="38.6667" height="26.6667"/>
-  <object id="166" x="737.333" y="742.667" width="22.6667" height="21.3333"/>
-  <object id="167" x="97.3333" y="737.333" width="29.3333" height="26.6667"/>
-  <object id="168" x="2974.67" y="416" width="29.3333" height="28"/>
-  <object id="186" x="7169.33" y="384" width="28" height="28"/>
- </objectgroup>
  <objectgroup id="11" name="barriers">
   <object id="188" x="7840" y="320" height="32"/>
   <object id="189" x="7552" y="320" height="32"/>

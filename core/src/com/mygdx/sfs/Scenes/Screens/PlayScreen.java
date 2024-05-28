@@ -357,12 +357,12 @@ public class PlayScreen implements Screen {
         }
 
 
-        for (Enemy enemy2 : creator.getHammers()) {
+        /*for (Enemy enemy2 : creator.getHammers()) {
             enemy2.update(dt);
             if (enemy2.getX() < player.getX() + 424 / shootForSurvival.PPM) {
                 enemy2.enemyBody.setActive(true);
             }
-        }
+        }*/
 
         for (Bullets bullet : bullets) {
             bullet.bulletBody.setActive(true);
@@ -430,9 +430,9 @@ public class PlayScreen implements Screen {
         for (Enemy enemy : creator.getWorkers())
             enemy.draw(game.batch);
 
-        for (Enemy enemy : creator.getHammers()) {
+        /*for (Enemy enemy : creator.getHammers()) {
             enemy.draw(game.batch);
-        }
+        }*/
 
         for (Bullets bullet : bullets)
             if (!bullet.destroy)

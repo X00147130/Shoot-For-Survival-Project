@@ -174,10 +174,8 @@ public class Hammer extends Enemy {
 
         if (setToDestroy && !destroyed) {
             hammerDead = true;
-            world.destroyBody(enemyBody);
+            destroy();
             destroyed = true;
-            world.setAutoClearForces(true);
-
         } else {
             hammerDead = false;
         }
@@ -215,9 +213,9 @@ public class Hammer extends Enemy {
         shape.setRadius(9 / PPM);
         fdef.filter.categoryBits = shootForSurvival.HAMMER_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
+                shootForSurvival.BULLET_BIT|
                 shootForSurvival.DOOR_BIT |
                 shootForSurvival.BARRIER_BIT |
-                shootForSurvival.BULLET_BIT |
                 shootForSurvival.WALL_BIT |
                 shootForSurvival.PLAYER_BIT;
 
@@ -261,7 +259,6 @@ public class Hammer extends Enemy {
 
             hitCounter++;
         }else {
-            destroy();
             setToDestroy = true;
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/523553__matrixxx__tv_shutdown.wav");
@@ -287,10 +284,10 @@ public class Hammer extends Enemy {
 
 public void destroy(){
 
-        if(hammerDead) {
+        if(hammerDead && !world.isLocked()) {
             enemyBody.destroyFixture(enemyBody.getFixtureList().get(0));
-            if (!world.isLocked())
-                world.destroyBody(enemyBody);
+            world.destroyBody(enemyBody);
+            world.clearForces();
         }
     }
 }

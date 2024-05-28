@@ -24,11 +24,22 @@ android {
         versionName "1.0"
     }
     buildTypes {
+
+
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.current()
+        targetCompatibility JavaVersion.current()
+    }
+    dependenciesInfo {
+        includeInApk true
+        includeInBundle true
+    }
+    flavorDimensions 'gdx-box2d-platform'
 }
 
 
@@ -86,3 +97,4 @@ task run(type: Exec) {
 }
 
 eclipse.project.name = appName + "-android"
+

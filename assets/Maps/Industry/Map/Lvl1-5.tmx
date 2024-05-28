@@ -364,16 +364,6 @@
   <object id="414" x="7682" y="512" width="26" height="29"/>
   <object id="415" x="7650" y="31" width="28" height="28"/>
  </objectgroup>
- <objectgroup id="9" name="Hammers">
-  <object id="441" x="323" y="706" width="25" height="26"/>
-  <object id="442" x="612" y="609" width="27" height="29"/>
-  <object id="443" x="1765" y="702" width="25" height="27"/>
-  <object id="444" x="2150" y="702" width="27" height="28"/>
-  <object id="445" x="3779" y="707" width="27" height="26"/>
-  <object id="446" x="5761" y="576" width="28" height="29"/>
-  <object id="447" x="6852" y="705" width="29" height="27"/>
-  <object id="448" x="7748" y="706" width="29" height="26"/>
- </objectgroup>
  <objectgroup id="10" name="Barriers">
   <object id="416" x="7711" y="35" height="27"/>
   <object id="417" x="7808" y="514" height="29"/>

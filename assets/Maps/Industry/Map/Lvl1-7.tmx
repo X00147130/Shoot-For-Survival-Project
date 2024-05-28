@@ -286,17 +286,6 @@
   <object id="479" x="1311" y="232" width="32" height="20"/>
   <object id="480" x="352" y="422" width="31" height="21"/>
  </objectgroup>
- <objectgroup id="9" name="Hammer" locked="1">
-  <object id="481" x="193" y="614" width="31" height="23"/>
-  <object id="482" x="2337" y="548" width="28" height="21"/>
-  <object id="483" x="2882" y="197" width="29" height="24"/>
-  <object id="484" x="5059" y="514" width="28" height="26"/>
-  <object id="485" x="4272" y="553" width="21" height="18"/>
-  <object id="486" x="6338" y="613" width="27" height="21"/>
-  <object id="487" x="8065" y="643" width="27" height="24"/>
-  <object id="488" x="8192" y="643" width="30" height="24"/>
-  <object id="489" x="7935" y="64" width="34" height="29"/>
- </objectgroup>
  <objectgroup id="10" name="Barrier" locked="1">
   <object id="490" x="7584" y="65" width="1" height="28"/>
   <object id="492" x="7776" y="640" height="32"/>

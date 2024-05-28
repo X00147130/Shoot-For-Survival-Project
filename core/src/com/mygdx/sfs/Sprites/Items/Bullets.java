@@ -72,11 +72,15 @@ public class Bullets{
         bulletBody.setGravityScale(0);
         Gdx.app.log("bullet", "shoot");
 
+        if(destroy)
+            bulletBody.setUserData(null);
+
         return fix1;
     }
 
     public void destroy(){
         destroy = true;
+        bodyRemoval();
     }
 
     public void update(float dt){
@@ -84,7 +88,6 @@ public class Bullets{
 
        if(dt > 10f) {
            destroy();
-           bodyRemoval();
        }
 
         pistolLvl = sfs.getPistolLvl();
@@ -166,14 +169,13 @@ public class Bullets{
         else if(powerLVL == 10){
             clip = sfs.getRifleBullets().findRegion("10");
         }
-    bodyRemoval();
     }
 
 
     public void bodyRemoval(){
-        if (destroy) {
-            if (!world.isLocked())
-                world.destroyBody(bulletBody);
+        if (destroy && !world.isLocked()) {
+            world.destroyBody(bulletBody);
+            world.clearForces();
         }
     }
     public void render(SpriteBatch batch){

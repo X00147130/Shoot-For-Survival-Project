@@ -170,15 +170,15 @@ public class Worker extends Enemy {
 
         if (setToDestroy && !destroyed) {
             workerDead = true;
-            world.destroyBody(enemyBody);
             destroyed = true;
+            destroy();
             stateTime=0;
 
 
         } else if (!destroyed) {
-            if(attack == false)
+            if(!attack)
                 enemyBody.setLinearVelocity(velocity);
-            else if (attack == true) {
+            else if (attack) {
                 enemyBody.setLinearVelocity(0, 0);
                 attack = false;
             }
@@ -248,7 +248,6 @@ public class Worker extends Enemy {
         }
         else {
             setToDestroy = true;
-            destroy();
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
                 long id = sfs.sound.play();
@@ -274,10 +273,9 @@ public class Worker extends Enemy {
 
     public void destroy(){
 
-        if(destroyed) {
+        if(destroyed && !world.isLocked()) {
             enemyBody.destroyFixture(enemyBody.getFixtureList().get(0));
-            if (!world.isLocked())
-                world.destroyBody(enemyBody);
+            world.destroyBody(enemyBody);
         }
     }
 }
