@@ -27,13 +27,9 @@ public class Money extends Item {
         this.sfs = sfs;
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-
-        frames.add(sfs.getMoneyAtlas().findRegion("money1"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money2"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money3"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money4"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money5"));
-        frames.add(sfs.getMoneyAtlas().findRegion("money6"));
+        for(int i = 1; i <= sfs.getMoneyAtlas().getRegions().size; i++) {
+            frames.add(sfs.getMoneyAtlas().findRegion("money" + i ));
+        }
 
         money = new Animation<TextureRegion>(0.2f, frames);
         setBounds(0, 0, 25 / PPM, 35 / PPM);

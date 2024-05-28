@@ -83,96 +83,30 @@ public class Bullets{
         bodyRemoval();
     }
 
-    public void update(float dt){
-       y = SPEED * dt;
+    public void update(float dt) {
+        y = SPEED * dt;
 
-       if(dt > 10f) {
-           destroy();
-       }
+        if (dt > 10f) {
+            destroy();
+        }
 
         pistolLvl = sfs.getPistolLvl();
-        if(pistolLvl == 1) {
-            clip = sfs.getPistolBullets().findRegion("1");
-        }
-        else if(pistolLvl == 2) {
-            clip = sfs.getPistolBullets().findRegion("2");
+
+        for (int i = 1; i <= sfs.getPistolBullets().getRegions().size; i++) {
+            if (pistolLvl == i) {
+                clip = sfs.getPistolBullets().findRegion("" + i);
+            }
         }
 
-        else if(pistolLvl == 3){
-            clip = sfs.getPistolBullets().findRegion("3");
-        }
-
-        else if(pistolLvl == 4){
-            clip = sfs.getPistolBullets().findRegion("4");
-        }
-
-        else if(pistolLvl == 5){
-            clip = sfs.getPistolBullets().findRegion("5");
-        }
-
-        else if(pistolLvl == 6){
-            clip = sfs.getPistolBullets().findRegion("6");
-        }
-
-        else if(pistolLvl == 7){
-            clip = sfs.getPistolBullets().findRegion("7");
-        }
-
-        else if(pistolLvl == 8){
-            clip = sfs.getPistolBullets().findRegion("8");
-        }
-
-        else if(pistolLvl == 9){
-            clip = sfs.getPistolBullets().findRegion("9");
-        }
-
-        else if(pistolLvl == 10){
-            clip = sfs.getPistolBullets().findRegion("10");
-        }
-
-       powerLVL = sfs.getPowerLVL();
-        if(powerLVL == 1) {
-            clip = sfs.getRifleBullets().findRegion("1");
-        }
-       else if(powerLVL == 2) {
-            clip = sfs.getRifleBullets().findRegion("2");
-        }
-
-        else if(powerLVL == 3){
-            clip = sfs.getRifleBullets().findRegion("3");
-        }
-
-        else if(powerLVL == 4){
-            clip = sfs.getRifleBullets().findRegion("4");
-        }
-
-        else if(powerLVL == 5){
-            clip = sfs.getRifleBullets().findRegion("5");
-        }
-
-        else if(powerLVL == 6){
-            clip = sfs.getRifleBullets().findRegion("6");
-        }
-
-        else if(powerLVL == 7){
-            clip = sfs.getRifleBullets().findRegion("7");
-        }
-
-        else if(powerLVL == 8){
-            clip = sfs.getRifleBullets().findRegion("8");
-        }
-
-        else if(powerLVL == 9){
-            clip = sfs.getRifleBullets().findRegion("9");
-        }
-
-        else if(powerLVL == 10){
-            clip = sfs.getRifleBullets().findRegion("10");
+        powerLVL = sfs.getPowerLVL();
+        for (int i = 1; i <= sfs.getRifleBullets().getRegions().size; i++) {
+            if (powerLVL == i) {
+                clip = sfs.getRifleBullets().findRegion("" + i);
+            }
         }
     }
 
-
-    public void bodyRemoval(){
+        public void bodyRemoval(){
         if (destroy && !world.isLocked()) {
             world.destroyBody(bulletBody);
             world.clearForces();

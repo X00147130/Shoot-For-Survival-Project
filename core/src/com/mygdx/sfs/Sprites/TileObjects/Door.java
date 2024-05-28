@@ -18,6 +18,7 @@ public class Door extends InteractiveTileObject {
     private TextureRegion closed;
     private boolean open;
 
+
     public Door(shootForSurvival game, PlayScreen screen, MapObject object){
         super(screen,object);
         this.sfs = game;
@@ -27,12 +28,9 @@ public class Door extends InteractiveTileObject {
 
         Array<TextureRegion> doorAnimation = new Array<TextureRegion>();
 
-        doorAnimation.add (sfs.getDoorAtlas().findRegion("Industrial1"));
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial2"));
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial3"));
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial4"));
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial5"));
-        doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial6"));
+        for(int i = 1; i <= sfs.getDoorAtlas().getRegions().size; i++) {
+            doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial" + i ));
+        }
 
         door = new Animation<TextureRegion>(0.2f, doorAnimation);
 

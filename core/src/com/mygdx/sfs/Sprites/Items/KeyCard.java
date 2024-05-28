@@ -29,16 +29,9 @@ public class KeyCard extends Item {
         super(screen, x, y);
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-
-        frames.add(sfs.getKeycardAtlas().findRegion("keycard1"));
-        frames.add(sfs.getKeycardAtlas().findRegion("keycard2"));
-        frames.add(sfs.getKeycardAtlas().findRegion("keycard3"));
-        frames.add(sfs.getKeycardAtlas().findRegion("keycard4"));
-        frames.add(sfs.getKeycardAtlas().findRegion("keycard5"));
-        frames.add(sfs.getKeycardAtlas().findRegion("keycard6"));
-        frames.add(sfs.getKeycardAtlas().findRegion("keycard7"));
-        frames.add(sfs.getKeycardAtlas().findRegion("keycard8"));
-
+        for(int i = 1; i <= sfs.getDoorAtlas().getRegions().size; i++) {
+            frames.add(sfs.getKeycardAtlas().findRegion("keycard" + i ));
+        }
 
         keycard = new Animation<TextureRegion>(0.2f, frames);
         if (Gdx.app.getType() == Application.ApplicationType.Android) {

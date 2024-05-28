@@ -94,74 +94,12 @@ public class Rifles extends Item{
         powerLVL = sfs.getPowerLVL();
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        if(powerLVL == 1) {
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("2"));
-            frames.add(sfs.getRifles().findRegion("2"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
-        }
-
-        else if(powerLVL == 2){
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("3"));
-            frames.add(sfs.getRifles().findRegion("3"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
-        }
-
-        else if(powerLVL == 3){
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("4"));
-            frames.add(sfs.getRifles().findRegion("4"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
-        }
-
-        else if(powerLVL == 4){
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("5"));
-            frames.add(sfs.getRifles().findRegion("5"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
-        }
-
-        else if(powerLVL == 5){
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("6"));
-            frames.add(sfs.getRifles().findRegion("6"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
-        }
-
-        else if(powerLVL == 6){
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("7"));
-            frames.add(sfs.getRifles().findRegion("7"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
-        }
-
-        else if(powerLVL == 7){
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("8"));
-            frames.add(sfs.getRifles().findRegion("8"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
-        }
-
-        else if(powerLVL == 8){
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("9"));
-            frames.add(sfs.getRifles().findRegion("9"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
-        }
-
-        else if(powerLVL == 9){
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("10"));
-            frames.add(sfs.getRifles().findRegion("10"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
-        }
-
-        else if(powerLVL == 10){
-            frames.clear();
-            frames.add(sfs.getRifles().findRegion("1"));
-            frames.add(sfs.getRifles().findRegion("1"));
-            rifle = new Animation<TextureRegion>(0.2f, frames);
+        for(int i = 1; i <= sfs.getRifles().getRegions().size; i++) {
+            if (powerLVL == i) {
+                frames.add(sfs.getRifles().findRegion("" + (i + 1)));
+                frames.add(sfs.getRifles().findRegion("" + (i + 1)));
+                rifle = new Animation<TextureRegion>(0.2f, frames);
+            }
         }
 
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
