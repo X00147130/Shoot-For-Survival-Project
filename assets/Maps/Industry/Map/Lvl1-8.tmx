@@ -303,6 +303,7 @@
   <object id="162" x="1445" y="130" width="22" height="24"/>
   <object id="163" x="104" y="516" width="22" height="24"/>
   <object id="164" x="485" y="640" width="22" height="24"/>
+  <object id="153" x="3905" y="225" width="27" height="26"/>
  </objectgroup>
  <objectgroup id="9" name="barrier" locked="1">
   <object id="166" x="288" y="512" height="32"/>
@@ -530,7 +531,6 @@
   <object id="190" x="3619.5" y="133.5" width="19" height="21"/>
   <object id="325" x="3808" y="132" height="90"/>
   <object id="326" x="3776" y="131" width="1" height="32"/>
-  <object id="153" x="3905" y="225" width="27" height="26"/>
   <object id="323" x="4128" y="227" width="1" height="27"/>
   <object id="324" x="3841" y="228" height="26"/>
   <object id="303" x="3233" y="738" height="29"/>
