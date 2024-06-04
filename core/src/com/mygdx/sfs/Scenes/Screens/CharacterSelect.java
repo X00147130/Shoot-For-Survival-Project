@@ -461,6 +461,8 @@ public class CharacterSelect implements Screen {
 
                     default:
                 }
+
+                
                 sfs.setPlayersChoice(selected);
                 sfs.setPlayersChoice2(selected2);
                 sfs.setPlayersChoice3(selected3);
