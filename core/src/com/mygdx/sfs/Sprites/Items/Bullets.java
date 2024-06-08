@@ -26,6 +26,8 @@ public class Bullets{
 
     private int pistolLvl = 1;
 
+    private double damage = 0.5;
+
     public float x,y;
 
     public Bullets(shootForSurvival sfs,PlayScreen screen, float x, float y) {
@@ -104,6 +106,71 @@ public class Bullets{
                 clip = sfs.getRifleBullets().findRegion("" + i);
             }
         }
+        switch(pistolLvl){
+            case 1:
+                damage = 0.5;
+                break;
+            case 2:
+                damage = 1.5;
+                break;
+            case 3:
+                damage = 2.5;
+                break;
+            case 4:
+                damage = 3.5;
+                break;
+            case 5:
+                damage = 4.5;
+                break;
+            case 6:
+                damage = 5.5;
+                break;
+            case 7:
+                damage = 6.5;
+                break;
+            case 8:
+                damage = 7.5;
+                break;
+            case 9:
+                damage = 8.5;
+                break;
+            case 10:
+                damage = 9.5;
+                break;
+        }
+
+        switch(powerLVL){
+            case 1:
+                damage = 1;
+                break;
+            case 2:
+                damage = 2;
+                break;
+            case 3:
+                damage = 3;
+                break;
+            case 4:
+                damage = 4;
+                break;
+            case 5:
+                damage = 5;
+                break;
+            case 6:
+                damage = 6;
+                break;
+            case 7:
+                damage = 7;
+                break;
+            case 8:
+                damage = 8;
+                break;
+            case 9:
+                damage = 9;
+                break;
+            case 10:
+                damage = 10;
+                break;
+        }
     }
 
         public void bodyRemoval(){
@@ -114,5 +181,9 @@ public class Bullets{
     }
     public void render(SpriteBatch batch){
         batch.draw(clip, bulletBody.getPosition().x, bulletBody.getPosition().y,clip.getRegionWidth() / sfs.PPM,clip.getRegionHeight() / sfs.PPM);
+    }
+
+    public double getDamage() {
+        return damage;
     }
 }

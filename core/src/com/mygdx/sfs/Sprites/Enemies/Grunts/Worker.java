@@ -37,11 +37,10 @@ public class Worker extends Enemy {
     private boolean destroyed;
     private boolean hit = false;
     private int hitCounter;
+    private double hurt = 0;
+    private double bulletDamage = 0;
     private boolean runningRight;
     private boolean attack = false;
-
-    //private ArrayList<Bullets> bullet;
-
     private int enemyHitCounter;
 
     public Worker(shootForSurvival sfs, PlayScreen screen, float x, float y) {
@@ -107,6 +106,8 @@ public class Worker extends Enemy {
         enemyHitCounter = 0;
         workerDead = false;
         runningRight = true;
+
+        bulletDamage = screen.getBulletDamage();
     }
 
     public State getState() {
@@ -183,6 +184,7 @@ public class Worker extends Enemy {
                 attack = false;
             }
 
+            bulletDamage = screen.getBulletDamage();
             setPosition(enemyBody.getPosition().x - getWidth() /2 , enemyBody.getPosition().y - getHeight() /3 );
             setRegion(getFrame(dt));
         }
@@ -219,52 +221,53 @@ public class Worker extends Enemy {
 
     @Override
     public void shot() {
-        if(hitCounter < 1){    //Worker is pushed back
-            hit = true;
-            if(enemyBody.getLinearVelocity().x > 0)
-                enemyBody.applyLinearImpulse(new Vector2(-1f,1f), enemyBody.getWorldCenter(),true);
-
-            else if(enemyBody.getLinearVelocity().x < 0)
-                enemyBody.applyLinearImpulse(new Vector2(1f,1f), enemyBody.getWorldCenter(),true);
-
-            else{
-                enemyBody.applyLinearImpulse(new Vector2(-1f,1f), enemyBody.getWorldCenter(),true);
-            }
-
-            if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                sfs.loadSound("audio/sounds/getting-hit.mp3");
-                long id = sfs.sound.play();
-                if (sfs.getSoundVolume() != 0) {
-                    sfs.sound.setVolume(id, sfs.getSoundVolume());
+        /*if (hitCounter < 1) {*/    //Worker is pushed back
+            hurt += bulletDamage;
+            if (hurt < 2) {
+                hit = true;
+                if (enemyBody.getLinearVelocity().x > 0) {
+                    enemyBody.applyLinearImpulse(new Vector2(-1f, 1f), enemyBody.getWorldCenter(), true);
+                } else if (enemyBody.getLinearVelocity().x < 0) {
+                    enemyBody.applyLinearImpulse(new Vector2(1f, 1f), enemyBody.getWorldCenter(), true);
                 } else {
-                    sfs.sound.setVolume(id, 0);
+                    enemyBody.applyLinearImpulse(new Vector2(-1f, 1f), enemyBody.getWorldCenter(), true);
                 }
-            }
-            if(Gdx.app.getType() == Application.ApplicationType.Android) {
-                sfs.manager.get("audio/sounds/getting-hit.mp3", Sound.class).play(sfs.getSoundVolume());
-            }
 
-            hitCounter++;
-        }
-        else {
-            setToDestroy = true;
-            if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
-                long id = sfs.sound.play();
-                if (sfs.getSoundVolume() != 0) {
-                    sfs.sound.setVolume(id, sfs.getSoundVolume());
-                } else {
-                    sfs.sound.setVolume(id, 0);
+                if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                    sfs.loadSound("audio/sounds/getting-hit.mp3");
+                    long id = sfs.sound.play();
+                    if (sfs.getSoundVolume() != 0) {
+                        sfs.sound.setVolume(id, sfs.getSoundVolume());
+                    } else {
+                        sfs.sound.setVolume(id, 0);
+                    }
                 }
+                if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                    sfs.manager.get("audio/sounds/getting-hit.mp3", Sound.class).play(sfs.getSoundVolume());
+                }
+                hitCounter++;
             }
+        /*}*/
+        else{
+                setToDestroy = true;
+                if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                    sfs.loadSound("audio/sounds/sexynakedbunny-ouch.mp3");
+                    long id = sfs.sound.play();
+                    if (sfs.getSoundVolume() != 0) {
+                        sfs.sound.setVolume(id, sfs.getSoundVolume());
+                    } else {
+                        sfs.sound.setVolume(id, 0);
+                    }
+                }
 
-            if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                sfs.manager.get("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class).play(sfs.getSoundVolume());
+                if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                    sfs.manager.get("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class).play(sfs.getSoundVolume());
+                }
+                hitCounter = 2;
             }
-            hitCounter = 2;
+            hit = false;
         }
-        hit = false;
-    }
+
 
 
     public void setAttack(boolean attack) {
@@ -275,6 +278,7 @@ public class Worker extends Enemy {
 
         if(destroyed && !world.isLocked()) {
             enemyBody.destroyFixture(enemyBody.getFixtureList().get(0));
+            enemyBody.setUserData(null);
             world.destroyBody(enemyBody);
         }
     }

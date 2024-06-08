@@ -22,6 +22,7 @@ public class Door extends InteractiveTileObject {
     public Door(shootForSurvival game, PlayScreen screen, MapObject object){
         super(screen,object);
         this.sfs = game;
+        open = false;
 
 
         closed = sfs.getDoorAtlas().findRegion("Industrial1");
@@ -43,7 +44,7 @@ public class Door extends InteractiveTileObject {
     @Override
     public void onHit(Player player) {
         Gdx.app.log("Door", "Collision");
-        if (open == true) {
+        if (open) {
             screen.setLevelComplete(true);
 
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {

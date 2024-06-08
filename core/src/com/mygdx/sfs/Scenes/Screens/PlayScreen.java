@@ -59,6 +59,7 @@ public class PlayScreen implements Screen {
 
     //Bullet Variable
     private ArrayList<Bullets> bullets;
+    private double bulletDamage = 0;
 
     //Sprite Variable
     private Array<Item> items;
@@ -180,6 +181,10 @@ public class PlayScreen implements Screen {
 
     public shootForSurvival getGame() {
         return game;
+    }
+
+    public double getBulletDamage() {
+        return bulletDamage;
     }
 
     public int getCoins() {
@@ -366,7 +371,7 @@ public class PlayScreen implements Screen {
         for (Bullets bullet : bullets) {
             bullet.bulletBody.setActive(true);
             bullet.update(dt);
-
+            bulletDamage = bullet.getDamage();
         }
 
         for (Item item : creator.getCoins())
@@ -429,8 +434,8 @@ public class PlayScreen implements Screen {
         for (Enemy enemy : creator.getWorkers())
             enemy.draw(game.batch);
 
-        for (Enemy enemy : creator.getScalpers()) {
-            enemy.draw(game.batch);
+        for (Enemy enemy2 : creator.getScalpers()) {
+            enemy2.draw(game.batch);
         }
 
         for (Bullets bullet : bullets)
