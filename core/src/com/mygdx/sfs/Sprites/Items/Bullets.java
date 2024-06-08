@@ -59,7 +59,7 @@ public class Bullets{
         shape.setRadius(0.6f / shootForSurvival.PPM);
         bulletDef.filter.categoryBits = shootForSurvival.BULLET_BIT;
         bulletDef.filter.maskBits = shootForSurvival.ENEMY_BIT|
-                shootForSurvival.HAMMER_BIT|
+                shootForSurvival.BOSS_BIT |
                 shootForSurvival.GROUND_BIT|
                 shootForSurvival.WALL_BIT|
                 shootForSurvival.ITEM_BIT|

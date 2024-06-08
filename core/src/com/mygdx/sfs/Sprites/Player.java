@@ -696,7 +696,7 @@ public class Player extends Sprite {
         shape.setRadius(7 / PPM);
         fdef.filter.categoryBits = shootForSurvival.PLAYER_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
-                shootForSurvival.HAMMER_BIT|
+                shootForSurvival.BOSS_BIT |
                 shootForSurvival.ENEMY_BIT|
                 shootForSurvival.ITEM_BIT|
                 shootForSurvival.WALL_BIT|

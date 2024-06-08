@@ -24,12 +24,11 @@ public class shootForSurvival extends Game {
     public static final float MIN_VOL = 0;
 
     //Filter initializations
-    public static final short BOSS_BIT = 0;
     public static final short GROUND_BIT = 1;
     public static final short PLAYER_BIT = 2;
     public static final short SCANNER_BIT = 4;
     public static final short DOOR_BIT = 8;
-    public static final short HAMMER_BIT = 16;
+    public static final short BOSS_BIT = 16;
     public static final short ENEMY_BIT = 32;
     public static final short ITEM_BIT = 64;
     public static final short BARRIER_BIT = 128;
@@ -120,6 +119,8 @@ public class shootForSurvival extends Game {
 
     private TextureAtlas worker1Atlas;
     private TextureAtlas hammerAtlas;
+
+    private TextureAtlas scalperAtlas;
 
     private TextureAtlas doorAtlas;
     private TextureAtlas keycardAtlas;
@@ -288,6 +289,7 @@ public class shootForSurvival extends Game {
 
         worker1Atlas = new TextureAtlas("sprites/Enemies/worker1.pack");//Worker1 (Enemy) Character
         hammerAtlas = new TextureAtlas("sprites/Enemies/hammer.pack");//Hammer (Enemy) Character
+        scalperAtlas = new TextureAtlas("sprites/Enemies/Bosses/Scalper.pack");//Scalper (Boss) Character
 
         doorAtlas = new TextureAtlas("sprites/Objects/industrialDoor.pack"); //End Level Door
         keycardAtlas = new TextureAtlas("sprites/Objects/keycard.pack"); //Key Card
@@ -590,6 +592,10 @@ public class shootForSurvival extends Game {
         return hammerAtlas;
     }
 
+    public TextureAtlas getScalperAtlas() {
+        return scalperAtlas;
+    }
+
     public TextureAtlas getDoorAtlas() {
         return doorAtlas;
     }
@@ -679,7 +685,6 @@ public class shootForSurvival extends Game {
     public void setPistolLvl(int pistolLvl) {
         this.pistolLvl = pistolLvl;
     }
-
 
 
 }

@@ -1,0 +1,159 @@
+
+Scalper.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+dead4
+  rotate: false
+  xy: 1, 53
+  size: 63, 50
+  orig: 63, 50
+  offset: 0, 0
+  index: -1
+dead5
+  rotate: false
+  xy: 1, 1
+  size: 63, 50
+  orig: 63, 50
+  offset: 0, 0
+  index: -1
+dead6
+  rotate: false
+  xy: 66, 53
+  size: 63, 50
+  orig: 63, 50
+  offset: 0, 0
+  index: -1
+attack1
+  rotate: false
+  xy: 66, 1
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+attack2
+  rotate: false
+  xy: 131, 53
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+attack3
+  rotate: false
+  xy: 123, 1
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+attack4
+  rotate: false
+  xy: 188, 53
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+attack5
+  rotate: false
+  xy: 180, 1
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+attack6
+  rotate: false
+  xy: 245, 53
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+dead1
+  rotate: false
+  xy: 237, 1
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+dead2
+  rotate: false
+  xy: 302, 53
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+dead3
+  rotate: false
+  xy: 294, 1
+  size: 55, 50
+  orig: 55, 50
+  offset: 0, 0
+  index: -1
+walk6
+  rotate: false
+  xy: 359, 48
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+idle1
+  rotate: false
+  xy: 416, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+idle2
+  rotate: false
+  xy: 468, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+idle3
+  rotate: false
+  xy: 520, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+idle4
+  rotate: false
+  xy: 572, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+walk1
+  rotate: false
+  xy: 624, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+walk2
+  rotate: false
+  xy: 676, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+walk3
+  rotate: false
+  xy: 728, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+walk4
+  rotate: false
+  xy: 780, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1
+walk5
+  rotate: false
+  xy: 832, 48
+  size: 50, 55
+  orig: 50, 55
+  offset: 0, 0
+  index: -1

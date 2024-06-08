@@ -92,7 +92,7 @@ public class LevelComplete implements Screen {
         table.add(Coins).center().expandX();
         table.row();
 
-        if(map != 11) {
+        if(map != 10) {
             table.add(nextLevelButton).expandX().padTop(20).padBottom(5);
             table.row();
         }

@@ -6,8 +6,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.mygdx.sfs.Sprites.Enemies.Bosses.Scalper;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
-import com.mygdx.sfs.Sprites.Enemies.Grunts.Hammer;
 import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.Sprites.Items.Bullets;
 import com.mygdx.sfs.Sprites.Items.Item;
@@ -103,45 +103,44 @@ public class WorldContactListener implements ContactListener {
                 break;
 
 
-            case shootForSurvival.HAMMER_BIT:
-                ((Hammer) fixA.getUserData()).reverseVelocity(true, false);
-                ((Hammer) fixB.getUserData()).reverseVelocity(true, false);
-                break;
 
-
-            case shootForSurvival.HAMMER_BIT | shootForSurvival.BULLET_BIT:
+            case shootForSurvival.BOSS_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
-                    ((Hammer) fixB.getUserData()).shot();
+                    ((Scalper) fixB.getUserData()).shot();
                     ((Bullets) fixA.getUserData()).destroy();
                 }
                 else {
-                    ((Hammer) fixA.getUserData()).shot();
+                    ((Scalper) fixA.getUserData()).shot();
                     ((Bullets) fixB.getUserData()).destroy();
                 }
                 break;
 
-
-            case shootForSurvival.HAMMER_BIT | shootForSurvival.BARRIER_BIT:
-
-            case shootForSurvival.HAMMER_BIT | shootForSurvival.WALL_BIT:
-                if (fixA.getFilterData().categoryBits == shootForSurvival.HAMMER_BIT)
-                    ((Hammer) fixA.getUserData()).reverseVelocity(true, false);
+            case shootForSurvival.BOSS_BIT | shootForSurvival.GROUND_BIT:
+                if(fixA.getFilterData().categoryBits == shootForSurvival.BOSS_BIT)
+                    ((Scalper) fixA.getUserData()).currentState = Scalper.State.WALK;
                 else
-                    ((Hammer) fixB.getUserData()).reverseVelocity(true, false);
+                    ((Scalper) fixB.getUserData()).currentState = Scalper.State.WALK;
+                break;
+
+            case shootForSurvival.BOSS_BIT | shootForSurvival.WALL_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.BOSS_BIT)
+                    ((Scalper) fixA.getUserData()).jumping();
+                else
+                    ((Scalper) fixB.getUserData()).jumping();
                 break;
 
 
-            case shootForSurvival.PLAYER_BIT | shootForSurvival.HAMMER_BIT:
+            case shootForSurvival.PLAYER_BIT | shootForSurvival.BOSS_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
                     ((Player) fixA.getUserData()).hit();
-                    ((Hammer) fixB.getUserData()).setAttack(true);
-                    ((Hammer) fixB.getUserData()).attack();
+                    ((Scalper) fixB.getUserData()).setAttack(true);
+                    ((Scalper) fixB.getUserData()).attack();
 
                 }
                 else {
                     ((Player) fixB.getUserData()).hit();
-                    ((Hammer) fixA.getUserData()).setAttack(true);
-                    ((Hammer) fixA.getUserData()).attack();
+                    ((Scalper) fixA.getUserData()).setAttack(true);
+                    ((Scalper) fixA.getUserData()).attack();
                 }
                 break;
 

@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
@@ -18,17 +17,19 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Scalper extends Enemy {
     //animation variables
-    public enum State{RUNNING, ATTACK, DEAD }
+    public enum State{WALK, ATTACK, JUMP, DEAD }
     public State currentState;
     public State previousState;
     private boolean scalperDead;
     private boolean attacking;
+    private boolean jumping;
 
     private shootForSurvival sfs;
 
     private float stateTime;
     private Animation<TextureRegion> walkAnimation;
     private Animation<TextureRegion> attackAnimation;
+    private Animation<TextureRegion> jumpAnimation;
     private Animation<TextureRegion> dieAnimation;
     private Array<TextureRegion> frames;
     private boolean setToDestroy;
@@ -37,32 +38,23 @@ public class Scalper extends Enemy {
     private boolean hit = false;
     private int hitCounter;
 
+    private float locationX = 0;
+    private float locationY = 0;
+
     private int enemyHitCounter;
 
     public Scalper(shootForSurvival scalper, PlayScreen screen, float x, float y) {
         super(screen, x, y);
         this.sfs = scalper;
 
-        //run animation
+        //walk animation
         frames = new Array<TextureRegion>();
-        frames.add(scalper.getCyborgAtlas().findRegion("Run1"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run2"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run3"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run4"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run5"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run6"));
-
-        walkAnimation = new Animation <TextureRegion>(0.3f, frames);
-        frames.clear();
-
-        //attack animation
-        frames = new Array<TextureRegion>();
-        frames.add(scalper.getCyborgAtlas().findRegion("Run1"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run2"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run3"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run4"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run5"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Run6"));
+        frames.add(sfs.getScalperAtlas().findRegion("walk1"));
+        frames.add(sfs.getScalperAtlas().findRegion("walk2"));
+        frames.add(sfs.getScalperAtlas().findRegion("walk3"));
+        frames.add(sfs.getScalperAtlas().findRegion("walk4"));
+        frames.add(sfs.getScalperAtlas().findRegion("walk5"));
+        frames.add(sfs.getScalperAtlas().findRegion("walk6"));
 
         walkAnimation = new Animation <TextureRegion>(0.3f, frames);
         frames.clear();
@@ -70,35 +62,64 @@ public class Scalper extends Enemy {
         //death animation
         frames.clear();
 
-        frames.add(scalper.getCyborgAtlas().findRegion("Die1"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Die2"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Die3"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Die4"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Die5"));
-        frames.add(scalper.getCyborgAtlas().findRegion("Die6"));
+        frames.add(sfs.getScalperAtlas().findRegion("dead1"));
+        frames.add(sfs.getScalperAtlas().findRegion("dead2"));
+        frames.add(sfs.getScalperAtlas().findRegion("dead3"));
+        frames.add(sfs.getScalperAtlas().findRegion("dead4"));
+        frames.add(sfs.getScalperAtlas().findRegion("dead5"));
+        frames.add(sfs.getScalperAtlas().findRegion("dead6"));
 
         dieAnimation = new Animation <TextureRegion>(0.1f, frames);
         frames.clear();
+
+        //attack animation
+        frames.clear();
+
+        frames.add(sfs.getScalperAtlas().findRegion("attack1"));
+        frames.add(sfs.getScalperAtlas().findRegion("attack2"));
+        frames.add(sfs.getScalperAtlas().findRegion("attack3"));
+        frames.add(sfs.getScalperAtlas().findRegion("attack4"));
+        frames.add(sfs.getScalperAtlas().findRegion("attack5"));
+        frames.add(sfs.getScalperAtlas().findRegion("attack6"));
+
+        attackAnimation = new Animation <TextureRegion>(0.3f, frames);
+        frames.clear();
+
+        //Jump animation
+        frames.clear();
+
+        frames.add(sfs.getScalperAtlas().findRegion("idle1"));
+        frames.add(sfs.getScalperAtlas().findRegion("idle2"));
+        frames.add(sfs.getScalperAtlas().findRegion("idle3"));
+        frames.add(sfs.getScalperAtlas().findRegion("idle4"));
+
+        jumpAnimation = new Animation <TextureRegion>(0.3f, frames);
+        frames.clear();
+
 
         stateTime = 0;
         setBounds(getX(), getY(), 28 / shootForSurvival.PPM , 30 / shootForSurvival.PPM);
         setToDestroy = false;
         destroyed =false;
+        jumping = false;
         enemyHitCounter = 0;
         scalperDead = false;
         runningRight = true;
     }
 
     public State getState() {
-        if(scalperDead == true) {
+        if(scalperDead) {
             return State.DEAD;
         }
 
-        else if(attacking == true) {
+        else if(attacking) {
             return State.ATTACK;
         }
+        else if(jumping){
+            return State.JUMP;
+        }
         else {
-            return State.RUNNING;
+            return State.WALK;
         }
     }
 
@@ -112,7 +133,8 @@ public class Scalper extends Enemy {
                 region = dieAnimation.getKeyFrame(stateTime, false);
                 break;
 
-            case RUNNING:
+            case ATTACK:
+                region = attackAnimation.getKeyFrame(stateTime, false);
 
             default:
                 region = walkAnimation.getKeyFrame(stateTime,true);
@@ -143,8 +165,22 @@ public class Scalper extends Enemy {
 
 
         } else if (!destroyed) {
-            enemyBody.setLinearVelocity(velocity);
-            setPosition(enemyBody.getPosition().x - getWidth() /2 , enemyBody.getPosition().y - getHeight() /3 );
+            if(screen.getPlayer().b2body.getPosition().x < enemyBody.getPosition().x) {
+                locationX = (screen.getPlayer().getX() - 100 / sfs.PPM) - enemyBody.getPosition().x;
+            }
+            else if(screen.getPlayer().b2body.getPosition().x > enemyBody.getPosition().x){
+                locationX = (screen.getPlayer().getX() + 100 / sfs.PPM) - enemyBody.getPosition().x;
+            }
+            /*locationY = screen.getPlayer().getY() - enemyBody.getPosition().y;*/
+            if(screen.getPlayer().b2body.getPosition().y < enemyBody.getPosition().y){
+                locationY = (screen.getPlayer().getY() - 100 / sfs.PPM) - enemyBody.getPosition().y;
+                enemyBody.setGravityScale(10f);
+            }
+            else if(screen.getPlayer().b2body.getPosition().y > enemyBody.getPosition().y) {
+                locationY = (screen.getPlayer().getY() + 100 / sfs.PPM) - enemyBody.getPosition().y;
+                enemyBody.setGravityScale(0);
+            }
+            enemyBody.setLinearVelocity(locationX ,locationY );
             setRegion(getFrame(dt));
         }
     }
@@ -162,10 +198,16 @@ public class Scalper extends Enemy {
         fdef.filter.categoryBits = shootForSurvival.BOSS_BIT;
         fdef.filter.maskBits = shootForSurvival.GROUND_BIT |
                 shootForSurvival.BULLET_BIT|
+                shootForSurvival.BARRIER_BIT|
+                shootForSurvival.DOOR_BIT|
+                shootForSurvival.SKY_BIT|
+                shootForSurvival.WALL_BIT|
                 shootForSurvival.PLAYER_BIT;
 
         fdef.shape = shape;
         enemyBody.createFixture(fdef).setUserData(this);
+        if(destroyed)
+            enemyBody.setUserData(null);
     }
 
     public void draw(Batch batch){
@@ -175,16 +217,16 @@ public class Scalper extends Enemy {
 
     @Override
     public void shot() {
-        if(hitCounter < 9){    //Scalper is pushed back
+        if(hitCounter < 29){    //Scalper is pushed back
             hit = true;
-            if(enemyBody.getLinearVelocity().x > 0)
-                enemyBody.applyLinearImpulse(new Vector2(-1f,1f), enemyBody.getWorldCenter(),true);
+            if(screen.getPlayer().b2body.getPosition().x < enemyBody.getPosition().x)
+                enemyBody.applyLinearImpulse(new Vector2(-5f,5f), enemyBody.getWorldCenter(),true);
 
-            else if(enemyBody.getLinearVelocity().x < 0)
-                enemyBody.applyLinearImpulse(new Vector2(1f,1f), enemyBody.getWorldCenter(),true);
+            else if(screen.getPlayer().b2body.getPosition().x > enemyBody.getPosition().x)
+                enemyBody.applyLinearImpulse(new Vector2(5f,5f), enemyBody.getWorldCenter(),true);
 
             else{
-                enemyBody.applyLinearImpulse(new Vector2(-1f,1f), enemyBody.getWorldCenter(),true);
+                enemyBody.applyLinearImpulse(new Vector2(-5f,5f), enemyBody.getWorldCenter(),true);
             }
 
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -217,7 +259,26 @@ public class Scalper extends Enemy {
             if (Gdx.app.getType() == Application.ApplicationType.Android) {
                 sfs.manager.get("audio/sounds/sexynakedbunny-ouch.mp3", Sound.class).play(sfs.getSoundVolume());
             }
-            hitCounter = 10;
+            hitCounter = 30;
         }
+    }
+
+    public void setAttack(boolean attacking) {
+        this.attacking = attacking;
+    }
+
+    public void attack(){
+        if(attacking) {
+            currentState = State.ATTACK;
+            if(screen.getPlayer().b2body.getPosition().x < enemyBody.getPosition().x)
+                enemyBody.applyLinearImpulse((new Vector2(10f, 10f)), enemyBody.getWorldCenter(), true);
+            else if(screen.getPlayer().b2body.getPosition().x > enemyBody.getPosition().x)
+                enemyBody.applyLinearImpulse((new Vector2(-10f, 10f)), enemyBody.getWorldCenter(), true);
+        }
+    }
+
+    public void jumping() {
+            enemyBody.applyLinearImpulse((new Vector2(-5, 15)), enemyBody.getWorldCenter(), true);
+            jumping = true;
     }
 }

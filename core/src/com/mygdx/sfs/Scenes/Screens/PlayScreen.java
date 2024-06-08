@@ -12,18 +12,13 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.sfs.Scenes.Hud;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
-import com.mygdx.sfs.Sprites.Enemies.Grunts.Hammer;
-import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Items.ItemDef;
 import com.mygdx.sfs.Sprites.Items.KeyCard;
@@ -161,6 +156,10 @@ public class PlayScreen implements Screen {
 
     public TiledMap getMap() {
         return map;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public World getWorld() {
@@ -357,12 +356,12 @@ public class PlayScreen implements Screen {
         }
 
 
-        /*for (Enemy enemy2 : creator.getHammers()) {
-            enemy2.update(dt);
-            if (enemy2.getX() < player.getX() + 424 / shootForSurvival.PPM) {
-                enemy2.enemyBody.setActive(true);
+        for (Enemy boss : creator.getScalpers()) {
+            boss.update(dt);
+            if (boss.getX() < player.getX() + 424 / shootForSurvival.PPM) {
+                boss.enemyBody.setActive(true);
             }
-        }*/
+        }
 
         for (Bullets bullet : bullets) {
             bullet.bulletBody.setActive(true);
@@ -430,9 +429,9 @@ public class PlayScreen implements Screen {
         for (Enemy enemy : creator.getWorkers())
             enemy.draw(game.batch);
 
-        /*for (Enemy enemy : creator.getHammers()) {
+        for (Enemy enemy : creator.getScalpers()) {
             enemy.draw(game.batch);
-        }*/
+        }
 
         for (Bullets bullet : bullets)
             if (!bullet.destroy)
