@@ -167,9 +167,9 @@ public class Scalper extends Enemy {
             destroyed = true;
             destroy();
             stateTime=0;
+        }
 
-
-        } else if (!destroyed) {
+        else if (!destroyed) {
             if(screen.getPlayer().b2body.getPosition().x < enemyBody.getPosition().x) {
                 locationX = (screen.getPlayer().getX() - 80 / sfs.PPM) - enemyBody.getPosition().x;
             }
@@ -184,7 +184,8 @@ public class Scalper extends Enemy {
                 locationY = (screen.getPlayer().getY() + 80 / sfs.PPM) - enemyBody.getPosition().y;
                 enemyBody.setGravityScale(0);
             }
-            enemyBody.setLinearVelocity(locationX ,locationY );
+            enemyBody.setLinearVelocity(locationX ,locationY);
+            setPosition(enemyBody.getPosition().x - getWidth() / 2, enemyBody.getPosition().y - getHeight() / 2);
         }
     }
 
@@ -222,14 +223,15 @@ public class Scalper extends Enemy {
         if (hurt < 29) {//Scalper is pushed back
             hit = true;
             if(screen.getPlayer().b2body.getPosition().x < enemyBody.getPosition().x)
-                enemyBody.applyLinearImpulse(new Vector2(-5f,5f), enemyBody.getWorldCenter(),true);
+                enemyBody.applyLinearImpulse(new Vector2(-5f, 5f), enemyBody.getWorldCenter(), true);
 
             else if(screen.getPlayer().b2body.getPosition().x > enemyBody.getPosition().x)
-                enemyBody.applyLinearImpulse(new Vector2(5f,5f), enemyBody.getWorldCenter(),true);
+                enemyBody.applyLinearImpulse(new Vector2(5f, 5f), enemyBody.getWorldCenter(), true);
 
-            else{
+
+            else
                 enemyBody.applyLinearImpulse(new Vector2(-5f,5f), enemyBody.getWorldCenter(),true);
-            }
+
 
             if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/getting-hit.mp3");
@@ -282,8 +284,8 @@ public class Scalper extends Enemy {
     public void destroy(){
 
         if(destroyed && !world.isLocked()) {
-            enemyBody.setUserData(null);
             world.destroyBody(enemyBody);
+            enemyBody.setUserData(null);
         }
     }
 }

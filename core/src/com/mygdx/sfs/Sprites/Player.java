@@ -412,7 +412,7 @@ public class Player extends Sprite {
 
         TextureRegion region = new TextureRegion();
 
-        if (rifle == false) {
+        if (!rifle) {
             switch (currentState) {
                 case DEAD:
                     region = playerDead.getKeyFrame(stateTimer, false);
@@ -449,7 +449,7 @@ public class Player extends Sprite {
         }
 
 
-        else if (rifle == true) {
+        else if (rifle) {
             switch (currentState) {
                 case DEAD:
                     region = playerDead2.getKeyFrame(stateTimer, false);
@@ -498,7 +498,7 @@ public class Player extends Sprite {
         if(playerIsDead)
             return State.DEAD;
 
-        else if ((b2body.getLinearVelocity().y > 0 && sfs.doubleJumped == true))
+        else if ((b2body.getLinearVelocity().y > 0 && sfs.doubleJumped))
             return State.DOUBLEJUMP;
 
         else if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0))
@@ -510,7 +510,7 @@ public class Player extends Sprite {
         else if (b2body.getLinearVelocity().x != 0)
             return State.RUNNING;
 
-        else if(screen.complete == true)
+        else if(screen.complete)
             return State.COMPLETE;
 
         else

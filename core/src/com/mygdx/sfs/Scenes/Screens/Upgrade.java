@@ -86,6 +86,7 @@ public class Upgrade implements Screen {
                     GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
+
                 GAME.setPistolLvl(GAME.getPistolLvl() + 1);
 
                 GAME.music.stop();

@@ -71,7 +71,7 @@ public class PlayScreen implements Screen {
     public boolean complete = false;
 
     //level variable
-    private int level = 1;
+    private int level;
 
     //controller creation
     public Controller controller;
@@ -428,7 +428,7 @@ public class PlayScreen implements Screen {
 
         game.batch.begin();
 
-
+        creator.door.draw(game.batch);
         player.draw(game.batch);
 
         for (Enemy enemy : creator.getWorkers())
@@ -469,7 +469,7 @@ public class PlayScreen implements Screen {
             }
         }
 
-        creator.door.draw(game.batch);
+        /*creator.door.draw(game.batch);*/
 
         game.batch.end();
 
@@ -492,13 +492,13 @@ public class PlayScreen implements Screen {
 
         if (complete) {
             if (player.currentState == Player.State.COMPLETE && player.getStateTimer() > 1.5) {
-                if (level < 10) {
+                if (level <= 10) {
                     game.setScreen(new LevelComplete(game, level));
                 } else {
                     game.setScreen(new Credits(game));
                 }
-                game.setPowerLVL(0);
-                dispose();
+            game.setPowerLVL(0);
+            dispose();
             }
         }
     }
