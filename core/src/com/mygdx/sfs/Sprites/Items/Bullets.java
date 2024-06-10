@@ -74,8 +74,10 @@ public class Bullets{
         bulletBody.setGravityScale(0);
         Gdx.app.log("bullet", "shoot");
 
-        if(destroy)
+        if(destroy) {
             bulletBody.setUserData(null);
+            bodyRemoval();
+        }
 
         return fix1;
     }

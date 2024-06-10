@@ -29,6 +29,8 @@ public class Upgrade implements Screen {
     public boolean reset = false;
 
     private int map = 1;
+    private int price = 0;
+    private int cash = 0;
 
     private Texture background;
 
@@ -41,6 +43,8 @@ public class Upgrade implements Screen {
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, GAME.batch);
         this.map = level;
+        price += 500;
+        cash = GAME.getMoney();
 
         background = GAME.manager.get("backgrounds/deadbg.png", Texture.class);
 
@@ -51,16 +55,19 @@ public class Upgrade implements Screen {
         table.setFillParent(true);
 
         Skin skin = new Skin(Gdx.files.internal("skins/quantum-horizon/skin/quantum-horizon-ui.json"));
-        upgradeButton = new TextButton(" UPGRADE ", skin);
+        upgradeButton = new TextButton(String.format("Upgrade: %4d", price), skin);
         continueButton = new TextButton(" SKIP ", skin);
-
+        Label.LabelStyle style2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.GREEN);
 
         Label upgradeLabel = new Label("NEED SOME", font);
         Label gameOverLabel2 = new Label("HELP PAL???", font);
+        Label Coins = new Label(String.format("Score: %4d" ,cash),style2);
 
         table.add(upgradeLabel).expandX().center();
         table.row();
         table.add(gameOverLabel2).expandX().center();
+        table.row();
+        table.add(Coins).expandX().center();
         table.row();
         table.add(upgradeButton).expandX().padTop(10).center();
         table.row();
@@ -73,24 +80,46 @@ public class Upgrade implements Screen {
         upgradeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
-                    long id = GAME.sound.play();
-                    if (GAME.getSoundVolume() != 0)
-                        GAME.sound.setVolume(id, GAME.getSoundVolume());
-                    else {
-                        GAME.sound.setVolume(id, 0);
+                if(cash > price) {
+                    if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                        GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
+                    }
+
+                    if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                        GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
+                        long id = GAME.sound.play();
+                        if (GAME.getSoundVolume() != 0) {
+                            GAME.sound.setVolume(id, GAME.getSoundVolume());
+                        }
+                        else {
+                            GAME.sound.setVolume(id, 0);
+                        }
+                    }
+
+                    GAME.music.stop();
+                    GAME.setMoney(cash - price);
+                    price = price + 500;
+                    GAME.setPistolLvl(GAME.getPistolLvl() + 1);
+                    GAME.setPowerLVL(GAME.getPowerLVL() + 1);
+                    GAME.setScreen(new PlayScreen(GAME, map));
+                }
+
+                else if(cash < price){
+                    if (Gdx.app.getType() == Application.ApplicationType.Android) {
+                        GAME.manager.get("audio/sounds/stomp.wav", Sound.class).play(GAME.getSoundVolume());
+                    }
+
+                    if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                        GAME.loadSound("audio/sounds/stomp.wav");
+                        long id = GAME.sound.play();
+                        if (GAME.getSoundVolume() != 0) {
+                            GAME.sound.setVolume(id, GAME.getSoundVolume());
+                        }
+                        else {
+                            GAME.sound.setVolume(id, 0);
+                        }
                     }
                 }
-                if (Gdx.app.getType() == Application.ApplicationType.Android) {
-                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
-                }
-
-
-                GAME.setPistolLvl(GAME.getPistolLvl() + 1);
-
-                GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME, map));
             }
         });
 

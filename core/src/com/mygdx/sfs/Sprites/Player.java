@@ -338,8 +338,7 @@ public class Player extends Sprite {
         }*/
 
 
-
-        //Rifle Read in
+//Rifle Read in
         if (powerLVL == 1) {
             upgradedRifle = sfs.getRifleChoice();
             renderUpgrade();
@@ -399,7 +398,6 @@ public class Player extends Sprite {
 
         if(getY() < 0){
             sfs.music.stop();
-            sfs.setPowerLVL(0);
             playerIsDead = true;
             b2body.applyLinearImpulse(new Vector2(0, 20f), b2body.getWorldCenter(), true);
         }
@@ -481,10 +479,10 @@ public class Player extends Sprite {
             }
         }
 
-        if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
+        if ((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX() && currentState != State.DEAD) {
             region.flip(true, false);
             runningRight = false;
-        } else if ((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
+        } else if ((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX() && currentState != State.DEAD) {
             region.flip(true, false);
             runningRight = true;
         }
@@ -522,7 +520,7 @@ public class Player extends Sprite {
 
         //Pistol Upgrade
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        frames.clear();
+        /*frames.clear();*/
 
         frames.add(pistolUpgrade.findRegion("idle1"));
         frames.add(pistolUpgrade.findRegion("idle2"));
@@ -798,7 +796,7 @@ public class Player extends Sprite {
                 sfs.manager.get("audio/sounds/death.wav", Sound.class).play(sfs.getSoundVolume());
             }
 
-            sfs.setPowerLVL(0);
+            sfs.setPowerLVL(powerLVL);
 
             playerIsDead = true;
             Filter filter = new Filter();
@@ -827,7 +825,7 @@ public class Player extends Sprite {
                 sfs.manager.get("audio/sounds/death.wav", Sound.class).play(sfs.getSoundVolume());
             }
 
-            sfs.setPowerLVL(0);
+            sfs.setPowerLVL(powerLVL);
 
             playerIsDead = true;
             Filter filter = new Filter();

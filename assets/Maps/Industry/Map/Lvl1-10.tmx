@@ -226,10 +226,6 @@
   <object id="41" x="0" y="800" width="1600"/>
  </objectgroup>
  <objectgroup id="14" name="Rifle" locked="1">
-  <object id="58" x="738" y="359" width="27" height="19.5"/>
-  <object id="59" x="292.5" y="173" width="20" height="15"/>
-  <object id="60" x="448" y="712.5" width="30.5" height="18.5"/>
-  <object id="61" x="1280" y="706" width="31.5" height="25.5"/>
   <object id="62" x="1442" y="491" width="20" height="13.5"/>
  </objectgroup>
  <objectgroup id="15" name="Wall" locked="1">

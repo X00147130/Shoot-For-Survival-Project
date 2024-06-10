@@ -329,8 +329,6 @@
  </objectgroup>
  <objectgroup id="16" name="rifles" locked="1">
   <object id="112" x="2017.33" y="190.667" width="29.3333" height="28"/>
-  <object id="113" x="5824" y="288" width="33.3333" height="26.6667"/>
-  <object id="114" x="4446.67" y="289.333" width="30.6667" height="26.6667"/>
  </objectgroup>
  <objectgroup id="17" name="wall" locked="1">
   <object id="54" x="8160" y="708" height="91"/>

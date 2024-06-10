@@ -280,12 +280,6 @@ public class PlayScreen implements Screen {
                     player.b2body.applyLinearImpulse(new Vector2(-0.5f, 0), player.b2body.getWorldCenter(), true);
                 }
 
-/* //interact
-                if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER) && scannerJustTouched){
-                    player.currentState = Player.State.INTERACT;
-                    if(keys != 0)
-                        creator.door.unlock();
-                }*/
             } else {
                 player.b2body.setLinearVelocity(new Vector2(0, 0));
             }
@@ -469,8 +463,6 @@ public class PlayScreen implements Screen {
             }
         }
 
-        /*creator.door.draw(game.batch);*/
-
         game.batch.end();
 
 
@@ -492,12 +484,12 @@ public class PlayScreen implements Screen {
 
         if (complete) {
             if (player.currentState == Player.State.COMPLETE && player.getStateTimer() > 1.5) {
-                if (level <= 10) {
+                if (level != 10) {
                     game.setScreen(new LevelComplete(game, level));
                 } else {
                     game.setScreen(new Credits(game));
                 }
-            game.setPowerLVL(0);
+            game.setPowerLVL(game.getPowerLVL());
             dispose();
             }
         }

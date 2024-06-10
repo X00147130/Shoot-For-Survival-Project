@@ -588,9 +588,6 @@ public class shootForSurvival extends Game {
     public TextureAtlas getWorker1Atlas() {
         return worker1Atlas;
     }
-    public TextureAtlas getHammerAtlas() {
-        return hammerAtlas;
-    }
 
     public TextureAtlas getScalperAtlas() {
         return scalperAtlas;

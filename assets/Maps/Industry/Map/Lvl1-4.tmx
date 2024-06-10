@@ -480,8 +480,6 @@
  </objectgroup>
  <objectgroup id="15" name="Rifles" locked="1">
   <object id="407" x="1860" y="514.667" width="24" height="25.3333"/>
-  <object id="408" x="4800.67" y="514" width="30" height="27.3333"/>
-  <object id="409" x="6880.67" y="514" width="30" height="26"/>
  </objectgroup>
  <objectgroup id="16" name="Wall" locked="1">
   <object id="32" x="8064" y="192" height="122.667"/>
