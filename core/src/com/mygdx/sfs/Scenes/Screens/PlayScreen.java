@@ -44,6 +44,7 @@ public class PlayScreen implements Screen {
     private Viewport gamePort;
 
     //tiled map variables
+    private int area = 1;
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
@@ -79,7 +80,7 @@ public class PlayScreen implements Screen {
     private boolean scannerJustTouched = false;
 
 
-    public PlayScreen(shootForSurvival g, int level) {
+    public PlayScreen(shootForSurvival g, int area, int level) {
 
         //game management inits
         this.game = g;
@@ -101,7 +102,13 @@ public class PlayScreen implements Screen {
 
         //render/map setup
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("Maps/Industry/Map/Lvl1-" + level + ".tmx");
+        if(area == 1 ) {
+            map = mapLoader.load("Maps/Industry/Map/Lvl1-" + level + ".tmx");
+        }
+        else if(area == 2) {
+            map = mapLoader.load("Maps/Residential/Map/Lvl2-" + level + ".tmx");
+
+        }
         renderer = new OrthogonalTiledMapRenderer(map, 1 / shootForSurvival.PPM);
 
         //initiating game cam
@@ -478,14 +485,14 @@ public class PlayScreen implements Screen {
 
         if (gameOver()) {
             game.music.stop();
-            game.setScreen(new GameOverScreen(game, level));
+            game.setScreen(new GameOverScreen(game, area, level));
             dispose();
         }
 
         if (complete) {
             if (player.currentState == Player.State.COMPLETE && player.getStateTimer() > 1.5) {
                 if (level != 10) {
-                    game.setScreen(new LevelComplete(game, level));
+                    game.setScreen(new LevelComplete(game,area, level));
                 } else {
                     game.setScreen(new Credits(game));
                 }

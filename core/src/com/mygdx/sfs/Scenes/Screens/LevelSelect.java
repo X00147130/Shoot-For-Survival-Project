@@ -1,5 +1,6 @@
 package com.mygdx.sfs.Scenes.Screens;
 
+import static com.badlogic.gdx.graphics.Color.CYAN;
 import static com.badlogic.gdx.graphics.Color.GREEN;
 import static com.badlogic.gdx.graphics.Color.MAGENTA;
 
@@ -14,10 +15,14 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.sfs.shootForSurvival;
@@ -26,6 +31,8 @@ public class LevelSelect implements Screen {
 
     //Game
     private shootForSurvival GAME ;
+    private int area;
+
 
     //buttons
     Button level1;
@@ -38,7 +45,16 @@ public class LevelSelect implements Screen {
     Button level8;
     Button level9;
     Button level10;
+
     Button backButton;
+
+    Texture prevImage;
+    Drawable prevDraw;
+    Button previousButton;
+
+    Texture image;
+    Drawable draw;
+    Button nextButton;
 
     TextButton.TextButtonStyle textStyle;
     BitmapFont buttonFont;
@@ -59,9 +75,10 @@ public class LevelSelect implements Screen {
         GAME = game;
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         screen = new Stage(viewport, GAME.batch);
+        area = 1;
 
         //Texture
-        background = GAME.manager.get("backgrounds/lvlselectbg.png", Texture.class);
+        background = GAME.manager.get("backgrounds/Background.png", Texture.class);
 
 
         //Button initialisation
@@ -80,7 +97,17 @@ public class LevelSelect implements Screen {
         level8 = new TextButton("Level 8", textStyle);
         level9 = new TextButton("Level 9", textStyle);
         level10 = new TextButton("Level 10", textStyle);
+
+
         backButton = new TextButton("Back", textStyle);
+        prevImage = new Texture("controller/Backward.png");
+        prevDraw = new TextureRegionDrawable(prevImage);
+        previousButton = new ImageButton(prevDraw);
+        previousButton.setSize(40,35);
+        image = new Texture("controller/Forward.png");
+        draw = new TextureRegionDrawable(image);
+        nextButton = new ImageButton(draw);
+        nextButton.setSize(40,35);
 
         //Label
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), GREEN);
@@ -88,34 +115,39 @@ public class LevelSelect implements Screen {
         pageLabel.setFontScale(2);
 
         //Table
-        Table grid = new Table();
+        final Table grid = new Table();
         grid.top();
         grid.setFillParent(true);
 
-        Table grid2 = new Table();
+        //Tileset 1
+        final Table grid2 = new Table();
         grid2.center();
         grid2.setFillParent(true);
 
 
-        //filling table
+        //filling table for Tileset 1
         grid.add(pageLabel).center().padLeft(20).padBottom(10).padTop(20);
         grid.row();
-        grid2.add(level1).padLeft(120).padTop(50);
-        grid2.add(level6).padRight(200).padTop(50);
+        grid2.add(level1).padTop(50);
+        grid2.add(level6).padRight(90).padTop(50);
         grid2.row();
-        grid2.add(level2).padLeft(120);
-        grid2.add(level7).padRight(200);
+        grid2.add(level2);
+        grid2.add(level7).padRight(90);
         grid2.row();
-        grid2.add(level3).padLeft(120);
-        grid2.add(level8).padRight(200);
+        grid2.add(level3);
+        grid2.add(level8).padRight(90);
         grid2.row();
-        grid2.add(level4).padLeft(120);
-        grid2.add(level9).padRight(200);
+        grid2.add(previousButton).maxSize(40,35);
+        grid2.add(nextButton).padRight(90).maxSize(40,35);
         grid2.row();
-        grid2.add(level5).padLeft(120);
-        grid2.add(level10).padRight(200);
+        grid2.add(level4);
+        grid2.add(level9).padRight(90);
         grid2.row();
-        grid2.add(backButton).padTop(10).padLeft(320);
+        grid2.add(level5);
+        grid2.add(level10).padRight(90);
+        grid2.row();
+        grid2.add(backButton).padTop(10).padLeft(200);
+
         screen.addActor(grid);
         screen.addActor(grid2);
         Gdx.input.setInputProcessor(screen);
@@ -143,6 +175,52 @@ public class LevelSelect implements Screen {
             }
         });
 
+        nextButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
+                    long id = GAME.sound.play();
+                    if (GAME.getSoundVolume() != 0)
+                        GAME.sound.setVolume(id, GAME.getSoundVolume());
+                    else {
+                        GAME.sound.setVolume(id, 0);
+                    }
+                }
+
+                if(Gdx.app.getType() == Application.ApplicationType.Android) {
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
+                }
+                background = GAME.manager.get("backgrounds/ResidentialBackround.png", Texture.class);
+                textStyle.fontColor = CYAN;
+                area++;
+
+            }
+        });
+
+        previousButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+                    GAME.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
+                    long id = GAME.sound.play();
+                    if (GAME.getSoundVolume() != 0)
+                        GAME.sound.setVolume(id, GAME.getSoundVolume());
+                    else {
+                        GAME.sound.setVolume(id, 0);
+                    }
+                }
+
+                if(Gdx.app.getType() == Application.ApplicationType.Android) {
+                    GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
+                }
+                background = GAME.manager.get("backgrounds/Background.png", Texture.class);
+                textStyle.fontColor = MAGENTA;
+                area--;
+
+            }
+        });
+
         level1.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x,float y){
@@ -162,7 +240,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 1));
+                GAME.setScreen(new CharacterSelect(GAME , area,1));
             }
         });
 
@@ -185,7 +263,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 2));
+                GAME.setScreen(new CharacterSelect(GAME ,area, 2));
             }
         });
 
@@ -208,7 +286,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 3));
+                GAME.setScreen(new CharacterSelect(GAME ,area, 3));
             }
         });
 
@@ -231,7 +309,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 4));
+                GAME.setScreen(new CharacterSelect(GAME , area,4));
             }
         });
 
@@ -253,7 +331,7 @@ public class LevelSelect implements Screen {
                 }
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 5));
+                GAME.setScreen(new CharacterSelect(GAME ,area, 5));
             }
         });
 
@@ -276,7 +354,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 6));
+                GAME.setScreen(new CharacterSelect(GAME ,area, 6));
             }
         });
 
@@ -299,7 +377,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 7));
+                GAME.setScreen(new CharacterSelect(GAME , area,7));
             }
         });
 
@@ -322,7 +400,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 8));
+                GAME.setScreen(new CharacterSelect(GAME ,area, 8));
             }
         });
 
@@ -344,7 +422,7 @@ public class LevelSelect implements Screen {
                 }
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 9));
+                GAME.setScreen(new CharacterSelect(GAME ,area, 9));
             }
         });
 
@@ -367,7 +445,7 @@ public class LevelSelect implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new CharacterSelect(GAME , 10));
+                GAME.setScreen(new CharacterSelect(GAME ,area, 10));
             }
         });
     }
@@ -386,7 +464,6 @@ public class LevelSelect implements Screen {
             GAME.batch.draw(background, 0, -0, 400, 300);
             GAME.batch.end();
         }
-
 
         screen.draw();
     }

@@ -28,9 +28,12 @@ public class Upgrade implements Screen {
     private Table table;
     public boolean reset = false;
 
+    private int area = 1;
     private int map = 1;
     private int price = 0;
     private int cash = 0;
+
+    private int pistol = 1;
 
     private Texture background;
 
@@ -38,13 +41,15 @@ public class Upgrade implements Screen {
     private Button upgradeButton;
     private Button continueButton;
 
-    public Upgrade(final shootForSurvival game, int level){
+    public Upgrade(final shootForSurvival game, int location, int level){
         this.GAME = game;
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, GAME.batch);
+        this.area = location;
         this.map = level;
         price += 500;
         cash = GAME.getMoney();
+        pistol = GAME.getPistolLvl();
 
         background = GAME.manager.get("backgrounds/deadbg.png", Texture.class);
 
@@ -99,9 +104,9 @@ public class Upgrade implements Screen {
                     GAME.music.stop();
                     GAME.setMoney(cash - price);
                     price = price + 500;
-                    GAME.setPistolLvl(GAME.getPistolLvl() + 1);
-                    GAME.setPowerLVL(GAME.getPowerLVL() + 1);
-                    GAME.setScreen(new PlayScreen(GAME, map));
+                    pistol++;
+                    GAME.setPistolLvl(pistol);
+                    GAME.setScreen(new PlayScreen(GAME, area, map));
                 }
 
                 else if(cash < price){
@@ -142,7 +147,7 @@ public class Upgrade implements Screen {
 
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,map));
+                GAME.setScreen(new PlayScreen(GAME, area, map));
             }
         });
         GAME.loadMusic("audio/music/mixkit-piano-horror-671.mp3");

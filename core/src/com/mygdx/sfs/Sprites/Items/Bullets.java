@@ -22,7 +22,7 @@ public class Bullets{
     public boolean destroy;
     private World world;
     private PlayScreen screen;
-    private int powerLVL = 0;
+    private int powerLVL = 1;
 
     private int pistolLvl = 1;
 
@@ -90,89 +90,133 @@ public class Bullets{
     public void update(float dt) {
         y = SPEED * dt;
 
-        if (dt > 10f) {
+        if (dt > 2f) {
             destroy();
         }
 
         pistolLvl = sfs.getPistolLvl();
+        
+         switch(pistolLvl){
+             case 1:
+                 sfs.setPowerLVL(1);
+                 break;
+             case 2:
+                 sfs.setPowerLVL(2);
+                 break;
+             case 3:
+                 sfs.setPowerLVL(3);
+                 break;
+             case 4:
+                 sfs.setPowerLVL(4);
+                 break;
+             case 5:
+                 sfs.setPowerLVL(5);
+                 break;
+             case 6:
+                 sfs.setPowerLVL(6);
+                 break;
+             case 7:
+                 sfs.setPowerLVL(7);
+                 break;
+             case 8:
+                 sfs.setPowerLVL(8);
+                 break;
+             case 9:
+                 sfs.setPowerLVL(9);
+                 break;
+             case 10:
+                 sfs.setPowerLVL(10);
+                 break;
+         }
 
-        for (int i = 1; i <= sfs.getPistolBullets().getRegions().size; i++) {
-            if (pistolLvl == i) {
-                clip = sfs.getPistolBullets().findRegion("" + i);
-            }
-        }
+         switch (pistolLvl) {
+             case 1:
+                 clip = sfs.getPistolBullets().findRegion("1");
+                 damage = 0.5;
+                 break;
+             case 2:
+                 clip = sfs.getPistolBullets().findRegion("2");
+                 damage = 1.5;
+                 break;
+             case 3:
+                 clip = sfs.getPistolBullets().findRegion("3");
+                 damage = 2.5;
+                 break;
+             case 4:
+                 clip = sfs.getPistolBullets().findRegion("4");
+                 damage = 3.5;
+                 break;
+             case 5:
+                 clip = sfs.getPistolBullets().findRegion("5");
+                 damage = 4.5;
+                 break;
+             case 6:
+                 clip = sfs.getPistolBullets().findRegion("6");
+                 damage = 5.5;
+                 break;
+             case 7:
+                 clip = sfs.getPistolBullets().findRegion("7");
+                 damage = 6.5;
+                 break;
+             case 8:
+                 clip = sfs.getPistolBullets().findRegion("8");
+                 damage = 7.5;
+                 break;
+             case 9:
+                 clip = sfs.getPistolBullets().findRegion("9");
+                 damage = 8.5;
+                 break;
+             case 10:
+                 clip = sfs.getPistolBullets().findRegion("10");
+                 damage = 9.5;
+                 break;
+         }
 
-        powerLVL = sfs.getPowerLVL();
-        for (int i = 1; i <= sfs.getRifleBullets().getRegions().size; i++) {
-            if (powerLVL == i) {
-                clip = sfs.getRifleBullets().findRegion("" + i);
-            }
-        }
-        switch(pistolLvl){
-            case 1:
-                damage = 0.5;
-                break;
-            case 2:
-                damage = 1.5;
-                break;
-            case 3:
-                damage = 2.5;
-                break;
-            case 4:
-                damage = 3.5;
-                break;
-            case 5:
-                damage = 4.5;
-                break;
-            case 6:
-                damage = 5.5;
-                break;
-            case 7:
-                damage = 6.5;
-                break;
-            case 8:
-                damage = 7.5;
-                break;
-            case 9:
-                damage = 8.5;
-                break;
-            case 10:
-                damage = 9.5;
-                break;
-        }
 
-        switch(powerLVL){
-            case 1:
-                damage = 1;
-                break;
-            case 2:
-                damage = 2;
-                break;
-            case 3:
-                damage = 3;
-                break;
-            case 4:
-                damage = 4;
-                break;
-            case 5:
-                damage = 5;
-                break;
-            case 6:
-                damage = 6;
-                break;
-            case 7:
-                damage = 7;
-                break;
-            case 8:
-                damage = 8;
-                break;
-            case 9:
-                damage = 9;
-                break;
-            case 10:
-                damage = 10;
-                break;
-        }
+         switch (powerLVL) {
+             case 1:
+                 clip = sfs.getRifleBullets().findRegion("1");
+                 damage = 1;
+                 break;
+             case 2:
+                 clip = sfs.getRifleBullets().findRegion("2");
+                 clip = sfs.getRifleBullets().findRegion("2");
+                 damage = 2;
+                 break;
+             case 3:
+                 clip = sfs.getRifleBullets().findRegion("3");
+                 damage = 3;
+                 break;
+             case 4:
+                 clip = sfs.getRifleBullets().findRegion("4");
+                 damage = 4;
+                 break;
+             case 5:
+                 clip = sfs.getRifleBullets().findRegion("5");
+                 damage = 5;
+                 break;
+             case 6:
+                 clip = sfs.getRifleBullets().findRegion("6");
+                 damage = 6;
+                 break;
+             case 7:
+                 clip = sfs.getRifleBullets().findRegion("7");
+                 damage = 7;
+                 break;
+             case 8:
+                 clip = sfs.getRifleBullets().findRegion("8");
+                 damage = 8;
+                 break;
+             case 9:
+                 clip = sfs.getRifleBullets().findRegion("9");
+                 damage = 9;
+                 break;
+             case 10:
+                 clip = sfs.getRifleBullets().findRegion("10");
+                 damage = 10;
+                 break;
+         }
+
     }
 
         public void bodyRemoval(){
@@ -182,7 +226,7 @@ public class Bullets{
         }
     }
     public void render(SpriteBatch batch){
-        batch.draw(clip, bulletBody.getPosition().x, bulletBody.getPosition().y,clip.getRegionWidth() / sfs.PPM,clip.getRegionHeight() / sfs.PPM);
+        batch.draw(clip, bulletBody.getPosition().x, bulletBody.getPosition().y, clip.getRegionWidth() / sfs.PPM, clip.getRegionHeight() / sfs.PPM);
     }
 
     public double getDamage() {

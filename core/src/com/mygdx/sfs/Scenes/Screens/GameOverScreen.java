@@ -30,6 +30,7 @@ public class GameOverScreen implements Screen {
     private Table table;
     public boolean reset = false;
 
+    private int area = 1;
     private int map = 1;
 
     private Texture background;
@@ -38,10 +39,11 @@ public class GameOverScreen implements Screen {
     private Button playAgainButton;
     private Button mainMenuButton;
 
-    public GameOverScreen(shootForSurvival game, int level){
+    public GameOverScreen(shootForSurvival game,int location, int level){
         this.GAME = game;
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, GAME.batch);
+        this.area = location;
         this.map = level;
 
         background = GAME.manager.get("backgrounds/deadbg.png", Texture.class);
@@ -93,7 +95,7 @@ public class GameOverScreen implements Screen {
                 }
 
                 GAME.music.stop();
-                GAME.setScreen(new PlayScreen(GAME,map));
+                GAME.setScreen(new PlayScreen(GAME,area,map));
             }
         });
 

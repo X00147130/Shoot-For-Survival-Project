@@ -32,6 +32,7 @@ public class LevelComplete implements Screen {
 
 
     //Next level button variables
+    private int area;
     private int map;
 
 
@@ -47,12 +48,16 @@ public class LevelComplete implements Screen {
     Label Coins;
     private Texture background;
 
-    public LevelComplete(shootForSurvival game, int level){
+    public LevelComplete(shootForSurvival game, int location, int level){
         super();
         //admin setup
         this.sfs = game;
         screen = new FitViewport(shootForSurvival.V_WIDTH,shootForSurvival.V_HEIGHT,new OrthographicCamera());
         stage = new Stage(screen, sfs.batch);
+        area = location;
+        if(area == 1 && map == 11)
+            area = 2;
+
         map = level + 1;
         batch = game.batch;
 
@@ -132,7 +137,7 @@ public class LevelComplete implements Screen {
 
 
 
-                  sfs.setScreen(new Upgrade(sfs, map));
+                  sfs.setScreen(new Upgrade(sfs, area, map));
                   /*sfs.setMoney(0);*/
               }
           });

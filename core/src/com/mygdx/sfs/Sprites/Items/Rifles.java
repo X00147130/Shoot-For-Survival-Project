@@ -66,6 +66,7 @@ public class Rifles extends Item{
 
         powerLVL++;
         sfs.setPowerLVL(powerLVL);
+        sfs.setPowerLVL(powerLVL);
         player.setRifle(true);
 
         destroy();
@@ -96,8 +97,7 @@ public class Rifles extends Item{
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for(int i = 1; i <= sfs.getRifles().getRegions().size; i++) {
             if (powerLVL == i) {
-                frames.add(sfs.getRifles().findRegion("" + (i)));/*
-                frames.add(sfs.getRifles().findRegion("" + (i + 1)));*/
+                frames.add(sfs.getRifles().findRegion("" + (i)));
                 rifle = new Animation<TextureRegion>(0.2f, frames);
             }
         }

@@ -801,7 +801,7 @@ public class Player extends Sprite {
             playerIsDead = true;
             Filter filter = new Filter();
             filter.maskBits = shootForSurvival.GROUND_BIT|
-            shootForSurvival.DEATH_BIT;
+                shootForSurvival.DEATH_BIT;
             for (Fixture fixture : b2body.getFixtureList())
                 fixture.setFilterData(filter);
             b2body.applyLinearImpulse(new Vector2(-1f,2f), b2body.getWorldCenter(), true);
