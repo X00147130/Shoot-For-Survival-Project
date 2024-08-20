@@ -1,0 +1,257 @@
+
+punkPistol4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Djump5
+  rotate: false
+  xy: 1, 79
+  size: 34, 37
+  orig: 34, 37
+  offset: 0, 0
+  index: -1
+crouch1
+  rotate: false
+  xy: 1, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+crouch2
+  rotate: false
+  xy: 37, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+crouch3
+  rotate: false
+  xy: 1, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+crouch4
+  rotate: false
+  xy: 35, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+die1
+  rotate: false
+  xy: 71, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+die2
+  rotate: false
+  xy: 35, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+die3
+  rotate: false
+  xy: 69, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+die4
+  rotate: false
+  xy: 105, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+die5
+  rotate: false
+  xy: 69, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+die6
+  rotate: false
+  xy: 103, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Djump1
+  rotate: false
+  xy: 139, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Djump2
+  rotate: false
+  xy: 103, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Djump3
+  rotate: false
+  xy: 137, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Djump4
+  rotate: false
+  xy: 173, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Djump6
+  rotate: false
+  xy: 137, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter1
+  rotate: false
+  xy: 171, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter2
+  rotate: false
+  xy: 207, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter3
+  rotate: false
+  xy: 171, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter4
+  rotate: false
+  xy: 205, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter5
+  rotate: false
+  xy: 241, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter6
+  rotate: false
+  xy: 205, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+idle1
+  rotate: false
+  xy: 239, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+idle2
+  rotate: false
+  xy: 275, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+idle3
+  rotate: false
+  xy: 239, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+idle4
+  rotate: false
+  xy: 273, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+jump1
+  rotate: false
+  xy: 309, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+jump2
+  rotate: false
+  xy: 273, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+jump3
+  rotate: false
+  xy: 307, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+jump4
+  rotate: false
+  xy: 343, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+run1
+  rotate: false
+  xy: 307, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+run2
+  rotate: false
+  xy: 341, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+run3
+  rotate: false
+  xy: 377, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+run4
+  rotate: false
+  xy: 341, 1
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+run5
+  rotate: false
+  xy: 375, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+run6
+  rotate: false
+  xy: 411, 79
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1

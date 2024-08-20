@@ -64,7 +64,6 @@ public class Bullets{
                 shootForSurvival.BOSS_BIT |
                 shootForSurvival.GROUND_BIT|
                 shootForSurvival.WALL_BIT|
-                shootForSurvival.ITEM_BIT|
                 shootForSurvival.PLAYER_BIT;
 
         bulletDef.shape = shape;
@@ -180,7 +179,7 @@ public class Bullets{
                  break;
              case 2:
                  clip = sfs.getRifleBullets().findRegion("2");
-                 clip = sfs.getRifleBullets().findRegion("2");
+                 /*clip = sfs.getRifleBullets().findRegion("2")*/;
                  damage = 2;
                  break;
              case 3:

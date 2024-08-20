@@ -122,121 +122,121 @@ Interact6
   orig: 37, 34
   offset: 0, 0
   index: -1
-happy2
-  rotate: false
-  xy: 362, 79
-  size: 33, 37
-  orig: 33, 37
-  offset: 0, 0
-  index: -1
 crouch2
   rotate: false
-  xy: 397, 79
+  xy: 362, 79
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 crouch3
   rotate: false
-  xy: 431, 79
+  xy: 396, 79
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 crouch4
   rotate: false
-  xy: 465, 79
+  xy: 430, 79
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 die1
   rotate: false
-  xy: 157, 40
+  xy: 464, 79
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy5
-  rotate: false
-  xy: 191, 42
-  size: 32, 38
-  orig: 32, 38
-  offset: 0, 0
-  index: -1
 die2
   rotate: false
-  xy: 225, 43
+  xy: 157, 40
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 die3
   rotate: false
-  xy: 259, 43
+  xy: 156, 1
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 die4
   rotate: false
-  xy: 293, 43
+  xy: 191, 43
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 Djump1
   rotate: false
-  xy: 327, 43
+  xy: 225, 43
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 Djump2
   rotate: false
-  xy: 156, 1
+  xy: 259, 43
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 Djump3
   rotate: false
-  xy: 361, 40
+  xy: 293, 43
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 Djump4
   rotate: false
+  xy: 327, 43
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter1
+  rotate: false
+  xy: 361, 40
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter2
+  rotate: false
   xy: 395, 40
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy1
+Enter3
   rotate: false
   xy: 429, 40
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy3
+Enter4
   rotate: false
   xy: 463, 40
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy4
+Enter5
   rotate: false
   xy: 190, 1
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy6
+Enter6
   rotate: false
-  xy: 224, 1
+  xy: 224, 4
   size: 32, 37
   orig: 32, 37
   offset: 0, 0

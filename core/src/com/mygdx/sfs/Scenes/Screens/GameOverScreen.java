@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -116,7 +117,9 @@ public class GameOverScreen implements Screen {
                     GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
 
-
+                GAME.setHealthAtlas(new TextureAtlas("sprites/Objects/HealthCrate.pack"));
+                GAME.setKeycardAtlas(new TextureAtlas("sprites/Objects/keycard.pack"));
+                GAME.setDoorAtlas(new TextureAtlas("sprites/Objects/industrialDoor.pack"));
                 GAME.music.stop();
                 GAME.setScreen(new MenuScreen(GAME));
             }

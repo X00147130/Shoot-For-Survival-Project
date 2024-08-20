@@ -10,6 +10,7 @@ import com.mygdx.sfs.Sprites.Enemies.Bosses.Scalper;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
 import com.mygdx.sfs.Sprites.Items.Bullets;
+import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.Sprites.TileObjects.InteractiveTileObject;
@@ -152,6 +153,16 @@ public class WorldContactListener implements ContactListener {
                 }
                 else {
                     ((Item) fixB.getUserData()).useItem((Player) fixA.getUserData());
+                }
+                break;
+
+            case shootForSurvival.HEALTH_BIT | shootForSurvival.PLAYER_BIT:
+                if (fixA.getFilterData().categoryBits == shootForSurvival.HEALTH_BIT) {
+                    ((HealthCrate) fixA.getUserData()).setHealthJustTouched(true);
+
+                }
+                else {
+                    ((HealthCrate) fixB.getUserData()).setHealthJustTouched(true);
                 }
                 break;
 

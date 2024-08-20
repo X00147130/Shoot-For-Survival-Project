@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -163,6 +164,9 @@ public class LevelComplete implements Screen {
                     sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
                 }
 
+                sfs.setHealthAtlas(new TextureAtlas("sprites/Objects/HealthCrate.pack"));
+                sfs.setKeycardAtlas(new TextureAtlas("sprites/Objects/keycard.pack"));
+                sfs.setDoorAtlas(new TextureAtlas("sprites/Objects/industrialDoor.pack"));
                 sfs.setScreen(new MenuScreen(sfs));
             }
         });
@@ -187,11 +191,14 @@ public class LevelComplete implements Screen {
                     sfs.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(sfs.getSoundVolume());
                 }
                 sfs.setScreen(new LevelSelect(sfs));
-                sfs.loadMusic("audio/music/yoitrax - Ronin.mp3");
+                sfs.loadMusic("audio/music/jantrax - ai.mp3");
                 if (sfs.getVolume() != 0) {
                     sfs.music.play();
                     sfs.setVolume(sfs.getVolume());
                 }
+                sfs.setHealthAtlas(new TextureAtlas("sprites/Objects/HealthCrate.pack"));
+                sfs.setKeycardAtlas(new TextureAtlas("sprites/Objects/keycard.pack"));
+                sfs.setDoorAtlas(new TextureAtlas("sprites/Objects/industrialDoor.pack"));
             }
         });
     }

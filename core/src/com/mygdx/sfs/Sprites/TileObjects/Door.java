@@ -25,12 +25,13 @@ public class Door extends InteractiveTileObject {
         open = false;
 
 
-        closed = sfs.getDoorAtlas().findRegion("Industrial1");
+        closed = sfs.getDoorAtlas().findRegion("Door1");
+
 
         Array<TextureRegion> doorAnimation = new Array<TextureRegion>();
 
         for(int i = 1; i <= sfs.getDoorAtlas().getRegions().size; i++) {
-            doorAnimation.add(sfs.getDoorAtlas().findRegion("Industrial" + i ));
+            doorAnimation.add(sfs.getDoorAtlas().findRegion("Door" + i ));
         }
 
         door = new Animation<TextureRegion>(0.2f, doorAnimation);
@@ -79,16 +80,18 @@ public class Door extends InteractiveTileObject {
         }
     }
 
-    public void unlock(){
+    public void unlock(float dt){
         open = true;
     }
 
     public void draw(SpriteBatch batch) {
         if (!open) {
             batch.draw(closed, (bounds.x - 27) / sfs.PPM, bounds.y / sfs.PPM, closed.getRegionWidth() / sfs.PPM, closed.getRegionHeight() / sfs.PPM);
-        } else if (open) {
+        }
+        else if (open) {
             batch.draw(door.getKeyFrame(sfs.statetimer, false), (bounds.x - 27) / sfs.PPM, bounds.y / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionWidth() / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionHeight() / sfs.PPM);
         }
+
     }
 
     public Animation<TextureRegion> getDoor() {

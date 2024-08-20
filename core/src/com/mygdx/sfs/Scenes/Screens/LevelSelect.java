@@ -12,10 +12,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -194,6 +194,10 @@ public class LevelSelect implements Screen {
                 background = GAME.manager.get("backgrounds/ResidentialBackround.png", Texture.class);
                 textStyle.fontColor = CYAN;
                 area++;
+                game.setHealthAtlas(new TextureAtlas("sprites/Objects/Residential/ResidentialHealthCrate.pack"));
+                game.setKeycardAtlas(new TextureAtlas("sprites/Objects/Residential/ResidentialKeyCard.pack"));
+                game.setDoorAtlas(new TextureAtlas("sprites/Objects/Residential/residentialDoor.pack"));
+
 
             }
         });
@@ -217,6 +221,9 @@ public class LevelSelect implements Screen {
                 background = GAME.manager.get("backgrounds/Background.png", Texture.class);
                 textStyle.fontColor = MAGENTA;
                 area--;
+                game.setHealthAtlas(new TextureAtlas("sprites/Objects/HealthCrate.pack"));
+                game.setKeycardAtlas(new TextureAtlas("sprites/Objects/keycard.pack"));
+                game.setDoorAtlas(new TextureAtlas("sprites/Objects/industrialDoor.pack"));
 
             }
         });

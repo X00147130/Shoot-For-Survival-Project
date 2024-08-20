@@ -3,254 +3,254 @@ bikerRifle6.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-happy4
-  rotate: false
-  xy: 1, 55
-  size: 38, 51
-  orig: 38, 51
-  offset: 0, 0
-  index: -1
-happy5
-  rotate: false
-  xy: 1, 1
-  size: 36, 52
-  orig: 36, 52
-  offset: 0, 0
-  index: -1
 die4
   rotate: false
-  xy: 41, 68
+  xy: 1, 89
   size: 48, 38
   orig: 48, 38
   offset: 0, 0
   index: -1
 Djump6
   rotate: false
-  xy: 91, 69
+  xy: 51, 90
   size: 49, 37
   orig: 49, 37
   offset: 0, 0
   index: -1
-happy3
+Djump5
   rotate: false
-  xy: 142, 69
-  size: 46, 37
-  orig: 46, 37
+  xy: 1, 46
+  size: 44, 41
+  orig: 44, 41
+  offset: 0, 0
+  index: -1
+jump3
+  rotate: false
+  xy: 1, 1
+  size: 32, 43
+  orig: 32, 43
   offset: 0, 0
   index: -1
 run1
   rotate: false
-  xy: 190, 69
+  xy: 102, 90
   size: 46, 37
   orig: 46, 37
   offset: 0, 0
   index: -1
 run6
   rotate: false
-  xy: 238, 69
+  xy: 150, 90
   size: 45, 37
   orig: 45, 37
   offset: 0, 0
   index: -1
-Djump5
-  rotate: false
-  xy: 285, 65
-  size: 44, 41
-  orig: 44, 41
-  offset: 0, 0
-  index: -1
-happy2
-  rotate: false
-  xy: 331, 69
-  size: 44, 37
-  orig: 44, 37
-  offset: 0, 0
-  index: -1
 run3
   rotate: false
-  xy: 377, 69
+  xy: 197, 90
   size: 44, 37
   orig: 44, 37
   offset: 0, 0
   index: -1
 run4
   rotate: false
-  xy: 423, 69
+  xy: 243, 90
   size: 43, 37
   orig: 43, 37
   offset: 0, 0
   index: -1
 run2
   rotate: false
-  xy: 468, 69
+  xy: 288, 90
   size: 42, 37
   orig: 42, 37
   offset: 0, 0
   index: -1
 run5
   rotate: false
-  xy: 512, 69
+  xy: 332, 90
   size: 41, 37
   orig: 41, 37
   offset: 0, 0
   index: -1
 jump4
   rotate: false
-  xy: 555, 69
+  xy: 375, 90
   size: 40, 37
   orig: 40, 37
   offset: 0, 0
   index: -1
 jump2
   rotate: false
-  xy: 597, 69
+  xy: 417, 90
   size: 39, 37
   orig: 39, 37
   offset: 0, 0
   index: -1
 crouch3
   rotate: false
-  xy: 638, 65
+  xy: 458, 86
   size: 38, 41
   orig: 38, 41
   offset: 0, 0
   index: -1
+die2
+  rotate: false
+  xy: 35, 4
+  size: 34, 40
+  orig: 34, 40
+  offset: 0, 0
+  index: -1
 crouch4
   rotate: false
-  xy: 678, 68
+  xy: 47, 46
   size: 38, 38
   orig: 38, 38
   offset: 0, 0
   index: -1
 jump1
   rotate: false
-  xy: 718, 69
+  xy: 87, 51
   size: 38, 37
   orig: 38, 37
   offset: 0, 0
   index: -1
 crouch2
   rotate: false
-  xy: 758, 69
+  xy: 127, 51
   size: 37, 37
   orig: 37, 37
   offset: 0, 0
   index: -1
 crouch1
   rotate: false
-  xy: 797, 69
-  size: 36, 37
-  orig: 36, 37
-  offset: 0, 0
-  index: -1
-die3
-  rotate: false
-  xy: 835, 69
-  size: 36, 37
-  orig: 36, 37
-  offset: 0, 0
-  index: -1
-die5
-  rotate: false
-  xy: 873, 69
-  size: 36, 37
-  orig: 36, 37
-  offset: 0, 0
-  index: -1
-die6
-  rotate: false
-  xy: 911, 69
+  xy: 166, 51
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
   index: -1
 idle1
   rotate: false
-  xy: 949, 69
+  xy: 166, 51
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+die3
+  rotate: false
+  xy: 204, 51
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+die5
+  rotate: false
+  xy: 242, 51
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+die6
+  rotate: false
+  xy: 280, 51
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
   index: -1
 idle3
   rotate: false
-  xy: 987, 69
+  xy: 318, 51
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
   index: -1
-happy6
+idle4
   rotate: false
-  xy: 39, 2
-  size: 35, 51
-  orig: 35, 51
+  xy: 356, 51
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+idle2
+  rotate: false
+  xy: 394, 51
+  size: 35, 37
+  orig: 35, 37
   offset: 0, 0
   index: -1
 Djump3
   rotate: false
-  xy: 76, 18
+  xy: 87, 1
   size: 32, 48
   orig: 32, 48
   offset: 0, 0
   index: -1
 die1
   rotate: false
-  xy: 110, 22
+  xy: 121, 4
   size: 32, 45
   orig: 32, 45
-  offset: 0, 0
-  index: -1
-happy1
-  rotate: false
-  xy: 144, 22
-  size: 32, 45
-  orig: 32, 45
-  offset: 0, 0
-  index: -1
-jump3
-  rotate: false
-  xy: 178, 24
-  size: 32, 43
-  orig: 32, 43
-  offset: 0, 0
-  index: -1
-die2
-  rotate: false
-  xy: 212, 27
-  size: 34, 40
-  orig: 34, 40
-  offset: 0, 0
-  index: -1
-idle2
-  rotate: false
-  xy: 248, 30
-  size: 35, 37
-  orig: 35, 37
-  offset: 0, 0
-  index: -1
-idle4
-  rotate: false
-  xy: 285, 26
-  size: 36, 37
-  orig: 36, 37
   offset: 0, 0
   index: -1
 Djump1
   rotate: false
-  xy: 323, 26
+  xy: 155, 12
   size: 33, 37
   orig: 33, 37
   offset: 0, 0
   index: -1
 Djump2
   rotate: false
-  xy: 358, 30
+  xy: 190, 12
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
 Djump4
   rotate: false
-  xy: 392, 30
+  xy: 224, 12
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter1
+  rotate: false
+  xy: 258, 12
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter2
+  rotate: false
+  xy: 292, 12
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter3
+  rotate: false
+  xy: 326, 12
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter4
+  rotate: false
+  xy: 360, 12
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter5
+  rotate: false
+  xy: 394, 12
+  size: 32, 37
+  orig: 32, 37
+  offset: 0, 0
+  index: -1
+Enter6
+  rotate: false
+  xy: 431, 47
   size: 32, 37
   orig: 32, 37
   offset: 0, 0

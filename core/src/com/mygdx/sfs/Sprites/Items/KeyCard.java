@@ -30,15 +30,16 @@ public class KeyCard extends Item {
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for(int i = 1; i <= sfs.getDoorAtlas().getRegions().size; i++) {
-            frames.add(sfs.getKeycardAtlas().findRegion("keycard" + i ));
-        }
+                frames.add(sfs.getKeycardAtlas().findRegion("keycard" + i));
+            }
+
 
         keycard = new Animation<TextureRegion>(0.2f, frames);
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             setBounds(0, 0, 26 / PPM, 35 / PPM);
         }
 
-        setBounds(getX(),getY(),30 / sfs.PPM,30 / sfs.PPM);
+        setBounds(getX(),getY(),32 / sfs.PPM,32 / sfs.PPM);
         frames.clear();
         this.sfs = sfs;
     }

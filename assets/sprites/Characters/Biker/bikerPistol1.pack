@@ -206,42 +206,42 @@ Djump5
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy1
+Enter1
   rotate: false
   xy: 103, 11
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy2
+Enter2
   rotate: false
   xy: 137, 11
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy3
+Enter3
   rotate: false
   xy: 171, 11
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy4
+Enter4
   rotate: false
   xy: 205, 11
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy5
+Enter5
   rotate: false
   xy: 239, 11
   size: 32, 37
   orig: 32, 37
   offset: 0, 0
   index: -1
-happy6
+Enter6
   rotate: false
   xy: 273, 11
   size: 32, 37

@@ -1,0 +1,61 @@
+
+ResidentialKeyCard.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+keycard1
+  rotate: false
+  xy: 1, 1
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+keycard2
+  rotate: false
+  xy: 25, 1
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+keycard3
+  rotate: false
+  xy: 49, 1
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+keycard4
+  rotate: false
+  xy: 73, 1
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+keycard5
+  rotate: false
+  xy: 97, 1
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+keycard6
+  rotate: false
+  xy: 121, 1
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+keycard7
+  rotate: false
+  xy: 145, 1
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+keycard8
+  rotate: false
+  xy: 169, 1
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1

@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -80,7 +81,7 @@ public class PlayScreen implements Screen {
     private boolean scannerJustTouched = false;
 
 
-    public PlayScreen(shootForSurvival g, int area, int level) {
+    public PlayScreen(shootForSurvival g, int location, int level) {
 
         //game management inits
         this.game = g;
@@ -101,6 +102,7 @@ public class PlayScreen implements Screen {
         bullets = new ArrayList<Bullets>();
 
         //render/map setup
+        area = location;
         mapLoader = new TmxMapLoader();
         if(area == 1 ) {
             map = mapLoader.load("Maps/Industry/Map/Lvl1-" + level + ".tmx");
@@ -166,6 +168,10 @@ public class PlayScreen implements Screen {
         return map;
     }
 
+    public int getArea() {
+        return area;
+    }
+
     public int getLevel() {
         return level;
     }
@@ -208,6 +214,10 @@ public class PlayScreen implements Screen {
 
     public void setKeys(int keys) {
         this.keys = keys;
+    }
+
+    public OrthographicCamera getGamecam() {
+        return gamecam;
     }
 
     @Override
@@ -263,6 +273,9 @@ public class PlayScreen implements Screen {
                 }
 
 
+                if(Gdx.input.isButtonJustPressed(Input.Keys.ENTER)&& player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT){
+                    player.setHealthCrate(true);
+                }
 //dash
                 if (Gdx.input.isKeyJustPressed(Input.Keys.D) && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
                     player.setDash(true);
@@ -378,8 +391,15 @@ public class PlayScreen implements Screen {
         for (Item item : creator.getCoins())
             item.update(dt);
 
-        for (Item item : creator.getVials())
+        for (Item item : creator.getVials()) {
+            for(int i = 0; i < creator.getVials().size; i++) {
+                if (player.isHealthCrate()) {
+                    creator.getVials().get(i).setHealthJustTouched(true);
+                    player.setHealthCrate(false);
+                }
+            }
             item.update(dt);
+        }
 
         for (Item item : creator.getKeys())
             item.update(dt);
@@ -390,19 +410,19 @@ public class PlayScreen implements Screen {
         creator.getScanner().destroyBody();
 
         if (creator.getScanner().isDestroyed()) {
-            creator.door.unlock();
+            creator.door.unlock(game.statetimer);
         }
 
         hud.update(dt);
         game.setHud(hud);
 
+        gamecam.update();
 
         if (player.currentState != Player.State.DEAD) {
             gamecam.position.x = player.b2body.getPosition().x;
             gamecam.position.y = player.b2body.getPosition().y + 0.4f;
         }
 
-        gamecam.update();
         renderer.setView(gamecam);
         game.setMoney(coins);
         game.setStatetimer(player.getStateTimer());
@@ -425,11 +445,11 @@ public class PlayScreen implements Screen {
         }
 
         game.batch.setProjectionMatrix(gamecam.combined);
-
-
         game.batch.begin();
 
+
         creator.door.draw(game.batch);
+
         player.draw(game.batch);
 
         for (Enemy enemy : creator.getWorkers())
@@ -490,7 +510,7 @@ public class PlayScreen implements Screen {
         }
 
         if (complete) {
-            if (player.currentState == Player.State.COMPLETE && player.getStateTimer() > 1.5) {
+            if (player.currentState == Player.State.COMPLETE && player.getStateTimer() > 1.2) {
                 if (level != 10) {
                     game.setScreen(new LevelComplete(game,area, level));
                 } else {

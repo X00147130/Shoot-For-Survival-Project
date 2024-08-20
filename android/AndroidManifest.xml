@@ -12,7 +12,8 @@
         android:isGame="true"
         android:appCategory="game"
         android:label="@string/app_name"
-        tools:ignore="UnusedAttribute">
+        tools:ignore="UnusedAttribute"
+        >
         <activity
             android:name="com.mygdx.sfs.AndroidLauncher"
             android:label="@string/app_name" 
