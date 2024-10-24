@@ -94,7 +94,7 @@ public class Bullets{
         }
 
         pistolLvl = sfs.getPistolLvl();
-        
+
          switch(pistolLvl){
              case 1:
                  sfs.setPowerLVL(1);
@@ -218,10 +218,15 @@ public class Bullets{
 
     }
 
-        public void bodyRemoval(){
-        if (destroy && !world.isLocked()) {
-            world.destroyBody(bulletBody);
-            world.clearForces();
+    public void bodyRemoval () {
+        try{
+            if (destroy && !world.isLocked()) {
+                world.destroyBody(bulletBody);
+                world.clearForces();
+            }
+        }catch (Exception e) {
+            System.out.println("Failed to remove");
+            Gdx.app.log("Error", "Bullet Exception");
         }
     }
     public void render(SpriteBatch batch){
