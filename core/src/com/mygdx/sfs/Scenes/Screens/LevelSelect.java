@@ -35,18 +35,18 @@ public class LevelSelect implements Screen {
 
 
     //buttons
-    Button level1;
-    Button level2;
-    Button level3;
-    Button level4;
-    Button level5;
-    Button level6;
-    Button level7;
-    Button level8;
-    Button level9;
-    Button level10;
+    Label level1;
+    Label level2;
+    Label level3;
+    Label level4;
+    Label level5;
+    Label level6;
+    Label level7;
+    Label level8;
+    Label level9;
+    Label level10;
 
-    Button backButton;
+    Label backButton;
 
     Texture prevImage;
     Drawable prevDraw;
@@ -55,9 +55,6 @@ public class LevelSelect implements Screen {
     Texture image;
     Drawable draw;
     Button nextButton;
-
-    TextButton.TextButtonStyle textStyle;
-    BitmapFont buttonFont;
 
     //Background
     private Texture background;
@@ -81,25 +78,6 @@ public class LevelSelect implements Screen {
         background = GAME.manager.get("backgrounds/Background.png", Texture.class);
 
 
-        //Button initialisation
-        textStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
-        textStyle.font = buttonFont;
-        textStyle.fontColor = MAGENTA;
-
-        level1 = new TextButton("Level 1", textStyle);
-        level2 = new TextButton("Level 2", textStyle);
-        level3 = new TextButton("Level 3", textStyle);
-        level4 = new TextButton("Level 4", textStyle);
-        level5 = new TextButton("Level 5", textStyle);
-        level6 = new TextButton("Level 6", textStyle);
-        level7 = new TextButton("Level 7", textStyle);
-        level8 = new TextButton("Level 8", textStyle);
-        level9 = new TextButton("Level 9", textStyle);
-        level10 = new TextButton("Level 10", textStyle);
-
-
-        backButton = new TextButton("Back", textStyle);
         prevImage = new Texture("controller/Backward.png");
         prevDraw = new TextureRegionDrawable(prevImage);
         previousButton = new ImageButton(prevDraw);
@@ -110,9 +88,37 @@ public class LevelSelect implements Screen {
         nextButton.setSize(40,35);
 
         //Label
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), GREEN);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), GREEN);
+        final Label.LabelStyle buttonFont = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), MAGENTA);
         Label pageLabel = new Label("Level Select", font);
-        pageLabel.setFontScale(2);
+        pageLabel.setFontScale(0.7f, 0.6f);
+
+        //Button Init
+        level1 = new Label("Level 1", buttonFont);
+        level2 = new Label("Level 2", buttonFont);
+        level3 = new Label("Level 3", buttonFont);
+        level4 = new Label("Level 4", buttonFont);
+        level5 = new Label("Level 5", buttonFont);
+        level6 = new Label("Level 6", buttonFont);
+        level7 = new Label("Level 7", buttonFont);
+        level8 = new Label("Level 8", buttonFont);
+        level9 = new Label("Level 9", buttonFont);
+        level10 = new Label("Level 10", buttonFont);
+
+        level1.setFontScale(0.5f,0.5f);
+        level2.setFontScale(0.5f,0.5f);
+        level3.setFontScale(0.5f,0.5f);
+        level4.setFontScale(0.5f,0.5f);
+        level5.setFontScale(0.5f,0.5f);
+        level6.setFontScale(0.5f,0.5f);
+        level7.setFontScale(0.5f,0.5f);
+        level8.setFontScale(0.5f,0.5f);
+        level9.setFontScale(0.5f,0.5f);
+        level10.setFontScale(0.5f,0.5f);
+
+
+        backButton = new Label("Back", buttonFont);
+        backButton.setFontScale(0.5f,0.5f);
 
         //Table
         final Table grid = new Table();
@@ -192,7 +198,7 @@ public class LevelSelect implements Screen {
                     GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
                 background = GAME.manager.get("backgrounds/ResidentialBackround.png", Texture.class);
-                textStyle.fontColor = CYAN;
+                buttonFont.fontColor = CYAN;
                 area++;
                 game.setHealthAtlas(new TextureAtlas("sprites/Objects/Residential/ResidentialHealthCrate.pack"));
                 game.setKeycardAtlas(new TextureAtlas("sprites/Objects/Residential/ResidentialKeyCard.pack"));
@@ -219,7 +225,7 @@ public class LevelSelect implements Screen {
                     GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                 }
                 background = GAME.manager.get("backgrounds/Background.png", Texture.class);
-                textStyle.fontColor = MAGENTA;
+                buttonFont.fontColor = MAGENTA;
                 area--;
                 game.setHealthAtlas(new TextureAtlas("sprites/Objects/HealthCrate.pack"));
                 game.setKeycardAtlas(new TextureAtlas("sprites/Objects/keycard.pack"));

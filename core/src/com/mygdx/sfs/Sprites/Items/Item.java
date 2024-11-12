@@ -14,10 +14,12 @@ public abstract class Item extends Sprite {
     protected boolean todestroy;
     protected boolean destroyed;
     protected Body body;
+    public float itemStateTimer;
 
     public Item ( PlayScreen screen, float x, float y){
         this.screen = screen;
         this.world = screen.getWorld();
+        itemStateTimer = 0;
         setPosition(x,y);
         setBounds(getX(), getY(),16 / shootForSurvival.PPM, 16 / shootForSurvival.PPM);
         defineItem();
@@ -34,6 +36,7 @@ public abstract class Item extends Sprite {
             world.destroyBody(body);
             destroyed = true;
         }
+        itemStateTimer += dt;
     }
 
     public void draw(Batch batch){

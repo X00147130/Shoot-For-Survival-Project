@@ -27,6 +27,7 @@ public abstract class InteractiveTileObject {
     protected Fixture fixture;
     protected PlayScreen screen;
     protected MapObject object;
+    public float objectStateTimer;
 
     public InteractiveTileObject(PlayScreen screen, MapObject object){
         this.object = object;
@@ -44,6 +45,7 @@ public abstract class InteractiveTileObject {
         bdef.position.set((bounds.getX() + bounds.getWidth() /2) / shootForSurvival.PPM, (bounds.getY() + bounds.getHeight() /2)/ shootForSurvival.PPM);
 
         body = world.createBody(bdef);
+        objectStateTimer = 0;
 
         shape.setAsBox(bounds.getWidth() /2 / shootForSurvival.PPM, bounds.getHeight() / 2 / shootForSurvival.PPM);
         fdef.shape = shape;
@@ -62,6 +64,10 @@ public abstract class InteractiveTileObject {
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         return layer.getCell((int) (body.getPosition().x * shootForSurvival.PPM / 16),
                 (int) (body.getPosition().y * shootForSurvival.PPM / 16));
+    }
+
+    public void update(float dt){
+        objectStateTimer += dt;
     }
 
 }

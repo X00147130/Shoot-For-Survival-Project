@@ -125,9 +125,9 @@ public class WorldContactListener implements ContactListener {
 
             case shootForSurvival.BOSS_BIT | shootForSurvival.WALL_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BOSS_BIT)
-                    ((Scalper) fixA.getUserData()).jumping();
+                    ((Scalper) fixA.getUserData()).enemyBody.applyLinearImpulse(0f,10f, ((Scalper) fixA.getUserData()).getX(), ((Scalper) fixA.getUserData()).getY(),true);
                 else
-                    ((Scalper) fixB.getUserData()).jumping();
+                    ((Scalper) fixB.getUserData()).enemyBody.applyLinearImpulse(0f,10f, ((Scalper) fixB.getUserData()).getX(), ((Scalper) fixB.getUserData()).getY(),true);
                 break;
 
 
@@ -135,13 +135,11 @@ public class WorldContactListener implements ContactListener {
                 if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
                     ((Player) fixA.getUserData()).hit();
                     ((Scalper) fixB.getUserData()).setAttack(true);
-                    ((Scalper) fixB.getUserData()).attack();
 
                 }
                 else {
                     ((Player) fixB.getUserData()).hit();
                     ((Scalper) fixA.getUserData()).setAttack(true);
-                    ((Scalper) fixA.getUserData()).attack();
                 }
                 break;
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -49,6 +50,7 @@ public class PlayScreen implements Screen {
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
+    private Texture overlayTexture;
 
     //Box2D Variables
     public World world;
@@ -68,6 +70,10 @@ public class PlayScreen implements Screen {
     public LinkedBlockingQueue<ItemDef> itemToSpawn;
     private int coins;
     private int keys;
+
+    //scanner Variables
+    private boolean interact = false;
+    private Vector2 scannerPostion = new Vector2 (0,0);
 
     //finish level variable
     public boolean complete = false;
@@ -112,6 +118,13 @@ public class PlayScreen implements Screen {
 
         }
         renderer = new OrthogonalTiledMapRenderer(map, 1 / shootForSurvival.PPM);
+
+        if(area == 1 ) {
+            overlayTexture = new Texture("Maps/Overlays/19.png");
+        }
+        else if(area == 2){
+            overlayTexture =new Texture("Maps/Overlays/11.png");
+        }
 
         //initiating game cam
         gamecam.position.set(gamePort.getWorldWidth() / 1.5f, gamePort.getWorldHeight() / 1.5f, 0);
@@ -216,10 +229,6 @@ public class PlayScreen implements Screen {
         this.keys = keys;
     }
 
-    public OrthographicCamera getGamecam() {
-        return gamecam;
-    }
-
     @Override
     public void show() {
     }
@@ -251,25 +260,34 @@ public class PlayScreen implements Screen {
                         game.doubleJumped = true;
                     }
 
-                } else if ((Gdx.input.isKeyJustPressed(Input.Keys.UP) && (player.currentState == Player.State.DOUBLEJUMP)) && game.doubleJumped) {
+                } else if ((Gdx.input.isKeyJustPressed(Input.Keys.UP) && (player.currentState == Player.State.DOUBLEJUMP)) && game.doubleJumped && player.currentState != Player.State.INTERACT) {
                     player.b2body.applyLinearImpulse(new Vector2(0f, 0f), player.b2body.getWorldCenter(), false);
                     Gdx.app.log("double", " jumped");
                 }
 
 //shoot
-                if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
-                    bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
-                    if (!player.isRifle()) {
-                        game.loadSound("audio/sounds/414888__matrixxx__retro_laser_shot_04(Pistol).wav");
-                    } else {
-                        game.loadSound("audio/sounds/214990__peridactyloptrix__laser-blast-(Rifle).wav");
+                if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && player.currentState != Player.State.COMPLETE) {
+                    if(!scannerJustTouched) {
+                        bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
+                        if (!player.isRifle())
+                            game.loadSound("audio/sounds/414888__matrixxx__retro_laser_shot_04(Pistol).wav");
+                        else {
+                            game.loadSound("audio/sounds/214990__peridactyloptrix__laser-blast-(Rifle).wav");
+                        }
+
+                        long id = game.sound.play();
+                        if (game.getSoundVolume() != 0)
+                            game.sound.setVolume(id, game.getSoundVolume());
+                        else {
+                            game.sound.setVolume(id, 0);
+                        }
                     }
-                    long id = game.sound.play();
-                    if (game.getSoundVolume() != 0)
-                        game.sound.setVolume(id, game.getSoundVolume());
-                    else {
-                        game.sound.setVolume(id, 0);
+
+                    else if(scannerJustTouched && player.currentState != Player.State.INTERACT){
+                        player.setScannerTouched(true);
+                        creator.getScanner().interacted();
                     }
+
                 }
 
 
@@ -333,27 +351,30 @@ public class PlayScreen implements Screen {
 
 
                 if (controller.isSpacePressed() && player.currentState != Player.State.COMPLETE) {
-
-                    bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
-                    if (!player.isRifle())
-                        game.manager.get("audio/sounds/414888__matrixxx__retro_laser_shot_04(Pistol).wav", Sound.class).play(game.getSoundVolume());
-                    else
-                        game.manager.get("audio/sounds/214990__peridactyloptrix__laser-blast-(Rifle).wav", Sound.class).play(game.getSoundVolume());
+                    if (!scannerJustTouched) {
+                        bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
+                        if (!player.isRifle())
+                            game.manager.get("audio/sounds/414888__matrixxx__retro_laser_shot_04(Pistol).wav", Sound.class).play(game.getSoundVolume());
+                        else
+                            game.manager.get("audio/sounds/214990__peridactyloptrix__laser-blast-(Rifle).wav", Sound.class).play(game.getSoundVolume());
+                    } else if (scannerJustTouched) {
+                        player.setScannerTouched(true);
+                        creator.getScanner().interacted();
+                    }
                 }
 
+                    if (controller.isRightPressed()  && player.b2body.getLinearVelocity().x <= 1.3 && player.currentState != Player.State.COMPLETE ) {
+                        player.b2body.applyLinearImpulse(new Vector2(0.7f, 0f), player.b2body.getWorldCenter(), true);
+                    }
 
-                if (controller.isRightPressed()  && player.b2body.getLinearVelocity().x <= 1.3 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(0.7f, 0f), player.b2body.getWorldCenter(), true);
+
+                    if (controller.isLeftPressed()  && player.b2body.getLinearVelocity().x >= -1.3 && player.currentState != Player.State.COMPLETE) {
+                        player.b2body.applyLinearImpulse(new Vector2(-0.7f, 0f), player.b2body.getWorldCenter(), true);
+                    }
+                } else {
+                    player.b2body.setLinearVelocity(new Vector2(0f, 0f));
                 }
-
-
-                if (controller.isLeftPressed()  && player.b2body.getLinearVelocity().x >= -1.3 && player.currentState != Player.State.COMPLETE) {
-                    player.b2body.applyLinearImpulse(new Vector2(-0.7f, 0f), player.b2body.getWorldCenter(), true);
-                }
-            } else {
-                player.b2body.setLinearVelocity(new Vector2(0f, 0f));
             }
-        }
     }
 
     public void update(float dt) {
@@ -366,6 +387,8 @@ public class PlayScreen implements Screen {
         world.step(1 / 60f, 6, 2);
 
         player.update(dt);
+        scannerPostion = creator.getScanner().getScannerPos();
+
 
         for (Enemy enemy : creator.getWorkers()) {
             enemy.update(dt);
@@ -394,7 +417,6 @@ public class PlayScreen implements Screen {
         for (Item item : creator.getVials()) {
             for(int i = 0; i < creator.getVials().size; i++) {
                 if (player.isHealthCrate()) {
-                    creator.getVials().get(i).setHealthJustTouched(true);
                     player.setHealthCrate(false);
                 }
             }
@@ -407,11 +429,18 @@ public class PlayScreen implements Screen {
         for (Item item : creator.getRifles())
             item.update(dt);
 
-        creator.getScanner().destroyBody();
+
+        creator.door.objectStateTimer +=dt;
 
         if (creator.getScanner().isDestroyed()) {
             creator.door.unlock(game.statetimer);
+            if(statetimer < 1.3f)
+                interact = creator.getScanner().isInteracted();
+            else
+                interact = false;
+            player.setScannerTouched(false);
         }
+
 
         hud.update(dt);
         game.setHud(hud);
@@ -447,8 +476,8 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
 
-
         creator.door.draw(game.batch);
+
 
         player.draw(game.batch);
 
@@ -460,8 +489,9 @@ public class PlayScreen implements Screen {
         }
 
         for (Bullets bullet : bullets)
-            if (!bullet.destroy)
+            if (!bullet.destroy) {
                 bullet.render(game.batch);
+            }
 
         for (Item item : items)
             item.draw(game.batch);
@@ -511,10 +541,10 @@ public class PlayScreen implements Screen {
 
         if (complete) {
             if (player.currentState == Player.State.COMPLETE && player.getStateTimer() > 1.2) {
-                if (level != 10) {
+                if (level < 10) {
                     game.setScreen(new LevelComplete(game,area, level));
                 } else {
-                    game.setScreen(new Credits(game));
+                    game.setScreen(new LevelSelect(game));
                 }
             game.setPowerLVL(game.getPowerLVL());
             dispose();
@@ -543,9 +573,16 @@ public class PlayScreen implements Screen {
 
     }
 
+    public void setScannerJustTouched(boolean scannerJustTouched) {
+        this.scannerJustTouched = scannerJustTouched;
+    }
 
     public void setLevelComplete(boolean level) {
         complete = level;
+    }
+
+    public boolean isInteract() {
+        return interact;
     }
 
     @Override
@@ -571,14 +608,17 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
+        overlayTexture.dispose();
         map.dispose();
         renderer.dispose();
+
 
         if (Gdx.app.getType() == Application.ApplicationType.Desktop)
             b2dr.dispose();
 
         hud.dispose();
         world.dispose();
+        creator.dispose();
         if (Gdx.app.getType() == Application.ApplicationType.Android)
             controller.dispose();
 

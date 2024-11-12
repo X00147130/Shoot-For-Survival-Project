@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -29,12 +31,12 @@ public class Hud implements Disposable {
         private int keys;
         private Label keyAcquired;
 
-        /*Label timeLabel;*/
+
 
         //health bar
-        private ShapeRenderer border;
-        private ShapeRenderer background;
-        private ShapeRenderer health;
+        private Texture healthbar;
+
+        //Labels
         Label healthLabel;
         Label wallet;
         Label key;
@@ -68,27 +70,32 @@ public class Hud implements Disposable {
             table2.top();
             table2.setFillParent(true);
 
+            walletLabel = new Label(String.format("%01d", walletAmount), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.valueOf("ff0a7f")));
+            walletLabel.setFontScale(0.6f,0.5f);
+            wallet = new Label("MONEY:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.CYAN));
+            wallet.setFontScale(0.6f,0.5f);
 
-            walletLabel = new Label(String.format("%01d", walletAmount), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.valueOf("ff0a7f")));
-            wallet = new Label("MONEY:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.CYAN));
+            healthLabel = new Label("HEALTH:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.GREEN));
+            healthLabel.setFontScale(0.6f,0.4f);
 
-            healthLabel = new Label("HEALTH:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.GREEN));
-
-            keyAcquired = new Label(String.format("%01d", keys), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.valueOf("ff0a7f")));
-            key = new Label("KEYS:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.CYAN));
+            keyAcquired = new Label(String.format("%01d", keys), new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.valueOf("ff0a7f")));
+            keyAcquired.setFontScale(0.4f,0.5f);
+            key = new Label("KEYS:", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.CYAN));
+            key.setFontScale(0.4f,0.5f);
 
 
             //group for health label scaling
 
-            table.add(healthLabel).expandX().left().padLeft(5).top();
-            table.add(wallet).padRight(10).right().top();
-            table.add(walletLabel).padRight(10).right().top().spaceRight(11);
+            table.add(healthLabel).expandX().left().padLeft(5).top().padTop(2);
+            table.add(wallet).right().top();
+            table.add(walletLabel).padRight(10).right().padLeft(20).top();
+
             table.row();
             table.row();
 
 
             table2.add(key).spaceLeft(20).padLeft(20).right();
-            table2.add(keyAcquired).padRight(30).right();
+            table2.add(keyAcquired).padRight(60).right();
 
             stage.addActor(table);
             stage.addActor(table2);
@@ -96,11 +103,7 @@ public class Hud implements Disposable {
 
 
             // health bar initialisation
-            border = new ShapeRenderer();
-            background = new ShapeRenderer();
-            health = new ShapeRenderer();
-            projectionMatrixSet = false;
-
+            healthbar = new Texture("sprites/HUD/fullHealth.png");
 
 
         }
@@ -111,45 +114,25 @@ public class Hud implements Disposable {
 
             keys = playScreen.getKeys();
             keyAcquired.setText(String.format("%01d", keys));
+
+            if(Player.getHitCounter() == 0)
+                healthbar = new Texture("sprites/HUD/fullHealth.png");
+
+            else if(Player.getHitCounter() == 1)
+                healthbar = new Texture("sprites/HUD/1hit.png");
+
+            else if(Player.getHitCounter() == 2)
+                healthbar = new Texture("sprites/HUD/2hits.png");
+
+            else if(Player.getHitCounter() == 3)
+                healthbar = new Texture("sprites/HUD/noHealth.png");
         }
 
 
         public void draw(SpriteBatch batch, float alpha){
-            if(!projectionMatrixSet){
-                border.setProjectionMatrix(batch.getProjectionMatrix());
-                health.setProjectionMatrix(batch.getProjectionMatrix());
-                background.setProjectionMatrix(batch.getProjectionMatrix());
-            }
-            border.begin(ShapeRenderer.ShapeType.Filled);
-            border.setColor(Color.WHITE);
-            border.rect(4,184,101,8);
-            border.end();
-
-            background.begin(ShapeRenderer.ShapeType.Filled);
-            background.setColor(Color.BLACK);
-            background.rect(5, 185, 99, 6);
-            background.end();
-
-            health.begin(ShapeRenderer.ShapeType.Filled);
-            if(Player.getHitCounter() == 0) {
-                health.rect(5, 185, 99, 6);
-                health.setColor(Color.CYAN);
-            }
-            else if (Player.getHitCounter() == 1){
-                health.rect(5,185,66,6);
-                health.setColor(Color.YELLOW);
-            }
-            else if (Player.getHitCounter() == 2){
-                health.rect(5,185,33,6);
-                health.setColor(Color.RED);
-            }
-            else if (Player.getHitCounter() == 3){
-                health.rect(5,185,0,6);
-            }
-            health.end();
-
-
-
+            batch.begin();
+            batch.draw(healthbar,5,185,101,8);
+            batch.end();
         }
         public Screen getPlayScreen(){
             return play;

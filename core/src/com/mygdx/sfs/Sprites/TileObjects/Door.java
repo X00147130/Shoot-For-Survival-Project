@@ -86,10 +86,10 @@ public class Door extends InteractiveTileObject {
 
     public void draw(SpriteBatch batch) {
         if (!open) {
-            batch.draw(closed, (bounds.x - 27) / sfs.PPM, bounds.y / sfs.PPM, closed.getRegionWidth() / sfs.PPM, closed.getRegionHeight() / sfs.PPM);
+            batch.draw(closed, (bounds.x - 22) / sfs.PPM, bounds.y / sfs.PPM, closed.getRegionWidth() / sfs.PPM, closed.getRegionHeight() / sfs.PPM);
         }
         else if (open) {
-            batch.draw(door.getKeyFrame(sfs.statetimer, false), (bounds.x - 27) / sfs.PPM, bounds.y / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionWidth() / sfs.PPM, door.getKeyFrame(sfs.statetimer).getRegionHeight() / sfs.PPM);
+            batch.draw(door.getKeyFrame(objectStateTimer, false), (bounds.x - 22) / sfs.PPM, bounds.y / sfs.PPM, door.getKeyFrame(objectStateTimer).getRegionWidth() / sfs.PPM, door.getKeyFrame(objectStateTimer).getRegionHeight() / sfs.PPM);
         }
 
     }

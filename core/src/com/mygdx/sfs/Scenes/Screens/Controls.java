@@ -51,30 +51,46 @@ public class Controls implements Screen {
 
         /*Label Style*/
         titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
-        style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.GREEN);
+        style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.GREEN);
 
         /*Labels*/
         title = new Label("Controls",titleStyle);
 
         /*Desktop*/
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            pause = new Label("Pause: esc ", style);
-            forward = new Label("Forward: Right Arrow Key", style);
-            backward = new Label("Backward: Left Arrow Key", style);
-            shoot = new Label("Shoot: Space Bar ", style);
-            jump = new Label("Jump: Up Arrow Key", style);
-            dash = new Label("Dash: D", style);
+            pause = new Label("Pause:   esc ", style);
+            forward = new Label("Forward:   Right Arrow Key", style);
+            backward = new Label("Backward:   Left Arrow Key", style);
+            shoot = new Label("Shoot:   Space Bar ", style);
+            jump = new Label("Jump:   Up Arrow Key", style);
+            dash = new Label("Dash:   D", style);
             back = new Label("Press space bar to go back", style);
+
+            pause.setFontScale(0.3f, 0.3f);
+            forward.setFontScale(0.3f, 0.3f);
+            backward.setFontScale(0.3f, 0.3f);
+            shoot.setFontScale(0.3f, 0.3f);
+            jump.setFontScale(0.3f, 0.3f);
+            dash.setFontScale(0.3f, 0.3f);
+            back.setFontScale(0.3f, 0.3f);
         }
         /*Android*/
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            pause = new Label("Pause: Pause Button", style);
-            forward = new Label("Forward: Right Arrow", style);
-            backward = new Label("Backward: Left Arrow", style);
-            shoot = new Label("Shoot: S", style);
-            jump = new Label("Jump: Jump", style);
-            dash = new Label("Dash: D", style);
+            pause = new Label("Pause:   Pause Button", style);
+            forward = new Label("Forward:   Right Arrow", style);
+            backward = new Label("Backward:   Left Arrow", style);
+            shoot = new Label("Shoot:   S", style);
+            jump = new Label("Jump:   Jump", style);
+            dash = new Label("Dash:   D", style);
             back = new Label("Go Back", style);
+
+            pause.setFontScale(0.3f, 0.3f);
+            forward.setFontScale(0.3f, 0.3f);
+            backward.setFontScale(0.3f, 0.3f);
+            shoot.setFontScale(0.3f, 0.3f);
+            jump.setFontScale(0.3f, 0.3f);
+            dash.setFontScale(0.3f, 0.3f);
+            back.setFontScale(0.3f, 0.3f);
         }
 
         //Background Texture

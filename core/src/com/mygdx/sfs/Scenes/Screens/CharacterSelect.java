@@ -1,12 +1,15 @@
 package com.mygdx.sfs.Scenes.Screens;
 
+import static com.badlogic.gdx.graphics.Color.CYAN;
 import static com.badlogic.gdx.graphics.Color.MAGENTA;
+import static com.badlogic.gdx.graphics.Color.RED;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -64,7 +67,6 @@ public class CharacterSelect implements Screen {
 
 
     private Image left, right;
-    private TextButton choose;
     private Table table;
     private Stage stage;
     private TextButton.TextButtonStyle textStyle;
@@ -74,6 +76,7 @@ public class CharacterSelect implements Screen {
     private Label cyborgLabel;
     private Label arrows;
     private Label enter;
+    private Label choose;
 
 
 
@@ -103,7 +106,7 @@ public class CharacterSelect implements Screen {
 
         //Setup of Screen
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
-        Label.LabelStyle font2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), MAGENTA);
+        Label.LabelStyle font2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), MAGENTA);
 
         textStyle = new TextButton.TextButtonStyle();
         buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
@@ -111,7 +114,9 @@ public class CharacterSelect implements Screen {
         textStyle.fontColor = MAGENTA;
 
         arrows = new Label("Arrows To Swap Character",font2);
+        arrows.setFontScale(0.4f, 0.5f);
         enter = new Label("Enter to Select",font2);
+        enter.setFontScale(0.4f, 0.5f);
 
         /*Intiatialising and Names of characters added to the arraylist*/
         characterNames = new ArrayList<Label>(3);
@@ -139,7 +144,8 @@ public class CharacterSelect implements Screen {
         left.setSize(3 / sfs.PPM, 3 / sfs.PPM);
 
 
-        choose = new TextButton("Select", textStyle);
+        choose = new Label("Select", font2);
+        choose.setFontScale(0.4f,0.5f);
 
 
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
@@ -167,20 +173,23 @@ public class CharacterSelect implements Screen {
                     }
                     if (i == 0) {
                         i = 1;
+                        characterNames.get(i).setColor(RED);
+                        choose.setColor(RED);
                         characterNames.get(i);
-
                         characterSprites.get(i);
 
                     } else if (i == 1) {
                         i = 2;
+                        characterNames.get(i).setColor(CYAN);
+                        choose.setColor(CYAN);
                         characterNames.get(i);
-
                         characterSprites.get(i);
 
                     } else if (i == 2) {
                         i = 0;
+                        characterNames.get(i).setColor(MAGENTA);
+                        choose.setColor(MAGENTA);
                         characterNames.get(i);
-
                         characterSprites.get(i);
                     }
                 }
@@ -195,19 +204,22 @@ public class CharacterSelect implements Screen {
                     }
                     if (i == 0) {
                         i = 2;
+                        characterNames.get(i).setColor(CYAN);
+                        choose.setColor(CYAN);
                         characterSprites.get(i);
-
                         characterNames.get(i);
 
                     } else if (i == 1) {
                         i = 0;
+                        characterNames.get(i).setColor(MAGENTA);
+                        choose.setColor(MAGENTA);
                         characterSprites.get(i);
-
                         characterNames.get(i);
                     } else if (i == 2) {
                         i = 1;
+                        characterNames.get(i).setColor(RED);
+                        choose.setColor(RED);
                         characterSprites.get(i);
-
                         characterNames.get(i);
                     }
                 }
@@ -335,10 +347,10 @@ public class CharacterSelect implements Screen {
         sfs.batch.draw(background,0,0,500,200);
 
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            arrows.setBounds(20, 155, 70, 70);
+            arrows.setBounds(80, 155, 70, 70);
             arrows.draw(sfs.batch,1);
 
-            enter.setBounds(95, 5, 70, 70);
+            enter.setBounds(125, 5, 70, 70);
             enter.draw(sfs.batch,1);
         }
 
@@ -374,19 +386,22 @@ public class CharacterSelect implements Screen {
                 }
                 if (i == 0) {
                     i = 2;
+                    characterNames.get(i).setColor(CYAN);
+                    choose.setColor(CYAN);
                     characterSprites.get(i);
-
                     characterNames.get(i);
 
                 } else if (i == 1) {
                     i = 0;
+                    characterNames.get(i).setColor(MAGENTA);
+                    choose.setColor(MAGENTA);
                     characterSprites.get(i);
-
                     characterNames.get(i);
                 } else if (i == 2) {
                     i = 1;
+                    characterNames.get(i).setColor(RED);
+                    choose.setColor(RED);
                     characterSprites.get(i);
-
                     characterNames.get(i);
                 }
             }
@@ -404,19 +419,22 @@ public class CharacterSelect implements Screen {
                 }
                 if (i == 0) {
                     i = 1;
+                    characterNames.get(i).setColor(RED);
+                    choose.setColor(RED);
                     characterSprites.get(i);
-
                     characterNames.get(i);
 
                 } else if (i == 1) {
                     i = 2;
+                    characterNames.get(i).setColor(CYAN);
+                    choose.setColor(CYAN);
                     characterSprites.get(i);
-
                     characterNames.get(i);
                 } else if (i == 2) {
                     i = 0;
+                    characterNames.get(i).setColor(MAGENTA);
+                    choose.setColor(MAGENTA);
                     characterSprites.get(i);
-
                     characterNames.get(i);
                 }
             }

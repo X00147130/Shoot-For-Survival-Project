@@ -5,6 +5,7 @@ import static com.mygdx.sfs.shootForSurvival.PPM;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -27,6 +28,7 @@ public class Player extends Sprite {
     public enum State{ FALLING, JUMPING, DOUBLEJUMP, STANDING, RUNNING, DEAD, COMPLETE, INTERACT}
     public State currentState;
     public State previousState;
+    private boolean animationTriggered = false;
 
 
     //Basic variables
@@ -44,12 +46,14 @@ public class Player extends Sprite {
     private Animation <TextureRegion> playerDjump;
     private Animation <TextureRegion> playerDead;
     private Animation <TextureRegion> playerComplete;
+    private Animation <TextureRegion> playerInteract;
     private Animation <TextureRegion> playerStand2;
     private Animation <TextureRegion> playerRun2;
     private Animation <TextureRegion> playerJump2;
     private Animation <TextureRegion> playerDjump2;
     private Animation <TextureRegion> playerDead2;
     private Animation <TextureRegion> playerComplete2;
+    private Animation <TextureRegion> playerInteract2;
 
 
     private boolean runningRight;
@@ -67,6 +71,7 @@ public class Player extends Sprite {
     private boolean playerIsDead;
     private boolean fellToDeath;
     private boolean hit = false;
+    private boolean scannerTouched = false;
 
 
     //health variables
@@ -125,7 +130,8 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("idle4"));
 
         playerStand = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.LOOP);
-        setBounds(getX(),getY(),35 / sfs.PPM, 35 / sfs.PPM);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
         frames.clear();
 /*Running Animation*/
         frames.clear();
@@ -137,8 +143,9 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("run5"));
         frames.add(pistolUpgrade.findRegion("run6"));
 
-        playerRun = new Animation<TextureRegion>(0.2f, frames);
-        setBounds(getX(),getY(),35 / sfs.PPM, 35 / sfs.PPM);
+        playerRun = new Animation<TextureRegion>(0.2f, frames, Animation.PlayMode.LOOP);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
         frames.clear();
 
 /*Jump Animation*/
@@ -149,8 +156,9 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("jump3"));
         frames.add(pistolUpgrade.findRegion("jump4"));
 
-        playerJump = new Animation<TextureRegion>(2f, frames);
-        setBounds(getX(),getY(),35 / sfs.PPM, 35 / sfs.PPM);
+        playerJump = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
         frames.clear();
 
 
@@ -164,8 +172,9 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("Djump5"));
         frames.add(pistolUpgrade.findRegion("Djump6"));
 
-        playerDjump = new Animation<TextureRegion>(1f, frames);
-        setBounds(getX(),getY(),35 / sfs.PPM, 35 / sfs.PPM);
+        playerDjump = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
         frames.clear();
 /*Player death animation*/
 
@@ -176,23 +185,26 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("die5"));
         frames.add(pistolUpgrade.findRegion("die6"));
 
-        playerDead = new Animation<TextureRegion>(0.3f, frames);
-        setBounds(getX(),getY(),35 / sfs.PPM, 35 / sfs.PPM);
+        playerDead = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
         frames.clear();
 
 
 /*Level Complete Animation*/
-        frames.add(pistolUpgrade.findRegion("happy1"));
-        frames.add(pistolUpgrade.findRegion("happy2"));
-        frames.add(pistolUpgrade.findRegion("happy3"));
-        frames.add(pistolUpgrade.findRegion("happy4"));
-        frames.add(pistolUpgrade.findRegion("happy5"));
-        frames.add(pistolUpgrade.findRegion("happy6"));
-        playerComplete = new Animation<TextureRegion>(0.2f, frames);
+        frames.add(pistolUpgrade.findRegion("Enter1"));
+        frames.add(pistolUpgrade.findRegion("Enter2"));
+        frames.add(pistolUpgrade.findRegion("Enter3"));
+        frames.add(pistolUpgrade.findRegion("Enter4"));
+        frames.add(pistolUpgrade.findRegion("Enter5"));
+        frames.add(pistolUpgrade.findRegion("Enter6"));
+        playerComplete = new Animation<TextureRegion>(0.2f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames.clear();
 
-        setBounds(getX(),getY(),35 / sfs.PPM, 35 / sfs.PPM);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
 
 
 /*Interact Animation*/
@@ -202,8 +214,8 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("Interact4"));
         frames.add(pistolUpgrade.findRegion("Interact5"));
         frames.add(pistolUpgrade.findRegion("Interact6"));
-        playerComplete = new Animation<TextureRegion>(0.2f, frames);
-        setBounds(getX(),getY(),35 / sfs.PPM, 35 / sfs.PPM);
+        playerInteract = new Animation<TextureRegion>(0.2f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames.clear();
 
@@ -217,7 +229,7 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("idle2"));
         frames2.add(upgradedRifle.findRegion("idle3"));
         frames2.add(upgradedRifle.findRegion("idle4"));
-        setBounds(getX(),getY(),37 / sfs.PPM, 35 / sfs.PPM);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         playerStand2 = new Animation<TextureRegion>(0.3f, frames2, Animation.PlayMode.LOOP);
 
@@ -232,8 +244,9 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("run5"));
         frames2.add(upgradedRifle.findRegion("run6"));
 
-        playerRun2 = new Animation<TextureRegion>(0.2f, frames2);
-        setBounds(getX(),getY(),37 / sfs.PPM, 35 / sfs.PPM);
+        playerRun2 = new Animation<TextureRegion>(0.2f, frames2, Animation.PlayMode.LOOP);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
 
         frames2.clear();
 
@@ -245,8 +258,9 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("jump3"));
         frames2.add(upgradedRifle.findRegion("jump4"));
 
-        playerJump2 = new Animation<TextureRegion>(2f, frames2);
-        setBounds(getX(),getY(),37 / sfs.PPM, 35 / sfs.PPM);
+        playerJump2 = new Animation<TextureRegion>(0.3f, frames2, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
         frames2.clear();
 
 
@@ -260,8 +274,9 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("Djump5"));
         frames2.add(upgradedRifle.findRegion("Djump6"));
 
-        playerDjump2 = new Animation<TextureRegion>(1f, frames2);
-        setBounds(getX(),getY(),37 / sfs.PPM, 35 / sfs.PPM);
+        playerDjump2 = new Animation<TextureRegion>(0.3f, frames2, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
         frames2.clear();
         /*Player death animation*/
 
@@ -272,22 +287,38 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("die5"));
         frames2.add(upgradedRifle.findRegion("die6"));
 
-        playerDead2 = new Animation<TextureRegion>(0.3f, frames2);
-        setBounds(getX(),getY(),37 / sfs.PPM, 35 / sfs.PPM);
+        playerDead2 = new Animation<TextureRegion>(0.3f, frames2, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
         frames2.clear();
 
         /*Level Complete Animation*/
-        frames2.add(upgradedRifle.findRegion("happy1"));
-        frames2.add(upgradedRifle.findRegion("happy2"));
-        frames2.add(upgradedRifle.findRegion("happy3"));
-        frames2.add(upgradedRifle.findRegion("happy4"));
-        frames2.add(upgradedRifle.findRegion("happy5"));
-        frames2.add(upgradedRifle.findRegion("happy6"));
-        playerComplete2 = new Animation<TextureRegion>(0.2f, frames2);
-        setBounds(getX(),getY(),37 / sfs.PPM, 35 / sfs.PPM);
+        frames2.add(upgradedRifle.findRegion("Enter1"));
+        frames2.add(upgradedRifle.findRegion("Enter2"));
+        frames2.add(upgradedRifle.findRegion("Enter3"));
+        frames2.add(upgradedRifle.findRegion("Enter4"));
+        frames2.add(upgradedRifle.findRegion("Enter5"));
+        frames2.add(upgradedRifle.findRegion("Enter6"));
+        playerComplete2 = new Animation<TextureRegion>(0.2f, frames2, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
         frames2.clear();
 
-        setBounds(getX(),getY(),37 / sfs.PPM, 35 / sfs.PPM);
+        /*Interact Animation*/
+        frames2.add(upgradedRifle.findRegion("Interact1"));
+        frames2.add(upgradedRifle.findRegion("Interact2"));
+        frames2.add(upgradedRifle.findRegion("Interact3"));
+        frames2.add(upgradedRifle.findRegion("Interact4"));
+        frames2.add(upgradedRifle.findRegion("Interact5"));
+        frames2.add(upgradedRifle.findRegion("Interact6"));
+        playerInteract2 = new Animation<TextureRegion>(0.2f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
+
+        frames.clear();
+
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
 
     }
 
@@ -434,7 +465,13 @@ public class Player extends Sprite {
                     break;
 
                 case INTERACT:
-                    region = playerComplete.getKeyFrame(stateTimer, false);
+                    if(animationTriggered) {
+                        key = false;
+                        stateTimer = 0;
+                        region = playerInteract.getKeyFrame(stateTimer, false);
+                        if(playerInteract.isAnimationFinished(stateTimer))
+                            animationTriggered = false;
+                    }
                     break;
 
                 case FALLING:
@@ -470,6 +507,16 @@ public class Player extends Sprite {
                     region = playerComplete2.getKeyFrame(stateTimer, false);
                     break;
 
+                case INTERACT:
+                    if(animationTriggered) {
+                        key = false;
+                        stateTimer = 0;
+                        region = playerInteract.getKeyFrame(stateTimer, false);
+                        if(playerInteract2.isAnimationFinished(stateTimer))
+                            animationTriggered = false;
+                    }
+                    break;
+
                 case FALLING:
 
                 case STANDING:
@@ -493,27 +540,40 @@ public class Player extends Sprite {
 
     }
 
-    public State getState(){
-        if(playerIsDead)
+    public State getState() {
+        State state = State.STANDING;
+        if (playerIsDead)
             return State.DEAD;
 
-        else if ((b2body.getLinearVelocity().y > 0 && sfs.doubleJumped))
+        else if ((b2body.getLinearVelocity().y > 0 && sfs.doubleJumped) && stateTimer < 1.8f)
             return State.DOUBLEJUMP;
 
-        else if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0))
+        else if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0) && stateTimer < 1.2f)
             return State.JUMPING;
 
-        else if(b2body.getLinearVelocity().y < 0)
+        else if (b2body.getLinearVelocity().y < 0)
             return State.FALLING;
 
         else if (b2body.getLinearVelocity().x != 0)
             return State.RUNNING;
 
-        else if(screen.complete)
+        else if (screen.complete)
             return State.COMPLETE;
 
-        else
+        else if (getKey() && screen.isInteract()) {
+            Gdx.app.log("Interact", "Animation");
+            if(stateTimer < 1.3f && previousState != State.INTERACT) {
+                state = State.INTERACT;
+
+            }else{
+                state = State.STANDING;
+            }
+            return state;
+        }
+
+        else {
             return State.STANDING;
+        }
     }
 
 
@@ -530,6 +590,7 @@ public class Player extends Sprite {
 
 
         playerStand = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.LOOP);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames.clear();
         /*Running Animation*/
@@ -542,8 +603,9 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("run5"));
         frames.add(pistolUpgrade.findRegion("run6"));
 
-        playerRun = new Animation<TextureRegion>(0.2f, frames);
-        setBounds(0, 0, 18 / PPM, 20 / PPM);
+        playerRun = new Animation<TextureRegion>(0.2f, frames, Animation.PlayMode.LOOP);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
 
         frames.clear();
 
@@ -555,7 +617,8 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("jump3"));
         frames.add(pistolUpgrade.findRegion("jump4"));
 
-        playerJump = new Animation<TextureRegion>(2f, frames);
+        playerJump = new Animation<TextureRegion>(2f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames.clear();
 
@@ -570,7 +633,8 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("Djump5"));
         frames.add(pistolUpgrade.findRegion("Djump6"));
 
-        playerDjump = new Animation<TextureRegion>(1f, frames);
+        playerDjump = new Animation<TextureRegion>(1f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames.clear();
         /*Player death animation*/
@@ -582,7 +646,8 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("die5"));
         frames.add(pistolUpgrade.findRegion("die6"));
 
-        playerDead = new Animation<TextureRegion>(0.3f, frames);
+        playerDead = new Animation<TextureRegion>(0.3f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames.clear();
 
@@ -593,11 +658,25 @@ public class Player extends Sprite {
         frames.add(pistolUpgrade.findRegion("Enter4"));
         frames.add(pistolUpgrade.findRegion("Enter5"));
         frames.add(pistolUpgrade.findRegion("Enter6"));
-        playerComplete = new Animation<TextureRegion>(0.2f, frames);
+        playerComplete = new Animation<TextureRegion>(0.2f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames.clear();
 
-        setBounds(getX(),getY(),30 / sfs.PPM, 30 / sfs.PPM);
+        /*Interact Animation*/
+        frames.add(pistolUpgrade.findRegion("Interact1"));
+        frames.add(pistolUpgrade.findRegion("Interact2"));
+        frames.add(pistolUpgrade.findRegion("Interact3"));
+        frames.add(pistolUpgrade.findRegion("Interact4"));
+        frames.add(pistolUpgrade.findRegion("Interact5"));
+        frames.add(pistolUpgrade.findRegion("Interact6"));
+        playerInteract = new Animation<TextureRegion>(0.2f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
+        frames.clear();
+
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
 
 
 
@@ -612,6 +691,7 @@ public class Player extends Sprite {
 
 
         playerStand2 = new Animation<TextureRegion>(0.3f, frames2, Animation.PlayMode.LOOP);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames2.clear();
         /*Running Animation*/
@@ -624,8 +704,9 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("run5"));
         frames2.add(upgradedRifle.findRegion("run6"));
 
-        playerRun2 = new Animation<TextureRegion>(0.2f, frames2);
-        setBounds(0, 0, 18 / PPM, 20 / PPM);
+            playerRun2 = new Animation<TextureRegion>(0.2f, frames2, Animation.PlayMode.LOOP);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
 
         frames2.clear();
 
@@ -637,7 +718,8 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("jump3"));
         frames2.add(upgradedRifle.findRegion("jump4"));
 
-        playerJump2 = new Animation<TextureRegion>(2f, frames2);
+        playerJump2 = new Animation<TextureRegion>(2f, frames2, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames2.clear();
 
@@ -652,7 +734,9 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("Djump5"));
         frames2.add(upgradedRifle.findRegion("Djump6"));
 
-        playerDjump2 = new Animation<TextureRegion>(1f, frames2);
+        playerDjump2 = new Animation<TextureRegion>(1f, frames2, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
 
         frames2.clear();
         /*Player death animation*/
@@ -664,7 +748,9 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("die5"));
         frames2.add(upgradedRifle.findRegion("die6"));
 
-        playerDead2 = new Animation<TextureRegion>(0.3f, frames2);
+        playerDead2 = new Animation<TextureRegion>(0.3f, frames2, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
 
         frames2.clear();
 
@@ -675,11 +761,26 @@ public class Player extends Sprite {
         frames2.add(upgradedRifle.findRegion("Enter4"));
         frames2.add(upgradedRifle.findRegion("Enter5"));
         frames2.add(upgradedRifle.findRegion("Enter6"));
-        playerComplete2 = new Animation<TextureRegion>(0.2f, frames2);
+        playerComplete2 = new Animation<TextureRegion>(0.2f, frames2, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
 
         frames2.clear();
 
-        setBounds(getX(),getY(),30 / sfs.PPM, 30 / sfs.PPM);
+        /*Interact Animation*/
+        frames2.add(upgradedRifle.findRegion("Interact1"));
+        frames2.add(upgradedRifle.findRegion("Interact2"));
+        frames2.add(upgradedRifle.findRegion("Interact3"));
+        frames2.add(upgradedRifle.findRegion("Interact4"));
+        frames2.add(upgradedRifle.findRegion("Interact5"));
+        frames2.add(upgradedRifle.findRegion("Interact6"));
+        playerInteract2 = new Animation<TextureRegion>(0.2f, frames, Animation.PlayMode.NORMAL);
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
+
+        frames2.clear();
+
+        setBounds(getX(),getY(),32 / sfs.PPM, 35 / sfs.PPM);
+
 
     }
 
@@ -900,7 +1001,12 @@ public class Player extends Sprite {
         this.fellToDeath = fellToDeath;
     }
 
-    public void setPlayerIsDead(boolean playerIsDead) {
-        this.playerIsDead = playerIsDead;
+    /*public void setPlayerIsDead(boolean playerIsDead) {
+        this.playerIsDead = playerIsDead;                           // No USAGES
+    }*/
+
+    public void setScannerTouched(boolean scannerTouched){
+        this.scannerTouched = scannerTouched;
+        animationTriggered = true;
     }
 }

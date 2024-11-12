@@ -20,8 +20,6 @@ import com.mygdx.sfs.shootForSurvival;
 public class Rifles extends Item{
     public shootForSurvival sfs;
     private Animation<TextureRegion> rifle;
-    private boolean proxy = false;
-    private float x = 0;
     private int powerLVL = 0;
 
     public Rifles(shootForSurvival sfs, PlayScreen screen, float x, float y) {
@@ -33,10 +31,10 @@ public class Rifles extends Item{
 
         rifle = new Animation<TextureRegion>(0.2f, frames);
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(0, 0, 36 / PPM, 45 / PPM);
+            setBounds(0, 0, 22 / sfs.PPM, 19 / sfs.PPM);
+        }else {
+            setBounds(getX(), getY(), 22 / sfs.PPM, 12 / sfs.PPM);
         }
-
-        setBounds(getX(),getY(),22 / sfs.PPM,12 / sfs.PPM);
         frames.clear();
         this.sfs = sfs;
     }
@@ -68,6 +66,7 @@ public class Rifles extends Item{
         sfs.setPowerLVL(powerLVL);
         sfs.setPowerLVL(powerLVL);
         player.setRifle(true);
+        Gdx.app.log("Rifle", "Collected");
 
         destroy();
 

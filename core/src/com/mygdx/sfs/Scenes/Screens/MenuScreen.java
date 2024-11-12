@@ -2,13 +2,13 @@ package com.mygdx.sfs.Scenes.Screens;
 
 import static com.badlogic.gdx.graphics.Color.CYAN;
 import static com.badlogic.gdx.graphics.Color.MAGENTA;
+import static com.badlogic.gdx.graphics.Color.WHITE;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -37,13 +37,11 @@ public class MenuScreen implements Screen  {
 
 
     //Buttons
-    Button playButton;
-    Button levelButton;
-    Button controls;
-    Button settingsButton;
-    Button quitButton;
-    TextButton.TextButtonStyle buttonStyle;
-    BitmapFont buttonFont;
+    private Label play;
+    private Label levelSelect;
+    private Label controls;
+    private Label settings;
+    private Label quit;
 
 
     public MenuScreen(final shootForSurvival game) {
@@ -63,39 +61,42 @@ public class MenuScreen implements Screen  {
         table.setFillParent(true);
 
 
-        //Buttons
-        buttonStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
-        buttonStyle.font = buttonFont;
-        buttonStyle.fontColor = CYAN;
-        playButton  = new TextButton("Start",buttonStyle);
-        playButton.setSize(12,10);
-        levelButton  = new TextButton("Level Select",buttonStyle );
-        levelButton.setSize(12,10);
-        controls  = new TextButton("Controls",buttonStyle);
-        controls.setSize(12,10);
-        settingsButton  = new TextButton("Settings",buttonStyle );
-        settingsButton.setSize(12,10);
-        quitButton = new TextButton("Quit",buttonStyle);
-        quitButton.setSize(12,10);
-
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), MAGENTA);
+        Label.LabelStyle buttonFont = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), CYAN);
         Label titleLabel = new Label(" SHOOT FOR ", font);
+        titleLabel.setFontScale(1.2f, 0.8f);
         Label titleLabel2 = new Label("SURVIVAL", font);
+        titleLabel2.setFontScale(1.2f, 0.8f);
 
-        table.add(titleLabel).expandX().setActorHeight(110);
+        play = new Label("Play", buttonFont);
+        play.setFontScale(0.5f, 0.5f);
+
+        levelSelect = new Label("Level Select", buttonFont);
+        levelSelect.setFontScale(0.5f, 0.5f);
+
+        controls = new Label("Controls", buttonFont);
+        controls.setFontScale(0.5f, 0.5f);
+
+        settings = new Label("Settings", buttonFont);
+        settings.setFontScale(0.5f, 0.5f);
+
+        quit = new Label("Exit", buttonFont);
+        quit.setFontScale(0.5f, 0.5f);
+
+
+        table.add(titleLabel).expandX();
         table.row();
-        table.add(titleLabel2).expandX().setActorHeight(110);
+        table.add(titleLabel2).expandX();
         table.row();
-        table.add(playButton).expandX().padTop(10);
+        table.add(play).expandX().padTop(10);
         table.row();
-        table.add(levelButton).expandX().padTop(5);
+        table.add(levelSelect).expandX().padTop(5);
         table.row();
         table.add(controls).expandX().padTop(5);
         table.row();
-        table.add(settingsButton).expandX().padTop(5);
+        table.add(settings).expandX().padTop(5);
         table.row();
-        table.add(quitButton).expandX().padTop(5);
+        table.add(quit).expandX().padTop(5);
         table.row();
 
 
@@ -103,7 +104,7 @@ public class MenuScreen implements Screen  {
         Gdx.input.setInputProcessor(stage);
 
 
-        playButton.addListener(new ClickListener() {
+        play.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -127,7 +128,7 @@ public class MenuScreen implements Screen  {
             }
         });
 
-        levelButton.addListener(new ClickListener() {
+        levelSelect.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(Gdx.app.getType() == Application.ApplicationType.Android) {
@@ -167,7 +168,7 @@ public class MenuScreen implements Screen  {
             }
         });
 
-        settingsButton.addListener(new ClickListener() {
+        settings.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -187,7 +188,7 @@ public class MenuScreen implements Screen  {
             }
         });
 
-        quitButton.addListener(new ClickListener(){
+        quit.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event,float x,float y){
                 if(Gdx.app.getType() == Application.ApplicationType.Desktop) {

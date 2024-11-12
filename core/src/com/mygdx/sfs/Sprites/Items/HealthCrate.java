@@ -1,7 +1,5 @@
 package com.mygdx.sfs.Sprites.Items;
 
-import static com.mygdx.sfs.shootForSurvival.PPM;
-
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -18,7 +16,6 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class HealthCrate extends Item{
     public shootForSurvival sfs;
-    private TextureRegion open;
     private TextureRegion closed;
     private Animation<TextureRegion> health;
     private boolean healthJustTouched = false;
@@ -34,9 +31,9 @@ public class HealthCrate extends Item{
         for(int i = 1; i <= sfs.getHealthAtlas().getRegions().size; i++) {
             frames.add(sfs.getHealthAtlas().findRegion("Health" + i));
         }
-        health = new Animation<TextureRegion>(0.2f, frames);
+        health = new Animation<TextureRegion>(0.5f, frames, Animation.PlayMode.NORMAL);
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            setBounds(getX(), getY(), 30 / shootForSurvival.PPM, 30 / shootForSurvival.PPM);
+            setBounds(getX(), getY(), 20 / shootForSurvival.PPM, 20 / shootForSurvival.PPM);
         }
     }
 
@@ -73,9 +70,12 @@ public class HealthCrate extends Item{
     public void update(float dt) {
         super.update(dt);
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
-        body.setGravityScale(10);
-        setRegion(closed);
-        setRegion(health.getKeyFrame(sfs.statetimer,false));
+        if(screen.getPlayer().b2body.getPosition().x > body.getPosition().x - 0.25 && screen.getPlayer().b2body.getPosition().x < body.getPosition().x + 0.25 &&  screen.getPlayer().b2body.getPosition().y > body.getPosition().y - 0.25)
+            setRegion(health.getKeyFrame(super.itemStateTimer,false));
+
+        else{
+            setRegion(closed);
+        }
 
         if(healthJustTouched){
             onHit(screen.getPlayer());
@@ -85,11 +85,6 @@ public class HealthCrate extends Item{
     @Override
     public void draw(Batch batch) {
         super.draw(batch);
-        if (!healthJustTouched) {
-            batch.draw(closed, (body.getPosition().x - 27) / sfs.PPM, body.getPosition().y / sfs.PPM, closed.getRegionWidth() / sfs.PPM, closed.getRegionHeight() / sfs.PPM);
-        } else if (healthJustTouched) {
-            batch.draw(health.getKeyFrame(sfs.statetimer, false), (body.getPosition().x - 27) / sfs.PPM, body.getPosition().y / sfs.PPM, health.getKeyFrame(sfs.statetimer).getRegionWidth() / sfs.PPM, health.getKeyFrame(sfs.statetimer).getRegionHeight() / sfs.PPM);
-        }
     }
 
     public void onHit(Player player) {

@@ -177,14 +177,15 @@ public class Scalper extends Enemy {
                 locationX = (screen.getPlayer().getX() + 80 / sfs.PPM) - enemyBody.getPosition().x;
             }
             if(screen.getPlayer().b2body.getPosition().y < enemyBody.getPosition().y){
-                locationY = (screen.getPlayer().getY() - 80 / sfs.PPM) - enemyBody.getPosition().y;
-                enemyBody.setGravityScale(10f);
+                locationY = (screen.getPlayer().getY() / sfs.PPM) - enemyBody.getPosition().y;
+
             }
             else if(screen.getPlayer().b2body.getPosition().y > enemyBody.getPosition().y) {
-                locationY = (screen.getPlayer().getY() + 80 / sfs.PPM) - enemyBody.getPosition().y;
-                enemyBody.setGravityScale(0);
+                locationY = (screen.getPlayer().getY() / sfs.PPM) - enemyBody.getPosition().y;
+
             }
-            enemyBody.setLinearVelocity(locationX ,locationY);
+            jumping(0,locationY);
+            enemyBody.setLinearVelocity(locationX ,0);
             setPosition(enemyBody.getPosition().x - getWidth() / 2, enemyBody.getPosition().y - getHeight() / 2);
         }
     }
@@ -210,6 +211,7 @@ public class Scalper extends Enemy {
 
         fdef.shape = shape;
         enemyBody.createFixture(fdef).setUserData(this);
+        enemyBody.setGravityScale(1.1f);
     }
 
     public void draw(Batch batch){
@@ -271,13 +273,8 @@ public class Scalper extends Enemy {
         this.attacking = attacking;
     }
 
-    public void attack(){
-        if(attacking) {
-            currentState = State.ATTACK;
-        }
-    }
 
-    public void jumping() {
+    public void jumping(float locationx, float locationy) {
             enemyBody.applyLinearImpulse((new Vector2(-5, 20)), enemyBody.getWorldCenter(), true);
             jumping = true;
     }

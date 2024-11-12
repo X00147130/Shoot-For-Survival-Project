@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="97">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="97">
  <tileset firstgid="1" source="Background.tsx"/>
  <tileset firstgid="181" source="IndustrialTile_46.tsx"/>
  <tileset firstgid="182" source="Industry3.tsx"/>
@@ -183,8 +183,8 @@
   <object id="29" x="458.333" y="586.667" width="15.3333" height="14.6667"/>
   <object id="30" x="496.333" y="588.667" width="15.3333" height="14.6667"/>
  </objectgroup>
- <objectgroup id="6" name="Door" locked="1">
-  <object id="96" name="Endgame door" x="1600" y="640" height="64"/>
+ <objectgroup id="6" name="Door">
+  <object id="96" name="Endgame door" x="1595.5" y="672.479" width="4.5" height="32"/>
  </objectgroup>
  <objectgroup id="7" name="Scanner" locked="1">
   <object id="31" x="1344" y="704" width="32" height="32"/>

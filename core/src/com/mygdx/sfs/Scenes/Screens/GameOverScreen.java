@@ -37,8 +37,8 @@ public class GameOverScreen implements Screen {
     private Texture background;
 
     //buttons
-    private Button playAgainButton;
-    private Button mainMenuButton;
+    private Label playAgainButton;
+    private Label mainMenuButton;
 
     public GameOverScreen(shootForSurvival game,int location, int level){
         this.GAME = game;
@@ -49,29 +49,28 @@ public class GameOverScreen implements Screen {
 
         background = GAME.manager.get("backgrounds/deadbg.png", Texture.class);
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), Color.valueOf("ff0a7f"));
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.RED);
+        Label.LabelStyle buttonFont = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.WHITE);
 
         table = new Table();
         table.center();
         table.setFillParent(true);
 
-        BitmapFont buttonFont;
-        TextButton.TextButtonStyle buttonStyle;
-        buttonStyle = new TextButton.TextButtonStyle();
-        buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
-        buttonStyle.font= buttonFont;
-        buttonStyle.fontColor = WHITE;
-        playAgainButton = new TextButton(" Play Again? ", buttonStyle);
-        mainMenuButton = new TextButton(" Main Menu ", buttonStyle);
+        playAgainButton = new Label(" Play Again? ", buttonFont);
+        mainMenuButton = new Label(" Main Menu ",buttonFont);
+        playAgainButton.setFontScale(0.4f, 0.4f);
+        mainMenuButton.setFontScale(0.4f, 0.4f);
 
 
         Label gameOverLabel = new Label("YOU GOT", font);
+        gameOverLabel.setFontScale(0.8f, 0.5f);
         Label gameOverLabel2 = new Label("SCRAPPED!!!", font);
+        gameOverLabel2.setFontScale(0.8f, 0.7f);
         table.add(gameOverLabel).expandX().center();
         table.row();
         table.add(gameOverLabel2).expandX().center();
         table.row();
-        table.add(playAgainButton).expandX().padTop(10).center();
+        table.add(playAgainButton).expandX().padTop(30).center();
         table.row();
         table.add(mainMenuButton).expandX().padTop(10).center();
         stage.addActor(table);

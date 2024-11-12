@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Player;
 import com.mygdx.sfs.shootForSurvival;
@@ -13,12 +14,15 @@ public class Scanner extends InteractiveTileObject {
     private boolean destroyed = false;
     private boolean todestroy = false;
     private boolean scannerJustTouched = false;
+    private boolean interacted = false;
+    private Vector2 scannerPos = new Vector2 (0,0);
 
     public Scanner(shootForSurvival game, PlayScreen screen, MapObject object) {
         super(screen, object);
         this.sfs = game;
         fixture.setUserData(this);
         setCategoryFilter(shootForSurvival.SCANNER_BIT);
+        scannerPos = this.body.getPosition();
     }
 
     @Override
@@ -26,7 +30,9 @@ public class Scanner extends InteractiveTileObject {
         Gdx.app.log("Scanner", "Collision");
         if (player.getKey()) {
             scannerJustTouched = true;
-            todestroy = true;
+            screen.setScannerJustTouched(scannerJustTouched);
+            interacted = true;
+            player.setPosition(player.getX(), player.getY());
 
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/364688__alegemaate__electronic-door-opening.wav");
@@ -45,6 +51,7 @@ public class Scanner extends InteractiveTileObject {
         }
 
         else {
+            interacted = false;
             todestroy = false;
             if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                 sfs.loadSound("audio/sounds/stomp.wav");
@@ -62,6 +69,17 @@ public class Scanner extends InteractiveTileObject {
         }
     }
 
+    public void interacted(){
+        if (interacted){
+           for(int i = 0; i < 6; i++) {
+               if (i == 5) {
+                   todestroy = true;
+                   destroyBody();
+               }
+           }
+
+        }
+    }
 
     public void destroyBody(){
         if (todestroy){
@@ -78,5 +96,13 @@ public class Scanner extends InteractiveTileObject {
 
     public boolean isScannerJustTouched() {
         return scannerJustTouched;
+    }
+
+    public boolean isInteracted() {
+        return interacted;
+    }
+
+    public Vector2 getScannerPos() {
+        return scannerPos;
     }
 }

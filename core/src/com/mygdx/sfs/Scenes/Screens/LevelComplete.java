@@ -38,11 +38,9 @@ public class LevelComplete implements Screen {
 
 
     //Buttons
-    private Button menuButton;
-    private Button nextLevelButton;
-    private Button levelSelectButton;
-    private TextButton.TextButtonStyle buttonstyle;
-    private BitmapFont font;
+    Label menuButton;
+    Label nextLevelButton;
+    Label levelSelectButton;
 
     Label title;
     Label title2;
@@ -66,24 +64,23 @@ public class LevelComplete implements Screen {
 
         background = sfs.manager.get("backgrounds/lvlcompletebg.png",Texture.class);
 
-
-        //TextButton Style Admin
-        buttonstyle = new TextButton.TextButtonStyle();
-        font = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
-        buttonstyle.font = font;
-        buttonstyle.font.setColor(Color.CYAN);
+        //Label Admin
+        Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.MAGENTA);
+        Label.LabelStyle style2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.CYAN);
+        title = new Label("Level",style);
+        title.setFontScale(0.9f,0.8f);
+        title2 = new Label("Complete",style);
+        title2.setFontScale(0.9f,0.8f);
+        Coins = new Label(String.format("Score: %4d" ,score),style2);
+        Coins.setFontScale(0.5f,0.5f);
 
         //Setting up the TextButtons
-        menuButton = new TextButton("Main Menu", buttonstyle);
-        nextLevelButton = new TextButton("Next Level", buttonstyle);
-        levelSelectButton = new TextButton("Level Select", buttonstyle);
-
-        //Label Admin
-        Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), Color.MAGENTA);
-        Label.LabelStyle style2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.CYAN);
-        title = new Label("Level",style);
-        title2 = new Label("Complete",style);
-        Coins = new Label(String.format("Score: %4d" ,score),style2);
+        menuButton = new Label("Main Menu", style2);
+        menuButton.setFontScale(0.5f,0.5f);
+        nextLevelButton = new Label("Next Level", style2);
+        nextLevelButton.setFontScale(0.5f,0.5f);
+        levelSelectButton = new Label("Level Select", style2);
+        levelSelectButton.setFontScale(0.5f,0.5f);
 
         //Table Setup
         Table table = new Table();

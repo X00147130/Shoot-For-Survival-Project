@@ -53,26 +53,30 @@ public class Upgrade implements Screen {
 
         background = GAME.manager.get("backgrounds/deadbg.png", Texture.class);
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.valueOf("ff0a7f"));
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.valueOf("ff0a7f"));
 
         table = new Table();
         table.center();
         table.setFillParent(true);
 
         Skin skin = new Skin(Gdx.files.internal("skins/quantum-horizon/skin/quantum-horizon-ui.json"));
+        skin.setScale(0.2f);
         upgradeButton = new TextButton(String.format("Upgrade: %4d", price), skin);
         continueButton = new TextButton(" SKIP ", skin);
-        Label.LabelStyle style2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt")), Color.GREEN);
+        Label.LabelStyle style2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.GREEN);
 
         Label upgradeLabel = new Label("NEED SOME", font);
+        upgradeLabel.setFontScale(0.8f, 0.7f);
         Label gameOverLabel2 = new Label("HELP PAL???", font);
+        gameOverLabel2.setFontScale(0.8f, 0.7f);
         Label Coins = new Label(String.format("Score: %4d" ,cash),style2);
+        Coins.setFontScale(0.5f, 0.5f);
 
         table.add(upgradeLabel).expandX().center();
         table.row();
         table.add(gameOverLabel2).expandX().center();
         table.row();
-        table.add(Coins).expandX().center();
+        table.add(Coins).expandX().center().padTop(10);
         table.row();
         table.add(upgradeButton).expandX().padTop(10).center();
         table.row();

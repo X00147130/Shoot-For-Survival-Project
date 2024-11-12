@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="260" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="485">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="260" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="485">
  <tileset firstgid="1" source="Background.tsx"/>
  <tileset firstgid="181" source="Industry3.tsx"/>
  <tileset firstgid="182" source="IndustrialTile_46.tsx"/>
@@ -300,7 +300,7 @@
   <object id="405" x="32" y="637.333" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="6" name="Door" locked="1">
-  <object id="484" x="8320" y="128" height="64"/>
+  <object id="484" x="8315.33" y="159.667" width="4.5" height="32"/>
  </objectgroup>
  <objectgroup id="7" name="Scanner" locked="1">
   <object id="117" x="8192" y="160" width="32" height="32"/>

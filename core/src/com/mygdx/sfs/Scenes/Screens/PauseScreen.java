@@ -32,9 +32,9 @@ public class PauseScreen implements Screen {
     //Labels and Buttons
     private Label titleLabel;
     private Label.LabelStyle style;
-    private TextButton.TextButtonStyle buttonStyle;
-    private TextButton resume;
-    private TextButton quit;
+    private Label.LabelStyle buttonStyle;
+    private Label resume;
+    private Label quit;
 
 
     //Admin
@@ -60,28 +60,26 @@ public class PauseScreen implements Screen {
 
         //Label set up
         style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), CYAN);
+        buttonStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), WHITE);
         titleLabel = new Label("PAUSED",style);
-
+        titleLabel.setFontScale(0.8f, 0.6f);
 
         table = new Table ();
         table.center();
         table.setFillParent(true);
 
-        buttonStyle = new TextButton.TextButtonStyle();
-        buttonStyle.font = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
+        resume = new Label("resume", buttonStyle);
+        quit = new Label("quit", buttonStyle);
+
+        resume.setFontScale(0.5f, 0.5f);
+        quit.setFontScale(0.5f, 0.5f);
 
 
-        resume = new TextButton("resume", buttonStyle);
-        resume.setColor(WHITE);
-        quit = new TextButton("quit", buttonStyle);
-        quit.setColor(WHITE);
-
-
-        table.add(titleLabel).width(70).height(60).center().padRight(140);
+        table.add(titleLabel).width(70).height(60).center().padRight(105);
         table.row();
-        table.add(resume).width(110).height(50).center();
+        table.add(resume).width(110).height(50).center().padLeft(10);
         table.row();
-        table.add(quit).width(110).height(50).center();
+        table.add(quit).width(110).height(50).center().padLeft(45);
 
         stage.addActor(table);
         Gdx.input.setInputProcessor(stage);
