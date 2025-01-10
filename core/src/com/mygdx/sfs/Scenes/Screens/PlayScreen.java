@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.sfs.Scenes.Hud;
+import com.mygdx.sfs.Sprites.Breadcrumbs;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.Sprites.Items.Item;
 import com.mygdx.sfs.Sprites.Items.ItemDef;
@@ -50,7 +51,6 @@ public class PlayScreen implements Screen {
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    private Texture overlayTexture;
 
     //Box2D Variables
     public World world;
@@ -77,6 +77,7 @@ public class PlayScreen implements Screen {
 
     //finish level variable
     public boolean complete = false;
+    private boolean scannerJustTouched = false;
 
     //level variable
     private int level;
@@ -84,8 +85,11 @@ public class PlayScreen implements Screen {
     //controller creation
     public Controller controller;
 
-    private boolean scannerJustTouched = false;
-
+    //Bread Crumbs Variable
+    private ArrayList<Breadcrumbs> crumbs;
+    private Breadcrumbs bread;
+    private Vector2 crumbpos;
+    private Vector2 bossPos;
 
     public PlayScreen(shootForSurvival g, int location, int level) {
 
@@ -107,6 +111,7 @@ public class PlayScreen implements Screen {
         //bullet init
         bullets = new ArrayList<Bullets>();
 
+
         //render/map setup
         area = location;
         mapLoader = new TmxMapLoader();
@@ -119,12 +124,6 @@ public class PlayScreen implements Screen {
         }
         renderer = new OrthogonalTiledMapRenderer(map, 1 / shootForSurvival.PPM);
 
-        if(area == 1 ) {
-            overlayTexture = new Texture("Maps/Overlays/19.png");
-        }
-        else if(area == 2){
-            overlayTexture =new Texture("Maps/Overlays/11.png");
-        }
 
         //initiating game cam
         gamecam.position.set(gamePort.getWorldWidth() / 1.5f, gamePort.getWorldHeight() / 1.5f, 0);
@@ -150,8 +149,20 @@ public class PlayScreen implements Screen {
 
         items = new Array<Item>();
         itemToSpawn = new LinkedBlockingQueue<ItemDef>();
-        coins = 0;
+        coins = game.getMoney();
+        System.out.println("playscreen bitch" + coins);
+
+
         game.setWorld(world);
+
+
+        //breadcrumbs init
+        if(level == 10) {
+            bread = new Breadcrumbs(this, game);
+            crumbpos = new Vector2(bread.getPosition());
+            crumbs = new ArrayList<Breadcrumbs>(4);
+            crumbs.add(bread);
+        }
     }
 
     public void spawnItem(ItemDef idef) {
@@ -173,65 +184,6 @@ public class PlayScreen implements Screen {
         }
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public TiledMap getMap() {
-        return map;
-    }
-
-    public int getArea() {
-        return area;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public World getWorld() {
-        return world;
-    }
-
-    public boolean isComplete() {
-        return complete;
-    }
-
-    public Hud getHud() {
-        return hud;
-    }
-
-    public void setHud(Hud hud) {
-        this.hud = hud;
-    }
-
-    public shootForSurvival getGame() {
-        return game;
-    }
-
-    public double getBulletDamage() {
-        return bulletDamage;
-    }
-
-    public int getCoins() {
-        return coins;
-    }
-
-    public void setMoney(int coins) {
-        this.coins = coins;
-    }
-
-    public int getKeys() {
-        return keys;
-    }
-
-    public void setKeys(int keys) {
-        this.keys = keys;
-    }
-
-    @Override
-    public void show() {
-    }
 
     public void handleInput(float dt) {
 
@@ -242,6 +194,13 @@ public class PlayScreen implements Screen {
                 if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && game.jumpCounter < 2 && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
                     player.b2body.applyLinearImpulse(new Vector2(0, 3.6f), player.b2body.getWorldCenter(), true);
                     game.jumpCounter++;
+
+                    if(level == 10) {
+                        if (player.getX() == crumbpos.x + (5 / game.PPM)) {
+                            crumbs.add(new Breadcrumbs(this, game));
+                            Gdx.app.log("BreadCrumb", "Added");
+                        }
+                    }
 
                     game.loadSound("audio/sounds/soundnimja-jump.wav");
                     long id = game.sound.play();
@@ -262,10 +221,17 @@ public class PlayScreen implements Screen {
 
                 } else if ((Gdx.input.isKeyJustPressed(Input.Keys.UP) && (player.currentState == Player.State.DOUBLEJUMP)) && game.doubleJumped && player.currentState != Player.State.INTERACT) {
                     player.b2body.applyLinearImpulse(new Vector2(0f, 0f), player.b2body.getWorldCenter(), false);
+
+                    if(level == 10) {
+                        if (player.getY() == crumbpos.y + (5 / game.PPM)) {
+                            crumbs.add(new Breadcrumbs(this, game));
+                            Gdx.app.log("BreadCrumb", "Added");
+                        }
+                    }
                     Gdx.app.log("double", " jumped");
                 }
 
-//shoot
+//shoot / interact
                 if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && player.currentState != Player.State.COMPLETE) {
                     if(!scannerJustTouched) {
                         bullets.add(new Bullets(game, this, player.b2body.getPosition().x, player.b2body.getPosition().y));
@@ -311,11 +277,24 @@ public class PlayScreen implements Screen {
 //move right
                 if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 1.5 && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
                     player.b2body.applyLinearImpulse(new Vector2(0.5f, 0), player.b2body.getWorldCenter(), true);
+
+                    if(level == 10) {
+                        if (player.getX() == crumbpos.x + (5 / game.PPM)) {
+                            crumbs.add(new Breadcrumbs(this, game));
+                            Gdx.app.log("BreadCrumb", "Added");
+                        }
+                    }
                 }
 
 //move left
                 if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -1.5 && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
                     player.b2body.applyLinearImpulse(new Vector2(-0.5f, 0), player.b2body.getWorldCenter(), true);
+                    if(level == 10) {
+                        if (player.getX() == crumbpos.x + (5 / game.PPM)) {
+                            crumbs.add(new Breadcrumbs(this, game));
+                            Gdx.app.log("BreadCrumb", "Added");
+                        }
+                    }
                 }
 
             } else {
@@ -387,6 +366,20 @@ public class PlayScreen implements Screen {
         world.step(1 / 60f, 6, 2);
 
         player.update(dt);
+
+        if (level == 10) {
+            for (Breadcrumbs breadCrumbs : crumbs) {
+                bread = new Breadcrumbs(this, game);
+                    crumbpos = breadCrumbs.getPosition();
+                if(bossPos != null){
+                if (bossPos.x / shootForSurvival.PPM >= breadCrumbs.getPosition().x) {
+                    System.out.println("DELETING AFTER COLLISION");
+                    breadCrumbs.update(dt);
+                }}
+            }
+        }
+
+
         scannerPostion = creator.getScanner().getScannerPos();
 
 
@@ -400,7 +393,8 @@ public class PlayScreen implements Screen {
 
         for (Enemy boss : creator.getScalpers()) {
             boss.update(dt);
-            if (boss.getX() < player.getX() + 424 / shootForSurvival.PPM) {
+            bossPos = new Vector2(boss.getX(), boss.getY());
+            if (boss.getX() < player.getX() + 42 / shootForSurvival.PPM) {
                 boss.enemyBody.setActive(true);
             }
         }
@@ -411,11 +405,12 @@ public class PlayScreen implements Screen {
             bulletDamage = bullet.getDamage();
         }
 
-        for (Item item : creator.getCoins())
+        for (Item item : creator.getCoins()) {
             item.update(dt);
+        }
 
         for (Item item : creator.getVials()) {
-            for(int i = 0; i < creator.getVials().size; i++) {
+            for (int i = 0; i < creator.getVials().size; i++) {
                 if (player.isHealthCrate()) {
                     player.setHealthCrate(false);
                 }
@@ -430,13 +425,14 @@ public class PlayScreen implements Screen {
             item.update(dt);
 
 
-        creator.door.objectStateTimer +=dt;
+        creator.door.objectStateTimer += dt;
 
         if (creator.getScanner().isDestroyed()) {
             creator.door.unlock(game.statetimer);
-            if(statetimer < 1.3f)
+            if (statetimer < 1.3f) {
                 interact = creator.getScanner().isInteracted();
-            else
+                game.setInteract(interact);
+            } else
                 interact = false;
             player.setScannerTouched(false);
         }
@@ -542,12 +538,12 @@ public class PlayScreen implements Screen {
         if (complete) {
             if (player.currentState == Player.State.COMPLETE && player.getStateTimer() > 1.2) {
                 if (level < 10) {
-                    game.setScreen(new LevelComplete(game,area, level));
+                    game.setScreen(new LevelComplete(game, area, level));
                 } else {
                     game.setScreen(new LevelSelect(game));
                 }
-            game.setPowerLVL(game.getPowerLVL());
-            dispose();
+                game.setPowerLVL(game.getPowerLVL());
+                dispose();
             }
         }
     }
@@ -566,6 +562,9 @@ public class PlayScreen implements Screen {
 
     public boolean gameOver() {
         if (player.currentState == Player.State.DEAD && player.getStateTimer() > 3) {
+            coins = game.getStartMoney();
+            game.setMoney(game.getStartMoney());
+            System.out.println("gameover fail" + coins);
             return true;
         } else {
             return false;
@@ -585,6 +584,69 @@ public class PlayScreen implements Screen {
         return interact;
     }
 
+    public Breadcrumbs getBread() {
+        return bread;
+    }
+    public Player getPlayer() {
+        return player;
+    }
+
+    public TiledMap getMap() {
+        return map;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public Hud getHud() {
+        return hud;
+    }
+
+    public void setHud(Hud hud) {
+        this.hud = hud;
+    }
+
+    public shootForSurvival getGame() {
+        return game;
+    }
+
+    public double getBulletDamage() {
+        return bulletDamage;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setMoney(int coins) {
+        this.coins = coins;
+    }
+
+    public int getKeys() {
+        return keys;
+    }
+
+    public void setKeys(int keys) {
+        this.keys = keys;
+    }
+
+    @Override
+    public void show() {
+    }
+
     @Override
     public void pause() {
     }
@@ -600,15 +662,8 @@ public class PlayScreen implements Screen {
     }
 
 
-    public void coins() {
-        if (creator.getCoins().size > 0) {
-            coins = creator.getCoins().size;
-        }
-    }
-
     @Override
     public void dispose() {
-        overlayTexture.dispose();
         map.dispose();
         renderer.dispose();
 

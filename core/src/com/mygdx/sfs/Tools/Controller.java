@@ -33,6 +33,10 @@ public class Controller {
     private Texture image;
     private Drawable draw;
 
+    private Image attackImg;
+    private Image upImg;
+    private Image dashImg;
+
     public Controller(final shootForSurvival game){
         cam = new OrthographicCamera(480,320);
         cam.position.set(480/2f, 320/2f,0);
@@ -60,9 +64,9 @@ public class Controller {
                 }
             });}
 
-        Image attackImg = new Image(new Texture("controller/Shoot.png"));
-        attackImg.setSize(40,35);
-        attackImg.addListener(new InputListener(){
+        attackImg = new Image(new Texture("controller/Shoot.png"));
+        attackImg.setSize(40, 35);
+        attackImg.addListener(new InputListener() {
 
 
             @Override
@@ -110,7 +114,7 @@ public class Controller {
             }
         });
 
-        Image dashImg = new Image(new Texture("controller/Dash.png"));
+        dashImg = new Image(new Texture("controller/Dash.png"));
         dashImg.setSize(40,35);
         dashImg.addListener(new InputListener(){
 
@@ -162,11 +166,86 @@ public class Controller {
 
         stage.addActor(table);
 
-        action.add(upImg).size(upImg.getWidth(),upImg.getHeight()).padRight(10);
+        action.add(upImg).size(upImg.getWidth(), upImg.getHeight()).padRight(10);
         action.add();
-        action.add(dashImg).size(dashImg.getWidth(),dashImg.getHeight()).padRight(10).padLeft(10);
+        action.add(dashImg).size(dashImg.getWidth(), dashImg.getHeight()).padRight(10).padLeft(10);
         action.add();
-        action.add(attackImg).size(attackImg.getWidth(),attackImg.getHeight()).padLeft(10);
+        action.add(attackImg).size(attackImg.getWidth(), attackImg.getHeight()).padLeft(10);
+
+
+        stage.addActor(action);
+
+        stage.addListener(new InputListener() {
+
+            @Override
+            public boolean keyDown(InputEvent event, int keycode) {
+                switch (keycode) {
+                    case Input.Keys.UP:
+                        upPressed = true;
+                        break;
+                    case Input.Keys.SPACE:
+                        shootPressed = true;
+                        break;
+                    case Input.Keys.LEFT:
+                        leftPressed = true;
+                        break;
+                    case Input.Keys.RIGHT:
+                        rightPressed = true;
+                        break;
+                    case Input.Keys.DOWN:
+                        dashPressed = true;
+                        break;
+                }
+                return true;
+            }
+
+            @Override
+            public boolean keyUp(InputEvent event, int keycode) {
+                switch (keycode) {
+                    case Input.Keys.UP:
+                        upPressed = false;
+                        break;
+                    case Input.Keys.SPACE:
+                        shootPressed = false;
+                        break;
+                    case Input.Keys.LEFT:
+                        leftPressed = false;
+                    case Input.Keys.RIGHT:
+                        rightPressed = false;
+                        break;
+                    case Input.Keys.DOWN:
+                        dashPressed = false;
+                        break;
+                }
+                return true;
+            }
+
+        });
+    }
+    public void draw(){
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            Gdx.input.setInputProcessor(stage);
+            timeSeconds += Gdx.graphics.getRawDeltaTime();
+            if (timeSeconds > period) {
+                timeSeconds -= period;
+                handleEvent();
+            }
+        }
+        stage.draw();
+
+        /*Table action = new Table();
+        action.right().bottom();
+        action.setFillParent(true);
+        if (gameplay.interact) {
+
+            attackImg = new Image(new Texture("controller/Interact.png"));
+
+            action.add(upImg).size(upImg.getWidth(), upImg.getHeight()).padRight(10);
+            action.add();
+            action.add(dashImg).size(dashImg.getWidth(), dashImg.getHeight()).padRight(10).padLeft(10);
+            action.add();
+            action.add(attackImg).size(attackImg.getWidth(), attackImg.getHeight()).padLeft(10);
+        }
 
         stage.addActor(action);
 
@@ -215,18 +294,7 @@ public class Controller {
                 return true;
             }
 
-        });
-    }
-    public void draw(){
-        if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            Gdx.input.setInputProcessor(stage);
-            timeSeconds += Gdx.graphics.getRawDeltaTime();
-            if (timeSeconds > period) {
-                timeSeconds -= period;
-                handleEvent();
-            }
-        }
-        stage.draw();
+        });*/
     }
 
     public void handleEvent(){

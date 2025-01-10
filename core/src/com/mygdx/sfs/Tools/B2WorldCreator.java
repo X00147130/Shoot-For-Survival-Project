@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Enemies.Bosses.Scalper;
-import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
+import com.mygdx.sfs.Sprites.Enemies.Grunts.Grunt;
 import com.mygdx.sfs.Sprites.Items.Money;
 import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.KeyCard;
@@ -25,7 +25,7 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class B2WorldCreator {
     private shootForSurvival sfs;
-    private Array<Worker> workers;
+    private Array<Grunt> workers;
     private Array<Scalper> scalper;
     private Array<Money> coins;
     private Array<HealthCrate> vials;
@@ -100,14 +100,14 @@ public class B2WorldCreator {
 
 
 // create workers enemies
-        workers = new Array<Worker>();
+        workers = new Array<Grunt>();
         scalper = new Array<Scalper>();
         for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             if(screen.getLevel() == 10){
                 scalper.add(new Scalper(sfs,screen,rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
             }else{
-            workers.add(new Worker(sfs,screen, rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
+            workers.add(new Grunt(sfs,screen, rect.x / shootForSurvival.PPM, rect.y / shootForSurvival.PPM));
             }
         }
 
@@ -167,7 +167,7 @@ public class B2WorldCreator {
 
     }
 
-    public Array<Worker> getWorkers() {
+    public Array<Grunt> getWorkers() {
         return workers;
     }
     public Array<Scalper> getScalpers() {

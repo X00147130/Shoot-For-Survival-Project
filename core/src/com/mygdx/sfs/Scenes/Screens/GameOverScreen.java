@@ -119,6 +119,8 @@ public class GameOverScreen implements Screen {
                 GAME.setHealthAtlas(new TextureAtlas("sprites/Objects/HealthCrate.pack"));
                 GAME.setKeycardAtlas(new TextureAtlas("sprites/Objects/keycard.pack"));
                 GAME.setDoorAtlas(new TextureAtlas("sprites/Objects/industrialDoor.pack"));
+                GAME.setPowerLVL(1);
+                GAME.setPistolLvl(1);
                 GAME.music.stop();
                 GAME.setScreen(new MenuScreen(GAME));
             }

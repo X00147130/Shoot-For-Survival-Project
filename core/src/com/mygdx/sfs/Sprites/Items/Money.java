@@ -18,6 +18,7 @@ import com.mygdx.sfs.shootForSurvival;
 
 public class Money extends Item {
     private static int count = 0;
+    private static int startCount = 0;
     public shootForSurvival sfs;
     private Animation<TextureRegion> money;
 
@@ -64,7 +65,7 @@ public class Money extends Item {
         destroy();
         count += 100;
         screen.setMoney(count);
-        Gdx.app.log("Coin", "destroyed");
+        Gdx.app.log("Coin", "destroyed" + count);
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             sfs.loadSound("audio/sounds/coin sound.wav");
             long id = sfs.sound.play();
@@ -82,13 +83,23 @@ public class Money extends Item {
     @Override
     public void update(float dt) {
         super.update(dt);
+
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() /2);
         setRegion(money.getKeyFrame(sfs.statetimer,true));
-        if(screen.isComplete() || (screen.getPlayer().currentState == Player.State.DEAD && screen.getPlayer().getStateTimer() > 0.01)){
-            count = 0;
+        if(screen.getPlayer().currentState == Player.State.DEAD && screen.getPlayer().getStateTimer() > 0.01){
+            count = startCount;
+        }
+        else if(screen.isComplete()){
+            count = screen.getCoins();
+            startCount = screen.getCoins();
+            sfs.setStartMoney(startCount);
+            System.out.println("Bitch failed" + count);
+            sfs.setMoney(startCount);
+            Gdx.app.log("Faggot",  "fails" + count);
         }
 
     }
+
 
     @Override
     public void draw(Batch batch) {

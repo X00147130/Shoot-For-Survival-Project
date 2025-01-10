@@ -20,8 +20,6 @@ public class shootForSurvival extends Game {
     public static final int MAP_WIDTH = 900;
     public static final int MAP_HEIGHT = 508;
     public static final float PPM = 150;
-    public static final float MAX_VOL = 100;
-    public static final float MIN_VOL = 0;
 
     //Filter initializations
     public static final short GROUND_BIT = 1;
@@ -37,7 +35,7 @@ public class shootForSurvival extends Game {
     public static final short DEATH_BIT = 1024;
     public static final short WALL_BIT = 2048;
     public static final short HEALTH_BIT = 4096;
-    public static final short PLAYER_HEAD_BIT = 8192;
+    public static final short BREADCRUMBS_BIT = 8192;
 
 
     //variables
@@ -47,21 +45,20 @@ public class shootForSurvival extends Game {
     private int area = 1;
     public float volume = 0.5f;
     public float soundVolume = 0.5f;
-    public boolean mutedM = false;
-    public boolean mutedS = false;
     public Music music;
     public Sound sound;
-    private int money = 0;
+    private int money;
+    private int startMoney = 0;
     private Hud hud;
+    private int price = 0;
     public int jumpCounter = 0;
     public int justTouched = 0;
     public boolean doubleJumped = false;
     public float statetimer = 0;
-    public boolean musicIsChecked = false;
-    public boolean soundIsChecked = false;
     public int powerLVL = 0;
-
     public int pistolLvl = 1;
+
+    public boolean interact;
 
 //Punk Pistol Atlas'
     private TextureAtlas punkAtlas;
@@ -142,6 +139,7 @@ public class shootForSurvival extends Game {
     private TextureAtlas rifleBullets;
 
     private TextureAtlas worker1Atlas;
+    private TextureAtlas brigandAtlas;
 
     private TextureAtlas scalperAtlas;
 
@@ -172,17 +170,6 @@ public class shootForSurvival extends Game {
     public TextureAtlas rifleChoice9;
     public TextureAtlas rifleChoice10;
 
-    public TextureAtlas pistolLvl1;
-    public TextureAtlas pistolLvl2;
-    public TextureAtlas pistolLvl3;
-    public TextureAtlas pistolLvl4;
-    public TextureAtlas pistolLvl5;
-    public TextureAtlas pistolLvl6;
-    public TextureAtlas pistolLvl7;
-    public TextureAtlas pistolLvl8;
-    public TextureAtlas pistolLvl9;
-    public TextureAtlas pistolLvl10;
-
 
 
     public static AssetManager manager;
@@ -193,7 +180,12 @@ public class shootForSurvival extends Game {
     public void setHud(Hud hud) {
         this.hud = hud;
     }
-
+    public int getStartMoney() {
+        return startMoney;
+    }
+    public void setStartMoney(int startMoney) {
+        this.startMoney = startMoney;
+    }
 
     @Override
     public void create() {
@@ -328,7 +320,9 @@ public class shootForSurvival extends Game {
         rifleBullets = new TextureAtlas("sprites/Bullets/rifleBullets.pack"); //Rifle bullets
 
 
-        worker1Atlas = new TextureAtlas("sprites/Enemies/worker1.pack");//Worker1 (Enemy) Character
+        worker1Atlas = new TextureAtlas("sprites/Enemies/worker1.pack");//Worker1 (Grunt) Character
+        brigandAtlas = new TextureAtlas("sprites/Enemies/Brigand.pack");//Brigand (Grunt) Character
+
         scalperAtlas = new TextureAtlas("sprites/Enemies/Bosses/Scalper.pack");//Scalper (Boss) Character
 
         doorAtlas = new TextureAtlas("sprites/Objects/industrialDoor.pack"); //End Level Door
@@ -391,29 +385,6 @@ public class shootForSurvival extends Game {
         this.statetimer = statetimer;
     }
 
-    public void setMutedM(boolean muted){
-        mutedM = muted;
-    }
-
-    public void setMutedS(boolean mute){
-        mutedS = mute;
-    }
-
-    public void setMusicIsChecked(boolean musicIsChecked) {
-        this.musicIsChecked = musicIsChecked;
-    }
-
-    public void setSoundIsChecked(boolean soundIsChecked) {
-        this.soundIsChecked = soundIsChecked;
-    }
-
-    public boolean isMusicIsChecked() {
-        return musicIsChecked;
-    }
-
-    public boolean isSoundIsChecked() {
-        return soundIsChecked;
-    }
 
     public World getWorld() {
         return world;
@@ -454,6 +425,7 @@ public class shootForSurvival extends Game {
         return punkAtlas10;
     }
 
+
     public TextureAtlas getBikerAtlas() {
         return bikerAtlas;
     }
@@ -484,9 +456,6 @@ public class shootForSurvival extends Game {
     public TextureAtlas getBikerAtlas10() {
         return bikerAtlas10;
     }
-
-
-
 
 
     public TextureAtlas getCyborgAtlas() {
@@ -527,9 +496,8 @@ public class shootForSurvival extends Game {
     public TextureAtlas getPlayersChoice2() {
         return playersChoice2;
     }
-    public TextureAtlas getPlayersChoice3() {
-        return playersChoice3;
-    }public TextureAtlas getPlayersChoice4() {
+    public TextureAtlas getPlayersChoice3() {return playersChoice3; }
+    public TextureAtlas getPlayersChoice4() {
         return playersChoice4;
     }
     public TextureAtlas getPlayersChoice5() {
@@ -693,6 +661,10 @@ public class shootForSurvival extends Game {
         return worker1Atlas;
     }
 
+    public TextureAtlas getBrigandAtlas(){
+        return brigandAtlas;
+    }
+
     public TextureAtlas getScalperAtlas() {
         return scalperAtlas;
     }
@@ -798,6 +770,10 @@ public class shootForSurvival extends Game {
     }
     public void setPistolLvl(int pistolLvl) {
         this.pistolLvl = pistolLvl;
+    }
+
+    public void setInteract(boolean interact){
+        this.interact = interact;
     }
 
 

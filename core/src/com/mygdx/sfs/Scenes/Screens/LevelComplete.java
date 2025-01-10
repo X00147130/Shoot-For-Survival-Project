@@ -28,8 +28,8 @@ public class LevelComplete implements Screen {
     private shootForSurvival sfs;
     private Viewport screen;
     private Stage stage;
-    private int score = 0;
     private SpriteBatch batch;
+    private int score = 0;
 
 
     //Next level button variables
@@ -198,6 +198,7 @@ public class LevelComplete implements Screen {
                 sfs.setDoorAtlas(new TextureAtlas("sprites/Objects/industrialDoor.pack"));
             }
         });
+
     }
 
     @Override

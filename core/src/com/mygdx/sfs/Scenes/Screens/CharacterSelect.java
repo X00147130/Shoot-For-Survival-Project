@@ -9,11 +9,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -31,19 +29,19 @@ import java.util.ArrayList;
 
 
 public class CharacterSelect implements Screen {
-    /* Admin Inits */
+/* Admin Inits */
     private shootForSurvival sfs;
     private Viewport viewport;
     private Texture background;
     private int location;
     private int map;
 
-    /* Arrays To Loop through for Selection */
+/* Arrays To Loop through for Selection */
     private ArrayList<TextureAtlas.AtlasRegion> characterSprites;
     private ArrayList<Label> characterNames;
     private int i = 0;
 
-    //Selection, Labels and buttons
+//Selection Variables
     private TextureAtlas selected;
     private TextureAtlas selected2;
     private TextureAtlas selected3;
@@ -65,12 +63,18 @@ public class CharacterSelect implements Screen {
     private TextureAtlas selectedRifle9;
     private TextureAtlas selectedRifle10;
 
-
+//Image variables
     private Image left, right;
+
+//Stage Variables
     private Table table;
     private Stage stage;
+
+//Button Style Variables
     private TextButton.TextButtonStyle textStyle;
     private BitmapFont buttonFont;
+
+//Label Variables
     private Label punkLabel;
     private Label bikerLabel;
     private Label cyborgLabel;
@@ -80,8 +84,9 @@ public class CharacterSelect implements Screen {
 
 
 
-
+//Class Constructors
     public CharacterSelect(shootForSurvival game, int area, int level) {
+//Variable initalisation
         this.sfs = game;
         viewport = new FitViewport(sfs.V_WIDTH, sfs.V_HEIGHT, new OrthographicCamera());
 
@@ -94,7 +99,7 @@ public class CharacterSelect implements Screen {
             background = sfs.manager.get("backgrounds/ResidentialBackround.png", Texture.class);
         }
 
-        /*initialising and instantiating of animatimation arrays*/
+//initialising and instantiating of animatimation arrays
         characterSprites = new ArrayList<TextureAtlas.AtlasRegion>(3);
 
         characterSprites.add(sfs.getBikerAtlas().findRegion("idle1"));
@@ -104,67 +109,70 @@ public class CharacterSelect implements Screen {
         characterSprites.add(sfs.getCyborgAtlas().findRegion("idle1"));
 
 
-        //Setup of Screen
+//Label Style Initalisations
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
         Label.LabelStyle font2 = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), MAGENTA);
 
+//Text Button Style Initalisations
         textStyle = new TextButton.TextButtonStyle();
         buttonFont = new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-export.fnt"));
         textStyle.font = buttonFont;
         textStyle.fontColor = MAGENTA;
 
+//Labels Setup
         arrows = new Label("Arrows To Swap Character",font2);
-        arrows.setFontScale(0.4f, 0.5f);
         enter = new Label("Enter to Select",font2);
+        arrows.setFontScale(0.4f, 0.5f);
         enter.setFontScale(0.4f, 0.5f);
 
-        /*Intiatialising and Names of characters added to the arraylist*/
+//Intiatialising and Names of characters added to the arraylist
         characterNames = new ArrayList<Label>(3);
-
 
         bikerLabel = new Label("Clyde", font);
         punkLabel = new Label("Chad", font);
         cyborgLabel = new Label("X01F", font);
-
 
         characterNames.add(0,bikerLabel);
         characterNames.add(1,punkLabel);
         characterNames.add(2,cyborgLabel);
 
 
+//Using Texture
         Texture button1 = new Texture("controller/rightBtn.png");
         Texture button2 = new Texture("controller/leftBtn.png");
 
-
+//Right Button Setup
         right = new Image(button1);
         right.setSize(3 / sfs.PPM, 3 / sfs.PPM);
 
-
+//Left Button Setup
         left = new Image(button2);
         left.setSize(3 / sfs.PPM, 3 / sfs.PPM);
 
-
-        choose = new Label("Select", font2);
+//Selection Button Setup
+        choose = new Label("Time To Kill", font2);
         choose.setFontScale(0.4f,0.5f);
 
-
+//Setup for android
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
-
+//Initialising stage and table
             stage = new Stage(viewport, sfs.batch);
             table = new Table();
             table.setFillParent(true);
             table.center();
 
-
+//Filling the Table
             table.add(left).left().size(button2.getWidth() / 10, button2.getHeight() / 10).padRight(60).padTop(20);
             table.add(right).right().size(button1.getWidth() / 10, button1.getHeight() / 10).padLeft(60).padTop(20);
             table.row();
             table.row();
             table.add(choose).center().padLeft(130).padTop(30);
 
+//Passing the table to the Stage and passing the Stage in as the location we want to read inputs from
             stage.addActor(table);
             Gdx.input.setInputProcessor(stage);
 
+//Adding a click Listener for the right arrow button
             right.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
@@ -195,7 +203,7 @@ public class CharacterSelect implements Screen {
                 }
             });
 
-
+//Adding a click Listener for the Left arrow button
             left.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
@@ -225,7 +233,7 @@ public class CharacterSelect implements Screen {
                 }
             });
 
-
+//Adding a click Listener for the Selection button
             choose.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
@@ -308,12 +316,12 @@ public class CharacterSelect implements Screen {
                     sfs.setPlayersChoice2(selected2);
                     sfs.setPlayersChoice3(selected3);
                     sfs.setPlayersChoice4(selected4);
-                    sfs.setPlayersChoice2(selected5);
-                    sfs.setPlayersChoice2(selected6);
-                    sfs.setPlayersChoice2(selected7);
-                    sfs.setPlayersChoice2(selected8);
-                    sfs.setPlayersChoice2(selected9);
-                    sfs.setPlayersChoice2(selected10);
+                    sfs.setPlayersChoice5(selected5);
+                    sfs.setPlayersChoice6(selected6);
+                    sfs.setPlayersChoice7(selected7);
+                    sfs.setPlayersChoice8(selected8);
+                    sfs.setPlayersChoice9(selected9);
+                    sfs.setPlayersChoice10(selected10);
                     sfs.setRifleChoice(selectedRifle);
                     sfs.setRifleChoice2(selectedRifle2);
                     sfs.setRifleChoice3(selectedRifle3);
@@ -331,6 +339,8 @@ public class CharacterSelect implements Screen {
         }
 
     }
+
+    //Render Method
         @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
@@ -341,7 +351,7 @@ public class CharacterSelect implements Screen {
 
 
 
-
+//Open the Batch from the main page
         sfs.batch.begin();
 
         sfs.batch.draw(background,0,0,500,200);
@@ -367,12 +377,14 @@ public class CharacterSelect implements Screen {
             stage.draw();
         }
 
+//A getter for retrieving i as i is the choice of Character the player makes
     public int getI() {
         return i;
     }
 
+//Handling inputs for the Computer when testing for selection
     public void handleInput(float dt){
-        /*Move Left*/
+/*Move Left*/
         if(Gdx.app.getType() == Application.ApplicationType.Desktop){
             if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
                 if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -406,7 +418,7 @@ public class CharacterSelect implements Screen {
                 }
             }
 
-            /*Move Right*/
+/*Move Right*/
             if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
                 if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                     sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
@@ -439,7 +451,7 @@ public class CharacterSelect implements Screen {
                 }
             }
 
-            /*Selection*/
+/*Selection*/
             if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
                     sfs.loadSound("audio/sounds/421837__prex2202__blipbutton.mp3");
@@ -528,12 +540,12 @@ public class CharacterSelect implements Screen {
                 sfs.setPlayersChoice2(selected2);
                 sfs.setPlayersChoice3(selected3);
                 sfs.setPlayersChoice4(selected4);
-                sfs.setPlayersChoice2(selected5);
-                sfs.setPlayersChoice2(selected6);
-                sfs.setPlayersChoice2(selected7);
-                sfs.setPlayersChoice2(selected8);
-                sfs.setPlayersChoice2(selected9);
-                sfs.setPlayersChoice2(selected10);
+                sfs.setPlayersChoice5(selected5);
+                sfs.setPlayersChoice6(selected6);
+                sfs.setPlayersChoice7(selected7);
+                sfs.setPlayersChoice8(selected8);
+                sfs.setPlayersChoice9(selected9);
+                sfs.setPlayersChoice10(selected10);
                 sfs.setRifleChoice(selectedRifle);
                 sfs.setRifleChoice2(selectedRifle2);
                 sfs.setRifleChoice3(selectedRifle3);
@@ -579,6 +591,7 @@ public class CharacterSelect implements Screen {
 
     }
 
+//Trash disposing
     @Override
     public void dispose() {
         stage.dispose();

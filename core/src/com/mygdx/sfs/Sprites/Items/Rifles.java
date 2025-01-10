@@ -21,9 +21,12 @@ public class Rifles extends Item{
     public shootForSurvival sfs;
     private Animation<TextureRegion> rifle;
     private int powerLVL = 0;
+    private int pistolLvl;
 
     public Rifles(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
+
+        pistolLvl = sfs.getPistolLvl();
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         frames.add(sfs.getRifles().findRegion("1"));
@@ -62,8 +65,6 @@ public class Rifles extends Item{
     @Override
     public void useItem(Player player) {
 
-        powerLVL++;
-        sfs.setPowerLVL(powerLVL);
         sfs.setPowerLVL(powerLVL);
         player.setRifle(true);
         Gdx.app.log("Rifle", "Collected");
@@ -91,7 +92,53 @@ public class Rifles extends Item{
     @Override
     public void update(float dt) {
         super.update(dt);
-        powerLVL = sfs.getPowerLVL();
+        /*powerLVL = sfs.getPowerLVL();*/
+
+        pistolLvl = sfs.getPistolLvl();
+
+        switch(pistolLvl){
+            case 1:
+                sfs.setPowerLVL(1);
+                powerLVL = 1;
+                break;
+            case 2:
+                sfs.setPowerLVL(2);
+                powerLVL = 2;
+                break;
+            case 3:
+                sfs.setPowerLVL(3);
+                powerLVL = 3;
+                break;
+            case 4:
+                sfs.setPowerLVL(4);
+                powerLVL = 4;
+                break;
+            case 5:
+                sfs.setPowerLVL(5);
+                powerLVL = 5;
+                break;
+            case 6:
+                sfs.setPowerLVL(6);
+                powerLVL = 6;
+                break;
+            case 7:
+                sfs.setPowerLVL(7);
+                powerLVL = 7;
+                break;
+            case 8:
+                sfs.setPowerLVL(8);
+                powerLVL = 8;
+                break;
+            case 9:
+                sfs.setPowerLVL(9);
+                powerLVL = 9;
+                break;
+            case 10:
+                sfs.setPowerLVL(10);
+                powerLVL = 10;
+                break;
+        }
+
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for(int i = 1; i <= sfs.getRifles().getRegions().size; i++) {

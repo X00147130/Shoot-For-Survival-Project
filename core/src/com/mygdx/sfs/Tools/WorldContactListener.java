@@ -1,14 +1,16 @@
 package com.mygdx.sfs.Tools;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.mygdx.sfs.Sprites.Breadcrumbs;
 import com.mygdx.sfs.Sprites.Enemies.Bosses.Scalper;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
-import com.mygdx.sfs.Sprites.Enemies.Grunts.Worker;
+import com.mygdx.sfs.Sprites.Enemies.Grunts.Grunt;
 import com.mygdx.sfs.Sprites.Items.Bullets;
 import com.mygdx.sfs.Sprites.Items.HealthCrate;
 import com.mygdx.sfs.Sprites.Items.Item;
@@ -54,11 +56,11 @@ public class WorldContactListener implements ContactListener {
             case shootForSurvival.ENEMY_BIT | shootForSurvival.BULLET_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BULLET_BIT) {
                     ((Bullets) fixA.getUserData()).destroy();
-                    ((Worker) fixB.getUserData()).shot();
+                    ((Grunt) fixB.getUserData()).shot();
                 }
                 else {
                     ((Bullets) fixB.getUserData()).destroy();
-                    ((Worker) fixA.getUserData()).shot();
+                    ((Grunt) fixA.getUserData()).shot();
                 }
                 break;
 
@@ -88,12 +90,12 @@ public class WorldContactListener implements ContactListener {
             case shootForSurvival.PLAYER_BIT | shootForSurvival.ENEMY_BIT:
                 if (fixA.getFilterData().categoryBits == shootForSurvival.PLAYER_BIT) {
                     ((Player) fixA.getUserData()).hit();
-                    ((Worker) fixB.getUserData()).setAttack(true);
+                    ((Grunt) fixB.getUserData()).setAttack(true);
 
                 }
                 else {
                     ((Player) fixB.getUserData()).hit();
-                    ((Worker) fixA.getUserData()).setAttack(true);
+                    ((Grunt) fixA.getUserData()).setAttack(true);
                 }
                 break;
 
@@ -140,6 +142,19 @@ public class WorldContactListener implements ContactListener {
                 else {
                     ((Player) fixB.getUserData()).hit();
                     ((Scalper) fixA.getUserData()).setAttack(true);
+                }
+                break;
+
+
+            case shootForSurvival.BREADCRUMBS_BIT | shootForSurvival.BOSS_BIT:
+                System.out.println("HERE");
+                if (fixA.getFilterData().categoryBits == shootForSurvival.BREADCRUMBS_BIT) {
+                    ((Breadcrumbs) fixA.getUserData()).setSetToPop(true);
+                    Gdx.app.log("Boss", "Breadcrumb");
+                }
+                else {
+                    ((Breadcrumbs) fixB.getUserData()).setSetToPop(true);
+                    Gdx.app.log("Boss", "Breadcrumb");
                 }
                 break;
 

@@ -19,13 +19,13 @@ public class Credits implements Screen {
     private Viewport viewport;
 
 
-    /*tables*/
+/*tables*/
     private Table devTable;
     private Table musicTable;
     private Table graphicsTable;
     private Table helpTable;
 
-    /*Labels*/
+/*Labels*/
     private Label title;
     private Label developer;
     private Label music;
@@ -53,14 +53,14 @@ public class Credits implements Screen {
     private Label helpCred2;
     private Label helpCred3;
 
-    /*labelStyle*/
+/*labelStyle*/
     private Label.LabelStyle titleStyle;
     private Label.LabelStyle devStyle;
     private Label.LabelStyle musicStyle;
     private Label.LabelStyle graphicsStyle;
     private Label.LabelStyle helpStyle;
 
-
+/*Stages*/
     private Stage stage;
     private Stage stage2;
     private Stage stage3;
@@ -69,6 +69,7 @@ public class Credits implements Screen {
     private float period = 20f;
 
     public Credits(shootForSurvival game) {
+/*Variable initialisations*/
         this.GAME = game;
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, GAME.batch);
@@ -76,24 +77,24 @@ public class Credits implements Screen {
         stage3 = new Stage(viewport, GAME.batch);
         stage4 = new Stage(viewport, GAME.batch);
 
-        /*Label Style*/
+/*Label Style*/
         titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.WHITE);
         devStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.GOLD);
         musicStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.RED);
         graphicsStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.BLUE);
         helpStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.GREEN);
 
-        /*Labels*/
+/*Labels*/
         title = new Label("Credits", titleStyle);
         developer = new Label("Created By ", devStyle);
         music = new Label("Music By ", musicStyle);
         graphics = new Label("Graphics By ", graphicsStyle);
         help = new Label("With Special Thanks To ", helpStyle);
 
-        /*Developer Credits*/
+/*Developer Credits*/
         developerCred = new Label("Dean Conway ", devStyle);
 
-        /*Music Credits*/
+/*Music Credits*/
         musicCred1 = new Label("Warrior by yoitrax | https://soundcloud.com/yoitrax", musicStyle);
         musicCred2 = new Label("Jade Dragon by yoitrax | https://soundcloud.com/yoitrax", musicStyle);
         musicCred3 = new Label("Ronin by yoitrax | https://soundcloud.com/yoitrax", musicStyle);
@@ -102,7 +103,7 @@ public class Credits implements Screen {
         musicCred6 = new Label("electronic-door-opening | by Jocabundus", musicStyle);
         musicCred7 = new Label("item-pickup-v2| by alegemaate", musicStyle);
 
-        /*Graphic Credits*/
+/*Graphic Credits*/
         graphicsCred1 = new Label("cobaltplasma, deviantart", graphicsStyle);
         graphicsCred2 = new Label("sunitalke, imgbin", graphicsStyle);
         graphicsCred3 = new Label("specterblaze, deviantart", graphicsStyle);
@@ -110,13 +111,13 @@ public class Credits implements Screen {
         graphicsCred5 = new Label("philippineoutsourcing, GraphicRiver", graphicsStyle);
         graphicsCred6 = new Label("GamespriteZ, GraphicRiver", graphicsStyle);
 
-        /*help Credits*/
+/*help Credits*/
         helpCred1 = new Label("David Browne", helpStyle);
         helpCred2 = new Label("Check Out His Games By Searching", helpStyle);
         helpCred3 = new Label("davebrowne Games on Anodriod and ios!", helpStyle);
 
 
-        /*Developer Table*/
+/*Developer Table*/
         devTable = new Table();
         devTable.setFillParent(true);
 
@@ -126,7 +127,7 @@ public class Credits implements Screen {
         devTable.row();
         devTable.add(developerCred);
 
-        /*Music Table*/
+/*Music Table*/
         musicTable = new Table();
         musicTable.setFillParent(true);
 
@@ -148,7 +149,7 @@ public class Credits implements Screen {
         musicTable.row();
         musicTable.add(musicCred7).center();
 
-        /*Graphics Table*/
+/*Graphics Table*/
         graphicsTable = new Table();
         graphicsTable.setFillParent(true);
 
@@ -168,7 +169,7 @@ public class Credits implements Screen {
         graphicsTable.row();
         graphicsTable.add(graphicsCred6);
 
-        /*Help Table*/
+/*Help Table*/
         helpTable = new Table();
         helpTable.setFillParent(true);
 
@@ -195,6 +196,7 @@ public class Credits implements Screen {
 
     }
 
+/*Render method to clear screen and then draw the stages with certain time intervals for each one*/
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);

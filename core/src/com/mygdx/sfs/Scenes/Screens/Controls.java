@@ -23,24 +23,34 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.sfs.shootForSurvival;
 
 public class Controls implements Screen {
-
+/*Game Variables*/
     private final shootForSurvival GAME;
     private Viewport viewport;
 
-    /*Labels*/
+/*Labels*/
     private Label title;
     private Label pause;
     private Label forward;
     private Label backward;
     private Label shoot;
+    private Label interact;
     private Label dash;
     private Label jump;
     private Label back;
 
-    /*labelStyle*/
+    private Texture pauseImg;
+    private Texture forwardImg;
+    private Texture backwardImg;
+    private Texture shootImg;
+    private Texture interactImg;
+    private Texture jumpImg;
+    private Texture dashImg;
+
+/*labelStyle*/
     private Label.LabelStyle titleStyle;
     private Label.LabelStyle style;
 
+/*Background Settings*/
     private Stage stage;
     private Texture background;
 
@@ -49,14 +59,14 @@ public class Controls implements Screen {
         viewport = new FitViewport(shootForSurvival.V_WIDTH, shootForSurvival.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,GAME.batch);
 
-        /*Label Style*/
+ /*Label Style*/
         titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/quantum-horizon/raw/font-title-export.fnt")), MAGENTA);
         style = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skins/CyberpunkCraftpixFont.fnt")), Color.GREEN);
 
-        /*Labels*/
+/*Labels*/
         title = new Label("Controls",titleStyle);
 
-        /*Desktop*/
+/*Desktop*/
         if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
             pause = new Label("Pause:   esc ", style);
             forward = new Label("Forward:   Right Arrow Key", style);
@@ -74,53 +84,68 @@ public class Controls implements Screen {
             dash.setFontScale(0.3f, 0.3f);
             back.setFontScale(0.3f, 0.3f);
         }
-        /*Android*/
+
+/*Android*/
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
-            pause = new Label("Pause:   Pause Button", style);
-            forward = new Label("Forward:   Right Arrow", style);
-            backward = new Label("Backward:   Left Arrow", style);
-            shoot = new Label("Shoot:   S", style);
-            jump = new Label("Jump:   Jump", style);
-            dash = new Label("Dash:   D", style);
+            pause = new Label("Pause:   " , style);
+            forward = new Label("Forward:   ", style);
+            backward = new Label("Backward:   ", style);
+            shoot = new Label("Shoot:   ", style);
+            interact = new Label("Interact:   ", style);
+            jump = new Label("Jump:   ", style);
+            dash = new Label("Dash:   ", style);
             back = new Label("Go Back", style);
+
+            pauseImg = new Texture("controller/pauseBtn.png");
+            forwardImg = new Texture("controller/Forward.png");
+            backwardImg = new Texture("controller/Backward.png");
+            shootImg = new Texture("controller/Shoot.png");
+            interactImg = new Texture("controller/Interact.png");
+            jumpImg = new Texture("controller/jump.png");
+            dashImg = new Texture("controller/Dash.png");
 
             pause.setFontScale(0.3f, 0.3f);
             forward.setFontScale(0.3f, 0.3f);
             backward.setFontScale(0.3f, 0.3f);
             shoot.setFontScale(0.3f, 0.3f);
+            interact.setFontScale(0.3f, 0.3f);
             jump.setFontScale(0.3f, 0.3f);
             dash.setFontScale(0.3f, 0.3f);
             back.setFontScale(0.3f, 0.3f);
         }
 
-        //Background Texture
+/*Background Texture*/
         background = GAME.manager.get("backgrounds/controls.png",Texture.class);
 
+
+/*Table Creation*/
         Table table = new Table();
         table.setFillParent(true);
 
-        table.add(title).center().top().padBottom(20);
+/*Populating Table*/
+        table.add(title).center().top().padBottom(10);
         table.row();
+        table.add(forward).center().padBottom(10);
         table.row();
-        table.add(forward).center();
+        table.add(backward).center().padBottom(10);
         table.row();
-        table.add(backward).center();
+        table.add(jump).center().padBottom(10);
         table.row();
-        table.add(jump).center();
+        table.add(shoot).center().padBottom(10);
         table.row();
-        table.add(shoot).center();
+        table.add(interact).center().padBottom(10);
         table.row();
-        table.add(dash).center();
+        table.add(dash).center().padBottom(10);
         table.row();
         table.add(pause).center();
         table.row();
-        table.add(back).center().padTop(30);
+        table.add(back).center().padTop(15);
 
-
+/*Passing Table into the Stage and Stage then into the input processor*/
         stage.addActor(table);
         Gdx.input.setInputProcessor(stage);
 
-
+/*Android back button Click listener*/
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
             back.addListener(new ClickListener() {
                 @Override
@@ -137,7 +162,7 @@ public class Controls implements Screen {
     public void show() {
 
     }
-
+/*Back button set up for Desktop*/
     public void handleInput(float dt){
         if(Gdx.app.getType() == Application.ApplicationType.Desktop){
             if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
@@ -147,11 +172,12 @@ public class Controls implements Screen {
         }
     }
 
-
+/*Update that checks for inputs */
     public void update(float dt){
         handleInput(dt);
     }
 
+    /*Clearing the screen and then displaying the background and drawing the stage on top of the background*/
     @Override
     public void render(float delta) {
       if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -162,11 +188,22 @@ public class Controls implements Screen {
 
         GAME.batch.begin();
         GAME.batch.draw(background,0,0,400,350);
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            GAME.batch.draw(forwardImg,260,140,20,20);
+            GAME.batch.draw(backwardImg,260,120,20,20);
+            GAME.batch.draw(jumpImg,260,100,20,20);
+            GAME.batch.draw(shootImg,260,80,20,20);
+            GAME.batch.draw(interactImg,260,60,20,20);
+            GAME.batch.draw(dashImg,260,40,20,20);
+            GAME.batch.draw(pauseImg,260,20,20,20);
+        }
+
         GAME.batch.end();
 
         stage.draw();
     }
 
+/*Resizes the viewport of the app to fit the device your on*/
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
@@ -187,6 +224,7 @@ public class Controls implements Screen {
 
     }
 
+/*Takes out the trash*/
     @Override
     public void dispose() {
         background.dispose();

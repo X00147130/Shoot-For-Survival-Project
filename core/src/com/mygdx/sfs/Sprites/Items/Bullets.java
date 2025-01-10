@@ -22,9 +22,9 @@ public class Bullets{
     public boolean destroy;
     private World world;
     private PlayScreen screen;
-    private int powerLVL = 1;
+    private int powerLVL;
 
-    private int pistolLvl = 1;
+    private int pistolLvl;
 
     private double damage = 0.5;
 
@@ -38,6 +38,9 @@ public class Bullets{
         this.x = x + 2 / sfs.PPM;
         this.screen = screen;
         destroy = false;
+        pistolLvl = sfs.getPistolLvl();
+        powerLVL = sfs.getPowerLVL();
+
         defineBullet();
     }
 

@@ -11,14 +11,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.sfs.Scenes.Screens.PlayScreen;
 import com.mygdx.sfs.Sprites.Enemies.Enemy;
 import com.mygdx.sfs.shootForSurvival;
 
-public class Worker extends Enemy {
+public class Grunt extends Enemy {
     //animation variables
     public enum State{ RUNNING, HURT, ATTACK, DEAD }
     public State currentState;
@@ -43,7 +42,7 @@ public class Worker extends Enemy {
     private boolean attack = false;
     private int enemyHitCounter;
 
-    public Worker(shootForSurvival sfs, PlayScreen screen, float x, float y) {
+    public Grunt(shootForSurvival sfs, PlayScreen screen, float x, float y) {
         super(screen, x, y);
         this.sfs = sfs;
         previousState = State.RUNNING;
@@ -51,27 +50,32 @@ public class Worker extends Enemy {
 
         //Run animation
         frames = new Array<TextureRegion>();
-        frames.add(sfs.getWorker1Atlas().findRegion("Run1"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run2"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run3"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run4"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run5"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Run6"));
+        for(int r = 1; r < 7; r++) {
 
+            if (screen.getArea() == 1) {
+                frames.add(sfs.getWorker1Atlas().findRegion("Run" + r));
 
-        runAnimation = new Animation<TextureRegion>(1f, frames);
+            } else if (screen.getArea() == 2) {
+                frames.add(sfs.getBrigandAtlas().findRegion("Run" + r));
+            }
+        }
+
+        runAnimation = new Animation<TextureRegion>(0.5f, frames);
         setBounds(0,0,18/PPM, 20/PPM);
         frames.clear();
 
         //Death animation
         frames.clear();
 
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead1"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead2"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead3"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead4"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead5"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Dead6"));
+
+        for(int d = 1; d < 7; d++) {
+            if (screen.getArea() == 1) {
+                frames.add(sfs.getWorker1Atlas().findRegion("Dead" + d));
+            }
+            else if (screen.getArea() == 2) {
+                frames.add(sfs.getBrigandAtlas().findRegion("Death" + d));
+            }
+        }
 
         dieAnimation = new Animation <TextureRegion>(0.3f, frames);
         frames.clear();
@@ -79,23 +83,33 @@ public class Worker extends Enemy {
         //Attack Animation
         frames.clear();
 
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack1"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack2"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack3"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack4"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack5"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Attack6"));
+        for(int a = 1; a < 5; a++) {
+            if (screen.getArea() == 1) {
+                frames.add(sfs.getWorker1Atlas().findRegion("Attack" + a));
+            }
+            else if (screen.getArea() == 2) {
+                frames.add(sfs.getBrigandAtlas().findRegion("Attack" + a));
+            }
 
-        attackAnimation = new Animation <TextureRegion>(1f, frames);
+        }
+
+        attackAnimation = new Animation <TextureRegion>(0.5f, frames);
         frames.clear();
 
         //Hurt Animation
         frames.clear();
 
-        frames.add(sfs.getWorker1Atlas().findRegion("Hurt1"));
-        frames.add(sfs.getWorker1Atlas().findRegion("Hurt2"));
+        for(int h = 1; h < 3; h++) {
+            if (screen.getArea() == 1) {
+                frames.add(sfs.getWorker1Atlas().findRegion("Hurt" + h));
+            }
+            else if (screen.getArea() == 2) {
+                frames.add(sfs.getBrigandAtlas().findRegion("Hurt" + h));
+            }
+        }
 
-        hurtAnimation = new Animation <TextureRegion>(1f, frames);
+
+        hurtAnimation = new Animation <TextureRegion>(0.5f, frames);
         frames.clear();
 
 

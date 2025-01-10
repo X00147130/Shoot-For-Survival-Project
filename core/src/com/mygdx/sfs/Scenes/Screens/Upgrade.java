@@ -33,7 +33,8 @@ public class Upgrade implements Screen {
     private int price = 0;
     private int cash = 0;
 
-    private int pistol = 1;
+    private int pistol;
+    private int rifle;
 
     private Texture background;
 
@@ -47,9 +48,45 @@ public class Upgrade implements Screen {
         stage = new Stage(viewport, GAME.batch);
         this.area = location;
         this.map = level;
-        price += 500;
         cash = GAME.getMoney();
         pistol = GAME.getPistolLvl();
+        rifle = GAME.getPowerLVL();
+
+
+        switch(pistol){
+            case 1:
+                price  = 500;
+                break;
+            case 2:
+                price = 1000;
+                break;
+            case 3:
+                price  = 1500;
+                break;
+            case 4:
+                price = 2000;
+                break;
+            case 5:
+                price  = 2500;
+                break;
+            case 6:
+                price = 3000;
+                break;
+            case 7:
+                price  = 3500;
+                break;
+            case 8:
+                price = 4000;
+                break;
+            case 9:
+                price  = 4500;
+                break;
+            case 10:
+                price = 5000;
+                break;
+        }
+
+
 
         background = GAME.manager.get("backgrounds/deadbg.png", Texture.class);
 
@@ -85,11 +122,12 @@ public class Upgrade implements Screen {
         Gdx.input.setInputProcessor(stage);
 
 
+
         // Upgrades pistol
         upgradeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if(cash > price) {
+                if(cash >= price) {
                     if (Gdx.app.getType() == Application.ApplicationType.Android) {
                         GAME.manager.get("audio/sounds/421837__prex2202__blipbutton.mp3", Sound.class).play(GAME.getSoundVolume());
                     }
@@ -107,9 +145,11 @@ public class Upgrade implements Screen {
 
                     GAME.music.stop();
                     GAME.setMoney(cash - price);
-                    price = price + 500;
+                    GAME.setStartMoney(cash - price);
                     pistol++;
+                    rifle++;
                     GAME.setPistolLvl(pistol);
+                    GAME.setPowerLVL(rifle);
                     GAME.setScreen(new PlayScreen(GAME, area, map));
                 }
 
@@ -180,8 +220,6 @@ public class Upgrade implements Screen {
         GAME.batch.end();
         stage.draw();
     }
-
-
 
 
     @Override

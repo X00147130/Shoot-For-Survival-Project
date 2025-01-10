@@ -55,7 +55,7 @@ public class Hud implements Disposable {
 
             this.playScreen = playScreen;
 
-            walletAmount = playScreen.getCoins();
+            walletAmount = game.getMoney();
 
             keys = playScreen.getKeys();
 
@@ -88,14 +88,14 @@ public class Hud implements Disposable {
 
             table.add(healthLabel).expandX().left().padLeft(5).top().padTop(2);
             table.add(wallet).right().top();
-            table.add(walletLabel).padRight(10).right().padLeft(20).top();
+            table.add(walletLabel).padRight(2).right().padLeft(20).top();
 
             table.row();
             table.row();
 
 
             table2.add(key).spaceLeft(20).padLeft(20).right();
-            table2.add(keyAcquired).padRight(60).right();
+            table2.add(keyAcquired).padRight(63).right();
 
             stage.addActor(table);
             stage.addActor(table2);
@@ -109,7 +109,7 @@ public class Hud implements Disposable {
         }
 
         public void update(float dt) {
-            walletAmount = playScreen.getCoins();
+            walletAmount = gameplay.getMoney();
             walletLabel.setText(String.format("%01d", walletAmount));
 
             keys = playScreen.getKeys();
