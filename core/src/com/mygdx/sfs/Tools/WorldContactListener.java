@@ -147,14 +147,18 @@ public class WorldContactListener implements ContactListener {
 
 
             case shootForSurvival.BREADCRUMBS_BIT | shootForSurvival.BOSS_BIT:
-                System.out.println("HERE");
+                Gdx.app.log("Collision", "Boss collided with Breadcrumb");
+                Breadcrumbs breadcrumb = null;
+
                 if (fixA.getFilterData().categoryBits == shootForSurvival.BREADCRUMBS_BIT) {
-                    ((Breadcrumbs) fixA.getUserData()).setSetToPop(true);
-                    Gdx.app.log("Boss", "Breadcrumb");
+                    breadcrumb = (Breadcrumbs) fixA.getUserData();
+                } else if (fixB.getFilterData().categoryBits == shootForSurvival.BREADCRUMBS_BIT) {
+                    breadcrumb = (Breadcrumbs) fixB.getUserData();
                 }
-                else {
-                    ((Breadcrumbs) fixB.getUserData()).setSetToPop(true);
-                    Gdx.app.log("Boss", "Breadcrumb");
+
+                if (breadcrumb != null) {
+                    breadcrumb.markForDeletion();
+                    Gdx.app.log("Breadcrumb", "Marked for deletion");
                 }
                 break;
 
