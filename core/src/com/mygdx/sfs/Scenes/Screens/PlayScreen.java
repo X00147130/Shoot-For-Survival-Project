@@ -8,8 +8,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -35,6 +33,7 @@ import com.mygdx.sfs.Tools.WorldContactListener;
 import com.mygdx.sfs.shootForSurvival;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class PlayScreen implements Screen {
@@ -90,6 +89,9 @@ public class PlayScreen implements Screen {
     private Breadcrumbs bread;
     private Vector2 crumbpos;
     private Vector2 bossPos;
+    private float breadcrumbTimer = 0f;
+    private static final float BREADCRUMB_INTERVAL = 5.0f; // seconds
+    private static final int MAX_BREADCRUMBS = 4;
 
     public PlayScreen(shootForSurvival g, int location, int level) {
 
@@ -157,11 +159,9 @@ public class PlayScreen implements Screen {
 
 
         //breadcrumbs init
+        crumbs = new ArrayList<Breadcrumbs>(MAX_BREADCRUMBS);
         if(level == 10) {
-            bread = new Breadcrumbs(this, game);
-            crumbpos = new Vector2(bread.getPosition());
-            crumbs = new ArrayList<Breadcrumbs>(4);
-            crumbs.add(bread);
+            addBreadcrumb(); // Start with one breadcrumb
         }
     }
 
@@ -196,9 +196,11 @@ public class PlayScreen implements Screen {
                     game.jumpCounter++;
 
                     if(level == 10) {
-                        if (player.getX() == crumbpos.x + (5 / game.PPM)) {
-                            crumbs.add(new Breadcrumbs(this, game));
-                            Gdx.app.log("BreadCrumb", "Added");
+                        if (crumbpos != null) {
+                            if (player.getX() == crumbpos.x + (5 / game.PPM)) {
+                                crumbs.add(new Breadcrumbs(this, game));
+                                Gdx.app.log("BreadCrumb", "Added");
+                            }
                         }
                     }
 
@@ -223,9 +225,11 @@ public class PlayScreen implements Screen {
                     player.b2body.applyLinearImpulse(new Vector2(0f, 0f), player.b2body.getWorldCenter(), false);
 
                     if(level == 10) {
-                        if (player.getY() == crumbpos.y + (5 / game.PPM)) {
-                            crumbs.add(new Breadcrumbs(this, game));
-                            Gdx.app.log("BreadCrumb", "Added");
+                        if(crumbpos != null) {
+                            if (player.getY() == crumbpos.y + (5 / game.PPM)) {
+                                crumbs.add(new Breadcrumbs(this, game));
+                                Gdx.app.log("BreadCrumb", "Added");
+                            }
                         }
                     }
                     Gdx.app.log("double", " jumped");
@@ -279,9 +283,11 @@ public class PlayScreen implements Screen {
                     player.b2body.applyLinearImpulse(new Vector2(0.5f, 0), player.b2body.getWorldCenter(), true);
 
                     if(level == 10) {
-                        if (player.getX() == crumbpos.x + (5 / game.PPM)) {
-                            crumbs.add(new Breadcrumbs(this, game));
-                            Gdx.app.log("BreadCrumb", "Added");
+                        if (crumbpos != null) {
+                            if (player.getX() == crumbpos.x + (5 / game.PPM)) {
+                                crumbs.add(new Breadcrumbs(this, game));
+                                Gdx.app.log("BreadCrumb", "Added");
+                            }
                         }
                     }
                 }
@@ -290,9 +296,11 @@ public class PlayScreen implements Screen {
                 if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -1.5 && player.currentState != Player.State.COMPLETE && player.currentState != Player.State.INTERACT) {
                     player.b2body.applyLinearImpulse(new Vector2(-0.5f, 0), player.b2body.getWorldCenter(), true);
                     if(level == 10) {
-                        if (player.getX() == crumbpos.x + (5 / game.PPM)) {
-                            crumbs.add(new Breadcrumbs(this, game));
-                            Gdx.app.log("BreadCrumb", "Added");
+                        if (crumbpos != null) {
+                            if (player.getX() == crumbpos.x + (5 / game.PPM)) {
+                                crumbs.add(new Breadcrumbs(this, game));
+                                Gdx.app.log("BreadCrumb", "Added");
+                            }
                         }
                     }
                 }
@@ -367,15 +375,24 @@ public class PlayScreen implements Screen {
 
         player.update(dt);
 
-        if (level == 10) {
-            for (Breadcrumbs breadCrumbs : crumbs) {
-                bread = new Breadcrumbs(this, game);
-                    crumbpos = breadCrumbs.getPosition();
-                if(bossPos != null){
-                if (bossPos.x / shootForSurvival.PPM >= breadCrumbs.getPosition().x) {
-                    System.out.println("DELETING AFTER COLLISION");
-                    breadCrumbs.update(dt);
-                }}
+        if(level == 10) {
+            // Handle breadcrumb spawning based on timer
+            breadcrumbTimer += dt;
+            if (breadcrumbTimer >= BREADCRUMB_INTERVAL) {
+                breadcrumbTimer -= BREADCRUMB_INTERVAL; // Reset timer
+                addBreadcrumb();
+            }
+
+            // Iterate through breadcrumbs to check for deletion
+            Iterator<Breadcrumbs> iterator = crumbs.iterator();
+            while(iterator.hasNext()) {
+                Breadcrumbs breadcrumb = iterator.next();
+                // If breadcrumb is marked for deletion (e.g., collision with boss)
+                if(breadcrumb.isMarkedForDeletion()) {
+                    breadcrumb.delete();
+                    iterator.remove();
+                    System.out.println("Breadcrumb deleted upon boss collision. Total breadcrumbs: " + crumbs.size());
+                }
             }
         }
 
@@ -451,6 +468,19 @@ public class PlayScreen implements Screen {
         renderer.setView(gamecam);
         game.setMoney(coins);
         game.setStatetimer(player.getStateTimer());
+    }
+
+    private void addBreadcrumb() {
+        Breadcrumbs breadcrumb = new Breadcrumbs(this, game);
+        crumbs.add(breadcrumb);
+        System.out.println("Added breadcrumb. Total breadcrumbs: " + crumbs.size());
+
+        // Ensure maximum number of breadcrumbs is not exceeded
+        if (crumbs.size() > MAX_BREADCRUMBS) {
+            Breadcrumbs oldestBreadcrumb = crumbs.remove(0); // Remove the oldest breadcrumb
+            oldestBreadcrumb.delete();
+            System.out.println("Removed oldest breadcrumb to maintain max limit. Total breadcrumbs: " + crumbs.size());
+        }
     }
 
     @Override
